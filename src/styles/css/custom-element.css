@@ -1,0 +1,49 @@
+.cst-input {
+  padding: 0.5rem;
+  border-radius: var(--rounded);
+  border: 1px solid var(--theme-blue-400);
+  color: var(--theme-text-black);
+  background-color: var(--theme-bg-white);
+}
+
+.cst-input:focus {
+  border: 2px solid var(--theme-blue-400);
+}
+
+.cst-card {
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.cst-lg-input {
+  width: 100%;
+  border: none;
+  padding: 0.25rem 1rem;
+  outline: none;
+  border: 1px solid var(--theme-blue-400);
+  border-radius: 0.25rem;
+  line-height: 1;
+}
+
+.cst-lg-input:hover {
+  border-color: var(--theme-blue-500);
+}
+
+.cst-blue-btn {
+  width: 100%;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0;
+  color: var(--theme-text-white);
+  background-color: var(--theme-blue-500);
+}
+
+.cst-blue-btn:hover {
+  background-color: var(--theme-blue-600);
+}
+
+.cst-blue-btn:disabled {
+  background-color: var(--theme-text-lightgray);
+}
+
+/* w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700 */

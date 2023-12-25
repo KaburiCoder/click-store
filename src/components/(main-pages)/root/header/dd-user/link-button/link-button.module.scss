@@ -1,0 +1,39 @@
+.link_li {
+  .link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: var(--theme-text-blue-900);
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      color: var(--theme-blue-600);
+      margin-right: 10px;
+    }
+  }
+
+  &:hover,
+  &:active {
+    background-color: var(--theme-bg-blue-200);
+    border-radius: 14px;
+  }
+}
+
+.link_li.admin {
+  .link {
+    color: var(--theme-text-rose-500);
+
+    .icon {
+      color: var(--theme-text-rose-500);
+    }
+  }
+
+  &:hover,
+  &:active {
+    background-color: rgba($color: rgb(223, 64, 64), $alpha: 0.3);
+  }
+}

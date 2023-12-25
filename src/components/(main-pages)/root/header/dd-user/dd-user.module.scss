@@ -1,0 +1,54 @@
+@import "@/scss/index.scss";
+
+.container {
+  height: 100%;
+
+  &>.header,
+  &>.list {
+    padding: 10px 20px;
+  }
+
+  .header {
+    background-color: var(--theme-bg-blue-600);
+    display: flex;
+    justify-content: space-between;
+    color: whitesmoke;
+  }
+
+  .header__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header__left__title {
+    display: flex;
+    align-items: center;
+    font-size: var(--fs-xl);
+    margin-bottom: 4px;
+
+    .setting_link {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .header__left__sub {
+    font-size: var(--fs-xs);
+  }
+}
+
+.shop-button {
+  @include white-button-legacy;
+
+  .shop-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: 3px;
+  }
+}
+
+.link_ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}

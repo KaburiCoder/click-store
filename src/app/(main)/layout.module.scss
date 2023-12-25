@@ -1,0 +1,36 @@
+$header-height: var(--header-height);
+$header-menu-height: 2.8rem;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+
+  header {
+    background-color: var(--theme-bg-white);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: $header-height;
+
+    @media (min-width: 768px) {
+      height: $header-height + $header-menu-height;
+    }
+  }
+
+  main {
+    flex: 1;
+    padding-top: calc(#{$header-height} + var(--main-nav-height));
+  }
+
+  footer {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    color: black;
+    text-align: left;
+  }
+}

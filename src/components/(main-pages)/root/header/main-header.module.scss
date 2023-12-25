@@ -1,0 +1,18 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: var(--header-height);
+  overflow: hidden;
+  border-bottom: 1px solid gray;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: var(--header-height);
+  padding: 0.25rem 0;
+}
