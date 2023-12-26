@@ -4,16 +4,21 @@ import SideGroupItem, {
 } from "@/components/(shared)/side/side-group-item";
 import { paths } from "@/paths";
 import React from "react";
-import { BiUser } from "react-icons/bi";
+import { MdContentPasteSearch } from "react-icons/md";
 
 const groups: ISideGroup[] = [
   {
-    groupName: "계정설정",
+    groupName: "물품 주문",
     links: [
       {
-        Icon: BiUser,
-        path: paths.settingsProfile(),
-        name: "프로필",
+        Icon: MdContentPasteSearch,
+        path: paths.adminOrders(),
+        name: "주문내역",
+      },
+      {
+        Icon: MdContentPasteSearch,
+        path: paths.adminWebOrders(),
+        name: "웹 주문내역",
       },
     ],
   },

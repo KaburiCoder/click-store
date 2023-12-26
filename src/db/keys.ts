@@ -6,4 +6,12 @@ export class QKey {
   static get ordersInfiniteQuery() {
     return "ordersInfiniteQuery";
   }
+
+  static get webOrdersInfiniteQuery() {
+    return "webOrdersInfiniteQuery";
+  }
+
+  static get fetchGetManagers() {
+    return "fetchGetManagers";
+  }
 }

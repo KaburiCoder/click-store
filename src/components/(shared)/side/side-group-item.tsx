@@ -1,15 +1,19 @@
-"use client";
 import LabelWrapper from "@/components/ui/custom/label-wrapper";
-import { LinkItem } from "./link-item";
-import { IGroup } from "./group-list";
+import React from "react";
+import SideLinkItem, { ISideLink } from "./side-link-item";
 
 interface GroupItemProps {
-  group: IGroup;
+  group: ISideGroup;
 }
 
-export function GroupItem({ group }: GroupItemProps) {
+export interface ISideGroup {
+  groupName: string;
+  links: ISideLink[];
+}
+
+export default function SideGroupItem({ group }: GroupItemProps) {
   const linkComponents = group.links.map((link) => {
-    return <LinkItem key={link.path} link={link} />;
+    return <SideLinkItem key={link.path} link={link} />;
   });
 
   return (

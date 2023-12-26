@@ -52,6 +52,15 @@ export const paths = {
   settingsProfile() {
     return "/settings/profile";
   },
+
+  // admin
+  adminOrders() {
+    return "/admin/orders";
+  },
+
+  adminWebOrders() {
+    return "/admin/web-orders";
+  },
 };
 
 export const imgPaths = {

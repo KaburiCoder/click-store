@@ -1,17 +1,22 @@
 "use client";
-
 import { cn } from "@/lib/utils/shadcn.util";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ILink } from "./group-list";
+import React from "react";
+import { IconType } from "react-icons";
 
 interface LinkItemProps {
-  link: ILink;
+  link: ISideLink;
 }
 
-export function LinkItem({ link }: LinkItemProps) {
-  const pathname = usePathname();
+export interface ISideLink {
+  Icon: IconType;
+  path: string;
+  name: string;
+}
 
+export default function SideLinkItem({ link }: LinkItemProps) {
+  const pathname = usePathname();
   return (
     <Link
       href={link.path}

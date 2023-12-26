@@ -1,8 +1,6 @@
-import { imgPaths, paths } from "@/paths";
+import { imgPaths } from "@/paths";
 import Image from "next/image";
 import React from "react";
-import { CiMenuKebab } from "react-icons/ci";
-import { Button } from "../../ui/button";
 import MenuButton from "./menu-button";
 
 export default function SettingsHeader() {

@@ -8,7 +8,12 @@ import {
   saveProducts,
 } from "./product.service";
 import { PaymentsWithPage } from "../interfaces/payments-with-page";
-import { getCsByYkiho } from "./cs.service";
+import { getCsByYkiho, getYkihos } from "./cs.service";
+import { AdminSearchBarData } from "@/store/admin-search-bar.store";
+import dayjs from "dayjs";
+import { numericStringRegex } from "@/lib/utils/regex";
+
+const DISP_ITEM_COUNT = 6;
 
 export async function savePayment(payment: Partial<Payment>) {
   const user = await getUser();
@@ -75,26 +80,8 @@ export async function getPaymentWithVirtual(orderId: string) {
   return data;
 }
 
-export async function getPaymentsWithItems({
-  page,
-}: {
-  page: number;
-}): Promise<PaymentsWithPage> {
-  const dispItemCount = 6;
-  const user = await getUser();
-  const payments = await db.payment.findMany({
-    where: {
-      ykiho: user?.ykiho,
-    },
-    include: { paymentItems: true, virtual: true },
-    orderBy: { id: "desc" },
-    skip: dispItemCount * (page - 1),
-    take: dispItemCount,
-  });
-
-  const newPayments: Payment[] = Object.assign(payments);
-
-  for (const p of newPayments) {
+async function addOtherTableInfoToPayments(payments: Payment[]) {
+  for (const p of payments) {
     // cs 추가
     p.cs = await getCsByYkiho(p.ykiho);
 
@@ -104,10 +91,111 @@ export async function getPaymentsWithItems({
       pi.pd = await getFirstProduct({ where: { webPaymentItemId: pi.id } });
     }
   }
+}
+
+export async function getAdminPaymentsWithItems({
+  page,
+  adminSearch,
+}: {
+  page: number;
+  adminSearch: AdminSearchBarData;
+}): Promise<PaymentsWithPage> {
+  const { dateFrom, dateTo, manager, searchString } = adminSearch;
+  const sDate = dayjs(dayjs(dateFrom).format("YYYY-MM-DD 00:00:00")).toDate();
+  const eDate = dayjs(dayjs(dateTo).format("YYYY-MM-DD 23:59:59")).toDate();
+  const ykihos = manager
+    ? await getYkihos({ where: { emCode: manager } })
+    : await getYkihos();
+
+  let orderId: string | undefined;
+  let customerYkihos: string[] | undefined;
+  if (searchString) {
+    if (numericStringRegex.test(searchString)) {
+      orderId = searchString;
+    } else {
+      customerYkihos = await getYkihos({
+        where: {
+          myung: {
+            startsWith: searchString,
+          },
+        },
+      });
+    }
+  }
+
+  const payments = await db.payment.findMany({
+    where: {
+      AND: [
+        {
+          requestedAt: orderId
+            ? undefined
+            : {
+                gte: sDate,
+              },
+        },
+        {
+          requestedAt: orderId
+            ? undefined
+            : {
+                lte: eDate,
+              },
+        },
+        {
+          ykiho: {
+            in: ykihos,
+          },
+        },
+        {
+          ykiho: customerYkihos && {
+            in: customerYkihos,
+          },
+        },
+      ],
+      orderId: orderId,
+    },
+    include: { paymentItems: true, virtual: true },
+    orderBy: { id: "desc" },
+    skip: DISP_ITEM_COUNT * (page - 1),
+    take: DISP_ITEM_COUNT,
+  });
+
+  const newPayments = payments as Payment[];
+  await addOtherTableInfoToPayments(newPayments);
 
   return {
     page: page,
-    isLast: payments.length < dispItemCount,
+    isLast: payments.length < DISP_ITEM_COUNT,
+    payments: newPayments,
+  };
+}
+
+export async function getPaymentsWithItems({
+  page,
+  adminSearch,
+}: {
+  page: number;
+  adminSearch?: AdminSearchBarData;
+}): Promise<PaymentsWithPage> {
+  const user = await getUser();
+  const payments = await db.payment.findMany({
+    where: {
+      ykiho: user?.ykiho,
+    },
+    include: { paymentItems: true, virtual: true },
+    orderBy: { id: "desc" },
+    skip: DISP_ITEM_COUNT * (page - 1),
+    take: DISP_ITEM_COUNT,
+  });
+
+  if (adminSearch) {
+  }
+
+  const newPayments = payments as Payment[];
+  await addOtherTableInfoToPayments(newPayments);
+
+  return {
+    page: page,
+    isLast: payments.length < DISP_ITEM_COUNT,
     payments: newPayments,
   };
 }

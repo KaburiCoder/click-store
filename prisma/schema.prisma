@@ -355,3 +355,11 @@ model ProductLog {
   webPaymentItemId Int      @map(name: "pd_web_payment_item_id")
   webBNPL          Boolean  @map(name: "pd_web_bnpl")
 }
+
+model Em {
+  code   String  @unique @map(name: "em_code")
+  name   String? @map(name: "em_name")
+  jisa   String? @map(name: "em_jisa")
+  buCode String? @map(name: "em_bucode")
+  endYmd String? @map(name: "em_endymd")
+}

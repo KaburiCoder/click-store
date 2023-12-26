@@ -1,15 +1,17 @@
 "use client";
+import { fetchGetAdminPaymentsWithItems } from "@/db/client-queries/fetch-admin-payments-with-items";
 import { fetchGetPaymentsWithItems } from "@/db/client-queries/fetch-payments-with-items";
+import { QKey } from "@/db/keys";
 import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
+import { useAdminSearchBarStore } from "@/store/admin-search-bar.store";
 import useOrdersStore from "@/store/orders.store";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect } from "react";
-import OrderBox from "./order-box/order-box";
+import OrderBox from "../(main-pages)/orders/order-box/order-box";
 import { cn } from "@/lib/utils/shadcn.util";
-import { QKey } from "@/db/keys";
 
-export default function OrderList() {
-  const { payments, observerComponent, error } = useOrdersInfiniteQuery();
+export default function AdminWebOrderList() {
+  const { payments, observerComponent, error } = useWebOrdersInfiniteQuery();
 
   const orderComponents = payments.map((p) => {
     return (
@@ -34,16 +36,19 @@ export default function OrderList() {
   );
 }
 
-const useOrdersInfiniteQuery = () => {
-  const { payments, setPayments, updateSendType } = useOrdersStore();
+const useWebOrdersInfiniteQuery = () => {
   const queryClient = useQueryClient();
-
-  const { data, error, hasNextPage, isFetching, fetchNextPage, refetch } =
+  const { payments, setPayments } = useOrdersStore();
+  const { searchData, searchToggle } = useAdminSearchBarStore();
+  const { data, error, hasNextPage, isFetching, fetchNextPage } =
     useInfiniteQuery({
       initialPageParam: 1,
-      queryKey: [QKey.ordersInfiniteQuery],
+      queryKey: [QKey.ordersInfiniteQuery, searchData, searchToggle],
       queryFn: ({ pageParam }) =>
-        fetchGetPaymentsWithItems({ page: pageParam }),
+        fetchGetAdminPaymentsWithItems({
+          page: pageParam,
+          adminSearch: searchData!,
+        }),
       getNextPageParam: (nextPage) => {
         if (!!nextPage?.isLast) return null;
 
@@ -52,6 +57,8 @@ const useOrdersInfiniteQuery = () => {
       select: (data) => {
         return data.pages?.flatMap((pg) => pg.payments);
       },
+      gcTime: 10,
+      enabled: !!searchData,
     });
 
   const { observerComponent } = useIntersectionObserver({

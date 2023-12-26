@@ -1,12 +1,13 @@
+"use server";
 import { NextRequest, NextResponse } from "next/server";
 import { WebHookDto } from "./_dto/web-hook.dto";
 import { updateOrdered } from "@/db/services/payment.service";
 import { resultWrapper2 } from "@/lib/utils/callback.util";
 import dayjs from "dayjs";
 
-export function GET(req: NextRequest) {
-  return NextResponse.json({ name: "gdsaffdsa" });
-}
+// export function GET(req: NextRequest) {
+//   return NextResponse.json({ name: "gdsaffdsa" });
+// }
 
 export async function POST(req: NextRequest) {
   const result: WebHookDto = await req.json();
@@ -25,7 +26,7 @@ export async function POST(req: NextRequest) {
   );
 
   if (updateResult.errorMessage) {
-    return { message: updateResult.errorMessage };
+    return NextResponse.json({ message: updateResult.errorMessage });
   }
 
   return NextResponse.json({ success: true });
