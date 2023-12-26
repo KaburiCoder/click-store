@@ -31,7 +31,7 @@ export interface IGroup {
 
 export default function GroupList() {
   const groupComponents = groups.map((group) => {
-    return <GroupItem group={group} />;
+    return <GroupItem key={group.groupName} group={group} />;
   });
 
   return groupComponents;

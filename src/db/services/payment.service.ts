@@ -141,3 +141,19 @@ export async function cancelPayment(id: number) {
     await deleteProducts(piIds);
   }
 }
+
+export async function updateOrdered({
+  orderId,
+  approvedAt,
+}: {
+  orderId: string;
+  approvedAt: Date;
+}) {
+  await db.payment.update({
+    data: {
+      sendType: "주문확인",
+      approvedAt,
+    },
+    where: { orderId },
+  });
+}

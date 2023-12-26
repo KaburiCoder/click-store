@@ -233,7 +233,7 @@ model CartItem {
 model Payment {
   id          Int       @id @default(autoincrement())
   ykiho       String
-  orderId     String    @map("order_id")
+  orderId     String    @unique @map("order_id")
   paymentKey  String    @map("payment_key")
   method      String
   amount      Int
