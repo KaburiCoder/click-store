@@ -1,10 +1,10 @@
 "use server";
 import { numericStringRegex } from "@/lib/utils/regex";
 import { getCancelUrl, getTossPaymentsHeaders } from "@/lib/utils/toss-pg.util";
-import { string, z } from "zod";
-import db from "../db";
+import { z } from "zod";
 import { cancelPayment } from "../services/payment.service";
-import { resultWrapper } from "@/lib/utils/callback.util";
+import { resultWrapper2 } from "@/lib/utils/callback.util";
+import { savePaymentRefund } from "../services/payment-refund.service";
 
 const schema = z.object({
   paymentId: z.number(),
@@ -74,18 +74,16 @@ export async function refundPaymentAction(
   }
 
   if (data?.status === "CANCELED") {
-    const result = await resultWrapper(async () => {
-      return await db.paymentRefund.create({
-        data: {
-          paymentId,
-          accountNumber,
-          bank,
-          holderName,
-          amount: cancelAmount,
-          reason: cancelReason,
-        },
-      });
-    });
+    const result = await resultWrapper2(
+      savePaymentRefund({
+        paymentId,
+        bank,
+        accountNumber,
+        holderName,
+        amount: cancelAmount,
+        reason: cancelReason,
+      }),
+    );
     if (result.errorMessage) {
       return {
         errors: { _errorMessage: result.errorMessage },
@@ -95,9 +93,7 @@ export async function refundPaymentAction(
   }
 
   {
-    const result = await resultWrapper(
-      async () => await cancelPayment(paymentId),
-    );
+    const result = await resultWrapper2(cancelPayment(paymentId));
     if (result.errorMessage) {
       return {
         errors: { _errorMessage: result.errorMessage },

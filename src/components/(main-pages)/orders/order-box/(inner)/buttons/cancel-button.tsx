@@ -66,7 +66,7 @@ const useCancel = (payment: Payment) => {
   useEffect(() => {
     if (isSuccess)
       queryClient.refetchQueries({ queryKey: [QKey.ordersInfiniteQuery] });
-  }, [isSuccess]);
+  }, [isSuccess, queryClient]);
 
   useEffect(() => {
     let errorMessage = error?.message;

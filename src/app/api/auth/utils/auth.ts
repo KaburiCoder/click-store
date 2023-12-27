@@ -31,7 +31,7 @@ export const authOptions = {
 
           if (!user) return null;
           return {
-            id: user.userId,
+            id: JSON.stringify(user),
             name: user.name,
             email: user.email,
           };

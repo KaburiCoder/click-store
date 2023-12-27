@@ -13,14 +13,20 @@ export default function Item({ cartItem }: Props) {
 
   return (
     <li className={styles.item}>
-      <div className={styles.title}>
-        <div>{pls?.smMyung}</div>
-        {cartItem?.fit && <Badge variant={"fit"}>맞춤주문</Badge>}
+      <div className="flex items-center justify-between pb-2">
+        <div className="text-lg">{pls?.smMyung}</div>
+        <div className="flex flex-col flex-wrap gap-1 text-right">
+          {cartItem?.fit && (
+            <Badge className="h-6" variant={"fit"}>
+              맞춤주문
+            </Badge>
+          )}
+          {pls?.danwi && <Badge className="h-6">{pls?.danwi}</Badge>}
+        </div>
       </div>
       <div className={styles.detail}>
         <div className={styles.detail__left}>
           <div>수량 : {cartItem.quantity}</div>
-          {pls?.danwi && <div>단위 : {pls?.danwi}</div>}
         </div>
         <div className={styles.detail__right}>
           ₩{formatedPrice.toLocaleString()}

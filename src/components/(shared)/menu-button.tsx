@@ -3,10 +3,14 @@ import Drawer from "@/components/(shared)/drawer/drawer";
 import { Button } from "@/components/ui/button";
 import React, { useEffect, useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
-import SettingsSide from "../side/side";
+import SettingsSide from "../(settings)/side/side";
 import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
 
-export default function MenuButton() {
+interface Props {
+  drawerChildren: React.ReactNode;
+}
+
+export default function MenuButton({ drawerChildren }: Props) {
   const [open, setOpen] = useState(false);
   const { matches: min768 } = useMinMediaQuery(768);
 
@@ -21,7 +25,7 @@ export default function MenuButton() {
   return (
     <>
       <Drawer open={open} setOpen={setOpen} anchor="left">
-        <SettingsSide />
+        {drawerChildren}
       </Drawer>
       <Button
         variant={"ghost"}

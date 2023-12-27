@@ -4,8 +4,19 @@ import db from "../db";
 import { SaveProductsDto } from "../dto/product/save-products.dto";
 import { getJisa } from "@/lib/utils/user.util";
 import { saveProductLogs } from "./product-log.service";
-import { Product } from "@prisma/client";
 import { dbNow } from "@/lib/utils/date.util";
+import { AdminSearchBarData } from "@/store/admin-search-bar.store";
+import {
+  getCsByYkiho,
+  getYkihosByManager,
+  getYkihosByMyung,
+} from "./cs.service";
+import { Product } from "../models/product";
+import { Prisma } from "@prisma/client";
+import { getLatestPls } from "./product-list-sub.service";
+import { getEm } from "./em.service";
+
+const DISP_ITEM_COUNT = 6;
 
 export async function saveProducts({
   payment,
@@ -48,7 +59,7 @@ export async function saveProducts({
 export async function getFirstProduct({
   where,
 }: {
-  where: Partial<Product>;
+  where: Prisma.ProductWhereInput;
 }): Promise<Product> {
   const product = (await db.product.findFirst({
     where,
@@ -64,5 +75,85 @@ export async function deleteProducts(paymentItemIds: number[]) {
         in: paymentItemIds,
       },
     },
+  });
+}
+
+export async function getAdminProducts(
+  page: number,
+  { dateFrom, dateTo, manager, searchString }: AdminSearchBarData,
+) {
+  const ykihos = await getYkihosByManager(manager);
+  const customerYkihos = searchString
+    ? await getYkihosByMyung(searchString)
+    : undefined;
+
+  const result = (await db.product.findMany({
+    where: {
+      csCode: { in: ykihos },
+      AND: [
+        {
+          csCode: customerYkihos
+            ? {
+              in: customerYkihos,
+            }
+            : undefined,
+        },
+        {
+          receiveYmd: {
+            gte: dayjs(dateFrom).format("YYYYMMDD"),
+          },
+        },
+        {
+          receiveYmd: {
+            lte: dayjs(dateTo).format("YYYYMMDD"),
+          },
+        },
+      ],
+    },
+    orderBy: { createDt: "desc" },
+    skip: DISP_ITEM_COUNT * (page - 1),
+    take: DISP_ITEM_COUNT,
+  })) as Product[];
+
+  for (const product of result) {
+    product.pls = (await getLatestPls({ smCode: product.clCode })) ?? undefined;
+    product.cs = await getCsByYkiho(product.csCode);
+    product.em = await getEm(product.cs.emCode);
+  }
+
+  return {
+    page,
+    isLast: result.length < DISP_ITEM_COUNT,
+    products: result,
+  };
+}
+
+export async function updateOrderCheck({
+  productAuto,
+  orderCheck,
+}: {
+  productAuto: number;
+  orderCheck: string;
+}) {
+  return await db.product.update({
+    data: {
+      orderCheck,
+    },
+    where: {
+      auto: productAuto,
+    },
+  });
+}
+
+export async function updateSeller({
+  productAuto,
+  seller,
+}: {
+  productAuto: number;
+  seller: string;
+}) {
+  return await db.product.update({
+    data: { seller },
+    where: { auto: productAuto },
   });
 }

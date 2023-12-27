@@ -54,6 +54,11 @@ export const paths = {
   },
 
   // admin
+  admin() {
+    return "/admin";
+  },
+
+  // admin
   adminOrders() {
     return "/admin/orders";
   },

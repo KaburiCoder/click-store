@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/css/index";
 import Providers from "@/providers/providers";
-import { natoSansKR } from "@/fonts";
+import { natoSansKR } from "@/fonts/fonts";
 import ToastWrapper from "@/components/(shared)/toast-wrapper/toast-wrapper";
 
 export const metadata: Metadata = {

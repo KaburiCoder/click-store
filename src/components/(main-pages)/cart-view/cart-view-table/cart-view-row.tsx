@@ -6,6 +6,7 @@ import useCartViewStore from "@/store/cart-view.store";
 import IntUpAndDown from "@/components/(shared)/int-up-and-down/int-up-and-down";
 import { defaultProductQuantity } from "@/lib/utils/product.util";
 import { useCartView } from "@/lib/hooks/use-cart-view";
+import { Badge } from "@/components/ui/badge";
 
 interface Props {
   cartItem: CartItem;
@@ -24,7 +25,7 @@ const CartViewRow: React.FC<Props> = (props) => {
   const step = ci.pl?.step ?? 1;
 
   function checkChangeHandler(
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ): void {
     setCheck(ci.id!, event.target.checked);
   }
@@ -51,10 +52,10 @@ const CartViewRow: React.FC<Props> = (props) => {
           <div className={styles.cart_item__head}>
             <div className={styles.detail__head__product}>
               <div className={styles.product_name}>{ci.pls?.smMyung}</div>
-              <div className={styles.detail__head__product__info}>
-                {ci.fit && <div className={styles.product_info}>맞춤주문</div>}
+              <div className="flex gap-1 pt-1">
+                {ci.fit && <Badge variant={"fit"}>맞춤주문</Badge>}
                 {ci.pls?.danwi && (
-                  <div className={`${styles.unit_style}`}>Box</div>
+                  <Badge variant={"default"}>{ci.pls?.danwi}</Badge>
                 )}
               </div>
             </div>

@@ -9,13 +9,16 @@ import dayjs from "dayjs";
 import React from "react";
 import CancelButton from "./buttons/cancel-button";
 import ReorderButton from "./buttons/reorder-button";
+import { usePathname } from "next/navigation";
+import { paths } from "@/paths";
 
 export default function OrderFooter({ payment }: PaymentProps) {
-  const { user } = useSvrCookie();
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith(paths.admin());
   const requestedAtString = dayjs(payment.requestedAt).format(
     "YYYY-MM-DD HH:mm",
   );
-  const isAdmin = user?.admin;
+
   const sendType = getSendType(payment);
   const canCancel =
     !payment.cancel && ["결제대기", "주문확인"].includes(sendType);

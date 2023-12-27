@@ -16,11 +16,11 @@ export default function Hero({
   return (
     <div className="flex h-full overflow-hidden">
       {leftComponent && (
-        <nav className="hidden w-fit overflow-hidden border-r border-solid border-gray-200 md:flex">
+        <nav className="hidden min-w-[16rem] overflow-hidden border-r border-solid border-gray-200 md:flex">
           {leftComponent}
         </nav>
       )}
-      <div className="flex w-full flex-col">
+      <div className="flex w-full flex-1 flex-col">
         {headerComponent && (
           <header className="h-12 border-b border-solid border-gray-200">
             {headerComponent}

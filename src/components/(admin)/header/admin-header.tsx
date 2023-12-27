@@ -1,6 +1,8 @@
 "use client";
+import MenuButton from "@/components/(shared)/menu-button";
 import { paths } from "@/paths";
 import { usePathname } from "next/navigation";
+import AdminSide from "../side/admin-side";
 
 export default function AdminHeader() {
   return (
@@ -26,8 +28,12 @@ function Title() {
   }
 
   return (
-    <h2 className="absolute left-1/2 top-1/2 flex h-full w-auto -translate-x-1/2 -translate-y-1/2 transform items-center py-1">
-      {title}
-    </h2>
+    <div className="relative flex h-full w-full items-center justify-between px-2">
+      <div></div>
+      <h2 className="absolute left-1/2 top-1/2 flex h-full w-auto -translate-x-1/2 -translate-y-1/2 transform items-center py-1">
+        {title}
+      </h2>
+      <MenuButton drawerChildren={<AdminSide />} />
+    </div>
   );
 }

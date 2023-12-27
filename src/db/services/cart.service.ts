@@ -91,8 +91,8 @@ export async function saveCart(args: AddToCartDto): Promise<boolean> {
     code: args.code,
     fit: args.fit,
     quantity: args.quantity,
-    pl: null,
-    pls: null,
+    pl: undefined,
+    pls: undefined,
   };
 
   let newCartItems: CartItem[];

@@ -1,13 +1,12 @@
 "use client";
 import { fetchGetAdminPaymentsWithItems } from "@/db/client-queries/fetch-admin-payments-with-items";
-import { fetchGetPaymentsWithItems } from "@/db/client-queries/fetch-payments-with-items";
 import { QKey } from "@/db/keys";
 import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
 import { useAdminSearchBarStore } from "@/store/admin-search-bar.store";
 import useOrdersStore from "@/store/orders.store";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect } from "react";
-import OrderBox from "../(main-pages)/orders/order-box/order-box";
+import OrderBox from "../../(main-pages)/orders/order-box/order-box";
 import { cn } from "@/lib/utils/shadcn.util";
 
 export default function AdminWebOrderList() {
@@ -24,10 +23,12 @@ export default function AdminWebOrderList() {
   return (
     <ul
       className={cn(
-        `grid grid-cols-1 grid-rows-none gap-4 p-2`,
-        "md:grid-cols-2",
-        "lg:grid-cols-3",
-        "2xl:grid-cols-4",
+        `grid grid-cols-1 grid-rows-none gap-4 p-2 overflow-auto`,
+        "sm:grid-cols-2",
+        "md:grid-cols-1",
+        "md2:grid-cols-2",
+        "xl2:grid-cols-3",
+        "3xl:grid-cols-4",
       )}
     >
       {orderComponents}

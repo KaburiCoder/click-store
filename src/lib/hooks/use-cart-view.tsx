@@ -106,23 +106,25 @@ const useCartView = ({ onFetch, isPayment, id }: Props) => {
   }) {
     if (!selectedCartItems) return;
 
-    loadingWrapper(async () => {
-      const orderId = getOrderId();
-      await fetchBNPLPayment({
-        paymentType,
-        orderId,
-        paymentKey: orderId,
-        orderName: cartItemsUtil?.orderName!,
-        amount: cartItemsUtil?.totalPrice!,
-        quantity: cartItemsUtil?.totalQuantity!,
-        method,
-        sendType,
-        requestedAt: new Date(),
-        approvedAt: null,
-        paymentItems: getPaymentItems(),
-        cartItemIds: selectedCartItems.map((ci) => ci.id!),
-      });
-    });
+    setLoading(true);
+    const orderId = getOrderId();
+    fetchBNPLPayment({
+      paymentType,
+      orderId,
+      paymentKey: orderId,
+      orderName: cartItemsUtil?.orderName!,
+      amount: cartItemsUtil?.totalPrice!,
+      quantity: cartItemsUtil?.totalQuantity!,
+      method,
+      sendType,
+      requestedAt: new Date(),
+      approvedAt: null,
+      paymentItems: getPaymentItems(),
+      cartItemIds: selectedCartItems.map((ci) => ci.id!),
+    }).catch((err) => {
+      toast.error(err.message);
+      setLoading(false);
+    }); //성공 시 navigate됨
   }
 
   // fetchPayment 에러 시 발생

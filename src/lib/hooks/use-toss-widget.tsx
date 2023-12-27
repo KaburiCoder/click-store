@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   PaymentWidgetInstance,
   loadPaymentWidget,
@@ -25,26 +25,30 @@ const useTossWidget = ({ totalPrice, orderName }: Props) => {
   const paymentMethodsWidgetRef = useRef<ReturnType<
     PaymentWidgetInstance["renderPaymentMethods"]
   > | null>(null);
-  async function fetchCheckout(callback: Callback) {
-    const paymentWidget = paymentWidgetRef.current;
-    const user = await getUser();
-    const orderId = getOrderId();
 
-    try {
-      callback.onPreCall();
-      // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-      await paymentWidget?.requestPayment({
-        orderId,
-        orderName,
-        customerName: user?.name,
-        customerEmail: user?.email,
-        successUrl: `${window.location.href}/loading`,
-        failUrl: `${window.location.href}/fail`,
-      });
-    } catch (error) {
-      callback.onFail(error);
-    }
-  }
+  const fetchCheckout = useCallback(
+    async (callback: Callback) => {
+      const paymentWidget = paymentWidgetRef.current;
+      const user = await getUser();
+      const orderId = getOrderId();
+
+      try {
+        callback.onPreCall();
+        // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+        await paymentWidget?.requestPayment({
+          orderId,
+          orderName,
+          customerName: user?.name,
+          customerEmail: user?.email,
+          successUrl: `${window.location.href}/loading`,
+          failUrl: `${window.location.href}/fail`,
+        });
+      } catch (error) {
+        callback.onFail(error);
+      }
+    },
+    [orderName],
+  );
 
   useEffect(() => {
     async function setPaymentWidgets() {
@@ -58,7 +62,7 @@ const useTossWidget = ({ totalPrice, orderName }: Props) => {
       const customerKey = user.userId;
       const paymentWidget = await loadPaymentWidget(
         TOSSPAYMENTS_CLIENT_KEY!,
-        customerKey
+        customerKey,
       ); // 회원 결제
       // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS); // 비회원 결제
 
@@ -68,7 +72,7 @@ const useTossWidget = ({ totalPrice, orderName }: Props) => {
         selector,
         {
           value: totalPrice,
-        }
+        },
       );
 
       // ------  이용약관 렌더링 ------
@@ -79,8 +83,8 @@ const useTossWidget = ({ totalPrice, orderName }: Props) => {
       paymentMethodsWidgetRef.current = paymentMethodsWidget;
     }
 
-    setPaymentWidgets();
-  }, [totalPrice]);
+    if (totalPrice > 0) setPaymentWidgets();
+  }, [totalPrice, fetchCheckout]);
 
   return {
     fetchCheckout,

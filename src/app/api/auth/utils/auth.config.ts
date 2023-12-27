@@ -1,6 +1,7 @@
 import { paths } from "@/paths";
 import type { NextAuthConfig } from "next-auth";
-import { isPassAuthPages } from "./is-pass-auth-pages";
+import { isPathnameMatching } from "./is-pathname-matching";
+import { User } from "@/lib/interfaces/user";
 
 export const authConfig = {
   trustHost: true,
@@ -10,8 +11,7 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-
-      const pass = isPassAuthPages(nextUrl.pathname, [
+      const pass = isPathnameMatching(nextUrl.pathname, [
         "/login",
         "/signup",
         "/find-password",
@@ -20,7 +20,10 @@ export const authConfig = {
       // const isOnLoginPage = nextUrl.pathname.startsWith("/login");
 
       if (isLoggedIn) {
-        if (pass) {
+        const user: User = JSON.parse(auth.user!.id);
+        const isAdminPage = isPathnameMatching(nextUrl.pathname, ["/admin"]);
+
+        if (pass || (!user.admin && isAdminPage)) {
           return Response.redirect(new URL(paths.root(), nextUrl));
         }
       } else {

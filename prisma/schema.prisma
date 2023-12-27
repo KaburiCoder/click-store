@@ -56,9 +56,74 @@ model ProductListSub {
   etc5    String @map("pls_etc5")
 
   // ProductList 모델과의 조인 관계 설정
-  // productList ProductList @relation(fields: [jisa, smCode], references: [jisa, smCode])
-  // Add a unique constraint on the reference fields
-  // @@unique([jisa, smCode])
+  // product Product?
+}
+
+model Product {
+  auto             Int      @id @default(autoincrement()) @map(name: "pd_auto")
+  clCode           String   @map(name: "pd_clcode")
+  jisa             String   @map(name: "pd_jisa")
+  csCode           String   @map(name: "pd_cscode")
+  ctTel            String   @map(name: "pd_cttel")
+  count            Int      @map(name: "pd_count")
+  receive          String   @map(name: "pd_receive")
+  receiveYmd       String   @map(name: "pd_receiveymd")
+  sell             String   @map(name: "pd_sell")
+  sellYmd          String   @map(name: "pd_sellymd")
+  orderCheck       String   @map(name: "pd_ordercheck")
+  seller           String   @map(name: "pd_seller")
+  check            String   @map(name: "pd_check")
+  check2           String   @map(name: "pd_check2")
+  rgb              String   @map(name: "pd_rgb")
+  bigo             String   @map(name: "pd_bigo")
+  createDt         DateTime @default(now()) @map(name: "pd_createdt")
+  bigo2            String?  @map(name: "pd_bigo2")
+  etc1             String?  @map(name: "pd_etc1")
+  etc2             String?  @map(name: "pd_etc2")
+  etc3             String?  @map(name: "pd_etc3")
+  etc4             String?  @map(name: "pd_etc4")
+  etc5             String?  @map(name: "pd_etc5")
+  web              Boolean  @map(name: "pd_web")
+  webPaymentItemId Int?     @map(name: "pd_web_payment_item_id")
+  webBNPL          Boolean  @map(name: "pd_web_bnpl")
+
+  // pls ProductListSub? @relation(fields: [webPaymentItemId], references: [auto])
+  // product ProductListSub[]
+  // pls ProductListSub?
+}
+
+model ProductLog {
+  logAuto          Int      @id @default(autoincrement()) @map(name: "pd_logauto")
+  logDatetime      DateTime @map(name: "pd_logdatetime")
+  logGubun         String   @map(name: "pd_loggubun")
+  logUser          String   @map(name: "pd_loguser")
+  logComputer      String   @map(name: "pd_logcomputer")
+  auto             Int      @map(name: "pd_auto")
+  clCode           String   @map(name: "pd_clcode")
+  jisa             String   @map(name: "pd_jisa")
+  csCode           String   @map(name: "pd_cscode")
+  ctTel            String   @map(name: "pd_cttel")
+  count            Int      @map(name: "pd_count")
+  receive          String   @map(name: "pd_receive")
+  receiveYmd       String   @map(name: "pd_receiveymd")
+  sell             String   @map(name: "pd_sell")
+  sellYmd          String   @map(name: "pd_sellymd")
+  orderCheck       String   @map(name: "pd_ordercheck")
+  seller           String   @map(name: "pd_seller")
+  check            String   @map(name: "pd_check")
+  check2           String   @map(name: "pd_check2")
+  rgb              String   @map(name: "pd_rgb")
+  bigo             String   @map(name: "pd_bigo")
+  createDt         DateTime @map(name: "pd_createdt")
+  bigo2            String?  @map(name: "pd_bigo2")
+  etc1             String?  @map(name: "pd_etc1")
+  etc2             String?  @map(name: "pd_etc2")
+  etc3             String?  @map(name: "pd_etc3")
+  etc4             String?  @map(name: "pd_etc4")
+  etc5             String?  @map(name: "pd_etc5")
+  web              Boolean  @map(name: "pd_web")
+  webPaymentItemId Int?     @map(name: "pd_web_payment_item_id")
+  webBNPL          Boolean  @map(name: "pd_web_bnpl")
 }
 
 model ProductListWebBunryu {
@@ -291,69 +356,6 @@ model PaymentRefund {
   reason        String
 
   payment Payment @relation(fields: [paymentId], references: [id])
-}
-
-model Product {
-  auto             Int      @id @default(autoincrement()) @map(name: "pd_auto")
-  clCode           String   @map(name: "pd_clcode")
-  jisa             String   @map(name: "pd_jisa")
-  csCode           String   @map(name: "pd_cscode")
-  ctTel            String   @map(name: "pd_cttel")
-  count            Int      @map(name: "pd_count")
-  receive          String   @map(name: "pd_receive")
-  receiveYmd       String   @map(name: "pd_receiveymd")
-  sell             String   @map(name: "pd_sell")
-  sellYmd          String   @map(name: "pd_sellymd")
-  orderCheck       String   @map(name: "pd_ordercheck")
-  seller           String   @map(name: "pd_seller")
-  check            String   @map(name: "pd_check")
-  check2           String   @map(name: "pd_check2")
-  rgb              String   @map(name: "pd_rgb")
-  bigo             String   @map(name: "pd_bigo")
-  createDt         DateTime @default(now()) @map(name: "pd_createdt")
-  bigo2            String?  @map(name: "pd_bigo2")
-  etc1             String?  @map(name: "pd_etc1")
-  etc2             String?  @map(name: "pd_etc2")
-  etc3             String?  @map(name: "pd_etc3")
-  etc4             String?  @map(name: "pd_etc4")
-  etc5             String?  @map(name: "pd_etc5")
-  web              Boolean  @map(name: "pd_web")
-  webPaymentItemId Int      @map(name: "pd_web_payment_item_id")
-  webBNPL          Boolean  @map(name: "pd_web_bnpl")
-}
-
-model ProductLog {
-  logAuto          Int      @id @default(autoincrement()) @map(name: "pd_logauto")
-  logDatetime      DateTime @map(name: "pd_logdatetime")
-  logGubun         String   @map(name: "pd_loggubun")
-  logUser          String   @map(name: "pd_loguser")
-  logComputer      String   @map(name: "pd_logcomputer")
-  auto             Int      @map(name: "pd_auto")
-  clCode           String   @map(name: "pd_clcode")
-  jisa             String   @map(name: "pd_jisa")
-  csCode           String   @map(name: "pd_cscode")
-  ctTel            String   @map(name: "pd_cttel")
-  count            Int      @map(name: "pd_count")
-  receive          String   @map(name: "pd_receive")
-  receiveYmd       String   @map(name: "pd_receiveymd")
-  sell             String   @map(name: "pd_sell")
-  sellYmd          String   @map(name: "pd_sellymd")
-  orderCheck       String   @map(name: "pd_ordercheck")
-  seller           String   @map(name: "pd_seller")
-  check            String   @map(name: "pd_check")
-  check2           String   @map(name: "pd_check2")
-  rgb              String   @map(name: "pd_rgb")
-  bigo             String   @map(name: "pd_bigo")
-  createDt         DateTime @map(name: "pd_createdt")
-  bigo2            String?  @map(name: "pd_bigo2")
-  etc1             String?  @map(name: "pd_etc1")
-  etc2             String?  @map(name: "pd_etc2")
-  etc3             String?  @map(name: "pd_etc3")
-  etc4             String?  @map(name: "pd_etc4")
-  etc5             String?  @map(name: "pd_etc5")
-  web              Boolean  @map(name: "pd_web")
-  webPaymentItemId Int      @map(name: "pd_web_payment_item_id")
-  webBNPL          Boolean  @map(name: "pd_web_bnpl")
 }
 
 model Em {

@@ -3,7 +3,7 @@ import { paths } from "@/paths";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FaAngleLeft } from "react-icons/fa";
-import { ButtonItem } from "./button-item";
+import { SideButtonItem } from "../../../(shared)/side/side-button-item";
 
 export default function NavToMainButton() {
   const { push } = useRouter();
@@ -12,7 +12,7 @@ export default function NavToMainButton() {
   }
 
   return (
-    <ButtonItem
+    <SideButtonItem
       Icon={FaAngleLeft}
       text="메인으로"
       className="mb-4"

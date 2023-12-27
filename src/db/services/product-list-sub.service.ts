@@ -31,7 +31,7 @@ export async function getLatestPls({
   smCode,
 }: {
   smCode: string;
-}): Promise<ProductListSub | null> {
+}): Promise<ProductListSub | undefined> {
   const jisa = await getJisa();
   const data = await db.productListSub.findFirst({
     where: {
@@ -43,5 +43,5 @@ export async function getLatestPls({
     },
   });
 
-  return data;
+  return data ?? undefined;
 }

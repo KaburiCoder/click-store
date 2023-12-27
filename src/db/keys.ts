@@ -14,4 +14,8 @@ export class QKey {
   static get fetchGetManagers() {
     return "fetchGetManagers";
   }
+
+  static get fetchGetAdminProducts() {
+    return "fetchGetAdminProducts";
+  }
 }

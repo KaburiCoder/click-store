@@ -31,8 +31,10 @@ export default function SearchBar() {
   });
 
   useEffect(() => {
-    return clearSearchData;
-  }, []);
+    return () => {
+      clearSearchData();
+    };
+  }, [clearSearchData]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -45,13 +47,13 @@ export default function SearchBar() {
     setSearchData({
       dateFrom: dateRange?.from!,
       dateTo: dateRange?.to ?? dateRange?.from!,
-      manager,
+      manager: manager === "전체" ? "" : manager,
       searchString,
     });
   }
 
   return (
-    <div className="bg-slate-100 shadow">
+    <div className="sticky top-0 bg-slate-100 shadow">
       <form className="flex flex-col gap-1 p-1" onSubmit={handleSubmit}>
         <div className="flex flex-wrap gap-1">
           <DateRangePicker onDateChange={setDateRange} />
@@ -59,9 +61,10 @@ export default function SearchBar() {
             <SelectTrigger className="w-auto">
               <SelectValue placeholder="담당자" id="manager" />
             </SelectTrigger>
-            <SelectContent onChange={(e) => {}}>
+            <SelectContent onChange={(e) => { }}>
               <SelectGroup>
                 <SelectLabel>-- 담당자 선택 --</SelectLabel>
+                <SelectItem value="전체">전체</SelectItem>
                 {data?.map((data) => (
                   <SelectItem key={data.code} value={data.code}>
                     {data.name}

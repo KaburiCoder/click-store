@@ -9,6 +9,17 @@ module.exports = {
     "./src/**/*.{ts,tsx}",
   ],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      md2: "896px",
+      lg: "1024px",
+      lg2: "1152px",
+      xl: "1280px",
+      xl2: "1408px",
+      "2xl": "1536px",
+      "3xl": "1600px",
+    },
     container: {
       center: true,
       padding: "2rem",

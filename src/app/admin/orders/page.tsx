@@ -1,4 +1,4 @@
-import AdminOrderList from "@/components/(admin)/admin-order-list";
+import AdminOrderList from "@/components/(admin)/orders/admin-order-list";
 import SearchBar from "@/components/(admin)/search-bar";
 import React from "react";
 

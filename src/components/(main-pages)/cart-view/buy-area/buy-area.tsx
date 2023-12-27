@@ -6,6 +6,9 @@ import useSvrCookie from "@/lib/hooks/use-svr-cookie";
 import { useCartView } from "@/lib/hooks/use-cart-view";
 import { useRouter } from "next/navigation";
 import { paths } from "@/paths";
+import ButtonL from "@/components/ui/custom/button-l";
+import CheckBoxL from "@/components/ui/custom/check-box-l";
+import { CheckedState } from "@radix-ui/react-checkbox";
 
 export default function BuyArea() {
   const { push } = useRouter();
@@ -23,12 +26,8 @@ export default function BuyArea() {
 
   // 후불결제 사용 시 기본 값 true
   useEffect(() => {
-    setCheckBNPL(true);
-  }, [user?.useBNPL]);
-
-  function handleBNPLChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    setCheckBNPL(e.target.checked);
-  }
+    if (user?.useBNPL) setCheckBNPL(user?.useBNPL);
+  }, [setCheckBNPL, user?.useBNPL]);
 
   function handleBuy(): void {
     if (checkBNPL) {
@@ -42,6 +41,10 @@ export default function BuyArea() {
     }
   }
 
+  function handleBNPLCheckedChange(checked: CheckedState): void {
+    setCheckBNPL(checked as boolean);
+  }
+
   return (
     <div className={styles.buy_container}>
       <div className={styles.buy_wrapper}>
@@ -53,69 +56,31 @@ export default function BuyArea() {
         </div>
         <div className={styles.inner_right_wrapper}>
           {user?.useBNPL && (
-            <CheckBox
-              className={styles.check_bnpl}
-              text="후불결제"
+            <CheckBoxL
+              className="mr-2"
+              labelClassName="text-md"
+              label="후불결제"
               checked={checkBNPL}
-              onChange={handleBNPLChange}
+              onCheckedChange={handleBNPLCheckedChange}
             />
+            // <CheckBox
+            //   className={styles.check_bnpl}
+            //   text="후불결제"
+            //   checked={checkBNPL}
+            //   onChange={handleBNPLChange}
+            // />
           )}
 
-          <button
-            className={styles.buy_amount_button}
+          <ButtonL
+            className="h-16"
             onClick={handleBuy}
-            disabled={!selectedCartItems?.length || loading}
+            disabled={(selectedCartItems?.length ?? 0) === 0}
+            isLoading={loading}
           >
             구매하기
-          </button>
+          </ButtonL>
         </div>
       </div>
     </div>
   );
 }
-
-const useBuyArea = () => {
-  // const { loading, fetchCheckoutByArgs } = useCheckout();
-  // const [checkBNPL, setCheckBNPL] = useState(false);
-  // const { cart, checkedIds } = useCartViewStore();
-  // const disabled = loading || checkedIds.length === 0;
-  // const cartItemManager = useMemo(
-  //   () =>
-  //     new CartItemManager(
-  //       cart?.cartItems.filter((item) => checkedIds.includes(item.id!))
-  //     ),
-  //   [cart?.cartItems, checkedIds]
-  // );
-  // function handleBuy() {
-  //   if (checkBNPL) {
-  //     const orderId = getOrderId();
-  //     fetchCheckoutByArgs({
-  //       paymentType: "BNPL",
-  //       orderId: orderId,
-  //       orderName: cartItemManager.orderName,
-  //       paymentKey: orderId,
-  //       amount: cartItemManager.totalPrice,
-  //       quantity: cartItemManager.totalQuantity,
-  //       items: cartItemManager.cartItems!,
-  //     });
-  //   } else {
-  //     push(paths.payment());
-  //     navigate("/payment", { state: cartItemManager.checkoutState });
-  //   }
-  // }
-  // function handleBNPLChange(e: React.ChangeEvent<HTMLInputElement>) {
-  //   setCheckBNPL(e.target.checked);
-  // }
-  // useEffect(() => {
-  //   if (!user?.useBNPL) return;
-  //   setCheckBNPL(user?.useBNPL);
-  // }, [user?.useBNPL]);
-  // return {
-  //   useBNPL: user?.useBNPL,
-  //   checkBNPL,
-  //   disabled,
-  //   currencyTotalPrice: cartItemManager.totalPrice.toLocaleString(),
-  //   handleBuy,
-  //   handleBNPLChange,
-  // };
-};

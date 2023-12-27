@@ -31,6 +31,7 @@ import { toast } from "react-toastify";
 import { InputL } from "@/components/ui/custom/input-l";
 import { stringsToText } from "@/lib/utils/strings.util";
 import LabelWrapper from "@/components/ui/custom/label-wrapper";
+import ErrorText from "@/components/(shared)/error-text";
 
 interface Props {
   triggerComponent: React.ReactNode;
@@ -112,6 +113,10 @@ export default function RefundDialog({
                 className="w-full"
                 errorMessage={stringsToText(errors?.holderName)}
               />
+              <div className="rounded bg-blue-200 p-2">
+                영업일 기준 약 2~7일 소요됩니다.
+              </div>
+              <ErrorText errorMessage={data?.errors?._errorMessage} />
             </div>
           </DialogDescription>
         </DialogHeader>
@@ -134,6 +139,7 @@ export default function RefundDialog({
 const useRefund = (payment: Payment) => {
   const { error, isPending, isSuccess, data, mutate } = useMutation({
     mutationFn: refundPaymentAction,
+    gcTime: 0,
   });
   const queryClient = useQueryClient();
 

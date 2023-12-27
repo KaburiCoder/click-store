@@ -58,3 +58,21 @@ export async function getYkihos({
 
   return result.map((d) => d.code);
 }
+
+export async function getYkihosByManager(manager?: string) {
+  const ykihos = manager
+    ? await getYkihos({ where: { emCode: manager } })
+    : await getYkihos();
+
+  return ykihos;
+}
+
+export async function getYkihosByMyung(myung?: string) {
+  return await getYkihos({
+    where: {
+      myung: {
+        contains: myung?.trim(),
+      },
+    },
+  });
+}

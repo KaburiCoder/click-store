@@ -8,7 +8,7 @@ import {
   saveProducts,
 } from "./product.service";
 import { PaymentsWithPage } from "../interfaces/payments-with-page";
-import { getCsByYkiho, getYkihos } from "./cs.service";
+import { getCsByYkiho, getYkihos, getYkihosByManager, getYkihosByMyung } from "./cs.service";
 import { AdminSearchBarData } from "@/store/admin-search-bar.store";
 import dayjs from "dayjs";
 import { numericStringRegex } from "@/lib/utils/regex";
@@ -103,9 +103,7 @@ export async function getAdminPaymentsWithItems({
   const { dateFrom, dateTo, manager, searchString } = adminSearch;
   const sDate = dayjs(dayjs(dateFrom).format("YYYY-MM-DD 00:00:00")).toDate();
   const eDate = dayjs(dayjs(dateTo).format("YYYY-MM-DD 23:59:59")).toDate();
-  const ykihos = manager
-    ? await getYkihos({ where: { emCode: manager } })
-    : await getYkihos();
+  const ykihos = await getYkihosByManager(manager);
 
   let orderId: string | undefined;
   let customerYkihos: string[] | undefined;
@@ -113,13 +111,7 @@ export async function getAdminPaymentsWithItems({
     if (numericStringRegex.test(searchString)) {
       orderId = searchString;
     } else {
-      customerYkihos = await getYkihos({
-        where: {
-          myung: {
-            startsWith: searchString,
-          },
-        },
-      });
+      customerYkihos = await getYkihosByMyung(searchString);
     }
   }
 
@@ -130,15 +122,15 @@ export async function getAdminPaymentsWithItems({
           requestedAt: orderId
             ? undefined
             : {
-                gte: sDate,
-              },
+              gte: sDate,
+            },
         },
         {
           requestedAt: orderId
             ? undefined
             : {
-                lte: eDate,
-              },
+              lte: eDate,
+            },
         },
         {
           ykiho: {

@@ -1,7 +1,8 @@
 import { imgPaths } from "@/paths";
 import Image from "next/image";
 import React from "react";
-import MenuButton from "./menu-button";
+import MenuButton from "../../(shared)/menu-button";
+import SettingsSide from "../side/side";
 
 export default function SettingsHeader() {
   return (
@@ -14,9 +15,7 @@ export default function SettingsHeader() {
         width={200}
         height={200}
       />
-      <div>
-        <MenuButton />
-      </div>
+      <MenuButton drawerChildren={<SettingsSide />} />
     </div>
   );
 }

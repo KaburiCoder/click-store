@@ -24,10 +24,7 @@ export default function LabelWrapper({
   const errorStyles = cn(errorMessage && "text-rose-500");
   return (
     <div className={cn("grid w-full items-center gap-1.5", className)}>
-      <Label
-        htmlFor={htmlFor}
-        className={cn("pl-1", errorStyles, labelClassName)}
-      >
+      <Label htmlFor={htmlFor} className={cn(errorStyles, labelClassName)}>
         {label}
       </Label>
       <div className={cn(wrapperClassName)}>

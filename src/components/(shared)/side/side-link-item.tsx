@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils/shadcn.util";
+import { useAdminSearchBarStore } from "@/store/admin-search-bar.store";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -16,9 +17,12 @@ export interface ISideLink {
 }
 
 export default function SideLinkItem({ link }: LinkItemProps) {
+  // admin link부분에서 페이지 이동 시 이미 조회된 이력이 있으면 clear되지 않아서 추가
+  const { clear: clearSearchData } = useAdminSearchBarStore();
   const pathname = usePathname();
   return (
     <Link
+      onClick={clearSearchData}
       href={link.path}
       className={cn(
         "flex w-full items-center rounded p-2",

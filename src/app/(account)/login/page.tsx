@@ -13,6 +13,8 @@ interface Props {
 export default async function LoginPage({ searchParams: { uid } }: Props) {
   const account = await getAccountByUserId(uid);
 
+  console.log("env", process.env);
+
   if (!account) {
     redirect(paths.signupWithUid(uid));
   }

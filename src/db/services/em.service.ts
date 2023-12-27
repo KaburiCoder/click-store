@@ -6,6 +6,7 @@ interface GetManagersResult {
   code: string;
   name: string;
 }
+
 export async function getManagers(): Promise<GetManagersResult[]> {
   const jisa = await getJisa();
   const result = await db.$queryRaw<GetManagersResult[]>`
@@ -18,6 +19,10 @@ export async function getManagers(): Promise<GetManagersResult[]> {
   ORDER BY em_code
   `;
 
-  const data = [{ code: "전체", name: "전체" }, ...result];
-  return data;
+  // const data = [{ code: "전체", name: "전체" }, ...result];
+  return result;
+}
+
+export async function getEm(code: string) {
+  return (await db.em.findUnique({ where: { code } })) ?? undefined;
 }

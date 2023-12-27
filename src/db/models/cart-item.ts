@@ -5,6 +5,6 @@ import { ProductList } from "./product-list";
 
 export interface CartItem extends Prisma.CartItemCreateManyInput {
   cart: Cart;
-  pl: ProductList | null;
-  pls: ProductListSub | null;
+  pl?: ProductList;
+  pls?: ProductListSub;
 }

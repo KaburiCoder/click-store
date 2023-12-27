@@ -5,6 +5,7 @@ import SideGroupItem, {
 import { paths } from "@/paths";
 import React from "react";
 import { MdContentPasteSearch } from "react-icons/md";
+import { AiTwotoneShopping } from "react-icons/ai";
 
 const groups: ISideGroup[] = [
   {
@@ -19,6 +20,16 @@ const groups: ISideGroup[] = [
         Icon: MdContentPasteSearch,
         path: paths.adminWebOrders(),
         name: "웹 주문내역",
+      },
+    ],
+  },
+  {
+    groupName: "메인 화면",
+    links: [
+      {
+        Icon: AiTwotoneShopping,
+        path: paths.root(),
+        name: "물품 구매",
       },
     ],
   },
