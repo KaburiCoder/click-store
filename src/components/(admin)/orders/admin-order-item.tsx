@@ -12,12 +12,10 @@ interface Props {
 }
 
 export default function AdminOrderItem({ product }: Props) {
-  const { createDt, cs, em, pls } = product;
-
-  console.log("product.web", product.web);
+  const { createDt, cs, em, pls, paymentItem } = product;
 
   return (
-    <li className="overflow-hidden rounded bg-white shadow">
+    <li className="border-red200 overflow-hidden rounded border-[1px] border-solid border-slate-400 bg-white shadow">
       {/* title */}
       <div
         className={cn(
@@ -25,12 +23,20 @@ export default function AdminOrderItem({ product }: Props) {
           "sm:flex-row",
         )}
       >
-        <div>
-          <span className="pr-2 text-sm">접수일시</span>
-          <span className="font-bold">
-            {dayjs(createDt).add(-9, "h").format("YYYY-MM-DD HH:mm")}
-          </span>
-          {product.web && <Badge className="ml-2">WEB</Badge>}
+        <div className="text-sm">
+          <div>
+            <span className="pr-2">접수일시</span>
+            <span className="font-bold">
+              {dayjs(createDt).format("YYYY-MM-DD HH:mm")}
+            </span>
+            {product.web && <Badge className="ml-2">WEB</Badge>}
+          </div>
+          {paymentItem?.payment?.orderId && (
+            <div className="text-yellow-300">
+              <span className="pr-2">주문번호</span>
+              <span className="font-bold">{paymentItem.payment.orderId}</span>
+            </div>
+          )}
         </div>
         <div>
           <span className="pr-2 text-sm">담당자</span>
@@ -40,7 +46,7 @@ export default function AdminOrderItem({ product }: Props) {
       {/* body */}
       <div
         className={cn(
-          "grid grid-cols-2 gap-4 p-2",
+          "grid grid-cols-2 gap-1 p-2",
           "sm:grid-cols-3",
           "md:grid-cols-2",
           "lg:grid-cols-3",
@@ -109,7 +115,7 @@ interface DataWrapperProps {
 }
 function DataWrapper({ className, label, data }: DataWrapperProps) {
   return (
-    <div className={cn(className)}>
+    <div className={cn('bg-white p-1 rounded bg-slate-200', className)}>
       <div className="pb-1 text-sm text-slate-500">{label}</div>
       <div className="font-bold">{data}</div>
     </div>

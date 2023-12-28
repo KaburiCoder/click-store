@@ -4,7 +4,7 @@ import db from "../db";
 import { SaveProductsDto } from "../dto/product/save-products.dto";
 import { getJisa } from "@/lib/utils/user.util";
 import { saveProductLogs } from "./product-log.service";
-import { dbNow } from "@/lib/utils/date.util";
+import { dbNow, subtract9HoursByObject } from "@/lib/utils/date.util";
 import { AdminSearchBarData } from "@/store/admin-search-bar.store";
 import {
   getCsByYkiho,
@@ -15,6 +15,7 @@ import { Product } from "../models/product";
 import { Prisma } from "@prisma/client";
 import { getLatestPls } from "./product-list-sub.service";
 import { getEm } from "./em.service";
+import { getPaymentItemWithPayment } from "./payment-item.service";
 
 const DISP_ITEM_COUNT = 6;
 
@@ -69,12 +70,14 @@ export async function getFirstProduct({
 }
 
 export async function deleteProducts(paymentItemIds: number[]) {
-  return await db.product.deleteMany({
-    where: {
-      webPaymentItemId: {
-        in: paymentItemIds,
-      },
-    },
+  const where: Prisma.ProductWhereInput = {
+    webPaymentItemId: { in: paymentItemIds },
+  };
+
+  await db.$transaction(async (db) => {
+    const products = await db.product.findMany({ where });
+    await db.product.deleteMany({ where });
+    await saveProductLogs({ products, logType: "D" });
   });
 }
 
@@ -92,21 +95,13 @@ export async function getAdminProducts(
       csCode: { in: ykihos },
       AND: [
         {
-          csCode: customerYkihos
-            ? {
-              in: customerYkihos,
-            }
-            : undefined,
+          csCode: customerYkihos ? { in: customerYkihos } : undefined,
         },
         {
-          receiveYmd: {
-            gte: dayjs(dateFrom).format("YYYYMMDD"),
-          },
+          receiveYmd: { gte: dayjs(dateFrom).format("YYYYMMDD") },
         },
         {
-          receiveYmd: {
-            lte: dayjs(dateTo).format("YYYYMMDD"),
-          },
+          receiveYmd: { lte: dayjs(dateTo).format("YYYYMMDD") },
         },
       ],
     },
@@ -118,8 +113,14 @@ export async function getAdminProducts(
   for (const product of result) {
     product.pls = (await getLatestPls({ smCode: product.clCode })) ?? undefined;
     product.cs = await getCsByYkiho(product.csCode);
+    product.paymentItem = await getPaymentItemWithPayment({
+      id: product.webPaymentItemId,
+      paymentSelect: { orderId: true },
+    });
     product.em = await getEm(product.cs.emCode);
   }
+
+  subtract9HoursByObject(result);
 
   return {
     page,

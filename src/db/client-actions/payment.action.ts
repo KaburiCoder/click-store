@@ -54,8 +54,8 @@ export async function paymentAction(args: PaymentActionType) {
       quantity,
       sendType,
       paymentItems,
-      requestedAt: data.requestedAt && dayjs(data.requestedAt).toDate(),
-      approvedAt: data.approvedAt && dayjs(data.approvedAt).toDate(),
+      requestedAt: data.requestedAt,
+      approvedAt: data.approvedAt,
       virtual: data.virtualAccount ?? undefined,
     });
   } catch (err: any) {

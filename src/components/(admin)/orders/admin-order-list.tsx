@@ -2,10 +2,7 @@
 import { fetchGetAdminProducts } from "@/db/client-queries/fetch-get-admin-products";
 import { QKey } from "@/db/keys";
 import useIntersectionObserver from "@/lib/hooks/use-intersection-observer";
-import {
-  AdminSearchBarData,
-  useAdminSearchBarStore,
-} from "@/store/admin-search-bar.store";
+import { useAdminSearchBarStore } from "@/store/admin-search-bar.store";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import AdminOrderItem from "./admin-order-item";
@@ -18,7 +15,7 @@ export default function AdminOrderList() {
   });
 
   return (
-    <div className=" bg-sky-50 p-2 overflow-auto">
+    <div className=" overflow-auto bg-sky-50 p-2">
       <ul className="flex flex-col gap-2 overflow-hidden">
         {components}
         {observerComponent}

@@ -8,10 +8,15 @@ import {
   saveProducts,
 } from "./product.service";
 import { PaymentsWithPage } from "../interfaces/payments-with-page";
-import { getCsByYkiho, getYkihos, getYkihosByManager, getYkihosByMyung } from "./cs.service";
+import {
+  getCsByYkiho,
+  getYkihosByManager,
+  getYkihosByMyung,
+} from "./cs.service";
 import { AdminSearchBarData } from "@/store/admin-search-bar.store";
 import dayjs from "dayjs";
 import { numericStringRegex } from "@/lib/utils/regex";
+import { add9Hours, subtract9HoursByObject } from "@/lib/utils/date.util";
 
 const DISP_ITEM_COUNT = 6;
 
@@ -39,8 +44,8 @@ export async function savePayment(payment: Partial<Payment>) {
       sendType: payment.sendType!,
       method: payment.method!,
       amount: payment.amount!,
-      requestedAt: payment.requestedAt,
-      approvedAt: payment.approvedAt,
+      requestedAt: add9Hours(payment.requestedAt),
+      approvedAt: add9Hours(payment.approvedAt),
       cancel: false,
       paymentItems: {
         createMany: {
@@ -52,7 +57,7 @@ export async function savePayment(payment: Partial<Payment>) {
           accountNumber: payment.virtual.accountNumber,
           bankCode: payment.virtual.bankCode,
           customerName: payment.virtual.customerName,
-          dueDate: payment.virtual.dueDate,
+          dueDate: add9Hours(payment.virtual.dueDate) as Date,
         },
       },
     },
@@ -77,7 +82,7 @@ export async function getPaymentWithVirtual(orderId: string) {
     },
   });
 
-  return data;
+  return subtract9HoursByObject(data);
 }
 
 async function addOtherTableInfoToPayments(payments: Payment[]) {
@@ -101,8 +106,8 @@ export async function getAdminPaymentsWithItems({
   adminSearch: AdminSearchBarData;
 }): Promise<PaymentsWithPage> {
   const { dateFrom, dateTo, manager, searchString } = adminSearch;
-  const sDate = dayjs(dayjs(dateFrom).format("YYYY-MM-DD 00:00:00")).toDate();
-  const eDate = dayjs(dayjs(dateTo).format("YYYY-MM-DD 23:59:59")).toDate();
+  const sDate = add9Hours(dayjs(dateFrom).format("YYYY-MM-DD 00:00:00"));
+  const eDate = add9Hours(dayjs(dateTo).format("YYYY-MM-DD 23:59:59"));
   const ykihos = await getYkihosByManager(manager);
 
   let orderId: string | undefined;
@@ -118,30 +123,10 @@ export async function getAdminPaymentsWithItems({
   const payments = await db.payment.findMany({
     where: {
       AND: [
-        {
-          requestedAt: orderId
-            ? undefined
-            : {
-              gte: sDate,
-            },
-        },
-        {
-          requestedAt: orderId
-            ? undefined
-            : {
-              lte: eDate,
-            },
-        },
-        {
-          ykiho: {
-            in: ykihos,
-          },
-        },
-        {
-          ykiho: customerYkihos && {
-            in: customerYkihos,
-          },
-        },
+        { requestedAt: orderId ? undefined : { gte: sDate } },
+        { requestedAt: orderId ? undefined : { lte: eDate } },
+        { ykiho: { in: ykihos } },
+        { ykiho: customerYkihos && { in: customerYkihos } },
       ],
       orderId: orderId,
     },
@@ -153,7 +138,7 @@ export async function getAdminPaymentsWithItems({
 
   const newPayments = payments as Payment[];
   await addOtherTableInfoToPayments(newPayments);
-
+  subtract9HoursByObject(newPayments);
   return {
     page: page,
     isLast: payments.length < DISP_ITEM_COUNT,
@@ -163,10 +148,8 @@ export async function getAdminPaymentsWithItems({
 
 export async function getPaymentsWithItems({
   page,
-  adminSearch,
 }: {
   page: number;
-  adminSearch?: AdminSearchBarData;
 }): Promise<PaymentsWithPage> {
   const user = await getUser();
   const payments = await db.payment.findMany({
@@ -179,12 +162,9 @@ export async function getPaymentsWithItems({
     take: DISP_ITEM_COUNT,
   });
 
-  if (adminSearch) {
-  }
-
   const newPayments = payments as Payment[];
   await addOtherTableInfoToPayments(newPayments);
-
+  subtract9HoursByObject(newPayments);
   return {
     page: page,
     isLast: payments.length < DISP_ITEM_COUNT,
@@ -232,7 +212,7 @@ export async function updateOrdered({
   await db.payment.update({
     data: {
       sendType: "주문확인",
-      approvedAt,
+      approvedAt: add9Hours(approvedAt),
     },
     where: { orderId },
   });

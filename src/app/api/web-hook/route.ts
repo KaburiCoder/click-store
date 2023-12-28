@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
   // 가상계좌 주문확인 업데이트
   const updateResult = await resultWrapper2(
-    updateOrdered({ orderId, approvedAt: dayjs(createdAt).toDate() }),
+    updateOrdered({ orderId, approvedAt: createdAt }),
   );
 
   if (updateResult.errorMessage) {
