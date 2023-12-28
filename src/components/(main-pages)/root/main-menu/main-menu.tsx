@@ -1,14 +1,23 @@
 "use client";
 import React from "react";
 import styles from "./main-menu.module.scss";
-import { BunryuObjectProps } from "@/lib/props/bunryu-object.props";
+import { useQuery } from "@tanstack/react-query";
+import { QKey } from "@/db/keys";
+import { fetchWebBunryuList } from "@/db/client-queries/fetch-web-bunryu-list";
 
-interface Props extends BunryuObjectProps {
+interface Props {
   isDropdown?: boolean;
   onClose?: () => void;
 }
 
-export default function MainMenu({ bunryuObjects, onClose }: Props) {
+export default function MainMenu({ onClose }: Props) {
+  const { data } = useQuery({
+    queryKey: [QKey.fetchWebBunryuList],
+    queryFn: fetchWebBunryuList,
+  });
+
+  console.log("data", data);
+
   const handleLink = (key: string) => {
     scrollToTargetAdjusted(key);
     onClose?.();
@@ -36,7 +45,7 @@ export default function MainMenu({ bunryuObjects, onClose }: Props) {
   //   return <></>;
   // }
 
-  const linkComponents = bunryuObjects?.map((w) => {
+  const linkComponents = data?.map((w) => {
     return (
       <li className={styles.li} key={w.code}>
         <button onClick={handleLink.bind(null, w.code)}>{w.name}</button>

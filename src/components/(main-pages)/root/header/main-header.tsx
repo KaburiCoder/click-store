@@ -1,20 +1,17 @@
 import React from "react";
 import styles from "./main-header.module.scss";
 import Image from "next/image";
-import { BunryuObjectProps } from "@/lib/props/bunryu-object.props";
 import LeftWrapper from "./left-wrapper";
 import RightWrapper from "./right-wrapper";
 import MainMenuNav from "./main-menu-nav";
 import Link from "next/link";
 import { imgPaths } from "@/paths";
 
-interface Props extends BunryuObjectProps { }
-
-export default function MainHeader({ bunryuObjects }: Props) {
+export default function MainHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <LeftWrapper bunryuObjects={bunryuObjects} />
+        <LeftWrapper />
         <Link href={"/"}>
           <Image
             className={styles.logo}
@@ -27,7 +24,7 @@ export default function MainHeader({ bunryuObjects }: Props) {
         <RightWrapper />
       </div>
 
-      <MainMenuNav bunryuObjects={bunryuObjects} />
+      <MainMenuNav />
     </header>
   );
 }

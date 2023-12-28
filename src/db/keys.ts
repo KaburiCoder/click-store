@@ -1,4 +1,12 @@
 export class QKey {
+  static get fetchWebBunryuList() {
+    return "fetchWebBunryuList";
+  }
+
+  static get fetchBunryuObjectList() {
+    return "fetchBunryuObjectList";
+  }
+
   static get fetchTracking() {
     return "fetchTracking";
   }

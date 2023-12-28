@@ -9,14 +9,13 @@ import { signupAction } from "@/db/actions/signup.action";
 import { stringsToText } from "@/lib/utils/strings.util";
 import ButtonL from "@/components/ui/custom/button-l";
 import AuthNavi from "../auth-navi";
+import { useSearchParams } from "next/navigation";
 
-interface Props {
-  uid: string;
-}
-
-export default function SignupForm({ uid }: Props) {
+export default function SignupForm() {
+  const params = useSearchParams();
   const [state, action] = useFormState(signupAction, {});
   const errors = state.errors;
+  const uid = params.get("uid") as string;
 
   return (
     <form className="flex flex-col gap-1" action={action}>

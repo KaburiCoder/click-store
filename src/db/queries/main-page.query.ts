@@ -11,7 +11,7 @@ import { getLatestPlsList } from "@/db/services/product-list-sub.service";
 import { getProductListImage } from "@/db/services/product-list-image.service";
 import { imgPaths } from "@/paths";
 
-export const getBunryuObjectList = cache(async () => {
+export const getBunryuObjectList = async () => {
   const webBunryuList = await findWebBunryuList();
   const plList = await getWebProductList();
   const plsList = await getLatestPlsList();
@@ -38,7 +38,7 @@ export const getBunryuObjectList = cache(async () => {
   }
 
   return bunryuObjects;
-});
+};
 
 export const getProductImage = cache(async ({ smCode }: { smCode: string }) => {
   const result = await getProductListImage({ smCode });

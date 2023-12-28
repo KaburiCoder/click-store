@@ -44,7 +44,7 @@ export default function PaymentLoadingPage() {
       paymentItems,
       cartItemIds,
     });
-  }, [params, paymentItems, quantity, cartItemIds]);
+  }, [params, paymentItems, quantity, cartItemIds, fetchPayment]);
 
   return <>{error ? <PaymentError error={error} /> : <PaymentLoading />}</>;
 }

@@ -1,20 +1,22 @@
-const dynamic = "force-dynamic";
+"use client";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { IoSettingsOutline } from "react-icons/io5";
 import styles from "./dd-user.module.scss";
-import { UserProps } from "@/lib/props/fetch-get-user.props";
 import { paths } from "@/paths";
 import LinkButton from "./link-button/link-button";
 import { MdManageAccounts } from "react-icons/md";
 import { BiBasket } from "react-icons/bi";
 import { logoutAction } from "@/db/actions/auth";
+import useSvrCookie from "@/lib/hooks/use-svr-cookie";
 
-interface Props extends UserProps {
+interface Props {
   onLinkClick: () => void;
 }
 
-export default function DdUser({ user, onLinkClick }: Props) {
+export default function DdUser({ onLinkClick }: Props) {
+  const { user } = useSvrCookie();
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>

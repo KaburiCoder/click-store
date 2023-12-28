@@ -1,6 +1,6 @@
+"use server";
 import db from "@/db/db";
 import { ProductListWebBunryu } from "@prisma/client";
-export class ProductListWebBunryuService { }
 
 export async function findWebBunryuList(): Promise<ProductListWebBunryu[]> {
   return await db.productListWebBunryu.findMany({

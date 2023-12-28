@@ -5,8 +5,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { paths } from "@/paths";
 import { bankData } from "@/lib/datas/bank-data";
-
-export const dynamic = "force-dynamic";
+import db from "@/db/db";
 
 interface Props {
   params: { orderId: string };
@@ -72,6 +71,20 @@ export default async function PaymentSuccessPage({ params }: Props) {
       </nav>
     </>
   );
+}
+
+export async function generateStaticParams() {
+  const result = await db.payment.findMany({
+    select: {
+      orderId: true,
+    },
+  });
+
+  return result.map((r) => {
+    return {
+      orderId: r.orderId,
+    };
+  });
 }
 
 const LabelText = (props: {

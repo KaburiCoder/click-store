@@ -7,12 +7,28 @@ import { loginAction } from "@/db/actions/auth";
 import ErrorText from "@/components/(shared)/error-text";
 import ButtonL from "@/components/ui/custom/button-l";
 import AuthNavi from "../auth-navi";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { getAccountByUserId } from "@/db/services/account.service";
+import { paths } from "@/paths";
 
-interface Props {
-  uid: string;
-}
+export default function LoginForm() {
+  const params = useSearchParams();
+  const { push } = useRouter();
+  const uid = params.get("uid") as string;
 
-export default function LoginForm({ uid }: Props) {
+  // uid가 쿼리스트링으로 들어온 경우 회원가입이 안되어있을 시 회원가입 페이지로
+  useEffect(() => {
+    if (!uid) return;
+
+    (async () => {
+      const account = await getAccountByUserId(uid);
+
+      if (!account) {
+        push(paths.signupWithUid(uid));
+      }
+    })();
+  }, [push, uid]);
+
   const idRef = useRef<HTMLInputElement>(null);
   const pwdRef = useRef<HTMLInputElement>(null);
   const [errorMessage, formAction] = useFormState(loginAction, undefined);

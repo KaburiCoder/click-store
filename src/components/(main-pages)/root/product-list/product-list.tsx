@@ -1,10 +1,10 @@
-"use server";
+"use client";
 import React, { Suspense } from "react";
 import styles from "./product-list.module.scss";
 import { BunryuObjectProps } from "@/lib/props/bunryu-object.props";
 import ProductItem from "../product-item/product-item";
 
-export default async function ProductList({ bunryuObject }: BunryuObjectProps) {
+export default function ProductList({ bunryuObject }: BunryuObjectProps) {
   const { products, fit } = bunryuObject || {};
 
   const components = products?.map((p) => {
