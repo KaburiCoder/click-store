@@ -115,7 +115,7 @@ interface DataWrapperProps {
 }
 function DataWrapper({ className, label, data }: DataWrapperProps) {
   return (
-    <div className={cn('bg-white p-1 rounded bg-slate-200', className)}>
+    <div className={cn("rounded bg-slate-200 p-1", className)}>
       <div className="pb-1 text-sm text-slate-500">{label}</div>
       <div className="font-bold">{data}</div>
     </div>

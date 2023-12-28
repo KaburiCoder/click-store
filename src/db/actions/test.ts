@@ -1,8 +1,7 @@
 "use server";
-import { revalidateTag } from "next/cache";
 
-export async function testAction(_: any, formData: FormData) {
-  "use server";
+export async function testAction() {
+  process.exit(1);
 
   return "kkk";
 }

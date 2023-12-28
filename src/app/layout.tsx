@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./global.css";
 import "@/css/index";
 import Providers from "@/providers/providers";
 import { natoSansKR } from "@/fonts/fonts";

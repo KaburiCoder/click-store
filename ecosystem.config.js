@@ -1,10 +1,11 @@
 module.exports = {
   apps: [
     {
-      name: "NextAppName",
+      name: "click-store",
       exec_mode: "cluster",
-      instances: "4", // Or a number of instances
+      instances: "3", // Or a number of instances
       script: "node_modules/next/dist/bin/next",
+      watch: false,
       args: "start",
       env_local: {
         APP_ENV: "local", // APP_ENV=local

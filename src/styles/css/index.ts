@@ -1,4 +1,3 @@
-import "@/css/tailwind.css";
 import "@/css/globals.css";
 import "@/css/theme.css";
 import "@/css/font-size.css";
