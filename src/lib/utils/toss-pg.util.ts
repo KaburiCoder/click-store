@@ -1,3 +1,4 @@
+import { TOSS_SECRET_KEY } from "@/configs/server.config";
 import dayjs from "dayjs";
 
 export function getOrderId() {
@@ -6,15 +7,8 @@ export function getOrderId() {
   return `${currentDt}${randInt}`;
 }
 
-export const getTossPaymentsSecretKey = (isTest?: boolean) => {
-  return isTest
-    ? process.env.NEXT_PUBLIC_TOSS_PAYMENTS_TEST_SECRET_KEY
-    : process.env.NEXT_PUBLIC_TOSS_PAYMENTS_SECRET_KEY;
-};
-
 export const getTossPaymentsHeaders = (isTest?: boolean) => {
-  const tossSecretKey = getTossPaymentsSecretKey(isTest);
-  const tossToken = Buffer.from(tossSecretKey + ":").toString("base64");
+  const tossToken = Buffer.from(TOSS_SECRET_KEY + ":").toString("base64");
   const headers: { [key: string]: string } = {
     Authorization: `Basic ${tossToken}`,
     "Content-Type": "application/json",

@@ -5,8 +5,8 @@ import {
 } from "@tosspayments/payment-widget-sdk";
 
 import { getUser } from "../utils/user.util";
-import { TOSSPAYMENTS_CLIENT_KEY } from "../utils/env.util";
 import { getOrderId } from "../utils/toss-pg.util";
+import { TOSS_CLIENT_KEY } from "@/configs/client.config";
 
 interface Props {
   orderName: string;
@@ -61,7 +61,7 @@ const useTossWidget = ({ totalPrice, orderName }: Props) => {
       // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
       const customerKey = user.userId;
       const paymentWidget = await loadPaymentWidget(
-        TOSSPAYMENTS_CLIENT_KEY!,
+        TOSS_CLIENT_KEY!,
         customerKey,
       ); // 회원 결제
       // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS); // 비회원 결제

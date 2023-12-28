@@ -29,7 +29,7 @@ export function DateRangePicker({
 
   React.useEffect(() => {
     onDateChange(date);
-  }, [date]);
+  }, [date, onDateChange]);
 
   return (
     <div className={cn("grid gap-2", className)}>

@@ -25,7 +25,7 @@ export default function ChangeEmailForm() {
       toast.success("정상적으로 변경되었습니다.");
       setEmail("");
     }
-  }, [isSuccess]);
+  }, [isSuccess, toggleCookie, setEmail, data?.errorMessage]);
 
   return (
     <form className="ml-1" onSubmit={handleSubmit}>

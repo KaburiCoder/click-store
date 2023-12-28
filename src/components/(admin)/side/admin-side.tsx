@@ -6,7 +6,6 @@ import { pacifico } from "@/fonts/fonts";
 import { cn } from "@/lib/utils/shadcn.util";
 import { SideButtonItem } from "@/components/(shared)/side/side-button-item";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import { signOut } from "@/app/api/auth/utils/auth";
 import { logoutAction } from "@/db/actions/auth";
 
 export default function AdminSide() {
