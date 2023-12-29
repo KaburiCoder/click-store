@@ -69,6 +69,7 @@ export const paths = {
 };
 
 export const imgPaths = {
+  clickIcon: "/images/click_icon.png",
   logo: "/images/main_logo.png",
   noImage: "/images/no-image.png",
   emptyCart: "/images/empty-cart.png",

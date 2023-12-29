@@ -4,10 +4,18 @@ import "@/css/index";
 import Providers from "@/providers/providers";
 import { natoSansKR } from "@/fonts/fonts";
 import ToastWrapper from "@/components/(shared)/toast-wrapper/toast-wrapper";
+import { imgPaths } from "@/paths";
 
 export const metadata: Metadata = {
   title: "클릭스토어 - 클릭소프트(물품 접수)",
   description: "클릭소프트 물품 구매 웹 사이트입니다.",
+  icons: {
+    icon: imgPaths.clickIcon,
+  },
+  openGraph: {
+    title: "클릭스토어 - 클릭소프트(물품 접수)",
+    images: [imgPaths.logo]
+  },
 };
 
 export default function RootLayout({
