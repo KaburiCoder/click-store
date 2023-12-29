@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["test.click-soft.shop"],
+    },
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
