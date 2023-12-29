@@ -8,7 +8,7 @@ export const runtime = "edge";
 export const alt = "클릭소프트 이미지";
 export const size = {
   width: 800,
-  height: 400,
+  height: 420,
 };
 
 export const contentType = "image/png";
@@ -19,7 +19,7 @@ export default async function Image() {
   // const interSemiBold = fetch(
   //   new URL("./Inter-SemiBold.ttf", import.meta.url),
   // ).then((res) => res.arrayBuffer());
-
+  const imgUrl = `${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo3}`;
   return new ImageResponse(
     (
       // ImageResponse JSX element
@@ -28,10 +28,10 @@ export default async function Image() {
           background: "white",
           width: "100%",
           height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundImage: `url(https://${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo2})`,
+          // display: "flex",
+          // alignItems: "center",
+          // justifyContent: "center",
+          backgroundImage: `url(http://${imgUrl})`, //{imgPaths.logo2}
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
