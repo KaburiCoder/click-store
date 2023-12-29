@@ -7,7 +7,7 @@ export const runtime = "edge";
 // Image metadata
 export const alt = "클릭소프트 이미지";
 export const size = {
-  width: 640,
+  width: 800,
   height: 250,
 };
 
@@ -32,19 +32,12 @@ export default async function Image() {
           alignItems: "center",
           justifyContent: "center",
           padding: "20px",
+          backgroundImage: `url(http://${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
         }}
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundImage: `url(http://${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "0% 10%",
-          }}
-        ></div>
-      </div>
+      ></div>
     ),
     {
       ...size,
