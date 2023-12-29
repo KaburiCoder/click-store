@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "클릭스토어 - 클릭소프트(물품 접수)",
-    images: [imgPaths.logo]
   },
 };
 
