@@ -1,9 +1,8 @@
 import db from "@/db/db";
 import { Account } from "@/db/models/account";
 import { User } from "@/lib/interfaces/user";
-import { setUser } from "@/lib/utils/user.util";
 
-export async function setUserSession(account: Account) {
+export async function convertAccountToUser(account: Account) {
   const { email, userId, admin, saupkiho, ykiho } = account;
 
   const cs = await db.cs.findFirst({
@@ -25,7 +24,6 @@ export async function setUserSession(account: Account) {
     fitYoungsu: cs?.youngsu === "4",
     useBNPL: cs?.etc34 === "1",
   };
-  setUser(user);
 
   return user;
 }

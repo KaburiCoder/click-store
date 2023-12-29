@@ -1,7 +1,6 @@
 "use server";
 
 import { signIn, signOut } from "@/app/api/auth/utils/auth";
-import { clearUser } from "@/lib/utils/user.util";
 import { AuthError } from "next-auth";
 
 export async function loginAction(
@@ -26,7 +25,6 @@ export async function loginAction(
 }
 
 export async function logoutAction() {
-  clearUser();
   await signOut();
 }
 

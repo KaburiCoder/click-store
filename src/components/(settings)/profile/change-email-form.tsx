@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { InputL } from "@/components/ui/custom/input-l";
 import { changeEmailAction } from "@/db/client-actions/change-email.action";
-import useSvrCookieStore from "@/store/svr-cookie.store";
 import { useMutation } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function ChangeEmailForm() {
-  const { toggleCookie } = useSvrCookieStore();
   const [email, setEmail] = useState("");
+  const { update } = useSession();
   const { data, isPending, isSuccess, mutate } = useMutation({
     mutationFn: changeEmailAction,
   });
@@ -21,11 +21,11 @@ export default function ChangeEmailForm() {
 
   useEffect(() => {
     if (isSuccess && !data.errorMessage) {
-      toggleCookie();
+      update({ email: email });
       toast.success("정상적으로 변경되었습니다.");
       setEmail("");
     }
-  }, [isSuccess, toggleCookie, setEmail, data?.errorMessage]);
+  }, [isSuccess, data?.errorMessage]);
 
   return (
     <form className="ml-1" onSubmit={handleSubmit}>

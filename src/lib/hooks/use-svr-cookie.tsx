@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { getUser } from "../utils/user.util";
 import { User } from "../interfaces/user";
-import useSvrCookieStore from "@/store/svr-cookie.store";
+import { useSession } from "next-auth/react";
+import { convertSessionToUser } from "../utils/convert.util";
 
 export default function useSvrCookie() {
-  const { cookieChanged } = useSvrCookieStore();
-  const [user, setUser] = useState<User>();
-  useEffect(() => {
-    getUser().then(setUser);
-  }, [cookieChanged]);
+  const { data: session, status } = useSession();
+  let user: User | undefined;
+  if (status === "authenticated") {
+    user = convertSessionToUser(session);
+  }
 
   return {
     user,

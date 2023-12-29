@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import { QKey } from "@/db/keys";
 import { fetchBunryuObjectList } from "@/db/client-queries/fetch-bunryu-object-list";
 import MainLoading from "../main-loading";
-
 export default function ProductGroupList() {
   const { data } = useQuery({
     queryKey: [QKey.fetchBunryuObjectList],

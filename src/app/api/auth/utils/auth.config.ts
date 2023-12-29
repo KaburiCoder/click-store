@@ -41,6 +41,13 @@ export const authConfig = {
       }
       return session;
     },
+    jwt({ token, trigger, session }) {
+      if (trigger === "update" && session?.email) {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.email = session.email;
+      }
+      return token;
+    },
   },
   providers: [], // Add providers with an empty array for now
 } satisfies NextAuthConfig;

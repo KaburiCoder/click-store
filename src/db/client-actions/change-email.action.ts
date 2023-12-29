@@ -1,10 +1,8 @@
 "use server";
-import { getUser, setUser } from "@/lib/utils/user.util";
+import { getUser } from "@/lib/utils/user.util";
 import { z } from "zod";
 import db from "../db";
 import { resultWrapper } from "@/lib/utils/callback.util";
-import { redirect } from "next/navigation";
-import { paths } from "@/paths";
 
 const schema = z.object({
   email: z.string().trim().toLowerCase().email("이메일 형식에 맞지 않습니다."),
@@ -53,8 +51,6 @@ export async function changeEmailAction(
       errorMessage: accountResult.errorMessage,
     };
   }
-
-  setUser({ ...user, email });
 
   return { changedEmail: email };
 }
