@@ -7,6 +7,7 @@ import ToastWrapper from "@/components/(shared)/toast-wrapper/toast-wrapper";
 import { imgPaths } from "@/paths";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('http://test.click-soft.shop'),
   title: "클릭스토어 - 클릭소프트(물품 접수)",
   description: "클릭소프트 물품 구매 웹 사이트입니다.",
   icons: {
