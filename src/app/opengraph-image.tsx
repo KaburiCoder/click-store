@@ -7,8 +7,8 @@ export const runtime = "edge";
 // Image metadata
 export const alt = "클릭소프트 이미지";
 export const size = {
-  width: 800,
-  height: 250,
+  width: 344,
+  height: 106,
 };
 
 export const contentType = "image/png";
@@ -31,7 +31,6 @@ export default async function Image() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "20px",
           backgroundImage: `url(https://${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo2})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
