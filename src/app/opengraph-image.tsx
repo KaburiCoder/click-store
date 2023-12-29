@@ -7,8 +7,8 @@ export const runtime = "edge";
 // Image metadata
 export const alt = "클릭소프트 이미지";
 export const size = {
-  width: 344,
-  height: 106,
+  width: 800,
+  height: 400,
 };
 
 export const contentType = "image/png";
