@@ -38,7 +38,7 @@ export default async function Image() {
           style={{
             width: "100%",
             height: "100%",
-            backgroundImage: `url(http://localhost:3002${imgPaths.logo})`,
+            backgroundImage: `url(http://${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "0% 10%",

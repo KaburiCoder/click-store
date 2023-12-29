@@ -2,7 +2,7 @@
 const nextConfig = {
   experimental: {
     serverActions: {
-      allowedOrigins: ["test.click-soft.shop"],
+      allowedOrigins: [process.env.NEXT_PUBLIC_CLICK_DOMAIN],
     },
   },
   compiler: {
