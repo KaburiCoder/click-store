@@ -8,10 +8,10 @@ import { BunryuObjectProps } from "@/lib/props/bunryu-object.props";
 
 interface Props extends BunryuObjectProps {
   product: Products;
-  defaultFit: boolean;
+  canFit: boolean;
 }
 
-export default function ProductItem({ product, defaultFit }: Props) {
+export default function ProductItem({ product, canFit }: Props) {
   const { smCode, danga, danwi, smMyung, src } = product;
   const [open, setOpen] = useState(false);
 
@@ -25,7 +25,7 @@ export default function ProductItem({ product, defaultFit }: Props) {
         open={open}
         setOpen={setOpen}
         product={product}
-        defaultFit={defaultFit}
+        canFit={canFit}
       />
       <li className={styles.item} onClick={handleClick}>
         <Image

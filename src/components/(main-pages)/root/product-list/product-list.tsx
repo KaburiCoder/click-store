@@ -10,7 +10,7 @@ export default function ProductList({ bunryuObject }: BunryuObjectProps) {
   const components = products?.map((p) => {
     return (
       <Suspense key={p.smCode} fallback={<div>loading...</div>}>
-        <ProductItem product={p} defaultFit={fit ?? false} />
+        <ProductItem product={p} canFit={fit ?? false} />
       </Suspense>
     );
   });

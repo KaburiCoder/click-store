@@ -18,10 +18,10 @@ import Drawer from "@/components/(shared)/drawer/drawer";
 
 interface Props extends ModalProps {
   product: Products;
-  defaultFit: boolean;
+  canFit: boolean;
 }
 export default function ProductModal(props: Props) {
-  const { product } = props;
+  const { product, canFit } = props;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const {
     fitChecked,
@@ -69,7 +69,7 @@ export default function ProductModal(props: Props) {
               title="총 금액"
               text={(quantity * product.danga).toLocaleString()}
             />
-            {product.fit && (
+            {canFit && (
               <CheckBox
                 className={styles.fit_checkbox}
                 text="맞춤주문"
@@ -124,7 +124,7 @@ export default function ProductModal(props: Props) {
   );
 }
 
-const useProductModal = ({ open, setOpen, product, defaultFit }: Props) => {
+const useProductModal = ({ open, setOpen, product }: Props) => {
   const [quantity, setQuantity] = useState(product.step);
   const [fitChecked, setFitChecked] = useState<boolean>(false);
   const { push } = useRouter();
@@ -135,8 +135,8 @@ const useProductModal = ({ open, setOpen, product, defaultFit }: Props) => {
   const minCount = fitChecked ? 6 : product.step;
 
   useEffect(() => {
-    setFitChecked(defaultFit);
-  }, [defaultFit]);
+    setFitChecked(product.fit);
+  }, [product.fit]);
 
   useEffect(() => {
     setQuantity(minCount);
