@@ -21,21 +21,21 @@ export default async function Image() {
   // ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
-    <img src={imgPaths.logo} />,
-    // ImageResponse JSX element
-    // <div
-    //   style={{
-    //     fontSize: 128,
-    //     background: "white",
-    //     width: "100%",
-    //     height: "100%",
-    //     display: "flex",
-    //     alignItems: "center",
-    //     justifyContent: "center",
-    //   }}
-    // >
-    //   TEST
-    // </div>
+    (
+      // ImageResponse JSX element
+      <div
+        style={{
+          backgroundImage: `url(${imgPaths.logo})`,
+          fontSize: 128,
+          background: "white",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      />
+    ),
     {
       ...size,
       // fonts: [
