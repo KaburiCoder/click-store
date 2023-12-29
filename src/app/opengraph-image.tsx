@@ -32,7 +32,7 @@ export default async function Image() {
           alignItems: "center",
           justifyContent: "center",
           padding: "20px",
-          backgroundImage: `url(http://${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo})`,
+          backgroundImage: `url(https://${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
