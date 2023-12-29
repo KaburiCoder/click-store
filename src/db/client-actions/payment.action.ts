@@ -3,11 +3,6 @@ import { z } from "zod";
 import { PaymentItem } from "../models/payment-item";
 import { savePayment } from "../services/payment.service";
 import { fetchConfirmToss } from "../services/toss-payments/payment-toss";
-import { paths } from "@/paths";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import dayjs from "dayjs";
-import { deleteCartItems } from "../services/cart-item.service";
 
 const schema = z.object({
   amount: z.number(),
