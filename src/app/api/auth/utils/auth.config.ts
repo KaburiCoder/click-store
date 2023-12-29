@@ -16,6 +16,7 @@ export const authConfig = {
         "/signup",
         "/find-password",
         "/change-password",
+        "/opengraph-image",
       ]);
       // const isOnLoginPage = nextUrl.pathname.startsWith("/login");
 

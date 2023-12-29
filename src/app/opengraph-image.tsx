@@ -1,3 +1,4 @@
+import { imgPaths } from "@/paths";
 import { ImageResponse } from "next/og";
 
 // Route segment config
@@ -20,22 +21,21 @@ export default async function Image() {
   // ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
-    (
-      // ImageResponse JSX element
-      <div
-        style={{
-          fontSize: 128,
-          background: "white",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        TEST
-      </div>
-    ),
+    <img src={imgPaths.logo} />,
+    // ImageResponse JSX element
+    // <div
+    //   style={{
+    //     fontSize: 128,
+    //     background: "white",
+    //     width: "100%",
+    //     height: "100%",
+    //     display: "flex",
+    //     alignItems: "center",
+    //     justifyContent: "center",
+    //   }}
+    // >
+    //   TEST
+    // </div>
     {
       ...size,
       // fonts: [
