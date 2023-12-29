@@ -31,7 +31,7 @@ export default async function Image() {
           // display: "flex",
           // alignItems: "center",
           // justifyContent: "center",
-          backgroundImage: `url(http://${imgUrl})`, //{imgPaths.logo2}
+          backgroundImage: `url(https://${imgUrl})`, //{imgPaths.logo2}
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",
