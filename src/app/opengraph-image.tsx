@@ -7,8 +7,8 @@ export const runtime = "edge";
 // Image metadata
 export const alt = "클릭소프트 이미지";
 export const size = {
-  width: 1200,
-  height: 630,
+  width: 640,
+  height: 250,
 };
 
 export const contentType = "image/png";
@@ -25,16 +25,26 @@ export default async function Image() {
       // ImageResponse JSX element
       <div
         style={{
-          backgroundImage: `url(${imgPaths.logo})`,
-          fontSize: 128,
           background: "white",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          padding: "20px",
         }}
-      />
+      >
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            backgroundImage: `url(http://localhost:3002${imgPaths.logo})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "0% 10%",
+          }}
+        ></div>
+      </div>
     ),
     {
       ...size,
