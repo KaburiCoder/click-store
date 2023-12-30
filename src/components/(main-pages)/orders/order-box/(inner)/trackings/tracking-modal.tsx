@@ -28,6 +28,8 @@ export default function TrackingModal(props: Props) {
       <TrackingMain
         trackingNumber={tracking.trackingNumber!}
         trackingResult={data!}
+        open={open}
+        setOpen={setOpen}
       />
     );
   }
