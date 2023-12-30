@@ -1,4 +1,4 @@
-import AccTitle from "@/components/(account-pages)/acc-title/acc-title";
+import AccTitle from "@/components/(account-pages)/acc-title";
 import ChangePasswordForm from "@/components/(account-pages)/change-password/change-password-form";
 import UnauthenticatedChangePassword from "@/components/(account-pages)/change-password/unauthenticated-change-password";
 import { getAccountByToken } from "@/db/services/account.service";

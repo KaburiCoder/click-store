@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./main-header.module.scss";
 import Image from "next/image";
 import LeftWrapper from "./left-wrapper";
 import RightWrapper from "./right-wrapper";
@@ -9,12 +8,12 @@ import { imgPaths } from "@/paths";
 
 export default function MainHeader() {
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
+    <header>
+      <div className="h-header relative flex justify-between overflow-hidden border-b-[1px] border-solid border-gray-300">
         <LeftWrapper />
         <Link href={"/"}>
           <Image
-            className={styles.logo}
+            className="h-header absolute left-1/2 top-1/2 w-auto -translate-x-1/2 -translate-y-1/2 transform py-1.5"
             src={imgPaths.logo}
             alt="메인 아이콘"
             width={200}

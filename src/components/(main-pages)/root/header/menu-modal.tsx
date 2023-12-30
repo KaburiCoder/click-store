@@ -1,6 +1,5 @@
 "use client";
-import { BunryuObjectProps } from "@/lib/props/bunryu-object.props";
-import MainMenu from "../main-menu/main-menu";
+import MainMenu from "./main-menu";
 import DownModal from "./down-modal";
 
 interface Props {

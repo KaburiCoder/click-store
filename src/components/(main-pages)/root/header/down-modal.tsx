@@ -3,8 +3,8 @@
 import styles from "./down-modal.module.scss";
 import Backdrop from "@/components/(shared)/backdrop/backdrop";
 import { ScriptProps } from "next/script";
-import classNames from "classnames";
 import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
+import { cn } from "@/lib/utils/shadcn.util";
 
 interface Props extends ScriptProps {
   setPortal?: boolean;
@@ -13,6 +13,7 @@ interface Props extends ScriptProps {
 }
 
 const DownModal: React.FC<Props> = ({
+  className,
   children,
   popupLocation,
   setPortal,
@@ -20,25 +21,12 @@ const DownModal: React.FC<Props> = ({
 }) => {
   const { matches: min768 } = useMinMediaQuery(768);
 
-  // const { isMobile } = useResizeWindow();
-  // const { clear } = useModalStore();
-
-  // function backdropClickHandler() {
-  //   clear();
-  // }
-  // const style: CSSProperties =
-  //   props.popupLocation === "left" ? { left: 0 } : {};
-
   function backdropMouseEnterHandler(): void {
     if (!min768) return;
     onClose();
   }
 
-  const modalStyles = classNames(
-    "cst-card",
-    styles.slider,
-    popupLocation === "left" ? styles.popup_left : undefined
-  );
+  console.log("cn", className);
 
   return (
     <>
@@ -49,7 +37,16 @@ const DownModal: React.FC<Props> = ({
         notScrollHidden
       />
       {/* style={style} */}
-      <div className={modalStyles}>{children}</div>
+      <div
+        className={cn(
+          "rounded-b shadow overflow-hidden fixed right-0 z-[10000] w-fit min-w-[22rem] bg-slate-100",
+          styles["ani-down"],
+          popupLocation === "left" ? "left-0" : "",
+          className,
+        )}
+      >
+        {children}
+      </div>
     </>
   );
 };

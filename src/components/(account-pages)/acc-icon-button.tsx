@@ -2,9 +2,8 @@ import classNames from "classnames";
 import { ScriptProps } from "next/script";
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import { IconType } from "react-icons";
-import styles from "./acc-icon-button.module.scss";
 import DownModal from "@/components/(main-pages)/root/header/down-modal";
-import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
+import { cn } from "@/lib/utils/shadcn.util";
 
 interface Props extends ScriptProps {
   icon: IconType;
@@ -31,7 +30,6 @@ export default function AccIconButton({
   children,
 }: Props) {
   const [mouseEntered, setMouseEntered] = useState(false);
-  const { matches: min768 } = useMinMediaQuery(768);
   function handleMouseEnter(): void {
     setMouseEntered(true);
     onMouseEnter?.();
@@ -52,35 +50,21 @@ export default function AccIconButton({
     };
   }, []);
 
-  // const { isMobile } = useResizeWindow();
-
-  // const isModalShown = useModalStore(
-  //   (state) => state.showCartModal || state.showMenuModal || state.showUserModal
-  // );
-
-  // useEffect(() => {
-  //   if (!isModalShown) {
-  //     setMouseEntered(false);
-  //   }
-  // }, [isModalShown]);
-
   return (
     <div
-      className={styles.all_wrapper}
+      className="h-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div
-        className={classNames(
-          styles.wrapper,
-          mouseEntered && min768 ? styles.button_to_front : ""
-        )}
-      >
-        <div className={styles.button_container}>
-          <button className={styles.button} onClick={onClick}>
-            <Icon className={styles.icon} />
+      <div className={cn("relative h-full", mouseEntered ? "md:z-[1002]" : "")}>
+        <div className="relative flex h-full items-center bg-white">
+          <button
+            className="my-1 flex items-center justify-between bg-transparent px-2 text-blue-900 hover:text-blue-600"
+            onClick={onClick}
+          >
+            <Icon className="h-full w-7 flex-1" />
             {children}
-            {min768 && text && <span className={styles.text}>{text}</span>}
+            {text && <span className="hidden pl-0.5 md:block">{text}</span>}
           </button>
         </div>
       </div>

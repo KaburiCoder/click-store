@@ -1,4 +1,4 @@
-import AccTitle from "@/components/(account-pages)/acc-title/acc-title";
+import AccTitle from "@/components/(account-pages)/acc-title";
 import AuthNavi from "@/components/(account-pages)/auth-navi";
 import FindPasswordForm from "@/components/(account-pages)/find-password/find-password-form";
 import React from "react";

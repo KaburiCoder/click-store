@@ -1,9 +1,7 @@
 "use client";
 import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
-import { BunryuObjectProps } from "@/lib/props/bunryu-object.props";
-import MainMenu from "@/components/(main-pages)/root/main-menu/main-menu";
+import MainMenu from "@/components/(main-pages)/root/header/main-menu";
 import React, { useEffect } from "react";
-import styles from "./main-menu-nav.module.scss";
 import { usePathname } from "next/navigation";
 import useResizeObserver from "use-resize-observer";
 
@@ -26,7 +24,7 @@ export default function MainMenuNav() {
   if (isNotVisible) return <></>;
 
   return (
-    <nav ref={ref} className={`${styles.nav}`}>
+    <nav ref={ref} className="z-[1] h-full w-full">
       <MainMenu />
     </nav>
   );

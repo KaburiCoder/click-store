@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import styles from "./main-menu.module.scss";
 import { useQuery } from "@tanstack/react-query";
 import { QKey } from "@/db/keys";
 import { fetchWebBunryuList } from "@/db/client-queries/fetch-web-bunryu-list";
+import { cn } from "@/lib/utils/shadcn.util";
 
 interface Props {
   isDropdown?: boolean;
@@ -33,7 +33,7 @@ export default function MainMenu({ onClose }: Props) {
       .replace("px", "");
     const headerOffset = 55 + (isNaN(offsetHeight) ? 0 : offsetHeight);
     const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
     window.scrollTo({
       top: offsetPosition,
@@ -47,11 +47,28 @@ export default function MainMenu({ onClose }: Props) {
 
   const linkComponents = data?.map((w) => {
     return (
-      <li className={styles.li} key={w.code}>
-        <button onClick={handleLink.bind(null, w.code)}>{w.name}</button>
+      <li key={w.code}>
+        <button
+          className={cn(
+            "w-full rounded bg-blue-500 p-2.5 text-left text-base text-slate-50 hover:bg-blue-500/90",
+            "md:bg-transparent",
+          )}
+          onClick={handleLink.bind(null, w.code)}
+        >
+          {w.name}
+        </button>
       </li>
     );
   });
 
-  return <ul className={styles.ul}>{linkComponents}</ul>;
+  return (
+    <ul
+      className={cn(
+        "relative flex h-full flex-col gap-2 p-2",
+        "md:flex-row md:justify-center md:bg-blue-400 md:p-0",
+      )}
+    >
+      {linkComponents}
+    </ul>
+  );
 }

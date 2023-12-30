@@ -10,6 +10,8 @@ module.exports = {
   ],
   theme: {
     screens: {
+      xxs: "360px",
+      xs: "480px",
       sm: "640px",
       md: "768px",
       md2: "896px",
@@ -62,6 +64,13 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      height: {
+        header: "3rem",
+        cartView: "5rem",
+      },
+      padding: {
+        cartView: "5rem",
       },
       borderRadius: {
         lg: "var(--radius)",

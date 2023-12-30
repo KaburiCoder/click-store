@@ -5,8 +5,7 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import styles from "./dd-button.module.scss";
-import AccIconButton from "@/components/(account-pages)/acc-icon-button/acc-icon-button";
+import AccIconButton from "@/components/(account-pages)/acc-icon-button";
 import { IconType } from "react-icons";
 import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
 
@@ -22,7 +21,7 @@ interface Props {
 const DdButton = React.forwardRef(
   (
     { text, icon, popupLocation, modalComponent, children, onClick }: Props,
-    ref
+    ref,
   ) => {
     const [open, setOpen] = useState(false);
     const [isEnter, setIsEnter] = useState(false);
@@ -60,7 +59,7 @@ const DdButton = React.forwardRef(
         {children}
       </AccIconButton>
     );
-  }
+  },
 );
 
 DdButton.displayName = "DdButton";
