@@ -1,4 +1,4 @@
-import AdminWebOrderList from "@/components/(admin)/orders/admin-web-order-list";
+import AdminWebOrderList from "@/components/(admin)/web-orders/admin-web-order-list";
 import SearchBar from "@/components/(admin)/search-bar";
 import React from "react";
 

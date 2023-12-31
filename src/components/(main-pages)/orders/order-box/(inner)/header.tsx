@@ -19,7 +19,7 @@ export default function OrderHeader({ payment }: PaymentProps) {
     return undefined;
   }
 
-  return (
+  const headerComponent = (
     <div className={"flex items-center justify-between bg-amber-500 p-2"}>
       <div className="font-bold text-amber-900">
         주문번호 : {payment.orderId}
@@ -29,4 +29,19 @@ export default function OrderHeader({ payment }: PaymentProps) {
       </div>
     </div>
   );
+
+  if (payment.test) {
+    return (
+      <div className="flex flex-col">
+        {headerComponent}
+        <div>
+          <div className="bg-rose-400 p-2 text-center font-semibold text-white">
+            테스트 환경에서 주문되었습니다.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return headerComponent;
 }

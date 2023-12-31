@@ -17,6 +17,7 @@ import { AdminSearchBarData } from "@/store/admin-search-bar.store";
 import dayjs from "dayjs";
 import { numericStringRegex } from "@/lib/utils/regex";
 import { add9Hours, subtract9HoursByObject } from "@/lib/utils/date.util";
+import { APP_ENV } from "@/configs/config";
 
 const DISP_ITEM_COUNT = 6;
 
@@ -47,6 +48,7 @@ export async function savePayment(payment: Partial<Payment>) {
       requestedAt: add9Hours(payment.requestedAt),
       approvedAt: add9Hours(payment.approvedAt),
       cancel: false,
+      test: APP_ENV === "dev" ? 1 : null,
       paymentItems: {
         createMany: {
           data: paymentItems,

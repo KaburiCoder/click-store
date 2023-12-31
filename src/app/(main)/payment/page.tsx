@@ -6,6 +6,7 @@ import classNames from "classnames";
 import { useCartView } from "@/lib/hooks/use-cart-view";
 import usePaymentStore from "@/store/payment.store";
 import WrongApproach from "@/components/(errors)/wrong-approach";
+import { APP_ENV } from "@/configs/config";
 
 export default function PaymentPage(props: any) {
   const { hasNotPaymentData, cartItemsUtil, getPaymentItems } = useCartView({
@@ -52,6 +53,9 @@ export default function PaymentPage(props: any) {
         <button className={styles["checkout-button"]} onClick={checkoutHandler}>
           결제하기
         </button>
+        {APP_ENV !== "prod" && (
+          <div className="bg-rose-400 text-white p-3 mt-2 rounded">테스트 환경입니다. 실제 결제가 되지 않습니다.</div>
+        )}
       </div>
     </main>
   );

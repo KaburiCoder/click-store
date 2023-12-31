@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ProductGroup from "./product-group/product-group";
+import ProductGroup from "./product-group";
 import { useQuery } from "@tanstack/react-query";
 import { QKey } from "@/db/keys";
 import { fetchBunryuObjectList } from "@/db/client-queries/fetch-bunryu-object-list";
