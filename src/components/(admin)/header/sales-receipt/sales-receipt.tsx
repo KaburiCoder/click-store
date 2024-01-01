@@ -33,6 +33,7 @@ export default function SalesReceipt(props: ReceiptProps) {
   if (!tossResult) return <></>;
 
   const {
+    status,
     message,
     orderId,
     card,
@@ -95,7 +96,7 @@ export default function SalesReceipt(props: ReceiptProps) {
       <LabelText
         bothClassName="text-blue-500 font-bold"
         label="합계"
-        text={`${totalAmount.toLocaleString()}원`}
+        text={`${status === "CANCELED" ? "0" : totalAmount.toLocaleString()}원`}
       />
       {!isPrinting && (
         <a
