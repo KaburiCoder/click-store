@@ -2,7 +2,6 @@
 import { useCallback, useRef, useEffect, MouseEventHandler } from "react";
 import styles from "./modal.module.scss";
 import Backdrop from "../backdrop/backdrop";
-import classNames from "classnames";
 import { ModalProps } from "@/lib/props/modal.props";
 import { cn } from "@/lib/utils/shadcn.util";
 

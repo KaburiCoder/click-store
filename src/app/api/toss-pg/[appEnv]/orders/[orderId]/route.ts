@@ -1,5 +1,4 @@
-import { getTossSecretKeyByAppEnv } from "@/configs/config";
-import { convertTossSkToToken } from "@/lib/utils/toss-pg.util";
+import { getPaymentOrders } from "@/db/services/toss-payments/get-payment-orders";
 import { NextRequest, NextResponse } from "next/server";
 
 const url = "https://api.tosspayments.com/v1/payments/orders";
@@ -7,17 +6,9 @@ export async function GET(
   req: NextRequest,
   {
     params: { appEnv, orderId },
-  }: { params: { appEnv: string; orderId: string } },
+  }: { params: { appEnv: "dev" | "prod"; orderId: string } },
 ) {
-  const sk = getTossSecretKeyByAppEnv(appEnv);
-  const tossToken = convertTossSkToToken(sk);
-
-  const response = await fetch(`${url}/${orderId}`, {
-    headers: {
-      Authorization: `Basic ${tossToken}`,
-    },
-  });
-  const data = await response.json();
+  const data = await getPaymentOrders({ appEnv, orderId });
 
   return NextResponse.json(data);
 }

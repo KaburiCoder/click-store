@@ -9,12 +9,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 import RefundDialog from "./refund-dialog";
+import { cn } from "@/lib/utils/shadcn.util";
 
 interface Props {
+  className?: string;
   payment: Payment;
 }
 
-export default function CancelButton({ payment }: Props) {
+export default function CancelButton({ className, payment }: Props) {
   const sendType = getSendType(payment);
   const isRefund = payment.method === "가상계좌" && sendType !== "결제대기";
 
@@ -28,7 +30,10 @@ export default function CancelButton({ payment }: Props) {
           payment={payment}
           title="취소(환불)"
           triggerComponent={
-            <Button variant={"destructive"} className="my-2 w-full">
+            <Button
+              variant={"destructive"}
+              className={cn("my-2 w-full", className)}
+            >
               취소(환불)
             </Button>
           }
@@ -38,7 +43,10 @@ export default function CancelButton({ payment }: Props) {
           title="취소"
           content="주문을 취소하시겠습니까?"
           triggerComponent={
-            <Button variant={"destructive"} className="my-2 w-full">
+            <Button
+              variant={"destructive"}
+              className={cn("my-2 w-full", className)}
+            >
               취소
             </Button>
           }

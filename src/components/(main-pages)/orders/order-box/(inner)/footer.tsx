@@ -51,13 +51,13 @@ export default function OrderFooter({ payment }: PaymentProps) {
           </Card>
         )}
 
-      {((!isAdmin && canCancel) || (isAdmin && !payment.cancel)) && (
-        <CancelButton payment={payment} />
-      )}
+      <div className="flex gap-1">
+        {((!isAdmin && canCancel) || (isAdmin && !payment.cancel)) && (
+          <CancelButton payment={payment} />
+        )}
 
-      {!canCancel && !isAdmin && (
-        <ReorderButton paymentItems={payment.paymentItems!} />
-      )}
+        {!isAdmin && <ReorderButton paymentItems={payment.paymentItems!} />}
+      </div>
     </Card>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 import PaymentError from "@/components/(main-pages)/payment/payment-error";
 import PaymentLoading from "@/components/(main-pages)/payment/payment-loading";
-import { paymentAction } from "@/db/client-actions/payment.action";
 import { useFetchPayment } from "@/lib/hooks/use-fetch-payment";
 import usePaymentStore from "@/store/payment.store";
 import { useRouter, useSearchParams } from "next/navigation";

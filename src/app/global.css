@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@page {
+  size: auto; /* auto is the initial value */
+
+  /* this affects the margin in the printer settings */
+  margin: 20mm;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

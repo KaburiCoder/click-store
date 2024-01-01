@@ -18,6 +18,7 @@ import dayjs from "dayjs";
 import { numericStringRegex } from "@/lib/utils/regex";
 import { add9Hours, subtract9HoursByObject } from "@/lib/utils/date.util";
 import { APP_ENV } from "@/configs/config";
+import { GetCustomerNameDto } from "../dto/payment/get-customer-name.dto";
 
 const DISP_ITEM_COUNT = 6;
 
@@ -47,6 +48,7 @@ export async function savePayment(payment: Partial<Payment>) {
       amount: payment.amount!,
       requestedAt: add9Hours(payment.requestedAt),
       approvedAt: add9Hours(payment.approvedAt),
+      customerName: user.name,
       cancel: false,
       test: APP_ENV === "dev" ? 1 : null,
       paymentItems: {
@@ -218,4 +220,18 @@ export async function updateOrdered({
     },
     where: { orderId },
   });
+}
+
+export async function getCustomerName({
+  paymentKey,
+  orderId,
+}: GetCustomerNameDto) {
+  const result = await db.payment.findFirst({
+    select: { customerName: true },
+    where: {
+      OR: [{ paymentKey }, { orderId }],
+    },
+  });
+
+  return result?.customerName;
 }

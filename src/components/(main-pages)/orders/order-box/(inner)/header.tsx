@@ -1,3 +1,4 @@
+import ReceiptButton from "@/components/(admin)/header/sales-receipt/components/receipt-button";
 import { PaymentProps } from "@/lib/props/payment.props";
 import { getSendType } from "@/lib/utils/payment.util";
 import { cn } from "@/lib/utils/shadcn.util";
@@ -5,7 +6,8 @@ import React from "react";
 
 export default function OrderHeader({ payment }: PaymentProps) {
   const sendType = getSendType(payment);
-
+  const { test, orderId, method } = payment;
+  const isReceiptButtonVisible = method === "카드"; //|| method === "간편결제"
   function sendTypeStyles() {
     const commonStyles = "border-solid border text-white";
     switch (sendType) {
@@ -21,16 +23,20 @@ export default function OrderHeader({ payment }: PaymentProps) {
 
   const headerComponent = (
     <div className={"flex items-center justify-between bg-amber-500 p-2"}>
-      <div className="font-bold text-amber-900">
-        주문번호 : {payment.orderId}
+      <div className="mr-2 flex items-center justify-start font-bold text-amber-900">
+        <span>주문번호 : {payment.orderId}</span>
+        {isReceiptButtonVisible && (
+          <ReceiptButton appEnv={test ? "dev" : "prod"} orderId={orderId} />
+        )}
       </div>
+
       <div className={cn("rounded bg-white p-1 text-xs", sendTypeStyles())}>
         {sendType}
       </div>
     </div>
   );
 
-  if (payment.test) {
+  if (test) {
     return (
       <div className="flex flex-col">
         {headerComponent}

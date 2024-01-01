@@ -296,18 +296,19 @@ model CartItem {
 }
 
 model Payment {
-  id          Int       @id @default(autoincrement())
-  ykiho       String
-  orderId     String    @unique @map("order_id")
-  paymentKey  String    @map("payment_key")
-  method      String
-  amount      Int
-  quantity    Int
-  requestedAt DateTime? @map("requested_at")
-  approvedAt  DateTime? @map("approved_at")
-  sendType    String    @map("send_type")
-  cancel      Boolean
-  test        Int?
+  id           Int       @id @default(autoincrement())
+  ykiho        String
+  orderId      String    @unique @map("order_id")
+  paymentKey   String    @map("payment_key")
+  customerName String    @map("customer_name")
+  method       String
+  amount       Int
+  quantity     Int
+  requestedAt  DateTime? @map("requested_at")
+  approvedAt   DateTime? @map("approved_at")
+  sendType     String    @map("send_type")
+  cancel       Boolean
+  test         Int?
 
   // Relation with PaymentItem
   paymentItems PaymentItem[]

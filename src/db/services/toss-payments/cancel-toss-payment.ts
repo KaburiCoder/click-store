@@ -1,7 +1,7 @@
 "use server";
 import { getCancelUrl, getTossPaymentsHeaders } from "@/lib/utils/toss-pg.util";
 
-export async function fetchCancelPayment(
+export async function cancelTossPayment(
   paymentKey: string,
   cancelReason: string,
 ) {

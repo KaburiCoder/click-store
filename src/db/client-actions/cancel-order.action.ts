@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { fetchCancelPayment } from "../services/toss-payments/fetch-cancel-payment";
+import { cancelTossPayment } from "../services/toss-payments/cancel-toss-payment";
 import {
   cancelPayment,
   getPaymentByPaymentKey,
@@ -35,7 +35,7 @@ export default async function cancelOrderAction(
 
     const data = isBNPL
       ? undefined
-      : await fetchCancelPayment(paymentKey, cancelReason);
+      : await cancelTossPayment(paymentKey, cancelReason);
 
     if (isBNPL || data?.status === "CANCELED") {
       await cancelPayment(paymentId);

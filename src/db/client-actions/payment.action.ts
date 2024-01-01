@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { PaymentItem } from "../models/payment-item";
 import { savePayment } from "../services/payment.service";
-import { fetchConfirmToss } from "../services/toss-payments/payment-toss";
+import { confirmTossPayment } from "../services/toss-payments/confirm-toss-payment";
 
 const schema = z.object({
   amount: z.number(),
@@ -24,7 +24,7 @@ export async function paymentAction(args: PaymentActionType) {
     };
   }
 
-  const data = await fetchConfirmToss({
+  const data = await confirmTossPayment({
     amount,
     orderId,
     paymentKey,

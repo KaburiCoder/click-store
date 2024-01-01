@@ -10,7 +10,7 @@ export interface TossApiResult {
   approvedAt: string;
   useEscrow: boolean;
   cultureExpense: boolean;
-  card: Card;
+  card?: TossApiCard;
   virtualAccount?: number; // You may need to specify the type if applicable
   transfer?: any; // You may need to specify the type if applicable
   mobilePhone?: string; // You may need to specify the type if applicable
@@ -18,7 +18,7 @@ export interface TossApiResult {
   cashReceipt?: any; // You may need to specify the type if applicable
   cashReceipts?: any[]; // You may need to specify the type if applicable
   discount?: any; // You may need to specify the type if applicable
-  cancels: Cancel[];
+  cancels?: Cancel[];
   secret?: any; // You may need to specify the type if applicable
   type: string;
   easyPay?: any; // You may need to specify the type if applicable
@@ -35,9 +35,12 @@ export interface TossApiResult {
   taxFreeAmount: number;
   method: string;
   version: string;
+
+  code?: string;
+  message?: string;
 }
 
-interface Card {
+export interface TossApiCard {
   issuerCode: string;
   acquirerCode: string;
   number: string;

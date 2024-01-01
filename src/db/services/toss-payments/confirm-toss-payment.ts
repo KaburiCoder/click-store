@@ -25,7 +25,7 @@ interface ConfirmTossResult {
   virtualAccount?: PaymentVirtual;
 }
 
-export async function fetchConfirmToss(
+export async function confirmTossPayment(
   dto: ConfirmTossDto
 ): Promise<ConfirmTossResult> {
   try {
