@@ -53,6 +53,7 @@ export default function SalesReceipt(props: Props) {
   components.push(
     <>
       <ReceiptHeader
+        appEnv={props.appEnv}
         isPrinting={isPrinting}
         tossResult={tossResult}
         onPrintClick={handlePrintClick}
