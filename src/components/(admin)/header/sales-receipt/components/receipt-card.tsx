@@ -1,13 +1,11 @@
-import { TossApiCard, TossApiResult } from "@/db/interfaces/toss-api-result";
 import React from "react";
-import LabelText from "./components/label-text";
+import LabelText from "./label-text";
 import { cardData } from "@/lib/datas/card-data";
+import { TossApiResultProps } from "@/lib/props/toss-api-result.props";
 
-interface Props {
-  tossResult: TossApiResult;
-}
-
-export default function ReceiptCard({ tossResult: { card } }: Props) {
+export default function ReceiptCard({
+  tossResult: { card },
+}: TossApiResultProps) {
   if (!card) return <></>;
 
   return (

@@ -7,7 +7,7 @@ import React from "react";
 export default function OrderHeader({ payment }: PaymentProps) {
   const sendType = getSendType(payment);
   const { test, orderId, method } = payment;
-  const isReceiptButtonVisible = method === "카드"; //|| method === "간편결제"
+  const isReceiptButtonVisible = method !== "후불결제";
   function sendTypeStyles() {
     const commonStyles = "border-solid border text-white";
     switch (sendType) {

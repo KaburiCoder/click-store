@@ -11,8 +11,6 @@ interface Props {
 export default function ReceiptProgress({
   tossResult: { totalAmount, approvedAt, cancels },
 }: Props) {
-  console.log("cancels ", cancels);
-
   return (
     <>
       <SubTextWrapper text={dayjs(approvedAt).format("YYYY-MM-DD HH:mm:ss")}>
@@ -21,7 +19,7 @@ export default function ReceiptProgress({
       {cancels?.map((cancel) => (
         <SubTextWrapper
           key={cancel.transactionKey}
-          text={dayjs().format("YYYY-MM-DD HH:mm:ss")}
+          text={dayjs(cancel.canceledAt).format("YYYY-MM-DD HH:mm:ss")}
         >
           <LabelText
             labelClassName="text-red-500"

@@ -12,16 +12,16 @@ export interface TossApiResult {
   cultureExpense: boolean;
   card?: TossApiCard;
   virtualAccount?: number; // You may need to specify the type if applicable
-  transfer?: any; // You may need to specify the type if applicable
-  mobilePhone?: string; // You may need to specify the type if applicable
+  transfer?: Transfer; // You may need to specify the type if applicable
+  mobilePhone?: string;
   giftCertificate?: any; // You may need to specify the type if applicable
-  cashReceipt?: any; // You may need to specify the type if applicable
+  cashReceipt?: CashReceipt;
   cashReceipts?: any[]; // You may need to specify the type if applicable
   discount?: any; // You may need to specify the type if applicable
   cancels?: Cancel[];
   secret?: any; // You may need to specify the type if applicable
   type: string;
-  easyPay?: any; // You may need to specify the type if applicable
+  easyPay?: EasyPay; // You may need to specify the type if applicable
   country: string;
   failure?: any; // You may need to specify the type if applicable
   isPartialCancelable: boolean;
@@ -73,4 +73,24 @@ interface Receipt {
 
 interface Checkout {
   url: string;
+}
+
+interface EasyPay {
+  provider: string;
+  amount: number;
+  discountAmount: number;
+}
+
+interface CashReceipt {
+  type: string;
+  receiptKey: string;
+  issueNumber: string;
+  receiptUrl: string;
+  amount: number;
+  taxFreeAccount: number;
+}
+
+interface Transfer {
+  bankCode: string;
+  settlementStatus: string;
 }

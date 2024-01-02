@@ -15,7 +15,7 @@ export default function ReceiptButton({ appEnv, orderId }: ReceiptProps) {
   return (
     <>
       <Modal className="w-full max-w-[24rem]" open={open} setOpen={setOpen}>
-        <SalesReceipt appEnv={appEnv} orderId={orderId} />
+        <SalesReceipt appEnv={appEnv} orderId={orderId} setOpen={setOpen} />
       </Modal>
       <button
         className="ml-2 text-slate-100 hover:text-red-800"
