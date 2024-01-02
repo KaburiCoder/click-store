@@ -16,9 +16,16 @@ export const authConfig = {
         "/signup",
         "/find-password",
         "/change-password",
-        "/opengraph-image",
       ]);
-      // const isOnLoginPage = nextUrl.pathname.startsWith("/login");
+
+      const anyPass = isPathnameMatching(nextUrl.pathname, [
+        "/opengraph-image",
+        "/receipt",
+      ]);
+
+      if (anyPass) {
+        return true;
+      }
 
       if (isLoggedIn) {
         const user: User = JSON.parse(auth.user!.id);
