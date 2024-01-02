@@ -17,6 +17,7 @@ import ReceiptBuyInfo from "./components/receipt-buy-info";
 import ReceiptHeader from "./components/receipt-header";
 import ReceiptLink from "./components/receipt-link";
 import ReceiptSkeleton from "./components/receipt-skeleton";
+import ReceiptError from "./components/receipt-error";
 
 interface Props extends ReceiptProps {
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,7 +44,8 @@ export default function SalesReceipt(props: Props) {
 
   const isWaiting = status === "WAITING_FOR_DEPOSIT";
 
-  if (message) return <ErrorText errorMessage={message} />;
+  if (message)
+    return <ReceiptError errorMessage={message} setOpen={props.setOpen} />;
 
   const components: React.JSX.Element[] = [];
 
