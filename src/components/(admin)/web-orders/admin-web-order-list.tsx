@@ -23,7 +23,7 @@ export default function AdminWebOrderList() {
   return (
     <ul
       className={cn(
-        `grid grid-cols-1 grid-rows-none gap-4 p-2 overflow-auto`,
+        `grid grid-cols-1 grid-rows-none gap-4 overflow-auto p-2`,
         "sm:grid-cols-2",
         "md:grid-cols-1",
         "md2:grid-cols-2",

@@ -18,12 +18,14 @@ import ButtonL from "../ui/custom/button-l";
 import { DateRange } from "react-day-picker";
 import ErrorText from "../(shared)/error-text";
 import { useAdminSearchBarStore } from "@/store/admin-search-bar.store";
+import CheckBoxL from "../ui/custom/check-box-l";
 
 export default function SearchBar() {
   const [dateRange, setDateRange] = useState<DateRange>();
   const [manager, setManager] = useState<string>();
   const [searchString, setSearchString] = useState<string>();
   const [errorMessage, setErrorMessage] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const { setSearchData, clear: clearSearchData } = useAdminSearchBarStore();
   const { data } = useQuery({
     queryKey: [QKey.fetchGetManagers],
@@ -35,6 +37,19 @@ export default function SearchBar() {
       clearSearchData();
     };
   }, [clearSearchData]);
+
+  useEffect(() => {
+    function handleKeydownEvent(this: Document, ev: KeyboardEvent) {
+      if (ev.altKey && ev.ctrlKey && ev.shiftKey) {
+        console.log("굳굳");
+      }
+    }
+
+    document.addEventListener("keydown", handleKeydownEvent);
+    return () => {
+      document.removeEventListener("keydown", handleKeydownEvent);
+    };
+  }, []);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -49,6 +64,7 @@ export default function SearchBar() {
       dateTo: dateRange?.to ?? dateRange?.from!,
       manager: manager === "전체" ? "" : manager,
       searchString,
+      showAdmin: isAdmin,
     });
   }
 
@@ -79,6 +95,11 @@ export default function SearchBar() {
             onChange={(e) => setSearchString(e.target.value.trim())}
           />
           <ButtonL>조회</ButtonL>
+          <CheckBoxL
+            label="TEST"
+            labelLocation="bottom"
+            onCheckedChange={(e) => setIsAdmin(e as boolean)}
+          />
         </div>
         <ErrorText errorMessage={errorMessage} className="w-fit" />
       </form>

@@ -16,6 +16,7 @@ import { Prisma } from "@prisma/client";
 import { getLatestPls } from "./product-list-sub.service";
 import { getEm } from "./em.service";
 import { getPaymentItemWithPayment } from "./payment-item.service";
+import { AdminInfinitySearchDto } from "../dto/payment/admin-infinity-search.dto";
 
 const DISP_ITEM_COUNT = 6;
 
@@ -81,11 +82,11 @@ export async function deleteProducts(paymentItemIds: number[]) {
   });
 }
 
-export async function getAdminProducts(
-  page: number,
-  { dateFrom, dateTo, manager, searchString }: AdminSearchBarData,
-) {
-  const ykihos = await getYkihosByManager(manager);
+export async function getAdminProducts({
+  page,
+  adminSearch: { dateFrom, dateTo, manager, searchString, showAdmin },
+}: AdminInfinitySearchDto) {
+  const ykihos = await getYkihosByManager(manager, showAdmin);
   const customerYkihos = searchString
     ? await getYkihosByMyung(searchString)
     : undefined;

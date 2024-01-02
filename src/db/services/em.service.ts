@@ -1,6 +1,7 @@
 "use server";
 import { getJisa } from "@/lib/utils/user.util";
 import db from "../db";
+import { Em } from "@prisma/client";
 
 interface GetManagersResult {
   code: string;
@@ -24,5 +25,5 @@ export async function getManagers(): Promise<GetManagersResult[]> {
 }
 
 export async function getEm(code: string) {
-  return (await db.em.findUnique({ where: { code } })) ?? undefined;
+  return ((await db.em.findUnique({ where: { code } })) as Em) ?? undefined;
 }

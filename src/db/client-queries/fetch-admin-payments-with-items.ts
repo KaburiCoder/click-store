@@ -1,13 +1,9 @@
 "use client";
-import { AdminSearchBarData } from "@/store/admin-search-bar.store";
 import { getAdminPaymentsWithItems } from "../services/payment.service";
+import { AdminInfinitySearchDto } from "../dto/payment/admin-infinity-search.dto";
 
-export async function fetchGetAdminPaymentsWithItems({
-  page,
-  adminSearch,
-}: {
-  page: number;
-  adminSearch: AdminSearchBarData;
-}) {
-  return await getAdminPaymentsWithItems({ page, adminSearch });
+export async function fetchGetAdminPaymentsWithItems(
+  dto: AdminInfinitySearchDto,
+) {
+  return await getAdminPaymentsWithItems(dto);
 }

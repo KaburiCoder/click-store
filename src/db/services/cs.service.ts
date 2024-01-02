@@ -4,6 +4,7 @@ import { Cs } from "../models/cs";
 import { Prisma } from "@prisma/client";
 import { getJisa } from "@/lib/utils/user.util";
 import dayjs from "dayjs";
+import { getAdminYKihos } from "./account.service";
 
 export async function getCsByYkiho(ykiho: string): Promise<Cs> {
   const cs = await db.cs.findFirst({
@@ -59,11 +60,18 @@ export async function getYkihos({
   return result.map((d) => d.code);
 }
 
-export async function getYkihosByManager(manager?: string) {
-  const ykihos = manager
+export async function getYkihosByManager(
+  manager: string | undefined,
+  showAdmin?: boolean,
+) {
+  let ykihos = manager
     ? await getYkihos({ where: { emCode: manager } })
     : await getYkihos();
 
+  if (!showAdmin) {
+    const adminYKihos = await getAdminYKihos();
+    ykihos = ykihos.filter((ykiho) => !adminYKihos.includes(ykiho));
+  }
   return ykihos;
 }
 

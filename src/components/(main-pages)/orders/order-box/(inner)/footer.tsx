@@ -1,8 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { bankData } from "@/lib/datas/bank-data";
-import useSvrCookie from "@/lib/hooks/use-svr-cookie";
 import { PaymentProps } from "@/lib/props/payment.props";
 import { getSendType } from "@/lib/utils/payment.util";
 import dayjs from "dayjs";
@@ -11,6 +9,7 @@ import CancelButton from "./buttons/cancel-button";
 import ReorderButton from "./buttons/reorder-button";
 import { usePathname } from "next/navigation";
 import { paths } from "@/paths";
+import LabelText from "@/components/(admin)/header/sales-receipt/components/label-text";
 
 export default function OrderFooter({ payment }: PaymentProps) {
   const pathname = usePathname();
@@ -27,13 +26,22 @@ export default function OrderFooter({ payment }: PaymentProps) {
     <Card className="px-5 py-2.5 shadow">
       {isAdmin && (
         <>
+          <LabelText
+            bothClassName="text-green-700 font-bold"
+            label="담당자"
+            text={payment.cs?.em?.name}
+          />
           <LabelText label="요양기호" text={payment.ykiho} />
           <LabelText label="거래처명칭" text={payment.cs?.myung} />
         </>
       )}
       <LabelText label="주문방법" text={payment.method} />
       <LabelText label="주문일시" text={requestedAtString} />
-      <LabelText label="총 비용" text={payment.amount.toLocaleString()} />
+      <LabelText
+        bothClassName="text-blue-500 font-bold"
+        label="총 비용"
+        text={payment.amount.toLocaleString()}
+      />
 
       {payment.virtual &&
         payment.sendType === "결제대기" &&
@@ -61,12 +69,3 @@ export default function OrderFooter({ payment }: PaymentProps) {
     </Card>
   );
 }
-
-const LabelText = ({ label, text }: { label: string; text?: string }) => {
-  return (
-    <div className="flex justify-between py-0.5">
-      <div className="w-20 font-bold">{label}</div>
-      <div>{text}</div>
-    </div>
-  );
-};

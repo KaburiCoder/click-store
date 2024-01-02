@@ -1,10 +1,7 @@
 "use client";
-import { AdminSearchBarData } from "@/store/admin-search-bar.store";
 import { getAdminProducts } from "../services/product.service";
+import { AdminInfinitySearchDto } from "../dto/payment/admin-infinity-search.dto";
 
-export async function fetchGetAdminProducts(
-  page: number,
-  searchData: AdminSearchBarData,
-) {
-  return await getAdminProducts(page, searchData);
+export async function fetchGetAdminProducts(dto: AdminInfinitySearchDto) {
+  return await getAdminProducts(dto);
 }

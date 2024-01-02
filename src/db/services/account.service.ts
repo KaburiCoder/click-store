@@ -92,3 +92,17 @@ export async function updateAccountToken(userId: string) {
 
   return uuid;
 }
+
+export async function getAdminAccounts(): Promise<Account[]> {
+  return (await db.account.findMany({
+    where: {
+      admin: true,
+    },
+  })) as Account[];
+}
+
+export async function getAdminYKihos() {
+  const accounts = await getAdminAccounts();
+
+  return accounts.map((account) => account.ykiho);
+}

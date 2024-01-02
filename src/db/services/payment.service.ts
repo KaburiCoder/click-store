@@ -13,12 +13,13 @@ import {
   getYkihosByManager,
   getYkihosByMyung,
 } from "./cs.service";
-import { AdminSearchBarData } from "@/store/admin-search-bar.store";
 import dayjs from "dayjs";
 import { numericStringRegex } from "@/lib/utils/regex";
 import { add9Hours, subtract9HoursByObject } from "@/lib/utils/date.util";
 import { APP_ENV } from "@/configs/config";
 import { GetCustomerNameDto } from "../dto/payment/get-customer-name.dto";
+import { getEm } from "./em.service";
+import { AdminInfinitySearchDto } from "../dto/payment/admin-infinity-search.dto";
 
 const DISP_ITEM_COUNT = 6;
 
@@ -89,11 +90,18 @@ export async function getPaymentWithVirtual(orderId: string) {
   return subtract9HoursByObject(data);
 }
 
-async function addOtherTableInfoToPayments(payments: Payment[]) {
+async function addOtherTableInfoToPayments(
+  payments: Payment[],
+  isAdmin?: boolean,
+) {
   for (const p of payments) {
     // cs 추가
     p.cs = await getCsByYkiho(p.ykiho);
 
+    if (isAdmin && p.cs) {
+      // em 추가
+      p.cs.em = await getEm(p.cs.emCode);
+    }
     // product 추가
     if (!p.paymentItems) continue;
     for (const pi of p.paymentItems) {
@@ -105,14 +113,11 @@ async function addOtherTableInfoToPayments(payments: Payment[]) {
 export async function getAdminPaymentsWithItems({
   page,
   adminSearch,
-}: {
-  page: number;
-  adminSearch: AdminSearchBarData;
-}): Promise<PaymentsWithPage> {
+}: AdminInfinitySearchDto): Promise<PaymentsWithPage> {
   const { dateFrom, dateTo, manager, searchString } = adminSearch;
   const sDate = add9Hours(dayjs(dateFrom).format("YYYY-MM-DD 00:00:00"));
   const eDate = add9Hours(dayjs(dateTo).format("YYYY-MM-DD 23:59:59"));
-  const ykihos = await getYkihosByManager(manager);
+  const ykihos = await getYkihosByManager(manager, adminSearch.showAdmin);
 
   let orderId: string | undefined;
   let customerYkihos: string[] | undefined;
@@ -141,7 +146,7 @@ export async function getAdminPaymentsWithItems({
   });
 
   const newPayments = payments as Payment[];
-  await addOtherTableInfoToPayments(newPayments);
+  await addOtherTableInfoToPayments(newPayments, true);
   subtract9HoursByObject(newPayments);
   return {
     page: page,

@@ -32,7 +32,11 @@ const useAdminOrderInfiniteQuery = () => {
     useInfiniteQuery({
       initialPageParam: 1,
       queryKey: [QKey.fetchGetAdminProducts, searchData, searchToggle],
-      queryFn: ({ pageParam }) => fetchGetAdminProducts(pageParam, searchData!),
+      queryFn: ({ pageParam }) =>
+        fetchGetAdminProducts({
+          page: pageParam,
+          adminSearch: searchData!,
+        }),
       getNextPageParam: (nextPage) => {
         if (nextPage?.isLast ?? true) {
           return null;

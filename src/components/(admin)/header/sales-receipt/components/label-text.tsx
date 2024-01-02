@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils/shadcn.util";
 interface LabelTextProps {
   label: string;
   labelClassName?: string;
-  text?: string;
+  text?: string | null;
   bothClassName?: string;
 }
 

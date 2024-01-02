@@ -5,6 +5,7 @@ export interface AdminSearchBarData {
   dateTo: Date;
   manager?: string;
   searchString?: string;
+  showAdmin?: boolean;
 }
 
 interface SearchBarState {
