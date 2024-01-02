@@ -16,6 +16,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { toast } from "react-toastify";
+import { paths } from "@/paths";
 interface Props extends TossApiResultProps {
   appEnv: string;
   isPrinting: boolean;
@@ -37,7 +38,7 @@ export default function ReceiptHeader({
   function handleCopyClipboard(): void {
     const idx = window.location.href.indexOf(pathname);
     const baseUrl = window.location.href.substring(0, idx);
-    const url = `${baseUrl}/receipt/${appEnv}/${tossResult.orderId}`;
+    const url = `${baseUrl}${paths.receiptOrders(appEnv, tossResult.orderId)}`;
     navigator.clipboard.writeText(url);
     toast.success("링크가 복사되었습니다.");
   }

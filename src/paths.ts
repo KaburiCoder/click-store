@@ -66,6 +66,10 @@ export const paths = {
   adminWebOrders() {
     return "/admin/web-orders";
   },
+
+  receiptOrders(appEnv: string, orderId: string) {
+    return `/receipt/${appEnv}/orders/${orderId}`
+  }
 };
 
 export const imgPaths = {
