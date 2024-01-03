@@ -1,3 +1,4 @@
+import { APP_URL } from "@/configs/config";
 import { imgPaths } from "@/paths";
 import { ImageResponse } from "next/og";
 
@@ -19,7 +20,7 @@ export default async function Image() {
   // const interSemiBold = fetch(
   //   new URL("./Inter-SemiBold.ttf", import.meta.url),
   // ).then((res) => res.arrayBuffer());
-  const imgUrl = `${process.env.NEXT_PUBLIC_CLICK_DOMAIN}${imgPaths.logo3}`;
+  const imgUrl = `${APP_URL}${imgPaths.logo3}`;
   return new ImageResponse(
     (
       // ImageResponse JSX element
@@ -31,7 +32,7 @@ export default async function Image() {
           // display: "flex",
           // alignItems: "center",
           // justifyContent: "center",
-          backgroundImage: `url(https://${imgUrl})`, //{imgPaths.logo2}
+          backgroundImage: `url(${imgUrl})`, //{imgPaths.logo2}
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center center",

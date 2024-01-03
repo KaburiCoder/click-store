@@ -5,9 +5,10 @@ import Providers from "@/providers/providers";
 import { natoSansKR } from "@/fonts/fonts";
 import ToastWrapper from "@/components/(shared)/toast-wrapper/toast-wrapper";
 import { imgPaths } from "@/paths";
+import { APP_URL } from "@/configs/config";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_CLICK_DOMAIN}`),
+  metadataBase: new URL(APP_URL),
   title: "클릭스토어 - 클릭소프트(물품 접수)",
   description: "클릭소프트 물품 구매 웹 사이트입니다.",
   icons: {

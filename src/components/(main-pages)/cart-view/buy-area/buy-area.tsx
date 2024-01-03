@@ -30,7 +30,10 @@ export default function BuyArea() {
   }, [setCheckBNPL, user?.useBNPL]);
 
   function handleBuy(): void {
-    if (checkBNPL) {
+    if (!cartItemsUtil) return;
+    if ((cartItemsUtil.cartItemIds.length ?? 0) === 0) return;
+
+    if (checkBNPL || !cartItemsUtil?.totalPrice) {
       fetchPayment({
         method: "후불결제",
         sendType: "결제대기",

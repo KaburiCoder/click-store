@@ -7,10 +7,20 @@ import React, { useEffect } from "react";
 import OrderBox from "./order-box/order-box";
 import { cn } from "@/lib/utils/shadcn.util";
 import { QKey } from "@/db/keys";
+import useSocketIo from "@/lib/hooks/use-socket-io";
+import { toast } from "react-toastify";
 
 export default function OrderList() {
   const { payments, observerComponent, error } = useOrdersInfiniteQuery();
-
+  useSocketIo({
+    receiveEventName: "test",
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onReceive: (args) => {
+      console.log("socket", args);
+    },
+  });
   const orderComponents = payments.map((p) => {
     return (
       <li key={p.id}>
@@ -35,7 +45,7 @@ export default function OrderList() {
 }
 
 const useOrdersInfiniteQuery = () => {
-  const { payments, setPayments, updateSendType } = useOrdersStore();
+  const { payments, setPayments } = useOrdersStore();
   const queryClient = useQueryClient();
 
   const { data, error, hasNextPage, isFetching, fetchNextPage, refetch } =

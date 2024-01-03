@@ -1,7 +1,6 @@
 import { getPaymentOrders } from "@/db/services/toss-payments/get-payment-orders";
 import { NextRequest, NextResponse } from "next/server";
 
-const url = "https://api.tosspayments.com/v1/payments/orders";
 export async function GET(
   req: NextRequest,
   {

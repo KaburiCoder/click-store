@@ -28,26 +28,25 @@ const useAdminOrderInfiniteQuery = () => {
   const queryClient = useQueryClient();
   const { searchData, searchToggle } = useAdminSearchBarStore();
 
-  const { data, error, isFetching, hasNextPage, fetchNextPage } =
-    useInfiniteQuery({
-      initialPageParam: 1,
-      queryKey: [QKey.fetchGetAdminProducts, searchData, searchToggle],
-      queryFn: ({ pageParam }) =>
-        fetchGetAdminProducts({
-          page: pageParam,
-          adminSearch: searchData!,
-        }),
-      getNextPageParam: (nextPage) => {
-        if (nextPage?.isLast ?? true) {
-          return null;
-        }
-        return nextPage.page + 1;
-      },
-      select: (data) => {
-        return data.pages?.flatMap((pg) => pg.products);
-      },
-      enabled: !!searchData,
-    });
+  const { data, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery({
+    initialPageParam: 1,
+    queryKey: [QKey.fetchGetAdminProducts, searchData, searchToggle],
+    queryFn: ({ pageParam }) =>
+      fetchGetAdminProducts({
+        page: pageParam,
+        adminSearch: searchData!,
+      }),
+    getNextPageParam: (nextPage) => {
+      if (nextPage?.isLast ?? true) {
+        return null;
+      }
+      return nextPage.page + 1;
+    },
+    select: (data) => {
+      return data.pages?.flatMap((pg) => pg.products);
+    },
+    enabled: !!searchData,
+  });
 
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,

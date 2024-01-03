@@ -1,6 +1,13 @@
 export const APP_ENV: "prod" | "dev" = process.env.NEXT_PUBLIC_APP_ENV! as
   | "prod"
   | "dev";
+export const APP_URL =
+  (APP_ENV === "prod" ? "https://" : "http://") +
+  process.env.NEXT_PUBLIC_CLICK_DOMAIN;
+
+export const NEST_URL =
+  (APP_ENV === "prod" ? "https://" : "http://") +
+  process.env.NEXT_PUBLIC_NEST_DOMAIN;
 
 export const getTossSecretKeyByAppEnv = (appEnv: string): string => {
   return appEnv === "prod"
@@ -9,7 +16,6 @@ export const getTossSecretKeyByAppEnv = (appEnv: string): string => {
 };
 
 export const TOSS_SECRET_KEY = getTossSecretKeyByAppEnv(APP_ENV);
-
 export const TOSS_CLIENT_KEY =
   APP_ENV === "prod"
     ? process.env.NEXT_PUBLIC_TOSSPAYMENTS_CLIENT_KEY!
