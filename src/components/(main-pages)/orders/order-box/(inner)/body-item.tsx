@@ -1,10 +1,10 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { PaymentItem } from "@/db/models/payment-item";
-import useDeliveryTracking from "@/lib/hooks/use-delivery-tracking";
 import { cn } from "@/lib/utils/shadcn.util";
 import React, { useState } from "react";
 import DeliveryBadge from "./delivery-badge";
+import { bigoToTrackings } from "@/lib/utils/tracking.util";
 
 interface Props {
   item: PaymentItem;
@@ -13,10 +13,8 @@ interface Props {
 }
 
 export default function OrderBodyItem({ item, cancel, setSeparator }: Props) {
-  const { convertBigoToTrackings } = useDeliveryTracking();
-  const deliveries = convertBigoToTrackings(item.pd?.bigo);
+  const deliveries = bigoToTrackings(item.pd?.bigo);
   const totalAmount = item.amount * item.quantity;
-
   const deliveryComponents =
     !cancel &&
     deliveries?.map((d) => (

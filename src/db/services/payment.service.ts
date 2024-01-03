@@ -102,7 +102,12 @@ async function addOtherTableInfoToPayments(
       // em 추가
       p.cs.em = await getEm(p.cs.emCode!);
     }
-    // product 추가
+  }
+  await addProductOfPayments(payments);
+}
+
+export async function addProductOfPayments(payments: Payment[]) {
+  for (const p of payments) {
     if (!p.paymentItems) continue;
     for (const pi of p.paymentItems) {
       pi.pd = await getFirstProduct({ where: { webPaymentItemId: pi.id } });
@@ -239,4 +244,27 @@ export async function getCustomerName({
   });
 
   return result?.customerName;
+}
+
+export async function getImcompletedPayments() {
+  const payments = await db.payment.findMany({
+    where: {
+      cancel: false,
+      sendType: { not: "배송완료" },
+    },
+    include: { paymentItems: true },
+  });
+
+  return payments as Payment[];
+}
+
+export async function updateCompleteByPayments(payments: Payment[]) {
+  return await db.$transaction(
+    payments.map((payment) =>
+      db.payment.update({
+        data: { sendType: "배송완료" },
+        where: { id: payment.id },
+      }),
+    ),
+  );
 }

@@ -68,8 +68,13 @@ export const paths = {
   },
 
   receiptOrders(appEnv: string, orderId: string) {
-    return `/receipt/${appEnv}/orders/${orderId}`
-  }
+    return `/receipt/${appEnv}/orders/${orderId}`;
+  },
+
+  tracking(carrierId: string, trackingNumber: string) {
+    const baseUrl = "https://apis.tracker.delivery/carriers";
+    return `${baseUrl}/${carrierId}/tracks/${trackingNumber}`;
+  },
 };
 
 export const imgPaths = {
