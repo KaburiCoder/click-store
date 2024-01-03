@@ -15,7 +15,7 @@ export async function convertAccountToUser(account: Account) {
     email,
     userId,
     admin: admin || undefined,
-    saupkiho: cs?.saupnum,
+    saupkiho: cs?.saupnum ?? "",
     ykiho: cs?.code,
     jisa: cs?.jisa ?? "001",
     name: cs?.myung ?? "",
