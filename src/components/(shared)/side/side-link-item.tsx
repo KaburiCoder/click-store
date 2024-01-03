@@ -8,6 +8,7 @@ import { IconType } from "react-icons";
 
 interface LinkItemProps {
   link: ISideLink;
+  onClose?: () => void;
 }
 
 export interface ISideLink {
@@ -16,13 +17,19 @@ export interface ISideLink {
   name: string;
 }
 
-export default function SideLinkItem({ link }: LinkItemProps) {
+export default function SideLinkItem({ link, onClose }: LinkItemProps) {
   // admin link부분에서 페이지 이동 시 이미 조회된 이력이 있으면 clear되지 않아서 추가
   const { clear: clearSearchData } = useAdminSearchBarStore();
   const pathname = usePathname();
+
+  function handleLinkClick(): void {
+    onClose?.();
+    clearSearchData();
+  }
+
   return (
     <Link
-      onClick={clearSearchData}
+      onClick={handleLinkClick}
       href={link.path}
       className={cn(
         "flex w-full items-center rounded p-2",

@@ -1,3 +1,4 @@
+"use client";
 import { imgPaths } from "@/paths";
 import Image from "next/image";
 import React from "react";
@@ -15,7 +16,7 @@ export default function SettingsHeader() {
         width={200}
         height={200}
       />
-      <MenuButton drawerChildren={<SettingsSide />} />
+      <MenuButton drawerChild={SettingsSide} />
     </div>
   );
 }

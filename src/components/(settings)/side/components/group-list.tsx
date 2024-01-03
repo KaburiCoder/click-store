@@ -19,9 +19,11 @@ const groups: ISideGroup[] = [
   },
 ];
 
-export default function GroupList() {
+export default function GroupList({ onClose }: { onClose?: () => void }) {
   const groupComponents = groups.map((group) => {
-    return <SideGroupItem key={group.groupName} group={group} />;
+    return (
+      <SideGroupItem key={group.groupName} group={group} onClose={onClose} />
+    );
   });
 
   return groupComponents;

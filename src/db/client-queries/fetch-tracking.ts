@@ -6,8 +6,10 @@ export const fetchTracking = async ({
   carrierId,
   trackingNumber,
 }: Tracking): Promise<TrackingResult> => {
-  return await fetchTrackingOnServer({
+  const result = await fetchTrackingOnServer({
     carrierId,
     trackingNumber: trackingNumber!,
   });
+
+  return result;
 };

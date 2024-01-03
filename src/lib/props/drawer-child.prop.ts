@@ -1,0 +1,3 @@
+interface DrawerChildProps {
+  onClose?: () => void;
+}

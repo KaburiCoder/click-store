@@ -13,5 +13,6 @@ export async function fetchTracking({
     cache: "no-cache",
   });
 
-  return response.json();
+  const result = await response.json();
+  return result;
 }

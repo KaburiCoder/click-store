@@ -4,6 +4,7 @@ import SideLinkItem, { ISideLink } from "./side-link-item";
 
 interface GroupItemProps {
   group: ISideGroup;
+  onClose?: () => void;
 }
 
 export interface ISideGroup {
@@ -11,9 +12,9 @@ export interface ISideGroup {
   links: ISideLink[];
 }
 
-export default function SideGroupItem({ group }: GroupItemProps) {
+export default function SideGroupItem({ group, onClose }: GroupItemProps) {
   const linkComponents = group.links.map((link) => {
-    return <SideLinkItem key={link.path} link={link} />;
+    return <SideLinkItem key={link.path} link={link} onClose={onClose} />;
   });
 
   return (
