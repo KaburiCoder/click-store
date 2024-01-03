@@ -72,7 +72,7 @@ export async function signupAction(
     };
   }
 
-  const onlySaupNumber = cs.saupnum.match(/\d+/g)?.join("");
+  const onlySaupNumber = cs.saupnum?.match(/\d+/g)?.join("");
   const createAccountResult = await resultWrapper2(
     createAccount({
       data: {

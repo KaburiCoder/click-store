@@ -118,7 +118,7 @@ export async function getAdminProducts({
       id: product.webPaymentItemId,
       paymentSelect: { orderId: true },
     });
-    product.em = await getEm(product.cs.emCode);
+    product.em = await getEm(product.cs.emCode!);
   }
 
   subtract9HoursByObject(result);

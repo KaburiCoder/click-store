@@ -100,7 +100,7 @@ async function addOtherTableInfoToPayments(
 
     if (isAdmin && p.cs) {
       // em 추가
-      p.cs.em = await getEm(p.cs.emCode);
+      p.cs.em = await getEm(p.cs.emCode!);
     }
     // product 추가
     if (!p.paymentItems) continue;
