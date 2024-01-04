@@ -20,9 +20,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i -g pnpm
-      - run: pnpm install
+      # - run: npm i -g pnpm
+      # - run: pnpm install
       # - run: pnpm build
+
+      - name: Debug SSH Secrets
+        run: |
+          echo "Host: ${{ secrets.SSH_HOST }}"
+          echo "Username: ${{ secrets.SSH_USERNAME }}"
+          echo "Port: ${{ secrets.SSH_PORT }}"
 
       - name: SSH and NPM Install
         uses: appleboy/ssh-action@v1.0.2
