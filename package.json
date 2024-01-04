@@ -33,7 +33,7 @@
     "date-fns": "^3.0.6",
     "dayjs": "^1.11.10",
     "framer-motion": "^10.16.16",
-    "kbr-validator": "^0.0.13",
+    "kbr-validator": "^0.0.14",
     "lucide-react": "^0.295.0",
     "mysql2": "^3.6.5",
     "next": "14.0.4",

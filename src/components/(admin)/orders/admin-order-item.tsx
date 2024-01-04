@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function AdminOrderItem({ product }: Props) {
-  const { createDt, cs, em, pls, paymentItem } = product;
+  const { receiveYmd, createDt, cs, em, pls, paymentItem } = product;
 
   return (
     <li className="border-red200 overflow-hidden rounded border-[1px] border-solid border-slate-400 bg-white shadow">
@@ -24,18 +24,21 @@ export default function AdminOrderItem({ product }: Props) {
         )}
       >
         <div className="text-sm">
-          <div>
-            <span className="pr-2">접수일시</span>
-            <span className="font-bold">
-              {dayjs(createDt).format("YYYY-MM-DD HH:mm")}
-            </span>
-            {product.web && <Badge className="ml-2">WEB</Badge>}
-          </div>
+          <HeaderData
+            label="접수일시"
+            text={`${formatYmdToShort(receiveYmd)} ${dayjs(createDt).format(
+              "HH:mm",
+            )}`}
+            data={product.web && <Badge className="ml-2">WEB</Badge>}
+          />
+
           {paymentItem?.payment?.orderId && (
-            <div className="text-yellow-300">
-              <span className="pr-2">주문번호</span>
-              <span className="font-bold">{paymentItem.payment.orderId}</span>
-            </div>
+            <HeaderData
+              className="text-yellow-300"
+              label="주문번호"
+              text={paymentItem.payment.orderId}
+              data={product.web && <Badge className="ml-2">WEB</Badge>}
+            />
           )}
         </div>
         <div>
@@ -113,11 +116,29 @@ interface DataWrapperProps {
   data?: React.ReactNode;
   className?: string;
 }
+
 function DataWrapper({ className, label, data }: DataWrapperProps) {
   return (
     <div className={cn("rounded bg-slate-200 p-1", className)}>
       <div className="pb-1 text-sm text-slate-500">{label}</div>
       <div className="font-bold">{data}</div>
+    </div>
+  );
+}
+
+interface HeaderDataProps {
+  label: string;
+  text: string | undefined;
+  data?: React.ReactNode;
+  className?: string;
+}
+
+function HeaderData({ className, label, text, data }: HeaderDataProps) {
+  return (
+    <div className={className}>
+      <span className="pr-2">{label}</span>
+      <span className="font-bold">{text}</span>
+      {data}
     </div>
   );
 }
