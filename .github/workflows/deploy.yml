@@ -22,4 +22,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i -g pnpm
       - run: pnpm install
-      - run: pnpm build
+      # - run: pnpm build
