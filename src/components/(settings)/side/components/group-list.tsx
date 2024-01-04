@@ -19,7 +19,7 @@ const groups: ISideGroup[] = [
   },
 ];
 
-export default function GroupList({ onClose }: { onClose?: () => void }) {
+export default function GroupList({ onClose }: DrawerChildProps) {
   const groupComponents = groups.map((group) => {
     return (
       <SideGroupItem key={group.groupName} group={group} onClose={onClose} />

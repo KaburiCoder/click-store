@@ -13,7 +13,7 @@ const InputL = React.forwardRef<HTMLInputElement, Props>(
     const errorStyles = cn(errorMessage && "text-rose-500");
     return (
       <div
-        className={cn("grid w-full max-w-sm items-center gap-1.5", className)}
+        className={cn("grid w-full items-center gap-1.5", className)}
       >
         <Label htmlFor={id} className={cn("pl-1", errorStyles)}>
           {label}

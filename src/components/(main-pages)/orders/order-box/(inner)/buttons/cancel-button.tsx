@@ -10,6 +10,7 @@ import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 import RefundDialog from "./refund-dialog";
 import { cn } from "@/lib/utils/shadcn.util";
+import CancelDialog from "@/components/ui/custom/cancel-dialog";
 
 interface Props {
   className?: string;
@@ -39,8 +40,8 @@ export default function CancelButton({ className, payment }: Props) {
           }
         />
       ) : (
-        <YnDialog
-          title="취소"
+        <CancelDialog
+          title="주문 취소"
           content="주문을 취소하시겠습니까?"
           triggerComponent={
             <Button
