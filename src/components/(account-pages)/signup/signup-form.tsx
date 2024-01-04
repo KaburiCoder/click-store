@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { InputL } from "@/components/ui/custom/input-l";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import IdInput from "./components/id-input";
 import { useFormState, useFormStatus } from "react-dom";
 import { signupAction } from "@/db/actions/signup.action";
