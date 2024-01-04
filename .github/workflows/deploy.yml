@@ -31,12 +31,23 @@ jobs:
       #     echo "Username: ${{ secrets.SSH_USERNAME }}"
       #     echo "Port: ${{ secrets.SSH_PORT }}"
 
-      - name: SSH and NPM Install
-        uses: appleboy/ssh-action@v0.1.7
+      - name: ls -a via OPEN SSH Private Key
+        uses: fifsky/ssh-action@master
         with:
+          command: |
+            whoami
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          script: whoami
+          user: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY}}
+          pass: ${{ secrets.SSH_PASSPHRASE }}
+          args: "-tt -vvv"
+
+      # - name: SSH and NPM Install
+      #   uses: appleboy/ssh-action@v0.1.7
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     port: ${{ secrets.SSH_PORT }}
+      #     passphrase: ${{ secrets.SSH_PASSPHRASE }}
+      #     script: whoami
