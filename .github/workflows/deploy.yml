@@ -31,7 +31,7 @@ jobs:
       #     echo "Port: ${{ secrets.SSH_PORT }}"
 
       - name: SSH and NPM Install
-        uses: appleboy/ssh-action@v1.0.2
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
