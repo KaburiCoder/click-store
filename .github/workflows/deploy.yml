@@ -23,3 +23,14 @@ jobs:
       - run: npm i -g pnpm
       - run: pnpm install
       # - run: pnpm build
+
+      - name: SSH and NPM Install
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd C:\\click-store
+            echo print("abc") > test.txt
