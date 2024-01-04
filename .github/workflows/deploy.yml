@@ -27,10 +27,10 @@ jobs:
       - name: SSH and NPM Install
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          host: ${{ secrets.CLICK_SSH_HOST }}
+          username: ${{ secrets.CLICK_SSH_USERNAME }}
+          key: ${{ secrets.CLICK_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.CLICK_SSH_PORT }}
           script: |
             cd C:\\click-store
             echo print("abc") > test.txt
