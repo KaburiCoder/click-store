@@ -258,6 +258,11 @@ export async function getImcompletedPayments() {
   return payments as Payment[];
 }
 
+/**
+ * 배송 완료 처리
+ * @param payments
+ * @returns Payment[]
+ */
 export async function updateCompleteByPayments(payments: Payment[]) {
   return await db.$transaction(
     payments.map((payment) =>
