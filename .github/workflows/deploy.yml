@@ -30,4 +30,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            echo aaa & echo bbb & cd c:\click-store & dir
+            echo aaa &
+            echo bbb &
+            cd c:\click-store &
+            dir
