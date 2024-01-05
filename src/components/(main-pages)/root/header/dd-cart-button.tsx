@@ -25,9 +25,7 @@ export default function DdCartButton() {
       ref={ref}
       text="장바구니"
       icon={BsCart2}
-      modalComponent={
-        <DdCart onLinkClick={() => ref.current?.setOpen(false)} />
-      }
+      modalComponent={<DdCart />}
     >
       <ItemCountWrapper count={itemsCount} />
     </DdButton>

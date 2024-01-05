@@ -11,11 +11,7 @@ import RIconButton from "@/components/ui/custom/ricon-button";
 import { useRouter } from "next/navigation";
 import { paths } from "@/paths";
 
-interface Props {
-  onLinkClick: () => void;
-}
-
-export default function DdCart({ onLinkClick }: Props) {
+export default function DdCart() {
   const { push } = useRouter();
   const [cart, setCart] = useState<Cart>();
   const [cartItemsUtil] = useState<CartItemsUtil>(new CartItemsUtil());
