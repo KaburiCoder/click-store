@@ -21,27 +21,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # - run: npm i -g pnpm
-      # - run: pnpm install
-      # - run: pnpm build
-      # - name: Debug SSH Secrets
-
-      #   run: |
-      #     echo "Host: ${{ secrets.SSH_HOST }}"
-      #     echo "Username: ${{ secrets.SSH_USERNAME }}"
-      #     echo "Port: ${{ secrets.SSH_PORT }}"
-
-      # - name: execute remote ssh & deploy backend server
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     passphrase: ${{ secrets.SSH_PASSPHRASE }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     script: |
-      #       whoami
-
       - name: SSH and NPM Install
         uses: appleboy/ssh-action@v0.1.4
         with:
@@ -50,12 +29,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          script: whoami
-      # - name: whoami via ssh
-      #   uses: garygrossgarten/github-action-ssh@release
-      #   with:
-      #     command: whoami
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     passphrase: ${{ secrets.SSH_PASSPHRASE }}
-      #     privateKey: ${{ secrets.SSH_PRIVATE_KEY}}
+          script: |
+            cd c:\\click-store
+            echo test > test.txt
