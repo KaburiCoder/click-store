@@ -31,4 +31,4 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd c:\\click-store
-            echo test > test.txt
+            echo. > test.txt
