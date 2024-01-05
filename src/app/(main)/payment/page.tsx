@@ -7,6 +7,7 @@ import { useCartView } from "@/lib/hooks/use-cart-view";
 import usePaymentStore from "@/store/payment.store";
 import WrongApproach from "@/components/(errors)/wrong-approach";
 import { APP_ENV } from "@/configs/config";
+import ButtonL from "@/components/ui/custom/button-l";
 
 export default function PaymentPage(props: any) {
   const { hasNotPaymentData, cartItemsUtil, getPaymentItems } = useCartView({
@@ -37,24 +38,26 @@ export default function PaymentPage(props: any) {
   }
 
   return (
-    <main>
-      <div className={classNames("cst-card", styles.payment)}>
+    <main className="mx-auto max-w-6xl">
+      <div className='cst-card m-2'>
         <div id="payment-widget" />
         <div id="agreement" />
       </div>
-      <div className={classNames("cst-card", styles["checkout-container"])}>
-        <div className={styles["checkout-amount-wrapper"]}>
+      <div className="cst-card flex-center mx-2 flex-col px-2 py-4">
+        <div className="mb-2 text-black">
           결제금액{" : "}
-          <span className={styles["checkout-amount"]}>
+          <span className="text-xl font-bold text-blue-900">
             {cartItemsUtil?.totalPrice?.toLocaleString()}원
           </span>
         </div>
 
-        <button className={styles["checkout-button"]} onClick={checkoutHandler}>
+        <ButtonL className="w-full" onClick={checkoutHandler}>
           결제하기
-        </button>
+        </ButtonL>
         {APP_ENV !== "prod" && (
-          <div className="bg-rose-400 text-white p-3 mt-2 rounded">테스트 환경입니다. 실제 결제가 되지 않습니다.</div>
+          <div className="mt-2 w-full rounded bg-rose-200 p-3 text-center text-red-600">
+            테스트 환경입니다. 실제 결제가 되지 않습니다.
+          </div>
         )}
       </div>
     </main>
