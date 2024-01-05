@@ -15,14 +15,14 @@ jobs:
         node-version: [20.x]
 
     steps:
-      - uses: actions/checkout@v3.3.0
-      - name: Node.js ${{ matrix.node-version }} -- npm install
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
+      # - uses: actions/checkout@v3.3.0
+      # - name: Node.js ${{ matrix.node-version }} -- npm install
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
 
       - name: SSH and NPM Install
-        uses: appleboy/ssh-action@v0.1.4
+        uses: appleboy/ssh-action@v1.0.2
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -31,4 +31,4 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd c:\\click-store
-            echo. > test.txt
+            dir
