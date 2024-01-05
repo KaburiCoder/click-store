@@ -7,3 +7,4 @@ import "@/css/radius.css";
 import "@/css/line-height.css";
 import "@/css/custom-element.css";
 import "@/css/media.css";
+import "@/css/tailwind-utilities.css";

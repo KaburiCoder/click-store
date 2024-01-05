@@ -39,7 +39,7 @@ export default function PaymentPage(props: any) {
 
   return (
     <main className="mx-auto max-w-6xl">
-      <div className='cst-card m-2'>
+      <div className="cst-card m-2">
         <div id="payment-widget" />
         <div id="agreement" />
       </div>
@@ -51,7 +51,7 @@ export default function PaymentPage(props: any) {
           </span>
         </div>
 
-        <ButtonL className="w-full" onClick={checkoutHandler}>
+        <ButtonL className="w-full text-base" onClick={checkoutHandler}>
           결제하기
         </ButtonL>
         {APP_ENV !== "prod" && (

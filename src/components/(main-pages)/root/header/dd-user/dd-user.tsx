@@ -2,14 +2,14 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { IoSettingsOutline } from "react-icons/io5";
-import styles from "./dd-user.module.scss";
 import { paths } from "@/paths";
 import LinkButton from "./link-button/link-button";
 import { MdManageAccounts } from "react-icons/md";
 import { BiBasket } from "react-icons/bi";
 import { logoutAction } from "@/db/actions/auth";
 import useSvrCookie from "@/lib/hooks/use-svr-cookie";
-
+import { RiLogoutBoxRLine } from "react-icons/ri";
+import RIconButton from "@/components/ui/custom/ricon-button";
 interface Props {
   onLinkClick: () => void;
 }
@@ -18,25 +18,33 @@ export default function DdUser({ onLinkClick }: Props) {
   const { user } = useSvrCookie();
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.header__left}>
-          <div className={styles.header__left__title}>
+    <div className="h-full">
+      <div className="flex justify-between bg-blue-600 px-5 py-2.5 text-slate-50">
+        <div className="flex flex-col justify-center">
+          <div className="mb-1 flex items-center text-xl">
             <div>{user?.name}</div>
-            <Link href={paths.profile()} className={styles.setting_link}>
+            <Link href={paths.profile()} className="ml-2">
               <IoSettingsOutline />
             </Link>
           </div>
-          <div className={styles.header__left__sub}>{user?.ykiho}</div>
-          <div className={styles.header__left__sub}>{user?.saupkiho}</div>
+          <div className="text-sm">{user?.ykiho}</div>
+          <div className="text-sm">{user?.saupkiho}</div>
         </div>
         <div>
-          <form action={logoutAction}>
-            <button className={styles["shop-button"]}>로그아웃</button>
+          <form className="h-full" action={logoutAction}>
+            <RIconButton
+              icon={RiLogoutBoxRLine}
+              className="h-full p-4"
+              variant={"white"}
+              iconSide="top"
+              textClassName="font-bold"
+            >
+              로그아웃
+            </RIconButton>
           </form>
         </div>
       </div>
-      <ul className={styles.link_ul}>
+      <ul className="p-2.5">
         {user?.admin && (
           <LinkButton
             href="/admin/orders"

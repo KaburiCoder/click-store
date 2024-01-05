@@ -1,11 +1,12 @@
 import { getPaymentWithVirtual } from "@/db/services/payment.service";
 import React from "react";
-import styles from "./page.module.scss";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { paths } from "@/paths";
 import { bankData } from "@/lib/datas/bank-data";
 import db from "@/db/db";
+import { cn } from "@/lib/utils/shadcn.util";
+import { Separator } from "@/components/ui/separator";
 
 interface Props {
   params: { orderId: string };
@@ -22,19 +23,28 @@ export default async function PaymentSuccessPage({ params }: Props) {
     payment.virtual &&
     dayjs(payment.virtual.dueDate).format("YYYY-MM-DD HH:mm:ss");
 
+  const cardStyles = "flex w-full max-w-[30rem] p-4 shadow";
+  const linkStyles =
+    "py-4 text-center w-28 text-white rounded hover:opacity-90";
+
   return (
     <>
-      <div className={styles.wrapper}>
-        <div className={styles.title}>주문이 완료되었습니다.</div>
-        <div className={styles.order_id}>주문번호: {payment.orderId}</div>
+      <div className="flex w-full flex-col items-center px-2 pt-16">
+        <div className="pb-4 text-3xl font-bold text-blue-900">
+          주문이 완료되었습니다.
+        </div>
 
-        <div className={`shadow ${styles.detail}`}>
-          <section className={styles.detail_section}>
+        <div className="p-4 text-xl text-black">
+          주문번호: {payment.orderId}
+        </div>
+
+        <div className={cn(cardStyles, "flex flex-row")}>
+          <section className="flex-1">
             <LabelText label="주문일시" text={ymd} />
             <LabelText label="주문방법" text={payment.method} />
           </section>
-          <div className={styles.separator} />
-          <section className={styles.detail_section}>
+          <Separator className="h-auto bg-slate-200" orientation="vertical" />
+          <section className="flex-1">
             <LabelText label="총 수량" text={payment.quantity} />
             <LabelText
               label="주문금액"
@@ -45,9 +55,11 @@ export default async function PaymentSuccessPage({ params }: Props) {
         </div>
 
         {payment.virtual && (
-          <div className={`shadow ${styles.detail} ${styles.virtual_info}`}>
-            <section className={styles.detail_section}>
-              <div className={styles.virtual_info__title}>가상계좌</div>
+          <div className={cn(cardStyles, "mt-2")}>
+            <section className="flex-1">
+              <div className="text-center text-xl font-bold text-blue-900">
+                가상계좌
+              </div>
               <LabelText
                 label="은행"
                 text={bankData[payment.virtual.bankCode]}
@@ -61,11 +73,11 @@ export default async function PaymentSuccessPage({ params }: Props) {
           </div>
         )}
       </div>
-      <nav className={styles.nav_wrapper}>
-        <Link href={paths.orders()} className={styles.nav_orders}>
+      <nav className="h-18 flex w-full justify-center gap-2 p-4">
+        <Link className={cn(linkStyles, "bg-blue-500")} href={paths.orders()}>
           주문내역 확인
         </Link>
-        <Link href={paths.root()} className={styles.nav_main}>
+        <Link className={cn(linkStyles, "bg-rose-500")} href={paths.root()}>
           메인으로
         </Link>
       </nav>
@@ -87,18 +99,20 @@ export async function generateStaticParams() {
   });
 }
 
-const LabelText = (props: {
+const LabelText = ({
+  label,
+  text,
+  highlight,
+}: {
   label: string;
   text: string | number | undefined;
   highlight?: boolean;
 }) => {
   return (
-    <div className={styles.label_text}>
-      <div className={styles.label}>{props.label}</div>
-      <div
-        className={`${styles.text} ${props.highlight && styles.highlight_text}`}
-      >
-        {props.text}
+    <div className="flex px-2 text-base">
+      <div className="w-20 text-gray-500">{label}</div>
+      <div className={cn("font-bold", highlight ? "text-rose-500" : "")}>
+        {text}
       </div>
     </div>
   );

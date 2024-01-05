@@ -3,17 +3,20 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styles from "./dd-cart.module.scss";
 import { getCartWithProduct } from "@/db/services/cart.service";
-import Link from "next/link";
 import { BsCartCheck } from "react-icons/bs";
 import { Cart } from "@/db/models/cart";
 import { CartItemsUtil } from "@/lib/utils/cart-items.util";
 import Item from "./item/item";
+import RIconButton from "@/components/ui/custom/ricon-button";
+import { useRouter } from "next/navigation";
+import { paths } from "@/paths";
 
 interface Props {
   onLinkClick: () => void;
 }
 
 export default function DdCart({ onLinkClick }: Props) {
+  const { push } = useRouter();
   const [cart, setCart] = useState<Cart>();
   const [cartItemsUtil] = useState<CartItemsUtil>(new CartItemsUtil());
 
@@ -44,15 +47,6 @@ export default function DdCart({ onLinkClick }: Props) {
     );
   }
 
-  function ToCartViewLink() {
-    return (
-      <Link href="/cart-view" className={styles.to_cartview} onClick={onLinkClick}>
-        <BsCartCheck className={styles.to_cartview_icon} />
-        장바구니 보기
-      </Link>
-    );
-  }
-
   function ItemList() {
     return cart?.cartItems?.map((cartItem) => (
       <ul key={cartItem.id} className={styles.list}>
@@ -69,7 +63,16 @@ export default function DdCart({ onLinkClick }: Props) {
           <TotalQuantity />
           <TotalPrice />
         </div>
-        <ToCartViewLink />
+        <RIconButton
+          icon={BsCartCheck}
+          className="h-full p-4"
+          variant={"white"}
+          iconSide="top"
+          textClassName="font-bold"
+          onClick={() => push(paths.cartView())}
+        >
+          장바구니 보기
+        </RIconButton>
       </div>
       <ItemList />
     </div>

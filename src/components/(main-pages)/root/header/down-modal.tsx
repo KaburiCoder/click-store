@@ -1,6 +1,5 @@
 "use client";
 
-import styles from "./down-modal.module.scss";
 import Backdrop from "@/components/(shared)/backdrop/backdrop";
 import { ScriptProps } from "next/script";
 import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
@@ -39,8 +38,8 @@ const DownModal: React.FC<Props> = ({
       {/* style={style} */}
       <div
         className={cn(
-          "rounded-b shadow overflow-hidden fixed right-0 z-[10000] w-fit min-w-[22rem] bg-slate-100",
-          styles["ani-down"],
+          "fixed right-0 z-[10000] w-fit min-w-[22rem] overflow-hidden rounded-b bg-slate-100 shadow",
+          "animate-slide-down",
           popupLocation === "left" ? "left-0" : "",
           className,
         )}

@@ -1,13 +1,6 @@
 @import "@/scss/index.scss";
 
 .container {
-  height: 100%;
-
-  &>.header,
-  &>.list {
-    padding: 10px 20px;
-  }
-
   .header {
     background-color: var(--theme-bg-blue-600);
     display: flex;

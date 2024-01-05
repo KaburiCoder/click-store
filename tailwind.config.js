@@ -66,8 +66,8 @@ module.exports = {
         },
       },
       height: {
-        header: "3rem",
-        cartView: "5rem",
+        header: "var(--header-height)",
+        cartView: "var(--cart-view-height)",
       },
       padding: {
         cartView: "5rem",

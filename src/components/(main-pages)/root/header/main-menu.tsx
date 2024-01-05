@@ -64,7 +64,7 @@ export default function MainMenu({ onClose }: Props) {
   return (
     <ul
       className={cn(
-        "relative flex h-full flex-col gap-2 p-2",
+        "relative flex h-full flex-col items-center gap-2 p-2",
         "md:flex-row md:justify-center md:bg-blue-400 md:p-0",
       )}
     >

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import styles from "./main-footer.module.scss";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/shadcn.util";
 
@@ -9,7 +8,12 @@ export default function MainFooter() {
   const isCartViewPage = pathname === "/cart-view";
 
   return (
-    <footer className={cn(isCartViewPage ? "pb-cartView" : "")}>
+    <footer
+      className={cn(
+        "relative bottom-0 w-full text-left text-black",
+        isCartViewPage ? "pb-cartView" : "",
+      )}
+    >
       <div className="mx-auto border-t-[1px] border-solid border-blue-200 p-5">
         <div className="flex w-full flex-col text-center text-xs text-gray-500">
           <strong className="pb-1.5 text-base font-bold text-black">
