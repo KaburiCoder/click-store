@@ -1,4 +1,4 @@
-import { Product, ProductLog } from "@prisma/client";
+import { Product, ProductLog } from "@/prisma/client";
 import db from "../db";
 import { SaveProductLogDto } from "../dto/product-log/save-product-log.dto";
 import { SaveProductLogsDto } from "../dto/product-log/save-product-logs.dto";

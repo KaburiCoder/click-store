@@ -1,7 +1,7 @@
 "use server";
 import db from "@/db/db";
 import { SaveCartItemDto } from "../dto/cart-item/cart.dto";
-import { CartItem } from "@prisma/client";
+import { CartItem } from "@/prisma/client";
 import { isAuthenticated } from "@/lib/utils/user.util";
 import { dbNow } from "@/lib/utils/date.util";
 

@@ -1,7 +1,7 @@
 "use server";
 import db from "@/db/db";
 import { dbNow } from "@/lib/utils/date.util";
-import { Account, Prisma } from "@prisma/client";
+import { Account, Prisma } from "@/prisma/client";
 import { hash } from "bcrypt";
 import { randomUUID } from "crypto";
 

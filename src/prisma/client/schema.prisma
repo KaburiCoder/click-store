@@ -1,0 +1,369 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/prisma/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id         Int       @id @default(autoincrement())
+  userId     String    @unique @map(name: "user_id")
+  password   String
+  email      String
+  ykiho      String?   @db.VarChar(8)
+  saupkiho   String?   @db.VarChar(9)
+  token      String?   @db.VarChar(255)
+  expiryDate DateTime? @map(name: "expiry_date")
+  admin      Boolean?
+  createdAt  DateTime  @default(now()) @map(name: "created_at")
+  updatedAt  DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+
+  // Define any other relationships, indexes, or configurations here if needed.
+}
+
+model ProductList {
+  jisa     String   @unique @map("pl_jisa")
+  smCode   String   @unique @map("pl_smcode")
+  smYmd    String   @map("pl_smymd")
+  addUser  String   @map("pl_adduser")
+  createDt DateTime @map("pl_createdt")
+  bigo     String   @map("pl_bigo")
+  web      Boolean  @map("pl_web")
+  bunryu   String   @map("pl_bunryu")
+  step     Int      @map("pl_step")
+  fit      Boolean  @map("pl_fit")
+  // ProductListSub 모델과의 조인 관계 설정
+  // productListSub ProductListSub @relation(fields: [jisa, smCode], references: [jisa, smCode])
+}
+
+model ProductListSub {
+  auto    Int    @id @map("pls_auto")
+  jisa    String @map("pls_jisa")
+  smCode  String @map("pls_smcode")
+  smMyung String @map("pls_smmyung")
+  smYmd   String @map("pls_smymd")
+  danga   Float  @map("pls_danga")
+  danwi   String @map("pls_danwi")
+  etc1    String @map("pls_etc1")
+  etc2    String @map("pls_etc2")
+  etc3    String @map("pls_etc3")
+  etc4    String @map("pls_etc4")
+  etc5    String @map("pls_etc5")
+
+  // ProductList 모델과의 조인 관계 설정
+  // product Product?
+}
+
+model Product {
+  auto             Int      @id @default(autoincrement()) @map(name: "pd_auto")
+  clCode           String   @map(name: "pd_clcode")
+  jisa             String   @map(name: "pd_jisa")
+  csCode           String   @map(name: "pd_cscode")
+  ctTel            String   @map(name: "pd_cttel")
+  count            Int      @map(name: "pd_count")
+  receive          String   @map(name: "pd_receive")
+  receiveYmd       String   @map(name: "pd_receiveymd")
+  sell             String   @map(name: "pd_sell")
+  sellYmd          String   @map(name: "pd_sellymd")
+  orderCheck       String   @map(name: "pd_ordercheck")
+  seller           String   @map(name: "pd_seller")
+  check            String   @map(name: "pd_check")
+  check2           String   @map(name: "pd_check2")
+  rgb              String   @map(name: "pd_rgb")
+  bigo             String   @map(name: "pd_bigo")
+  createDt         DateTime @default(now()) @map(name: "pd_createdt")
+  bigo2            String?  @map(name: "pd_bigo2")
+  etc1             String?  @map(name: "pd_etc1")
+  etc2             String?  @map(name: "pd_etc2")
+  etc3             String?  @map(name: "pd_etc3")
+  etc4             String?  @map(name: "pd_etc4")
+  etc5             String?  @map(name: "pd_etc5")
+  web              Boolean  @map(name: "pd_web")
+  webPaymentItemId Int?     @map(name: "pd_web_payment_item_id")
+  webBNPL          Boolean  @map(name: "pd_web_bnpl")
+
+  // pls ProductListSub? @relation(fields: [webPaymentItemId], references: [auto])
+  // product ProductListSub[]
+  // pls ProductListSub?
+}
+
+model ProductLog {
+  logAuto          Int      @id @default(autoincrement()) @map(name: "pd_logauto")
+  logDatetime      DateTime @map(name: "pd_logdatetime")
+  logGubun         String   @map(name: "pd_loggubun")
+  logUser          String   @map(name: "pd_loguser")
+  logComputer      String   @map(name: "pd_logcomputer")
+  auto             Int      @map(name: "pd_auto")
+  clCode           String   @map(name: "pd_clcode")
+  jisa             String   @map(name: "pd_jisa")
+  csCode           String   @map(name: "pd_cscode")
+  ctTel            String   @map(name: "pd_cttel")
+  count            Int      @map(name: "pd_count")
+  receive          String   @map(name: "pd_receive")
+  receiveYmd       String   @map(name: "pd_receiveymd")
+  sell             String   @map(name: "pd_sell")
+  sellYmd          String   @map(name: "pd_sellymd")
+  orderCheck       String   @map(name: "pd_ordercheck")
+  seller           String   @map(name: "pd_seller")
+  check            String   @map(name: "pd_check")
+  check2           String   @map(name: "pd_check2")
+  rgb              String   @map(name: "pd_rgb")
+  bigo             String   @map(name: "pd_bigo")
+  createDt         DateTime @map(name: "pd_createdt")
+  bigo2            String?  @map(name: "pd_bigo2")
+  etc1             String?  @map(name: "pd_etc1")
+  etc2             String?  @map(name: "pd_etc2")
+  etc3             String?  @map(name: "pd_etc3")
+  etc4             String?  @map(name: "pd_etc4")
+  etc5             String?  @map(name: "pd_etc5")
+  web              Boolean  @map(name: "pd_web")
+  webPaymentItemId Int?     @map(name: "pd_web_payment_item_id")
+  webBNPL          Boolean  @map(name: "pd_web_bnpl")
+}
+
+model ProductListWebBunryu {
+  code String   @unique @map("pw_code")
+  name String   @map("pw_name")
+  fit  Boolean? @map("pw_fit")
+
+  @@map("productlist_webbunryu")
+}
+
+model ProductListImage {
+  jisa   String @unique @map("pli_jisa")
+  smCode String @unique @map("pli_smcode")
+  image  Bytes? @map("pli_image")
+
+  @@map("productlist_image")
+}
+
+model Cs {
+  gubun          String  @unique @map("cs_gubun")
+  code           String  @unique @map("cs_code")
+  myung          String? @map("cs_myung")
+  daepyo         String? @map("cs_daepyo")
+  tel            String? @map("cs_tel")
+  fax            String? @map("cs_fax")
+  post           String? @map("cs_post")
+  dup            Int?    @map("cs_dup")
+  juso           String? @map("cs_juso")
+  bunji          String? @map("cs_bunji")
+  jisa           String? @map("cs_jisa")
+  emCode         String? @map("cs_emcode")
+  damdang        String? @map("cs_damdang")
+  damdanghp      String? @map("cs_damdanghp")
+  jongbl         String? @map("cs_jongbl")
+  upte           String? @map("cs_upte")
+  saupnum        String? @map("cs_saupnum")
+  sauppost       String? @map("cs_sauppost")
+  saupdup        Int?    @map("cs_saupdup")
+  saupjuso       String? @map("cs_saupjuso")
+  saupbunji      String? @map("cs_saupbunji")
+  email          String? @map("cs_email")
+  ediid          String? @map("cs_ediid")
+  edipassword    String? @map("cs_edipassword")
+  local          String? @map("cs_local")
+  nonchart       String? @map("cs_nonchart")
+  fymd           String? @map("cs_fymd")
+  lymd           String? @map("cs_lymd")
+  bigo           String? @map("cs_bigo")
+  user           String? @map("cs_user")
+  etc1           String? @map("cs_etc1")
+  etc2           String? @map("cs_etc2")
+  etc3           String? @map("cs_etc3")
+  Chonguser      String? @map("cs_Chonguser")
+  pro            String? @map("cs_pro")
+  yanghan        String? @map("cs_yanghan")
+  chunggu        String? @map("cs_chunggu")
+  cherbang       String? @map("cs_cherbang")
+  youngsu        String? @map("cs_youngsu")
+  pacs           String? @map("cs_pacs")
+  barcode        String? @map("cs_barcode")
+  yakguk         String? @map("cs_yakguk")
+  update         String? @map("cs_update")
+  askumak        Int?    @map("cs_askumak")
+  etc4           String? @map("cs_etc4")
+  etc5           String? @map("cs_etc5")
+  etc6           String? @map("cs_etc6")
+  etc7           String? @map("cs_etc7")
+  cms            String? @map("cs_cms")
+  daegidisp      String? @map("cs_daegidisp")
+  gumjinlink     String? @map("cs_gumjinlink")
+  capture        String? @map("cs_capture")
+  sutak          String? @map("cs_sutak")
+  sutaklink      String? @map("cs_sutaklink")
+  gumsalinkyn    String? @map("cs_gumsalinkyn")
+  gumsalink      String? @map("cs_gumsalink")
+  scaner         String? @map("cs_scaner")
+  card           String? @map("cs_card")
+  cardlink       String? @map("cs_cardlink")
+  eleccherban    String? @map("cs_eleccherbang")
+  yakgukprint    String? @map("cs_yakgukprint")
+  gumsabarcod    String? @map("cs_gumsabarcode")
+  bdbarcode      String? @map("cs_bdbarcode")
+  updatepath     String? @map("cs_updatepath")
+  server         String? @map("cs_server")
+  sanjae         String? @map("cs_sanjae")
+  paljji         String? @map("cs_paljji")
+  jungji         String? @map("cs_jungji")
+  servermodel    String? @map("cs_servermodel")
+  servername     String? @map("cs_servername")
+  serverSN       String? @map("cs_serverSN")
+  serverMT       String? @map("cs_serverMT")
+  serverHDD      String? @map("cs_serverHDD")
+  serverMemory   String? @map("cs_serverMemory")
+  serverLocation String? @map("cs_serverLocation")
+  serversetup    String? @map("cs_serversetup")
+  window         String? @map("cs_window")
+  windowmemo     String? @map("cs_windowmemo")
+  virusname      String? @map("cs_virusname")
+  virussetup     String? @map("cs_virussetup")
+  virusend       String? @map("cs_virusend")
+  upsname        String? @map("cs_upsname")
+  upssetup       String? @map("cs_upssetup")
+  upsend         String? @map("cs_upsend")
+  rollprint      String  @map("cs_rollprint")
+  inuser         String? @map("cs_inuser")
+  upuser         String? @map("cs_upuser")
+  indate         String? @map("cs_indate")
+  update2        String? @map("cs_update2")
+  etc8           String? @map("cs_etc8")
+  etc9           String? @map("cs_etc9")
+  etc10          String? @map("cs_etc10")
+  etc11          String? @map("cs_etc11")
+  etc12          String? @map("cs_etc12")
+  etc13          String? @map("cs_etc13")
+  etc14          String? @map("cs_etc14")
+  etc15          String? @map("cs_etc15")
+  bogubun        String? @map("cs_bogubun")
+  aschk          String? @map("cs_aschk")
+  etc16          String? @map("cs_etc16")
+  etc17          String? @map("cs_etc17")
+  etc18          String? @map("cs_etc18")
+  etc19          String? @map("cs_etc19")
+  etc20          String? @map("cs_etc20")
+  etc21          String? @map("cs_etc21")
+  etc22          String? @map("cs_etc22")
+  etc23          String? @map("cs_etc23")
+  etc24          String? @map("cs_etc24")
+  etc25          String? @map("cs_etc25")
+  etc26          String? @map("cs_etc26")
+  etc27          String? @map("cs_etc27")
+  etc28          String? @map("cs_etc28")
+  etc29          String? @map("cs_etc29")
+  etc30          String? @map("cs_etc30")
+  etc31          String? @map("cs_etc31")
+  etc32          String? @map("cs_etc32")
+  etc33          String? @map("cs_etc33")
+  etc34          String? @map("cs_etc34")
+  etc35          String? @map("cs_etc35")
+  server_cust    String? @map("cs_server_customer")
+  server_orde    String? @map("cs_server_ordernum")
+  server_mici    String? @map("cs_server_micid")
+  server_admi    String? @map("cs_server_adminid")
+  server_svrp    String? @map("cs_server_svrpass")
+  server_svrb    String? @map("cs_server_svrbigo")
+  oauthpwd       String  @map("cs_oauthpwd")
+  medi_use       String? @map("cs_medi_use")
+  medi_pc        String? @map("cs_medi_pc")
+  medi_autoju    String? @map("cs_medi_autojupsu")
+  medi_grname    String? @map("cs_medi_grname")
+}
+
+model Cart {
+  id        Int        @id @default(autoincrement())
+  ykiho     String
+  cartItems CartItem[]
+}
+
+model CartItem {
+  id          Int       @id @default(autoincrement())
+  cartId      Int       @map("cart_id")
+  code        String
+  quantity    Int
+  fit         Boolean
+  createdDate DateTime  @default(now()) @map("created_date")
+  updatedDate DateTime? @updatedAt @map("updated_date")
+  cart        Cart      @relation(fields: [cartId], references: [id])
+  // product ProductListSub
+
+  @@map("cart_item")
+}
+
+model Payment {
+  id           Int       @id @default(autoincrement())
+  ykiho        String
+  orderId      String    @unique @map("order_id")
+  paymentKey   String    @map("payment_key")
+  customerName String    @map("customer_name")
+  method       String
+  amount       Int
+  quantity     Int
+  requestedAt  DateTime? @map("requested_at")
+  approvedAt   DateTime? @map("approved_at")
+  sendType     String    @map("send_type")
+  cancel       Boolean
+  test         Int?
+
+  // Relation with PaymentItem
+  paymentItems PaymentItem[]
+
+  // Relation with PaymentVirtual
+  virtual PaymentVirtual?
+  refund  PaymentRefund?
+}
+
+model PaymentItem {
+  id        Int     @id @default(autoincrement())
+  paymentId Int
+  code      String
+  name      String
+  fit       Boolean
+  quantity  Int
+  amount    Float
+
+  // Relation with Payment
+  payment Payment @relation(fields: [paymentId], references: [id])
+
+  @@map("payment_item")
+}
+
+model PaymentVirtual {
+  id            Int      @id @default(autoincrement())
+  paymentId     Int      @unique @map("payment_id")
+  bankCode      String   @map("bank_code")
+  customerName  String   @map("customer_name")
+  dueDate       DateTime @map("due_date")
+  accountNumber String   @map("account_number")
+
+  // Relation with Payment
+  payment Payment @relation(fields: [paymentId], references: [id])
+
+  @@map("payment_virtual")
+}
+
+model PaymentRefund {
+  id            Int    @id @default(autoincrement())
+  paymentId     Int    @unique
+  bank          String
+  accountNumber String
+  holderName    String
+  amount        Int
+  reason        String
+
+  payment Payment @relation(fields: [paymentId], references: [id])
+}
+
+model Em {
+  code   String  @unique @map(name: "em_code")
+  name   String? @map(name: "em_name")
+  jisa   String? @map(name: "em_jisa")
+  buCode String? @map(name: "em_bucode")
+  endYmd String? @map(name: "em_endymd")
+}

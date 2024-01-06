@@ -1,4 +1,4 @@
-import { Prisma, Product } from "@prisma/client";
+import { Prisma, Product } from "@/prisma/client";
 import { ProductList } from "./product-list";
 import { Payment } from "./payment";
 

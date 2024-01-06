@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/prisma/client";
 import { PaymentItem } from "./payment-item";
 import { PaymentVirtual } from "./payment-virtual";
 import { Cs } from "./cs";

@@ -1,0 +1,527 @@
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+const {
+  PrismaClientKnownRequestError,
+  PrismaClientUnknownRequestError,
+  PrismaClientRustPanicError,
+  PrismaClientInitializationError,
+  PrismaClientValidationError,
+  NotFoundError,
+  getPrismaClient,
+  sqltag,
+  empty,
+  join,
+  raw,
+  Decimal,
+  Debug,
+  objectEnumValues,
+  makeStrictEnum,
+  Extensions,
+  warnOnce,
+  defineDmmfProperty,
+  Public,
+  detectRuntime,
+} = require('./runtime/library')
+
+
+const Prisma = {}
+
+exports.Prisma = Prisma
+exports.$Enums = {}
+
+/**
+ * Prisma Client JS version: 5.7.1
+ * Query Engine version: 0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5
+ */
+Prisma.prismaVersion = {
+  client: "5.7.1",
+  engine: "0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5"
+}
+
+Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
+Prisma.PrismaClientUnknownRequestError = PrismaClientUnknownRequestError
+Prisma.PrismaClientRustPanicError = PrismaClientRustPanicError
+Prisma.PrismaClientInitializationError = PrismaClientInitializationError
+Prisma.PrismaClientValidationError = PrismaClientValidationError
+Prisma.NotFoundError = NotFoundError
+Prisma.Decimal = Decimal
+
+/**
+ * Re-export of sql-template-tag
+ */
+Prisma.sql = sqltag
+Prisma.empty = empty
+Prisma.join = join
+Prisma.raw = raw
+Prisma.validator = Public.validator
+
+/**
+* Extensions
+*/
+Prisma.getExtensionContext = Extensions.getExtensionContext
+Prisma.defineExtension = Extensions.defineExtension
+
+/**
+ * Shorthand utilities for JSON filtering
+ */
+Prisma.DbNull = objectEnumValues.instances.DbNull
+Prisma.JsonNull = objectEnumValues.instances.JsonNull
+Prisma.AnyNull = objectEnumValues.instances.AnyNull
+
+Prisma.NullTypes = {
+  DbNull: objectEnumValues.classes.DbNull,
+  JsonNull: objectEnumValues.classes.JsonNull,
+  AnyNull: objectEnumValues.classes.AnyNull
+}
+
+
+  const path = require('path')
+
+/**
+ * Enums
+ */
+exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
+  Serializable: 'Serializable'
+});
+
+exports.Prisma.AccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  password: 'password',
+  email: 'email',
+  ykiho: 'ykiho',
+  saupkiho: 'saupkiho',
+  token: 'token',
+  expiryDate: 'expiryDate',
+  admin: 'admin',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductListScalarFieldEnum = {
+  jisa: 'jisa',
+  smCode: 'smCode',
+  smYmd: 'smYmd',
+  addUser: 'addUser',
+  createDt: 'createDt',
+  bigo: 'bigo',
+  web: 'web',
+  bunryu: 'bunryu',
+  step: 'step',
+  fit: 'fit'
+};
+
+exports.Prisma.ProductListSubScalarFieldEnum = {
+  auto: 'auto',
+  jisa: 'jisa',
+  smCode: 'smCode',
+  smMyung: 'smMyung',
+  smYmd: 'smYmd',
+  danga: 'danga',
+  danwi: 'danwi',
+  etc1: 'etc1',
+  etc2: 'etc2',
+  etc3: 'etc3',
+  etc4: 'etc4',
+  etc5: 'etc5'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  auto: 'auto',
+  clCode: 'clCode',
+  jisa: 'jisa',
+  csCode: 'csCode',
+  ctTel: 'ctTel',
+  count: 'count',
+  receive: 'receive',
+  receiveYmd: 'receiveYmd',
+  sell: 'sell',
+  sellYmd: 'sellYmd',
+  orderCheck: 'orderCheck',
+  seller: 'seller',
+  check: 'check',
+  check2: 'check2',
+  rgb: 'rgb',
+  bigo: 'bigo',
+  createDt: 'createDt',
+  bigo2: 'bigo2',
+  etc1: 'etc1',
+  etc2: 'etc2',
+  etc3: 'etc3',
+  etc4: 'etc4',
+  etc5: 'etc5',
+  web: 'web',
+  webPaymentItemId: 'webPaymentItemId',
+  webBNPL: 'webBNPL'
+};
+
+exports.Prisma.ProductLogScalarFieldEnum = {
+  logAuto: 'logAuto',
+  logDatetime: 'logDatetime',
+  logGubun: 'logGubun',
+  logUser: 'logUser',
+  logComputer: 'logComputer',
+  auto: 'auto',
+  clCode: 'clCode',
+  jisa: 'jisa',
+  csCode: 'csCode',
+  ctTel: 'ctTel',
+  count: 'count',
+  receive: 'receive',
+  receiveYmd: 'receiveYmd',
+  sell: 'sell',
+  sellYmd: 'sellYmd',
+  orderCheck: 'orderCheck',
+  seller: 'seller',
+  check: 'check',
+  check2: 'check2',
+  rgb: 'rgb',
+  bigo: 'bigo',
+  createDt: 'createDt',
+  bigo2: 'bigo2',
+  etc1: 'etc1',
+  etc2: 'etc2',
+  etc3: 'etc3',
+  etc4: 'etc4',
+  etc5: 'etc5',
+  web: 'web',
+  webPaymentItemId: 'webPaymentItemId',
+  webBNPL: 'webBNPL'
+};
+
+exports.Prisma.ProductListWebBunryuScalarFieldEnum = {
+  code: 'code',
+  name: 'name',
+  fit: 'fit'
+};
+
+exports.Prisma.ProductListImageScalarFieldEnum = {
+  jisa: 'jisa',
+  smCode: 'smCode',
+  image: 'image'
+};
+
+exports.Prisma.CsScalarFieldEnum = {
+  gubun: 'gubun',
+  code: 'code',
+  myung: 'myung',
+  daepyo: 'daepyo',
+  tel: 'tel',
+  fax: 'fax',
+  post: 'post',
+  dup: 'dup',
+  juso: 'juso',
+  bunji: 'bunji',
+  jisa: 'jisa',
+  emCode: 'emCode',
+  damdang: 'damdang',
+  damdanghp: 'damdanghp',
+  jongbl: 'jongbl',
+  upte: 'upte',
+  saupnum: 'saupnum',
+  sauppost: 'sauppost',
+  saupdup: 'saupdup',
+  saupjuso: 'saupjuso',
+  saupbunji: 'saupbunji',
+  email: 'email',
+  ediid: 'ediid',
+  edipassword: 'edipassword',
+  local: 'local',
+  nonchart: 'nonchart',
+  fymd: 'fymd',
+  lymd: 'lymd',
+  bigo: 'bigo',
+  user: 'user',
+  etc1: 'etc1',
+  etc2: 'etc2',
+  etc3: 'etc3',
+  Chonguser: 'Chonguser',
+  pro: 'pro',
+  yanghan: 'yanghan',
+  chunggu: 'chunggu',
+  cherbang: 'cherbang',
+  youngsu: 'youngsu',
+  pacs: 'pacs',
+  barcode: 'barcode',
+  yakguk: 'yakguk',
+  update: 'update',
+  askumak: 'askumak',
+  etc4: 'etc4',
+  etc5: 'etc5',
+  etc6: 'etc6',
+  etc7: 'etc7',
+  cms: 'cms',
+  daegidisp: 'daegidisp',
+  gumjinlink: 'gumjinlink',
+  capture: 'capture',
+  sutak: 'sutak',
+  sutaklink: 'sutaklink',
+  gumsalinkyn: 'gumsalinkyn',
+  gumsalink: 'gumsalink',
+  scaner: 'scaner',
+  card: 'card',
+  cardlink: 'cardlink',
+  eleccherban: 'eleccherban',
+  yakgukprint: 'yakgukprint',
+  gumsabarcod: 'gumsabarcod',
+  bdbarcode: 'bdbarcode',
+  updatepath: 'updatepath',
+  server: 'server',
+  sanjae: 'sanjae',
+  paljji: 'paljji',
+  jungji: 'jungji',
+  servermodel: 'servermodel',
+  servername: 'servername',
+  serverSN: 'serverSN',
+  serverMT: 'serverMT',
+  serverHDD: 'serverHDD',
+  serverMemory: 'serverMemory',
+  serverLocation: 'serverLocation',
+  serversetup: 'serversetup',
+  window: 'window',
+  windowmemo: 'windowmemo',
+  virusname: 'virusname',
+  virussetup: 'virussetup',
+  virusend: 'virusend',
+  upsname: 'upsname',
+  upssetup: 'upssetup',
+  upsend: 'upsend',
+  rollprint: 'rollprint',
+  inuser: 'inuser',
+  upuser: 'upuser',
+  indate: 'indate',
+  update2: 'update2',
+  etc8: 'etc8',
+  etc9: 'etc9',
+  etc10: 'etc10',
+  etc11: 'etc11',
+  etc12: 'etc12',
+  etc13: 'etc13',
+  etc14: 'etc14',
+  etc15: 'etc15',
+  bogubun: 'bogubun',
+  aschk: 'aschk',
+  etc16: 'etc16',
+  etc17: 'etc17',
+  etc18: 'etc18',
+  etc19: 'etc19',
+  etc20: 'etc20',
+  etc21: 'etc21',
+  etc22: 'etc22',
+  etc23: 'etc23',
+  etc24: 'etc24',
+  etc25: 'etc25',
+  etc26: 'etc26',
+  etc27: 'etc27',
+  etc28: 'etc28',
+  etc29: 'etc29',
+  etc30: 'etc30',
+  etc31: 'etc31',
+  etc32: 'etc32',
+  etc33: 'etc33',
+  etc34: 'etc34',
+  etc35: 'etc35',
+  server_cust: 'server_cust',
+  server_orde: 'server_orde',
+  server_mici: 'server_mici',
+  server_admi: 'server_admi',
+  server_svrp: 'server_svrp',
+  server_svrb: 'server_svrb',
+  oauthpwd: 'oauthpwd',
+  medi_use: 'medi_use',
+  medi_pc: 'medi_pc',
+  medi_autoju: 'medi_autoju',
+  medi_grname: 'medi_grname'
+};
+
+exports.Prisma.CartScalarFieldEnum = {
+  id: 'id',
+  ykiho: 'ykiho'
+};
+
+exports.Prisma.CartItemScalarFieldEnum = {
+  id: 'id',
+  cartId: 'cartId',
+  code: 'code',
+  quantity: 'quantity',
+  fit: 'fit',
+  createdDate: 'createdDate',
+  updatedDate: 'updatedDate'
+};
+
+exports.Prisma.PaymentScalarFieldEnum = {
+  id: 'id',
+  ykiho: 'ykiho',
+  orderId: 'orderId',
+  paymentKey: 'paymentKey',
+  customerName: 'customerName',
+  method: 'method',
+  amount: 'amount',
+  quantity: 'quantity',
+  requestedAt: 'requestedAt',
+  approvedAt: 'approvedAt',
+  sendType: 'sendType',
+  cancel: 'cancel',
+  test: 'test'
+};
+
+exports.Prisma.PaymentItemScalarFieldEnum = {
+  id: 'id',
+  paymentId: 'paymentId',
+  code: 'code',
+  name: 'name',
+  fit: 'fit',
+  quantity: 'quantity',
+  amount: 'amount'
+};
+
+exports.Prisma.PaymentVirtualScalarFieldEnum = {
+  id: 'id',
+  paymentId: 'paymentId',
+  bankCode: 'bankCode',
+  customerName: 'customerName',
+  dueDate: 'dueDate',
+  accountNumber: 'accountNumber'
+};
+
+exports.Prisma.PaymentRefundScalarFieldEnum = {
+  id: 'id',
+  paymentId: 'paymentId',
+  bank: 'bank',
+  accountNumber: 'accountNumber',
+  holderName: 'holderName',
+  amount: 'amount',
+  reason: 'reason'
+};
+
+exports.Prisma.EmScalarFieldEnum = {
+  code: 'code',
+  name: 'name',
+  jisa: 'jisa',
+  buCode: 'buCode',
+  endYmd: 'endYmd'
+};
+
+exports.Prisma.SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+
+exports.Prisma.ModelName = {
+  Account: 'Account',
+  ProductList: 'ProductList',
+  ProductListSub: 'ProductListSub',
+  Product: 'Product',
+  ProductLog: 'ProductLog',
+  ProductListWebBunryu: 'ProductListWebBunryu',
+  ProductListImage: 'ProductListImage',
+  Cs: 'Cs',
+  Cart: 'Cart',
+  CartItem: 'CartItem',
+  Payment: 'Payment',
+  PaymentItem: 'PaymentItem',
+  PaymentVirtual: 'PaymentVirtual',
+  PaymentRefund: 'PaymentRefund',
+  Em: 'Em'
+};
+/**
+ * Create the Client
+ */
+const config = {
+  "generator": {
+    "name": "client",
+    "provider": {
+      "fromEnvVar": null,
+      "value": "prisma-client-js"
+    },
+    "output": {
+      "value": "C:\\Web\\click-store\\src\\prisma\\client",
+      "fromEnvVar": null
+    },
+    "config": {
+      "engineType": "library"
+    },
+    "binaryTargets": [
+      {
+        "fromEnvVar": null,
+        "value": "windows",
+        "native": true
+      }
+    ],
+    "previewFeatures": [],
+    "isCustomOutput": true
+  },
+  "relativeEnvPaths": {
+    "rootEnvPath": "../../../.env",
+    "schemaEnvPath": "../../../.env"
+  },
+  "relativePath": "../../../prisma",
+  "clientVersion": "5.7.1",
+  "engineVersion": "0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5",
+  "datasourceNames": [
+    "db"
+  ],
+  "activeProvider": "mysql",
+  "postinstall": false,
+  "inlineDatasources": {
+    "db": {
+      "url": {
+        "fromEnvVar": "DATABASE_URL",
+        "value": null
+      }
+    }
+  },
+  "inlineSchema": "Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwNCi8vIGxlYXJuIG1vcmUgYWJvdXQgaXQgaW4gdGhlIGRvY3M6IGh0dHBzOi8vcHJpcy5seS9kL3ByaXNtYS1zY2hlbWENCg0KZ2VuZXJhdG9yIGNsaWVudCB7DQogIHByb3ZpZGVyID0gInByaXNtYS1jbGllbnQtanMiDQogIG91dHB1dCAgID0gIi4uL3NyYy9wcmlzbWEvY2xpZW50Ig0KfQ0KDQpkYXRhc291cmNlIGRiIHsNCiAgcHJvdmlkZXIgPSAibXlzcWwiDQogIHVybCAgICAgID0gZW52KCJEQVRBQkFTRV9VUkwiKQ0KfQ0KDQptb2RlbCBBY2NvdW50IHsNCiAgaWQgICAgICAgICBJbnQgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCiAgdXNlcklkICAgICBTdHJpbmcgICAgQHVuaXF1ZSBAbWFwKG5hbWU6ICJ1c2VyX2lkIikNCiAgcGFzc3dvcmQgICBTdHJpbmcNCiAgZW1haWwgICAgICBTdHJpbmcNCiAgeWtpaG8gICAgICBTdHJpbmc/ICAgQGRiLlZhckNoYXIoOCkNCiAgc2F1cGtpaG8gICBTdHJpbmc/ICAgQGRiLlZhckNoYXIoOSkNCiAgdG9rZW4gICAgICBTdHJpbmc/ICAgQGRiLlZhckNoYXIoMjU1KQ0KICBleHBpcnlEYXRlIERhdGVUaW1lPyBAbWFwKG5hbWU6ICJleHBpcnlfZGF0ZSIpDQogIGFkbWluICAgICAgQm9vbGVhbj8NCiAgY3JlYXRlZEF0ICBEYXRlVGltZSAgQGRlZmF1bHQobm93KCkpIEBtYXAobmFtZTogImNyZWF0ZWRfYXQiKQ0KICB1cGRhdGVkQXQgIERhdGVUaW1lICBAZGVmYXVsdChub3coKSkgQHVwZGF0ZWRBdCBAbWFwKG5hbWU6ICJ1cGRhdGVkX2F0IikNCg0KICAvLyBEZWZpbmUgYW55IG90aGVyIHJlbGF0aW9uc2hpcHMsIGluZGV4ZXMsIG9yIGNvbmZpZ3VyYXRpb25zIGhlcmUgaWYgbmVlZGVkLg0KfQ0KDQptb2RlbCBQcm9kdWN0TGlzdCB7DQogIGppc2EgICAgIFN0cmluZyAgIEB1bmlxdWUgQG1hcCgicGxfamlzYSIpDQogIHNtQ29kZSAgIFN0cmluZyAgIEB1bmlxdWUgQG1hcCgicGxfc21jb2RlIikNCiAgc21ZbWQgICAgU3RyaW5nICAgQG1hcCgicGxfc215bWQiKQ0KICBhZGRVc2VyICBTdHJpbmcgICBAbWFwKCJwbF9hZGR1c2VyIikNCiAgY3JlYXRlRHQgRGF0ZVRpbWUgQG1hcCgicGxfY3JlYXRlZHQiKQ0KICBiaWdvICAgICBTdHJpbmcgICBAbWFwKCJwbF9iaWdvIikNCiAgd2ViICAgICAgQm9vbGVhbiAgQG1hcCgicGxfd2ViIikNCiAgYnVucnl1ICAgU3RyaW5nICAgQG1hcCgicGxfYnVucnl1IikNCiAgc3RlcCAgICAgSW50ICAgICAgQG1hcCgicGxfc3RlcCIpDQogIGZpdCAgICAgIEJvb2xlYW4gIEBtYXAoInBsX2ZpdCIpDQogIC8vIFByb2R1Y3RMaXN0U3ViIOuqqOuNuOqzvOydmCDsobDsnbgg6rSA6rOEIOyEpOyglQ0KICAvLyBwcm9kdWN0TGlzdFN1YiBQcm9kdWN0TGlzdFN1YiBAcmVsYXRpb24oZmllbGRzOiBbamlzYSwgc21Db2RlXSwgcmVmZXJlbmNlczogW2ppc2EsIHNtQ29kZV0pDQp9DQoNCm1vZGVsIFByb2R1Y3RMaXN0U3ViIHsNCiAgYXV0byAgICBJbnQgICAgQGlkIEBtYXAoInBsc19hdXRvIikNCiAgamlzYSAgICBTdHJpbmcgQG1hcCgicGxzX2ppc2EiKQ0KICBzbUNvZGUgIFN0cmluZyBAbWFwKCJwbHNfc21jb2RlIikNCiAgc21NeXVuZyBTdHJpbmcgQG1hcCgicGxzX3NtbXl1bmciKQ0KICBzbVltZCAgIFN0cmluZyBAbWFwKCJwbHNfc215bWQiKQ0KICBkYW5nYSAgIEZsb2F0ICBAbWFwKCJwbHNfZGFuZ2EiKQ0KICBkYW53aSAgIFN0cmluZyBAbWFwKCJwbHNfZGFud2kiKQ0KICBldGMxICAgIFN0cmluZyBAbWFwKCJwbHNfZXRjMSIpDQogIGV0YzIgICAgU3RyaW5nIEBtYXAoInBsc19ldGMyIikNCiAgZXRjMyAgICBTdHJpbmcgQG1hcCgicGxzX2V0YzMiKQ0KICBldGM0ICAgIFN0cmluZyBAbWFwKCJwbHNfZXRjNCIpDQogIGV0YzUgICAgU3RyaW5nIEBtYXAoInBsc19ldGM1IikNCg0KICAvLyBQcm9kdWN0TGlzdCDrqqjrjbjqs7zsnZgg7KGw7J24IOq0gOqzhCDshKTsoJUNCiAgLy8gcHJvZHVjdCBQcm9kdWN0Pw0KfQ0KDQptb2RlbCBQcm9kdWN0IHsNCiAgYXV0byAgICAgICAgICAgICBJbnQgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKSBAbWFwKG5hbWU6ICJwZF9hdXRvIikNCiAgY2xDb2RlICAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9jbGNvZGUiKQ0KICBqaXNhICAgICAgICAgICAgIFN0cmluZyAgIEBtYXAobmFtZTogInBkX2ppc2EiKQ0KICBjc0NvZGUgICAgICAgICAgIFN0cmluZyAgIEBtYXAobmFtZTogInBkX2NzY29kZSIpDQogIGN0VGVsICAgICAgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfY3R0ZWwiKQ0KICBjb3VudCAgICAgICAgICAgIEludCAgICAgIEBtYXAobmFtZTogInBkX2NvdW50IikNCiAgcmVjZWl2ZSAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9yZWNlaXZlIikNCiAgcmVjZWl2ZVltZCAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9yZWNlaXZleW1kIikNCiAgc2VsbCAgICAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9zZWxsIikNCiAgc2VsbFltZCAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9zZWxseW1kIikNCiAgb3JkZXJDaGVjayAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9vcmRlcmNoZWNrIikNCiAgc2VsbGVyICAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9zZWxsZXIiKQ0KICBjaGVjayAgICAgICAgICAgIFN0cmluZyAgIEBtYXAobmFtZTogInBkX2NoZWNrIikNCiAgY2hlY2syICAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9jaGVjazIiKQ0KICByZ2IgICAgICAgICAgICAgIFN0cmluZyAgIEBtYXAobmFtZTogInBkX3JnYiIpDQogIGJpZ28gICAgICAgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfYmlnbyIpDQogIGNyZWF0ZUR0ICAgICAgICAgRGF0ZVRpbWUgQGRlZmF1bHQobm93KCkpIEBtYXAobmFtZTogInBkX2NyZWF0ZWR0IikNCiAgYmlnbzIgICAgICAgICAgICBTdHJpbmc/ICBAbWFwKG5hbWU6ICJwZF9iaWdvMiIpDQogIGV0YzEgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjMSIpDQogIGV0YzIgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjMiIpDQogIGV0YzMgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjMyIpDQogIGV0YzQgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjNCIpDQogIGV0YzUgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjNSIpDQogIHdlYiAgICAgICAgICAgICAgQm9vbGVhbiAgQG1hcChuYW1lOiAicGRfd2ViIikNCiAgd2ViUGF5bWVudEl0ZW1JZCBJbnQ/ICAgICBAbWFwKG5hbWU6ICJwZF93ZWJfcGF5bWVudF9pdGVtX2lkIikNCiAgd2ViQk5QTCAgICAgICAgICBCb29sZWFuICBAbWFwKG5hbWU6ICJwZF93ZWJfYm5wbCIpDQoNCiAgLy8gcGxzIFByb2R1Y3RMaXN0U3ViPyBAcmVsYXRpb24oZmllbGRzOiBbd2ViUGF5bWVudEl0ZW1JZF0sIHJlZmVyZW5jZXM6IFthdXRvXSkNCiAgLy8gcHJvZHVjdCBQcm9kdWN0TGlzdFN1YltdDQogIC8vIHBscyBQcm9kdWN0TGlzdFN1Yj8NCn0NCg0KbW9kZWwgUHJvZHVjdExvZyB7DQogIGxvZ0F1dG8gICAgICAgICAgSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkgQG1hcChuYW1lOiAicGRfbG9nYXV0byIpDQogIGxvZ0RhdGV0aW1lICAgICAgRGF0ZVRpbWUgQG1hcChuYW1lOiAicGRfbG9nZGF0ZXRpbWUiKQ0KICBsb2dHdWJ1biAgICAgICAgIFN0cmluZyAgIEBtYXAobmFtZTogInBkX2xvZ2d1YnVuIikNCiAgbG9nVXNlciAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9sb2d1c2VyIikNCiAgbG9nQ29tcHV0ZXIgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9sb2djb21wdXRlciIpDQogIGF1dG8gICAgICAgICAgICAgSW50ICAgICAgQG1hcChuYW1lOiAicGRfYXV0byIpDQogIGNsQ29kZSAgICAgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfY2xjb2RlIikNCiAgamlzYSAgICAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9qaXNhIikNCiAgY3NDb2RlICAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9jc2NvZGUiKQ0KICBjdFRlbCAgICAgICAgICAgIFN0cmluZyAgIEBtYXAobmFtZTogInBkX2N0dGVsIikNCiAgY291bnQgICAgICAgICAgICBJbnQgICAgICBAbWFwKG5hbWU6ICJwZF9jb3VudCIpDQogIHJlY2VpdmUgICAgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfcmVjZWl2ZSIpDQogIHJlY2VpdmVZbWQgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfcmVjZWl2ZXltZCIpDQogIHNlbGwgICAgICAgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfc2VsbCIpDQogIHNlbGxZbWQgICAgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfc2VsbHltZCIpDQogIG9yZGVyQ2hlY2sgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfb3JkZXJjaGVjayIpDQogIHNlbGxlciAgICAgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfc2VsbGVyIikNCiAgY2hlY2sgICAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9jaGVjayIpDQogIGNoZWNrMiAgICAgICAgICAgU3RyaW5nICAgQG1hcChuYW1lOiAicGRfY2hlY2syIikNCiAgcmdiICAgICAgICAgICAgICBTdHJpbmcgICBAbWFwKG5hbWU6ICJwZF9yZ2IiKQ0KICBiaWdvICAgICAgICAgICAgIFN0cmluZyAgIEBtYXAobmFtZTogInBkX2JpZ28iKQ0KICBjcmVhdGVEdCAgICAgICAgIERhdGVUaW1lIEBtYXAobmFtZTogInBkX2NyZWF0ZWR0IikNCiAgYmlnbzIgICAgICAgICAgICBTdHJpbmc/ICBAbWFwKG5hbWU6ICJwZF9iaWdvMiIpDQogIGV0YzEgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjMSIpDQogIGV0YzIgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjMiIpDQogIGV0YzMgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjMyIpDQogIGV0YzQgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjNCIpDQogIGV0YzUgICAgICAgICAgICAgU3RyaW5nPyAgQG1hcChuYW1lOiAicGRfZXRjNSIpDQogIHdlYiAgICAgICAgICAgICAgQm9vbGVhbiAgQG1hcChuYW1lOiAicGRfd2ViIikNCiAgd2ViUGF5bWVudEl0ZW1JZCBJbnQ/ICAgICBAbWFwKG5hbWU6ICJwZF93ZWJfcGF5bWVudF9pdGVtX2lkIikNCiAgd2ViQk5QTCAgICAgICAgICBCb29sZWFuICBAbWFwKG5hbWU6ICJwZF93ZWJfYm5wbCIpDQp9DQoNCm1vZGVsIFByb2R1Y3RMaXN0V2ViQnVucnl1IHsNCiAgY29kZSBTdHJpbmcgICBAdW5pcXVlIEBtYXAoInB3X2NvZGUiKQ0KICBuYW1lIFN0cmluZyAgIEBtYXAoInB3X25hbWUiKQ0KICBmaXQgIEJvb2xlYW4/IEBtYXAoInB3X2ZpdCIpDQoNCiAgQEBtYXAoInByb2R1Y3RsaXN0X3dlYmJ1bnJ5dSIpDQp9DQoNCm1vZGVsIFByb2R1Y3RMaXN0SW1hZ2Ugew0KICBqaXNhICAgU3RyaW5nIEB1bmlxdWUgQG1hcCgicGxpX2ppc2EiKQ0KICBzbUNvZGUgU3RyaW5nIEB1bmlxdWUgQG1hcCgicGxpX3NtY29kZSIpDQogIGltYWdlICBCeXRlcz8gQG1hcCgicGxpX2ltYWdlIikNCg0KICBAQG1hcCgicHJvZHVjdGxpc3RfaW1hZ2UiKQ0KfQ0KDQptb2RlbCBDcyB7DQogIGd1YnVuICAgICAgICAgIFN0cmluZyAgQHVuaXF1ZSBAbWFwKCJjc19ndWJ1biIpDQogIGNvZGUgICAgICAgICAgIFN0cmluZyAgQHVuaXF1ZSBAbWFwKCJjc19jb2RlIikNCiAgbXl1bmcgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19teXVuZyIpDQogIGRhZXB5byAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZGFlcHlvIikNCiAgdGVsICAgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc190ZWwiKQ0KICBmYXggICAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2ZheCIpDQogIHBvc3QgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfcG9zdCIpDQogIGR1cCAgICAgICAgICAgIEludD8gICAgQG1hcCgiY3NfZHVwIikNCiAganVzbyAgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19qdXNvIikNCiAgYnVuamkgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19idW5qaSIpDQogIGppc2EgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfamlzYSIpDQogIGVtQ29kZSAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZW1jb2RlIikNCiAgZGFtZGFuZyAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19kYW1kYW5nIikNCiAgZGFtZGFuZ2hwICAgICAgU3RyaW5nPyBAbWFwKCJjc19kYW1kYW5naHAiKQ0KICBqb25nYmwgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2pvbmdibCIpDQogIHVwdGUgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfdXB0ZSIpDQogIHNhdXBudW0gICAgICAgIFN0cmluZz8gQG1hcCgiY3Nfc2F1cG51bSIpDQogIHNhdXBwb3N0ICAgICAgIFN0cmluZz8gQG1hcCgiY3Nfc2F1cHBvc3QiKQ0KICBzYXVwZHVwICAgICAgICBJbnQ/ICAgIEBtYXAoImNzX3NhdXBkdXAiKQ0KICBzYXVwanVzbyAgICAgICBTdHJpbmc/IEBtYXAoImNzX3NhdXBqdXNvIikNCiAgc2F1cGJ1bmppICAgICAgU3RyaW5nPyBAbWFwKCJjc19zYXVwYnVuamkiKQ0KICBlbWFpbCAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2VtYWlsIikNCiAgZWRpaWQgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19lZGlpZCIpDQogIGVkaXBhc3N3b3JkICAgIFN0cmluZz8gQG1hcCgiY3NfZWRpcGFzc3dvcmQiKQ0KICBsb2NhbCAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2xvY2FsIikNCiAgbm9uY2hhcnQgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ub25jaGFydCIpDQogIGZ5bWQgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZnltZCIpDQogIGx5bWQgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfbHltZCIpDQogIGJpZ28gICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfYmlnbyIpDQogIHVzZXIgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfdXNlciIpDQogIGV0YzEgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMSIpDQogIGV0YzIgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMiIpDQogIGV0YzMgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMyIpDQogIENob25ndXNlciAgICAgIFN0cmluZz8gQG1hcCgiY3NfQ2hvbmd1c2VyIikNCiAgcHJvICAgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19wcm8iKQ0KICB5YW5naGFuICAgICAgICBTdHJpbmc/IEBtYXAoImNzX3lhbmdoYW4iKQ0KICBjaHVuZ2d1ICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2NodW5nZ3UiKQ0KICBjaGVyYmFuZyAgICAgICBTdHJpbmc/IEBtYXAoImNzX2NoZXJiYW5nIikNCiAgeW91bmdzdSAgICAgICAgU3RyaW5nPyBAbWFwKCJjc195b3VuZ3N1IikNCiAgcGFjcyAgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19wYWNzIikNCiAgYmFyY29kZSAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19iYXJjb2RlIikNCiAgeWFrZ3VrICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc195YWtndWsiKQ0KICB1cGRhdGUgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX3VwZGF0ZSIpDQogIGFza3VtYWsgICAgICAgIEludD8gICAgQG1hcCgiY3NfYXNrdW1hayIpDQogIGV0YzQgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjNCIpDQogIGV0YzUgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjNSIpDQogIGV0YzYgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjNiIpDQogIGV0YzcgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjNyIpDQogIGNtcyAgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfY21zIikNCiAgZGFlZ2lkaXNwICAgICAgU3RyaW5nPyBAbWFwKCJjc19kYWVnaWRpc3AiKQ0KICBndW1qaW5saW5rICAgICBTdHJpbmc/IEBtYXAoImNzX2d1bWppbmxpbmsiKQ0KICBjYXB0dXJlICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2NhcHR1cmUiKQ0KICBzdXRhayAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX3N1dGFrIikNCiAgc3V0YWtsaW5rICAgICAgU3RyaW5nPyBAbWFwKCJjc19zdXRha2xpbmsiKQ0KICBndW1zYWxpbmt5biAgICBTdHJpbmc/IEBtYXAoImNzX2d1bXNhbGlua3luIikNCiAgZ3Vtc2FsaW5rICAgICAgU3RyaW5nPyBAbWFwKCJjc19ndW1zYWxpbmsiKQ0KICBzY2FuZXIgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX3NjYW5lciIpDQogIGNhcmQgICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfY2FyZCIpDQogIGNhcmRsaW5rICAgICAgIFN0cmluZz8gQG1hcCgiY3NfY2FyZGxpbmsiKQ0KICBlbGVjY2hlcmJhbiAgICBTdHJpbmc/IEBtYXAoImNzX2VsZWNjaGVyYmFuZyIpDQogIHlha2d1a3ByaW50ICAgIFN0cmluZz8gQG1hcCgiY3NfeWFrZ3VrcHJpbnQiKQ0KICBndW1zYWJhcmNvZCAgICBTdHJpbmc/IEBtYXAoImNzX2d1bXNhYmFyY29kZSIpDQogIGJkYmFyY29kZSAgICAgIFN0cmluZz8gQG1hcCgiY3NfYmRiYXJjb2RlIikNCiAgdXBkYXRlcGF0aCAgICAgU3RyaW5nPyBAbWFwKCJjc191cGRhdGVwYXRoIikNCiAgc2VydmVyICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19zZXJ2ZXIiKQ0KICBzYW5qYWUgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX3NhbmphZSIpDQogIHBhbGpqaSAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfcGFsamppIikNCiAganVuZ2ppICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19qdW5namkiKQ0KICBzZXJ2ZXJtb2RlbCAgICBTdHJpbmc/IEBtYXAoImNzX3NlcnZlcm1vZGVsIikNCiAgc2VydmVybmFtZSAgICAgU3RyaW5nPyBAbWFwKCJjc19zZXJ2ZXJuYW1lIikNCiAgc2VydmVyU04gICAgICAgU3RyaW5nPyBAbWFwKCJjc19zZXJ2ZXJTTiIpDQogIHNlcnZlck1UICAgICAgIFN0cmluZz8gQG1hcCgiY3Nfc2VydmVyTVQiKQ0KICBzZXJ2ZXJIREQgICAgICBTdHJpbmc/IEBtYXAoImNzX3NlcnZlckhERCIpDQogIHNlcnZlck1lbW9yeSAgIFN0cmluZz8gQG1hcCgiY3Nfc2VydmVyTWVtb3J5IikNCiAgc2VydmVyTG9jYXRpb24gU3RyaW5nPyBAbWFwKCJjc19zZXJ2ZXJMb2NhdGlvbiIpDQogIHNlcnZlcnNldHVwICAgIFN0cmluZz8gQG1hcCgiY3Nfc2VydmVyc2V0dXAiKQ0KICB3aW5kb3cgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX3dpbmRvdyIpDQogIHdpbmRvd21lbW8gICAgIFN0cmluZz8gQG1hcCgiY3Nfd2luZG93bWVtbyIpDQogIHZpcnVzbmFtZSAgICAgIFN0cmluZz8gQG1hcCgiY3NfdmlydXNuYW1lIikNCiAgdmlydXNzZXR1cCAgICAgU3RyaW5nPyBAbWFwKCJjc192aXJ1c3NldHVwIikNCiAgdmlydXNlbmQgICAgICAgU3RyaW5nPyBAbWFwKCJjc192aXJ1c2VuZCIpDQogIHVwc25hbWUgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfdXBzbmFtZSIpDQogIHVwc3NldHVwICAgICAgIFN0cmluZz8gQG1hcCgiY3NfdXBzc2V0dXAiKQ0KICB1cHNlbmQgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX3Vwc2VuZCIpDQogIHJvbGxwcmludCAgICAgIFN0cmluZyAgQG1hcCgiY3Nfcm9sbHByaW50IikNCiAgaW51c2VyICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19pbnVzZXIiKQ0KICB1cHVzZXIgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX3VwdXNlciIpDQogIGluZGF0ZSAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfaW5kYXRlIikNCiAgdXBkYXRlMiAgICAgICAgU3RyaW5nPyBAbWFwKCJjc191cGRhdGUyIikNCiAgZXRjOCAgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGM4IikNCiAgZXRjOSAgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGM5IikNCiAgZXRjMTAgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGMxMCIpDQogIGV0YzExICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMTEiKQ0KICBldGMxMiAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzEyIikNCiAgZXRjMTMgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGMxMyIpDQogIGV0YzE0ICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMTQiKQ0KICBldGMxNSAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzE1IikNCiAgYm9ndWJ1biAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ib2d1YnVuIikNCiAgYXNjaGsgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19hc2NoayIpDQogIGV0YzE2ICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMTYiKQ0KICBldGMxNyAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzE3IikNCiAgZXRjMTggICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGMxOCIpDQogIGV0YzE5ICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMTkiKQ0KICBldGMyMCAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzIwIikNCiAgZXRjMjEgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGMyMSIpDQogIGV0YzIyICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMjIiKQ0KICBldGMyMyAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzIzIikNCiAgZXRjMjQgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGMyNCIpDQogIGV0YzI1ICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMjUiKQ0KICBldGMyNiAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzI2IikNCiAgZXRjMjcgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGMyNyIpDQogIGV0YzI4ICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMjgiKQ0KICBldGMyOSAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzI5IikNCiAgZXRjMzAgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGMzMCIpDQogIGV0YzMxICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMzEiKQ0KICBldGMzMiAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzMyIikNCiAgZXRjMzMgICAgICAgICAgU3RyaW5nPyBAbWFwKCJjc19ldGMzMyIpDQogIGV0YzM0ICAgICAgICAgIFN0cmluZz8gQG1hcCgiY3NfZXRjMzQiKQ0KICBldGMzNSAgICAgICAgICBTdHJpbmc/IEBtYXAoImNzX2V0YzM1IikNCiAgc2VydmVyX2N1c3QgICAgU3RyaW5nPyBAbWFwKCJjc19zZXJ2ZXJfY3VzdG9tZXIiKQ0KICBzZXJ2ZXJfb3JkZSAgICBTdHJpbmc/IEBtYXAoImNzX3NlcnZlcl9vcmRlcm51bSIpDQogIHNlcnZlcl9taWNpICAgIFN0cmluZz8gQG1hcCgiY3Nfc2VydmVyX21pY2lkIikNCiAgc2VydmVyX2FkbWkgICAgU3RyaW5nPyBAbWFwKCJjc19zZXJ2ZXJfYWRtaW5pZCIpDQogIHNlcnZlcl9zdnJwICAgIFN0cmluZz8gQG1hcCgiY3Nfc2VydmVyX3N2cnBhc3MiKQ0KICBzZXJ2ZXJfc3ZyYiAgICBTdHJpbmc/IEBtYXAoImNzX3NlcnZlcl9zdnJiaWdvIikNCiAgb2F1dGhwd2QgICAgICAgU3RyaW5nICBAbWFwKCJjc19vYXV0aHB3ZCIpDQogIG1lZGlfdXNlICAgICAgIFN0cmluZz8gQG1hcCgiY3NfbWVkaV91c2UiKQ0KICBtZWRpX3BjICAgICAgICBTdHJpbmc/IEBtYXAoImNzX21lZGlfcGMiKQ0KICBtZWRpX2F1dG9qdSAgICBTdHJpbmc/IEBtYXAoImNzX21lZGlfYXV0b2p1cHN1IikNCiAgbWVkaV9ncm5hbWUgICAgU3RyaW5nPyBAbWFwKCJjc19tZWRpX2dybmFtZSIpDQp9DQoNCm1vZGVsIENhcnQgew0KICBpZCAgICAgICAgSW50ICAgICAgICBAaWQgQGRlZmF1bHQoYXV0b2luY3JlbWVudCgpKQ0KICB5a2lobyAgICAgU3RyaW5nDQogIGNhcnRJdGVtcyBDYXJ0SXRlbVtdDQp9DQoNCm1vZGVsIENhcnRJdGVtIHsNCiAgaWQgICAgICAgICAgSW50ICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpDQogIGNhcnRJZCAgICAgIEludCAgICAgICBAbWFwKCJjYXJ0X2lkIikNCiAgY29kZSAgICAgICAgU3RyaW5nDQogIHF1YW50aXR5ICAgIEludA0KICBmaXQgICAgICAgICBCb29sZWFuDQogIGNyZWF0ZWREYXRlIERhdGVUaW1lICBAZGVmYXVsdChub3coKSkgQG1hcCgiY3JlYXRlZF9kYXRlIikNCiAgdXBkYXRlZERhdGUgRGF0ZVRpbWU/IEB1cGRhdGVkQXQgQG1hcCgidXBkYXRlZF9kYXRlIikNCiAgY2FydCAgICAgICAgQ2FydCAgICAgIEByZWxhdGlvbihmaWVsZHM6IFtjYXJ0SWRdLCByZWZlcmVuY2VzOiBbaWRdKQ0KICAvLyBwcm9kdWN0IFByb2R1Y3RMaXN0U3ViDQoNCiAgQEBtYXAoImNhcnRfaXRlbSIpDQp9DQoNCm1vZGVsIFBheW1lbnQgew0KICBpZCAgICAgICAgICAgSW50ICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpDQogIHlraWhvICAgICAgICBTdHJpbmcNCiAgb3JkZXJJZCAgICAgIFN0cmluZyAgICBAdW5pcXVlIEBtYXAoIm9yZGVyX2lkIikNCiAgcGF5bWVudEtleSAgIFN0cmluZyAgICBAbWFwKCJwYXltZW50X2tleSIpDQogIGN1c3RvbWVyTmFtZSBTdHJpbmcgICAgQG1hcCgiY3VzdG9tZXJfbmFtZSIpDQogIG1ldGhvZCAgICAgICBTdHJpbmcNCiAgYW1vdW50ICAgICAgIEludA0KICBxdWFudGl0eSAgICAgSW50DQogIHJlcXVlc3RlZEF0ICBEYXRlVGltZT8gQG1hcCgicmVxdWVzdGVkX2F0IikNCiAgYXBwcm92ZWRBdCAgIERhdGVUaW1lPyBAbWFwKCJhcHByb3ZlZF9hdCIpDQogIHNlbmRUeXBlICAgICBTdHJpbmcgICAgQG1hcCgic2VuZF90eXBlIikNCiAgY2FuY2VsICAgICAgIEJvb2xlYW4NCiAgdGVzdCAgICAgICAgIEludD8NCg0KICAvLyBSZWxhdGlvbiB3aXRoIFBheW1lbnRJdGVtDQogIHBheW1lbnRJdGVtcyBQYXltZW50SXRlbVtdDQoNCiAgLy8gUmVsYXRpb24gd2l0aCBQYXltZW50VmlydHVhbA0KICB2aXJ0dWFsIFBheW1lbnRWaXJ0dWFsPw0KICByZWZ1bmQgIFBheW1lbnRSZWZ1bmQ/DQp9DQoNCm1vZGVsIFBheW1lbnRJdGVtIHsNCiAgaWQgICAgICAgIEludCAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCiAgcGF5bWVudElkIEludA0KICBjb2RlICAgICAgU3RyaW5nDQogIG5hbWUgICAgICBTdHJpbmcNCiAgZml0ICAgICAgIEJvb2xlYW4NCiAgcXVhbnRpdHkgIEludA0KICBhbW91bnQgICAgRmxvYXQNCg0KICAvLyBSZWxhdGlvbiB3aXRoIFBheW1lbnQNCiAgcGF5bWVudCBQYXltZW50IEByZWxhdGlvbihmaWVsZHM6IFtwYXltZW50SWRdLCByZWZlcmVuY2VzOiBbaWRdKQ0KDQogIEBAbWFwKCJwYXltZW50X2l0ZW0iKQ0KfQ0KDQptb2RlbCBQYXltZW50VmlydHVhbCB7DQogIGlkICAgICAgICAgICAgSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCiAgcGF5bWVudElkICAgICBJbnQgICAgICBAdW5pcXVlIEBtYXAoInBheW1lbnRfaWQiKQ0KICBiYW5rQ29kZSAgICAgIFN0cmluZyAgIEBtYXAoImJhbmtfY29kZSIpDQogIGN1c3RvbWVyTmFtZSAgU3RyaW5nICAgQG1hcCgiY3VzdG9tZXJfbmFtZSIpDQogIGR1ZURhdGUgICAgICAgRGF0ZVRpbWUgQG1hcCgiZHVlX2RhdGUiKQ0KICBhY2NvdW50TnVtYmVyIFN0cmluZyAgIEBtYXAoImFjY291bnRfbnVtYmVyIikNCg0KICAvLyBSZWxhdGlvbiB3aXRoIFBheW1lbnQNCiAgcGF5bWVudCBQYXltZW50IEByZWxhdGlvbihmaWVsZHM6IFtwYXltZW50SWRdLCByZWZlcmVuY2VzOiBbaWRdKQ0KDQogIEBAbWFwKCJwYXltZW50X3ZpcnR1YWwiKQ0KfQ0KDQptb2RlbCBQYXltZW50UmVmdW5kIHsNCiAgaWQgICAgICAgICAgICBJbnQgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCiAgcGF5bWVudElkICAgICBJbnQgICAgQHVuaXF1ZQ0KICBiYW5rICAgICAgICAgIFN0cmluZw0KICBhY2NvdW50TnVtYmVyIFN0cmluZw0KICBob2xkZXJOYW1lICAgIFN0cmluZw0KICBhbW91bnQgICAgICAgIEludA0KICByZWFzb24gICAgICAgIFN0cmluZw0KDQogIHBheW1lbnQgUGF5bWVudCBAcmVsYXRpb24oZmllbGRzOiBbcGF5bWVudElkXSwgcmVmZXJlbmNlczogW2lkXSkNCn0NCg0KbW9kZWwgRW0gew0KICBjb2RlICAgU3RyaW5nICBAdW5pcXVlIEBtYXAobmFtZTogImVtX2NvZGUiKQ0KICBuYW1lICAgU3RyaW5nPyBAbWFwKG5hbWU6ICJlbV9uYW1lIikNCiAgamlzYSAgIFN0cmluZz8gQG1hcChuYW1lOiAiZW1famlzYSIpDQogIGJ1Q29kZSBTdHJpbmc/IEBtYXAobmFtZTogImVtX2J1Y29kZSIpDQogIGVuZFltZCBTdHJpbmc/IEBtYXAobmFtZTogImVtX2VuZHltZCIpDQp9DQo=",
+  "inlineSchemaHash": "dadc6b57bd1e0d58e98972ddf3003aa4f0aaab2937d6f2841610154726533514",
+  "noEngine": false
+}
+
+const fs = require('fs')
+
+config.dirname = __dirname
+if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
+  const alternativePaths = [
+    "src/prisma/client",
+    "prisma/client",
+  ]
+  
+  const alternativePath = alternativePaths.find((altPath) => {
+    return fs.existsSync(path.join(process.cwd(), altPath, 'schema.prisma'))
+  }) ?? alternativePaths[0]
+
+  config.dirname = path.join(process.cwd(), alternativePath)
+  config.isBundled = true
+}
+
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Account\":{\"dbName\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userId\",\"dbName\":\"user_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"password\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ykiho\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"saupkiho\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"token\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"expiryDate\",\"dbName\":\"expiry_date\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"admin\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"dbName\":\"created_at\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"dbName\":\"updated_at\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":true}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ProductList\":{\"dbName\":null,\"fields\":[{\"name\":\"jisa\",\"dbName\":\"pl_jisa\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"smCode\",\"dbName\":\"pl_smcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"smYmd\",\"dbName\":\"pl_smymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"addUser\",\"dbName\":\"pl_adduser\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createDt\",\"dbName\":\"pl_createdt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bigo\",\"dbName\":\"pl_bigo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"web\",\"dbName\":\"pl_web\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bunryu\",\"dbName\":\"pl_bunryu\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"step\",\"dbName\":\"pl_step\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fit\",\"dbName\":\"pl_fit\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ProductListSub\":{\"dbName\":null,\"fields\":[{\"name\":\"auto\",\"dbName\":\"pls_auto\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jisa\",\"dbName\":\"pls_jisa\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"smCode\",\"dbName\":\"pls_smcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"smMyung\",\"dbName\":\"pls_smmyung\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"smYmd\",\"dbName\":\"pls_smymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"danga\",\"dbName\":\"pls_danga\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"danwi\",\"dbName\":\"pls_danwi\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc1\",\"dbName\":\"pls_etc1\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc2\",\"dbName\":\"pls_etc2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc3\",\"dbName\":\"pls_etc3\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc4\",\"dbName\":\"pls_etc4\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc5\",\"dbName\":\"pls_etc5\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Product\":{\"dbName\":null,\"fields\":[{\"name\":\"auto\",\"dbName\":\"pd_auto\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"clCode\",\"dbName\":\"pd_clcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jisa\",\"dbName\":\"pd_jisa\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"csCode\",\"dbName\":\"pd_cscode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ctTel\",\"dbName\":\"pd_cttel\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"count\",\"dbName\":\"pd_count\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"receive\",\"dbName\":\"pd_receive\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"receiveYmd\",\"dbName\":\"pd_receiveymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sell\",\"dbName\":\"pd_sell\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sellYmd\",\"dbName\":\"pd_sellymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orderCheck\",\"dbName\":\"pd_ordercheck\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"seller\",\"dbName\":\"pd_seller\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"check\",\"dbName\":\"pd_check\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"check2\",\"dbName\":\"pd_check2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"rgb\",\"dbName\":\"pd_rgb\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bigo\",\"dbName\":\"pd_bigo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createDt\",\"dbName\":\"pd_createdt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bigo2\",\"dbName\":\"pd_bigo2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc1\",\"dbName\":\"pd_etc1\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc2\",\"dbName\":\"pd_etc2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc3\",\"dbName\":\"pd_etc3\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc4\",\"dbName\":\"pd_etc4\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc5\",\"dbName\":\"pd_etc5\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"web\",\"dbName\":\"pd_web\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"webPaymentItemId\",\"dbName\":\"pd_web_payment_item_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"webBNPL\",\"dbName\":\"pd_web_bnpl\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ProductLog\":{\"dbName\":null,\"fields\":[{\"name\":\"logAuto\",\"dbName\":\"pd_logauto\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"logDatetime\",\"dbName\":\"pd_logdatetime\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"logGubun\",\"dbName\":\"pd_loggubun\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"logUser\",\"dbName\":\"pd_loguser\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"logComputer\",\"dbName\":\"pd_logcomputer\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"auto\",\"dbName\":\"pd_auto\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"clCode\",\"dbName\":\"pd_clcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jisa\",\"dbName\":\"pd_jisa\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"csCode\",\"dbName\":\"pd_cscode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ctTel\",\"dbName\":\"pd_cttel\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"count\",\"dbName\":\"pd_count\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"receive\",\"dbName\":\"pd_receive\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"receiveYmd\",\"dbName\":\"pd_receiveymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sell\",\"dbName\":\"pd_sell\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sellYmd\",\"dbName\":\"pd_sellymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orderCheck\",\"dbName\":\"pd_ordercheck\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"seller\",\"dbName\":\"pd_seller\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"check\",\"dbName\":\"pd_check\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"check2\",\"dbName\":\"pd_check2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"rgb\",\"dbName\":\"pd_rgb\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bigo\",\"dbName\":\"pd_bigo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createDt\",\"dbName\":\"pd_createdt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bigo2\",\"dbName\":\"pd_bigo2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc1\",\"dbName\":\"pd_etc1\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc2\",\"dbName\":\"pd_etc2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc3\",\"dbName\":\"pd_etc3\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc4\",\"dbName\":\"pd_etc4\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc5\",\"dbName\":\"pd_etc5\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"web\",\"dbName\":\"pd_web\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"webPaymentItemId\",\"dbName\":\"pd_web_payment_item_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"webBNPL\",\"dbName\":\"pd_web_bnpl\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ProductListWebBunryu\":{\"dbName\":\"productlist_webbunryu\",\"fields\":[{\"name\":\"code\",\"dbName\":\"pw_code\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"dbName\":\"pw_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fit\",\"dbName\":\"pw_fit\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ProductListImage\":{\"dbName\":\"productlist_image\",\"fields\":[{\"name\":\"jisa\",\"dbName\":\"pli_jisa\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"smCode\",\"dbName\":\"pli_smcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"image\",\"dbName\":\"pli_image\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Bytes\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Cs\":{\"dbName\":null,\"fields\":[{\"name\":\"gubun\",\"dbName\":\"cs_gubun\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"code\",\"dbName\":\"cs_code\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"myung\",\"dbName\":\"cs_myung\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"daepyo\",\"dbName\":\"cs_daepyo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"tel\",\"dbName\":\"cs_tel\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fax\",\"dbName\":\"cs_fax\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"post\",\"dbName\":\"cs_post\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dup\",\"dbName\":\"cs_dup\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"juso\",\"dbName\":\"cs_juso\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bunji\",\"dbName\":\"cs_bunji\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jisa\",\"dbName\":\"cs_jisa\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"emCode\",\"dbName\":\"cs_emcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"damdang\",\"dbName\":\"cs_damdang\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"damdanghp\",\"dbName\":\"cs_damdanghp\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jongbl\",\"dbName\":\"cs_jongbl\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"upte\",\"dbName\":\"cs_upte\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"saupnum\",\"dbName\":\"cs_saupnum\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sauppost\",\"dbName\":\"cs_sauppost\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"saupdup\",\"dbName\":\"cs_saupdup\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"saupjuso\",\"dbName\":\"cs_saupjuso\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"saupbunji\",\"dbName\":\"cs_saupbunji\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"dbName\":\"cs_email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ediid\",\"dbName\":\"cs_ediid\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"edipassword\",\"dbName\":\"cs_edipassword\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"local\",\"dbName\":\"cs_local\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"nonchart\",\"dbName\":\"cs_nonchart\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fymd\",\"dbName\":\"cs_fymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"lymd\",\"dbName\":\"cs_lymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bigo\",\"dbName\":\"cs_bigo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"user\",\"dbName\":\"cs_user\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc1\",\"dbName\":\"cs_etc1\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc2\",\"dbName\":\"cs_etc2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc3\",\"dbName\":\"cs_etc3\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"Chonguser\",\"dbName\":\"cs_Chonguser\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"pro\",\"dbName\":\"cs_pro\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"yanghan\",\"dbName\":\"cs_yanghan\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"chunggu\",\"dbName\":\"cs_chunggu\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"cherbang\",\"dbName\":\"cs_cherbang\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"youngsu\",\"dbName\":\"cs_youngsu\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"pacs\",\"dbName\":\"cs_pacs\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"barcode\",\"dbName\":\"cs_barcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"yakguk\",\"dbName\":\"cs_yakguk\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"update\",\"dbName\":\"cs_update\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"askumak\",\"dbName\":\"cs_askumak\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc4\",\"dbName\":\"cs_etc4\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc5\",\"dbName\":\"cs_etc5\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc6\",\"dbName\":\"cs_etc6\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc7\",\"dbName\":\"cs_etc7\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"cms\",\"dbName\":\"cs_cms\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"daegidisp\",\"dbName\":\"cs_daegidisp\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gumjinlink\",\"dbName\":\"cs_gumjinlink\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"capture\",\"dbName\":\"cs_capture\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sutak\",\"dbName\":\"cs_sutak\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sutaklink\",\"dbName\":\"cs_sutaklink\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gumsalinkyn\",\"dbName\":\"cs_gumsalinkyn\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gumsalink\",\"dbName\":\"cs_gumsalink\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"scaner\",\"dbName\":\"cs_scaner\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"card\",\"dbName\":\"cs_card\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"cardlink\",\"dbName\":\"cs_cardlink\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"eleccherban\",\"dbName\":\"cs_eleccherbang\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"yakgukprint\",\"dbName\":\"cs_yakgukprint\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gumsabarcod\",\"dbName\":\"cs_gumsabarcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bdbarcode\",\"dbName\":\"cs_bdbarcode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatepath\",\"dbName\":\"cs_updatepath\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"server\",\"dbName\":\"cs_server\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sanjae\",\"dbName\":\"cs_sanjae\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"paljji\",\"dbName\":\"cs_paljji\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jungji\",\"dbName\":\"cs_jungji\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"servermodel\",\"dbName\":\"cs_servermodel\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"servername\",\"dbName\":\"cs_servername\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"serverSN\",\"dbName\":\"cs_serverSN\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"serverMT\",\"dbName\":\"cs_serverMT\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"serverHDD\",\"dbName\":\"cs_serverHDD\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"serverMemory\",\"dbName\":\"cs_serverMemory\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"serverLocation\",\"dbName\":\"cs_serverLocation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"serversetup\",\"dbName\":\"cs_serversetup\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"window\",\"dbName\":\"cs_window\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"windowmemo\",\"dbName\":\"cs_windowmemo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virusname\",\"dbName\":\"cs_virusname\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virussetup\",\"dbName\":\"cs_virussetup\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virusend\",\"dbName\":\"cs_virusend\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"upsname\",\"dbName\":\"cs_upsname\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"upssetup\",\"dbName\":\"cs_upssetup\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"upsend\",\"dbName\":\"cs_upsend\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"rollprint\",\"dbName\":\"cs_rollprint\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"inuser\",\"dbName\":\"cs_inuser\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"upuser\",\"dbName\":\"cs_upuser\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"indate\",\"dbName\":\"cs_indate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"update2\",\"dbName\":\"cs_update2\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc8\",\"dbName\":\"cs_etc8\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc9\",\"dbName\":\"cs_etc9\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc10\",\"dbName\":\"cs_etc10\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc11\",\"dbName\":\"cs_etc11\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc12\",\"dbName\":\"cs_etc12\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc13\",\"dbName\":\"cs_etc13\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc14\",\"dbName\":\"cs_etc14\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc15\",\"dbName\":\"cs_etc15\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bogubun\",\"dbName\":\"cs_bogubun\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"aschk\",\"dbName\":\"cs_aschk\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc16\",\"dbName\":\"cs_etc16\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc17\",\"dbName\":\"cs_etc17\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc18\",\"dbName\":\"cs_etc18\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc19\",\"dbName\":\"cs_etc19\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc20\",\"dbName\":\"cs_etc20\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc21\",\"dbName\":\"cs_etc21\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc22\",\"dbName\":\"cs_etc22\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc23\",\"dbName\":\"cs_etc23\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc24\",\"dbName\":\"cs_etc24\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc25\",\"dbName\":\"cs_etc25\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc26\",\"dbName\":\"cs_etc26\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc27\",\"dbName\":\"cs_etc27\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc28\",\"dbName\":\"cs_etc28\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc29\",\"dbName\":\"cs_etc29\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc30\",\"dbName\":\"cs_etc30\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc31\",\"dbName\":\"cs_etc31\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc32\",\"dbName\":\"cs_etc32\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc33\",\"dbName\":\"cs_etc33\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc34\",\"dbName\":\"cs_etc34\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"etc35\",\"dbName\":\"cs_etc35\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"server_cust\",\"dbName\":\"cs_server_customer\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"server_orde\",\"dbName\":\"cs_server_ordernum\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"server_mici\",\"dbName\":\"cs_server_micid\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"server_admi\",\"dbName\":\"cs_server_adminid\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"server_svrp\",\"dbName\":\"cs_server_svrpass\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"server_svrb\",\"dbName\":\"cs_server_svrbigo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"oauthpwd\",\"dbName\":\"cs_oauthpwd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"medi_use\",\"dbName\":\"cs_medi_use\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"medi_pc\",\"dbName\":\"cs_medi_pc\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"medi_autoju\",\"dbName\":\"cs_medi_autojupsu\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"medi_grname\",\"dbName\":\"cs_medi_grname\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Cart\":{\"dbName\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ykiho\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"cartItems\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"CartItem\",\"relationName\":\"CartToCartItem\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"CartItem\":{\"dbName\":\"cart_item\",\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"cartId\",\"dbName\":\"cart_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"code\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"quantity\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fit\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdDate\",\"dbName\":\"created_date\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedDate\",\"dbName\":\"updated_date\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"cart\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Cart\",\"relationName\":\"CartToCartItem\",\"relationFromFields\":[\"cartId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Payment\":{\"dbName\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ykiho\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orderId\",\"dbName\":\"order_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"paymentKey\",\"dbName\":\"payment_key\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"customerName\",\"dbName\":\"customer_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"method\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"amount\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"quantity\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"requestedAt\",\"dbName\":\"requested_at\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"approvedAt\",\"dbName\":\"approved_at\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sendType\",\"dbName\":\"send_type\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"cancel\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"test\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"paymentItems\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"PaymentItem\",\"relationName\":\"PaymentToPaymentItem\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virtual\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"PaymentVirtual\",\"relationName\":\"PaymentToPaymentVirtual\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"refund\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"PaymentRefund\",\"relationName\":\"PaymentToPaymentRefund\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"PaymentItem\":{\"dbName\":\"payment_item\",\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"paymentId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"code\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fit\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Boolean\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"quantity\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"amount\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"payment\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Payment\",\"relationName\":\"PaymentToPaymentItem\",\"relationFromFields\":[\"paymentId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"PaymentVirtual\":{\"dbName\":\"payment_virtual\",\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"paymentId\",\"dbName\":\"payment_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bankCode\",\"dbName\":\"bank_code\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"customerName\",\"dbName\":\"customer_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dueDate\",\"dbName\":\"due_date\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"accountNumber\",\"dbName\":\"account_number\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"payment\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Payment\",\"relationName\":\"PaymentToPaymentVirtual\",\"relationFromFields\":[\"paymentId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"PaymentRefund\":{\"dbName\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"paymentId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bank\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"accountNumber\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"holderName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"amount\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reason\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"payment\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Payment\",\"relationName\":\"PaymentToPaymentRefund\",\"relationFromFields\":[\"paymentId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Em\":{\"dbName\":null,\"fields\":[{\"name\":\"code\",\"dbName\":\"em_code\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"dbName\":\"em_name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jisa\",\"dbName\":\"em_jisa\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"buCode\",\"dbName\":\"em_bucode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"endYmd\",\"dbName\":\"em_endymd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
+defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
+config.getQueryEngineWasmModule = undefined
+
+
+const { warnEnvConflicts } = require('./runtime/library')
+
+warnEnvConflicts({
+    rootEnvPath: config.relativeEnvPaths.rootEnvPath && path.resolve(config.dirname, config.relativeEnvPaths.rootEnvPath),
+    schemaEnvPath: config.relativeEnvPaths.schemaEnvPath && path.resolve(config.dirname, config.relativeEnvPaths.schemaEnvPath)
+})
+
+const PrismaClient = getPrismaClient(config)
+exports.PrismaClient = PrismaClient
+Object.assign(exports, Prisma)
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "src/prisma/client/query_engine-windows.dll.node")
+// file annotations for bundling tools to include these files
+path.join(__dirname, "schema.prisma");
+path.join(process.cwd(), "src/prisma/client/schema.prisma")

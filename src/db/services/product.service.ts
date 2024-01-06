@@ -12,7 +12,7 @@ import {
   getYkihosByMyung,
 } from "./cs.service";
 import { Product } from "../models/product";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/prisma/client";
 import { getLatestPls } from "./product-list-sub.service";
 import { getEm } from "./em.service";
 import { getPaymentItemWithPayment } from "./payment-item.service";

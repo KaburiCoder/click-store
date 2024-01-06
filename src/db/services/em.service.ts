@@ -1,7 +1,7 @@
 "use server";
 import { getJisa } from "@/lib/utils/user.util";
 import db from "../db";
-import { Em } from "@prisma/client";
+import { Em } from "@/prisma/client";
 
 interface GetManagersResult {
   code: string;

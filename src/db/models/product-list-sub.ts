@@ -1,3 +1,3 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/prisma/client";
 
-export interface ProductListSub extends Prisma.ProductListSubCreateManyInput {}
+export interface ProductListSub extends Prisma.ProductListSubCreateManyInput { }

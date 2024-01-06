@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/prisma/client";
 import { Cart } from "./cart";
 import { ProductListSub } from "./product-list-sub";
 import { ProductList } from "./product-list";

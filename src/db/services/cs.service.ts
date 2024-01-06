@@ -1,7 +1,7 @@
 "use server";
 import db from "@/db/db";
 import { Cs } from "../models/cs";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/prisma/client";
 import { getJisa } from "@/lib/utils/user.util";
 import dayjs from "dayjs";
 import { getAdminYKihos } from "./account.service";

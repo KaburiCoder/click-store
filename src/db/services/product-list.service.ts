@@ -1,7 +1,7 @@
 import db from "@/db/db";
 import { ProductList } from "../models/product-list";
 import { getJisa } from "@/lib/utils/user.util";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/prisma/client";
 
 export async function getWebProductList() {
   const jisa = await getJisa();

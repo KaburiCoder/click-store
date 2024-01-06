@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/prisma/client";
 import db from "../db";
 import { PaymentItem } from "../models/payment-item";
 
