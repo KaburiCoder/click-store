@@ -30,4 +30,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            cd c:\click-store\next-test-click-store & git pull & pnpm install & pnpm deploy:prod
+            cd c:\click-store\next-test-click-store & git pull & pnpm install & pnpm deploy
