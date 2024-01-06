@@ -1,17 +1,21 @@
 "use client";
 
 import React, { Fragment, useEffect, useState } from "react";
-import styles from "./dd-cart.module.scss";
 import { getCartWithProduct } from "@/db/services/cart.service";
-import { BsCartCheck } from "react-icons/bs";
 import { Cart } from "@/db/models/cart";
 import { CartItemsUtil } from "@/lib/utils/cart-items.util";
 import Item from "./item/item";
-import RIconButton from "@/components/ui/custom/ricon-button";
 import { useRouter } from "next/navigation";
 import { paths } from "@/paths";
+import ButtonL from "@/components/ui/custom/button-l";
+import { ShoppingBasket } from "lucide-react";
+import { CartItem } from "@/db/models/cart-item";
 
-export default function DdCart() {
+interface Props {
+  onLinkClick: () => void;
+}
+
+export default function DdCart({ onLinkClick }: Props) {
   const { push } = useRouter();
   const [cart, setCart] = useState<Cart>();
   const [cartItemsUtil] = useState<CartItemsUtil>(new CartItemsUtil());
@@ -27,50 +31,55 @@ export default function DdCart() {
     });
   }, [cartItemsUtil]);
 
-  function TotalQuantity() {
-    return (
-      <div className={styles.totalQuantity}>
-        총 주문 수량 : <span>{cartItemsUtil.totalQuantity}</span>
-      </div>
-    );
-  }
-
-  function TotalPrice() {
-    return (
-      <div
-        className={styles.totalPrice}
-      >{`₩${cartItemsUtil.totalPrice?.toLocaleString()}`}</div>
-    );
-  }
-
-  function ItemList() {
-    return cart?.cartItems?.map((cartItem) => (
-      <ul key={cartItem.id} className={styles.list}>
-        <Item cartItem={cartItem} />
-        <hr key={cartItem.code} style={{ width: "100%" }} />
-      </ul>
-    ));
+  function handleToCartView(): void {
+    push(paths.cartView());
+    onLinkClick();
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <div>
-          <TotalQuantity />
-          <TotalPrice />
+    <div>
+      <div className="flex items-center justify-between bg-blue-600 px-4 py-2 text-slate-50">
+        <div className="flex flex-col">
+          <TotalQuantity totalQuantity={cartItemsUtil.totalQuantity} />
+          <TotalPrice totalPrice={cartItemsUtil.totalPrice} />
         </div>
-        <RIconButton
-          icon={BsCartCheck}
-          className="h-full p-4"
+        <ButtonL
+          icon={ShoppingBasket}
+          className="h-full p-4 font-bold"
           variant={"white"}
           iconSide="top"
-          textClassName="font-bold"
-          onClick={() => push(paths.cartView())}
+          onClick={handleToCartView}
         >
           장바구니 보기
-        </RIconButton>
+        </ButtonL>
       </div>
-      <ItemList />
+      <ItemList cartItems={cart?.cartItems} />
     </div>
   );
+}
+
+function TotalQuantity({ totalQuantity }: { totalQuantity: number }) {
+  return (
+    <div className="text-xl">
+      총 주문 수량 : <span>{totalQuantity}</span>
+    </div>
+  );
+}
+
+function TotalPrice({ totalPrice }: { totalPrice: number }) {
+  return (
+    <div className="text-2xl font-bold">{`₩${totalPrice.toLocaleString()}`}</div>
+  );
+}
+
+function ItemList({ cartItems }: { cartItems?: CartItem[] }) {
+  return cartItems?.map((cartItem) => (
+    <ul
+      key={cartItem.id}
+      className="flex h-full flex-col items-center bg-white px-4 py-2"
+    >
+      <Item cartItem={cartItem} />
+      <hr key={cartItem.code} style={{ width: "100%" }} />
+    </ul>
+  ));
 }

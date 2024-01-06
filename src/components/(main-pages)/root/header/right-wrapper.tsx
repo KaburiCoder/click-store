@@ -1,7 +1,7 @@
 import React from "react";
-import DdUserButton from "./dd-user-button";
+import DdUserButton from "./dd-user/dd-user-button";
 import DdOrderButton from "./dd-order-button";
-import DdCartButton from "./dd-cart-button";
+import DdCartButton from "./dd-cart/dd-cart-button";
 
 export default function RightWrapper() {
   return (

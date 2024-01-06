@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import { IoSettingsOutline } from "react-icons/io5";
 import { paths } from "@/paths";
 import LinkButton from "./link-button/link-button";
@@ -8,8 +8,8 @@ import { MdManageAccounts } from "react-icons/md";
 import { BiBasket } from "react-icons/bi";
 import { logoutAction } from "@/db/actions/auth";
 import useSvrCookie from "@/lib/hooks/use-svr-cookie";
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import RIconButton from "@/components/ui/custom/ricon-button";
+import ButtonL from "@/components/ui/custom/button-l";
+import { LogOut } from "lucide-react";
 interface Props {
   onLinkClick: () => void;
 }
@@ -32,15 +32,14 @@ export default function DdUser({ onLinkClick }: Props) {
         </div>
         <div>
           <form className="h-full" action={logoutAction}>
-            <RIconButton
-              icon={RiLogoutBoxRLine}
-              className="h-full p-4"
+            <ButtonL
+              icon={LogOut}
+              className="h-full p-4 font-bold"
               variant={"white"}
               iconSide="top"
-              textClassName="font-bold"
             >
               로그아웃
-            </RIconButton>
+            </ButtonL>
           </form>
         </div>
       </div>

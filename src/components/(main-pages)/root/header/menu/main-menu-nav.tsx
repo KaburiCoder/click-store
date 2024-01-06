@@ -1,6 +1,6 @@
 "use client";
 import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
-import MainMenu from "@/components/(main-pages)/root/header/main-menu";
+import MainMenu from "@/components/(main-pages)/root/header/menu/main-menu";
 import React, { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import useResizeObserver from "use-resize-observer";

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import DdOrderButton from "./dd-order-button";
-import DdMenuButton from "./dd-menu-button";
+import DdMenuButton from "./menu/dd-menu-button";
 
 export default function LeftWrapper() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import LeftWrapper from "./left-wrapper";
 import RightWrapper from "./right-wrapper";
-import MainMenuNav from "./main-menu-nav";
+import MainMenuNav from "./menu/main-menu-nav";
 import MainLogo from "@/components/main-logo";
 
 export default function MainHeader() {

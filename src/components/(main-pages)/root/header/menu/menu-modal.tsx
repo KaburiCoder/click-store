@@ -1,6 +1,6 @@
 "use client";
 import MainMenu from "./main-menu";
-import DownModal from "./down-modal";
+import DownModal from "../down-modal";
 
 interface Props {
   open: boolean;

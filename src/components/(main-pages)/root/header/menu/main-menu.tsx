@@ -50,8 +50,8 @@ export default function MainMenu({ onClose }: Props) {
       <li key={w.code}>
         <button
           className={cn(
-            "w-full rounded bg-blue-500 p-2.5 text-left text-base text-slate-50 hover:bg-blue-500/90",
-            "md:bg-transparent",
+            "w-full rounded border border-solid border-blue-500 bg-blue-100 p-2.5 text-left text-base font-bold text-blue-600 hover:bg-blue-200",
+            "md:border-none md:bg-transparent md:text-slate-50 hover:md:text-blue-700",
           )}
           onClick={handleLink.bind(null, w.code)}
         >
@@ -64,8 +64,8 @@ export default function MainMenu({ onClose }: Props) {
   return (
     <ul
       className={cn(
-        "relative flex h-full flex-col items-center gap-2 p-2",
-        "md:flex-row md:justify-center md:bg-blue-400 md:p-0",
+        "relative flex h-full flex-col items-stretch gap-2 bg-slate-50 p-2",
+        "md:w-full md:flex-row md:items-center md:justify-center md:bg-blue-400 md:p-0",
       )}
     >
       {linkComponents}

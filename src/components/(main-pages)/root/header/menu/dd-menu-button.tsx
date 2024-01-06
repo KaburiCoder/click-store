@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
-import DdButton from "./dd-button";
-import MainMenu from "@/components/(main-pages)/root/header/main-menu";
+import DdButton from "../dd-button";
+import MainMenu from "@/components/(main-pages)/root/header/menu/main-menu";
 import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
 import { SetOpenType } from "@/lib/types/set-open.type";
 import { GiHamburgerMenu } from "react-icons/gi";
