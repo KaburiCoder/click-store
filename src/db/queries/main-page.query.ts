@@ -10,12 +10,20 @@ import db from "@/db/db";
 import { getLatestPlsList } from "@/db/services/product-list-sub.service";
 import { getProductListImage } from "@/db/services/product-list-image.service";
 import { imgPaths } from "@/paths";
+import { getUser } from "@/lib/utils/user.util";
 
+// 테스트 계정이 아닌 경우 테스트 상품은 보이지 않게
+function checkTestingVisible(ykiho: string, pdName: string) {
+  const isTestName = pdName.indexOf("*테스트*") > -1;
+  const isTestYKiho = ["10170068", "99999999"].includes(ykiho);
+
+  return !isTestYKiho && isTestName;
+}
 export const getBunryuObjectList = async () => {
   const webBunryuList = await findWebBunryuList();
   const plList = await getWebProductList();
   const plsList = await getLatestPlsList();
-
+  const user = await getUser();
   const bunryuObjects: BunryuObject[] = [...webBunryuList];
 
   for (const bunryuObj of bunryuObjects) {
@@ -24,6 +32,9 @@ export const getBunryuObjectList = async () => {
 
     const products = foundPlList.reduce((acc: Products[], cur) => {
       const pls = plsList.find((p) => p.smCode === cur.smCode);
+      if (pls && checkTestingVisible(user!.ykiho!, pls.smMyung)) {
+        return acc;
+      }
 
       const obj = Object.assign({ ...cur, ...pls });
       return acc.concat([obj]);
