@@ -8,7 +8,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { IconType } from "react-icons";
 import { cn } from "@/lib/utils/shadcn.util";
 import { GoPaperclip } from "react-icons/go";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   Tooltip,
   TooltipContent,
@@ -47,34 +47,32 @@ export default function ReceiptHeader({
     <>
       <div className="flex justify-between pb-8 pt-2">
         <h3 className="text-xl">{title}</h3>
-        <div className="flex gap-2">
-          {!isPrinting && (
-            <>
-              {!isMobile && (
-                <Button
-                  className="text-blue-500 hover:text-blue-800"
-                  Icon={LuPrinter}
-                  onClick={onPrintClick}
-                  tooltip="출력"
-                />
-              )}
+        {!isPrinting && (
+          <div className="flex gap-2">
+            {!isMobile && (
+              <Button
+                className="text-blue-500 hover:text-blue-800"
+                Icon={LuPrinter}
+                onClick={onPrintClick}
+                tooltip="출력"
+              />
+            )}
+            <Button
+              className="text-gray-600 hover:text-gray-800"
+              Icon={GoPaperclip}
+              onClick={handleCopyClipboard}
+              tooltip="링크 복사"
+            />
+            {setOpen && (
               <Button
                 className="text-gray-600 hover:text-gray-800"
-                Icon={GoPaperclip}
-                onClick={handleCopyClipboard}
-                tooltip="링크 복사"
+                Icon={IoCloseOutline}
+                onClick={() => setOpen?.(false)}
+                tooltip="닫기"
               />
-              {setOpen && (
-                <Button
-                  className="text-gray-600 hover:text-gray-800"
-                  Icon={IoCloseOutline}
-                  onClick={() => setOpen?.(false)}
-                  tooltip="닫기"
-                />
-              )}
-            </>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

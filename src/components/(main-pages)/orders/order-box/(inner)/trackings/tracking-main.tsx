@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils/shadcn.util";
 import { ModalProps } from "@/lib/props/modal.props";
 import { IoCloseOutline } from "react-icons/io5";
 
-interface Props extends TrackingProps, ModalProps { }
+interface Props extends TrackingProps, Partial<ModalProps> { }
 interface TrackingProps {
   trackingNumber: string;
   trackingResult: TrackingResult;
@@ -21,13 +21,15 @@ export default function TrackingMain({
   setOpen,
 }: Props) {
   return (
-    <div className="relative flex max-h-[90vh] min-h-[20rem] flex-col">
-      <div
-        className="absolute right-0 h-10 w-10 rounded border border-solid border-slate-300 p-2 text-gray-600 hover:bg-slate-300 hover:text-red-500"
-        onClick={() => setOpen(false)}
-      >
-        <IoCloseOutline className="h-full w-full" />
-      </div>
+    <div className="relative flex max-h-[90vh] min-h-[20rem] flex-col bg-white">
+      {setOpen && (
+        <div
+          className="absolute right-0 h-10 w-10 rounded border border-solid border-slate-300 p-2 text-gray-600 hover:bg-slate-300 hover:text-red-500"
+          onClick={() => setOpen(false)}
+        >
+          <IoCloseOutline className="h-full w-full" />
+        </div>
+      )}
       <Title trackingNumber={trackingNumber} trackingResult={trackingResult} />
       <Body trackingNumber={trackingNumber} trackingResult={trackingResult} />
     </div>
@@ -61,7 +63,7 @@ function Title({ trackingNumber, trackingResult }: TrackingProps) {
   );
 }
 
-function Body({ trackingNumber, trackingResult }: TrackingProps) {
+function Body({ trackingResult }: TrackingProps) {
   const trackingItems = trackingResult?.progresses?.map((p, i) => (
     <TrackingItem key={i} progress={p} highlight={i === 0} />
   ));

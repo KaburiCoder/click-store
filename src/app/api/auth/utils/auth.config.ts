@@ -21,6 +21,7 @@ export const authConfig = {
       const anyPass = isPathnameMatching(nextUrl.pathname, [
         "/opengraph-image",
         "/receipt",
+        "/delivery",
       ]);
 
       if (anyPass) {

@@ -1,6 +1,5 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
-import { Tracking } from "@/lib/classes/tracking";
 import { TrackingProps } from "@/lib/props/tracking.props";
 import React, { useState } from "react";
 import TrackingModal from "./trackings/tracking-modal";
