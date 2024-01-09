@@ -13,11 +13,17 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    console.log("post - ", await req.json());
-
-    return NextResponse.json({ message: "success" });
+    console.log("post(text) - ", await req.text());
   } catch (error: any) {
-    console.log("post - ", error.message);
+    console.log("post(text) - ", error.message);
     return NextResponse.json({ errorMessage: error.message });
   }
+  try {
+    console.log("post(json) - ", await req.json());
+  } catch (error: any) {
+    console.log("post(json) - ", error.message);
+    return NextResponse.json({ errorMessage: error.message });
+  }
+
+  return NextResponse.json({ message: "success" });
 }
