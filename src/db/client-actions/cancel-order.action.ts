@@ -45,8 +45,6 @@ export default async function cancelOrderAction(
       };
     }
   } catch (error: any) {
-    console.log("err", error);
-
     return {
       errors: [error.message],
     };

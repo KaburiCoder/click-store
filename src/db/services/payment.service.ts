@@ -252,14 +252,22 @@ export async function getImcompletedPayments() {
       cancel: false,
       sendType: { not: "배송완료" },
     },
-    include: { paymentItems: true },
+    include: { paymentItems: true, virtual: true },
+  });
+
+  return payments as Payment[];
+}
+
+export async function getJoinedPayments() {
+  const payments = await db.payment.findMany({
+    include: { paymentItems: true, virtual: true },
   });
 
   return payments as Payment[];
 }
 
 /**
- * 배송 완료 처리
+ * 배송 일괄 완료 처리
  * @param payments
  * @returns Payment[]
  */
@@ -272,4 +280,15 @@ export async function updateCompleteByPayments(payments: Payment[]) {
       }),
     ),
   );
+}
+
+/**
+ * 배송 일괄 취소 처리
+ * @param payments
+ * @returns Payment[]
+ */
+export async function updatCancelByPayments(payments: Payment[]) {
+  for (const payment of payments) {
+    await cancelPayment(payment.id!);
+  }
 }

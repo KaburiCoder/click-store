@@ -38,19 +38,6 @@ export default function SearchBar() {
     };
   }, [clearSearchData]);
 
-  useEffect(() => {
-    function handleKeydownEvent(this: Document, ev: KeyboardEvent) {
-      if (ev.altKey && ev.ctrlKey && ev.shiftKey) {
-        console.log("굳굳");
-      }
-    }
-
-    document.addEventListener("keydown", handleKeydownEvent);
-    return () => {
-      document.removeEventListener("keydown", handleKeydownEvent);
-    };
-  }, []);
-
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 

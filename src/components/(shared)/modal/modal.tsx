@@ -19,8 +19,6 @@ export default function Modal({ open, setOpen, children, className }: Props) {
 
   const onClick: MouseEventHandler = useCallback(
     (e) => {
-      console.log("target", e.target);
-      console.log("wrapper", wrapper);
       if (e.target === overlay.current && e.target !== wrapper.current) {
         onDismiss?.();
       }

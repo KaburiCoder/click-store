@@ -16,8 +16,6 @@ export default function MainMenu({ onClose }: Props) {
     queryFn: fetchWebBunryuList,
   });
 
-  console.log("data", data);
-
   const handleLink = (key: string) => {
     scrollToTargetAdjusted(key);
     onClose?.();

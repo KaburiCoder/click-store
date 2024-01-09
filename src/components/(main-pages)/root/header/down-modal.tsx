@@ -25,8 +25,6 @@ const DownModal: React.FC<Props> = ({
     onClose();
   }
 
-  console.log("cn", className);
-
   return (
     <>
       <Backdrop

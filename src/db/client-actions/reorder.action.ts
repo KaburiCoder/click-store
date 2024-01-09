@@ -2,8 +2,6 @@ import { PaymentItem } from "../models/payment-item";
 import { saveCart } from "../services/cart.service";
 
 export async function reorderAction(paymentItems: PaymentItem[]) {
-  console.log(paymentItems);
-
   for (const item of paymentItems) {
     // const result = await getPaymentItemCode({ variables: { id: item.id } });
     // const code = result.data?.getPaymentItemById?.code;

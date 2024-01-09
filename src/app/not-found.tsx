@@ -3,17 +3,11 @@ import ErrorCard from "@/components/error-card";
 import MainLogo from "@/components/main-logo";
 import ButtonL from "@/components/ui/custom/button-l";
 import { imgPaths, paths } from "@/paths";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function NotFound() {
   const { push, back } = useRouter();
-
-  console.log(
-    "process.env.NEXT_PBULIC_NODE_ENV",
-    process.env.NEXT_PBULIC_NODE_ENV,
-  );
 
   function handleToMain(): void {
     push(paths.root());

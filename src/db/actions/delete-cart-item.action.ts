@@ -9,7 +9,6 @@ export const deleteCartItemAction = async (_: any, formData: FormData) => {
   try {
     await deleteCartItems([+id]);
   } catch (err) {
-    console.log(err);
     throw new Error("카트 아이템 삭제 실패!");
   }
 
