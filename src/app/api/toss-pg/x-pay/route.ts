@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ message: "success" });
   } catch (error: any) {
+    console.log("get - ", error.message);
     return NextResponse.json({ errorMessage: error.message });
   }
 }
@@ -16,6 +17,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: "success" });
   } catch (error: any) {
+    console.log("post - ", error.message);
     return NextResponse.json({ errorMessage: error.message });
   }
 }
