@@ -287,7 +287,7 @@ export async function updateCompleteByPayments(payments: Payment[]) {
  * @param payments
  * @returns Payment[]
  */
-export async function updatCancelByPayments(payments: Payment[]) {
+export async function cancelByPayments(payments: Payment[]) {
   for (const payment of payments) {
     await cancelPayment(payment.id!);
   }

@@ -4,8 +4,12 @@ import { fetchTracking } from "@/db/queries/fetch-tracking";
 import {
   addProductOfPayments,
   getImcompletedPayments,
+  cancelByPayments,
   updateCompleteByPayments,
 } from "@/db/services/payment.service";
+import { getPaymentOrders } from "@/db/services/toss-payments/get-payment-orders";
+import { resultWrapper2 } from "@/lib/utils/callback.util";
+import { subtract9HoursByObject } from "@/lib/utils/date.util";
 import { bigoToTrackings } from "@/lib/utils/tracking.util";
 import dayjs from "dayjs";
 import { NextRequest, NextResponse } from "next/server";
@@ -17,7 +21,18 @@ export async function PATCH(req: NextRequest) {
       throw new Error("매개변수가 올바르지 않습니다.");
     }
 
-    const imcompletedPayments = await getImcompletedPayments();
+    let imcompletedPayments = await getImcompletedPayments();
+    subtract9HoursByObject(imcompletedPayments);
+
+    // 가상계좌 입금 시간 만료인 경우 취소 처리
+    const notPaiedPayments =
+      await getVirtualNotPaiedPayments(imcompletedPayments);
+    await cancelByPayments(notPaiedPayments);
+
+    // 가상계좌 만료 취소 처리된 리스트는 제외
+    imcompletedPayments = imcompletedPayments.filter(
+      (payment) => !notPaiedPayments.some((p) => p.id === payment.id),
+    );
 
     // 접수 후 {afterDays}일 지나면 완료 처리(일반적으로 7일)
     const filteredPayments = imcompletedPayments.filter((payment) => {
@@ -79,4 +94,31 @@ async function isAnyPaymentDelivered(paymentItems: PaymentItem[]) {
     }
   }
   return false;
+}
+
+async function getVirtualNotPaiedPayments(payments: Payment[]) {
+  const notPaiedPayments = payments.filter(
+    (payment) =>
+      payment.virtual &&
+      payment.sendType === "결제대기" &&
+      dayjs(payment.virtual!.dueDate) < dayjs(),
+  );
+
+  // TOSS API로 재검증 작업
+  const waitingPayments: Payment[] = [];
+  for (const payment of notPaiedPayments) {
+    const data = await resultWrapper2(
+      getPaymentOrders({
+        appEnv: payment.test ? "dev" : "prod",
+        orderId: payment.orderId,
+      }),
+    );
+
+    // 대기 상태인 경우
+    if (data.result && data.result.status === "WAITING_FOR_DEPOSIT") {
+      waitingPayments.push(payment);
+    }
+  }
+
+  return waitingPayments;
 }
