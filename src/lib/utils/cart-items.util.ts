@@ -30,10 +30,13 @@ export class CartItemsUtil {
   }
 
   public get orderName(): string {
-    const orderNames = this.cartItems?.map(
-      (ci) => `${ci.pls?.smMyung}${ci.fit ? "[맞춤주문]" : ""}`,
-    );
-    return orderNames?.join("|") ?? "";
+    const orderNames = this.cartItems?.map((ci) => {
+      const productName = ci.pls?.smMyung;
+      const fitText = ci.fit ? "[맞춤]" : "";
+      const count = ci.quantity > 1 ? `*${ci.quantity}` : "";
+      return `${productName}${fitText}${count}`;
+    });
+    return orderNames?.join(", ") ?? "";
   }
 
   public get paymentState() {
