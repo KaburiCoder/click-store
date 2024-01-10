@@ -5,9 +5,14 @@ const nextConfig = {
       allowedOrigins: [process.env.NEXT_PUBLIC_CLICK_DOMAIN],
     },
   },
-  // compiler: {
-  //   removeConsole: process.env.NODE_ENV === "production",
-  // },
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? {
+            exclude: ["error", "table"],
+          }
+        : undefined,
+  },
 
   webpack: (config) => {
     config.module.rules.push({

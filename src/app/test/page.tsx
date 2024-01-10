@@ -1,6 +1,10 @@
-import PaymentError from "@/components/(main-pages)/payment/payment-error";
+"use client";
 import React from "react";
 
 export default function TestPage() {
-  return <PaymentError error={"아놔 ㅠㅠㅠ"} />;
+  console.log("console.log");
+  console.warn("console.warn");
+  console.error("console.error");
+  console.table({ a: "123", b: "456" });
+  return <div></div>;
 }

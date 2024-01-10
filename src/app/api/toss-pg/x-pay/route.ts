@@ -11,19 +11,15 @@ export async function POST(req: NextRequest) {
     const params = new URLSearchParams(paramsText);
     const orderId = params.get("oid");
     const txtype: TxType = params.get("txtype") as TxType;
-    const resdate = params.get("resdate");
+    let resdate = params.get("resdate");
 
     if (!orderId) {
       return NextResponse.json({ errorMessage: "orderId 누락" });
     }
 
-    const resDateStr = dayjs(resdate, "YYYYMMDDHHmmss").format(
-      "YYYY-MM-DD HH:mm:ss",
-    );
+    resdate = dayjs(resdate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm:ss");
 
-    console.log(
-      `orderId: ${orderId}, txtype: ${txtype}, 처리시간: ${resDateStr}`,
-    );
+    console.table({ orderId, txtype, resdate });
 
     switch (txtype) {
       case TxType.구매취소결과:
