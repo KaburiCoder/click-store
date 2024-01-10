@@ -19,7 +19,7 @@ export default function DeliveryBadge({ tracking }: TrackingProps) {
       )}
       <Badge
         variant={"tracking"}
-        className="mr-1 mb-0.5 hover:cursor-pointer"
+        className="hover:cursor-pointer"
         key={text}
         onClick={handleOpenTracking}
       >

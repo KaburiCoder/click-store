@@ -37,12 +37,8 @@ export default function OrderBodyItem({ item, cancel, setSeparator }: Props) {
             </span>
           )}
         </div>
-        <div className="flex flex-wrap">
-          {item.fit && (
-            <Badge variant={"fit"} className="mr-1">
-              맞춤
-            </Badge>
-          )}
+        <div className="flex flex-wrap gap-0.5">
+          {item.fit && <Badge variant={"fit"}>맞춤</Badge>}
           {deliveryComponents}
         </div>
       </div>
