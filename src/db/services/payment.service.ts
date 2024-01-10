@@ -20,6 +20,7 @@ import { APP_ENV } from "@/configs/config";
 import { GetCustomerNameDto } from "../dto/payment/get-customer-name.dto";
 import { getEm } from "./em.service";
 import { AdminInfinitySearchDto } from "../dto/payment/admin-infinity-search.dto";
+import { Prisma } from "@/prisma/client";
 
 const DISP_ITEM_COUNT = 6;
 
@@ -197,18 +198,21 @@ export async function getPaymentByPaymentKey(
 
   return payment as Payment;
 }
+export async function cancelPaymentByOrderId(orderId: string) {
+  const result = await db.payment.findFirst({
+    select: { id: true },
+    where: { orderId },
+  });
+  if (result?.id) {
+    await cancelPayment(result.id);
+  }
+}
 
 export async function cancelPayment(id: number) {
   const result = await db.payment.update({
-    data: {
-      cancel: true,
-    },
-    where: {
-      id,
-    },
-    include: {
-      paymentItems: true,
-    },
+    data: { cancel: true },
+    where: { id },
+    include: { paymentItems: true },
   });
   if (result.paymentItems) {
     const piIds = result.paymentItems.map((pi) => pi.id);
@@ -266,6 +270,17 @@ export async function getJoinedPayments() {
   return payments as Payment[];
 }
 
+function _updateComplete(where: Prisma.PaymentWhereUniqueInput) {
+  return db.payment.update({
+    data: { sendType: "배송완료" },
+    where,
+  });
+}
+
+export async function updateComplete(where: Prisma.PaymentWhereUniqueInput) {
+  return _updateComplete(where);
+}
+
 /**
  * 배송 일괄 완료 처리
  * @param payments
@@ -273,12 +288,7 @@ export async function getJoinedPayments() {
  */
 export async function updateCompleteByPayments(payments: Payment[]) {
   return await db.$transaction(
-    payments.map((payment) =>
-      db.payment.update({
-        data: { sendType: "배송완료" },
-        where: { id: payment.id },
-      }),
-    ),
+    payments.map((payment) => _updateComplete({ id: payment.id })),
   );
 }
 
