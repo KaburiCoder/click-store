@@ -13,7 +13,6 @@ export default function MainMenuNav() {
     !min768 || !(pathname === "/" || pathname === "/add-to-cart");
 
   // 메인화면 Nav창이 없을 때 동적으로 margin-top 수정
-  // (main-pages)/layout.module.scss
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--main-nav-height",
