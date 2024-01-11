@@ -12,24 +12,28 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const data = await req.json();
-  const result: TossApiResult = data.data;
+  let jsonData;
+  try {
+    jsonData = await req.json();
+    const result: TossApiResult = jsonData.data;
 
-  await AsyncUtil.delay(3000);
+    await AsyncUtil.delay(3000);
 
-  const payment = await getPaymentByPaymentKey(result.paymentKey, { em: true });
-  const testingText = APP_ENV === 'dev' ? "◈◈◈ 테스트 환경입니다. ◈◈◈" : "";
-  const approvedText = result.approvedAt
-    ? `\n결제완료 : ${dayjs(result.approvedAt).format("YYYY-MM-DD HH:mm:ss")}`
-    : "";
-  const cashUrl = result.cashReceipt
-    ? `\n현금영수증 URL : ${result.cashReceipt?.receiptUrl}`
-    : "";
-  const message = `----- 물품관리 웹 결제 알림 -----
-${testingText}
+    const payment = await getPaymentByPaymentKey(result.paymentKey, {
+      em: true,
+    });
+    const testingText = APP_ENV === "dev" ? "◈◈◈ 테스트 환경입니다. ◈◈◈" : "";
+    const approvedText = result.approvedAt
+      ? `\n결제완료 : ${dayjs(result.approvedAt).format("YYYY-MM-DD HH:mm:ss")}`
+      : "";
+    const cashUrl = result.cashReceipt
+      ? `\n현금영수증 URL : ${result.cashReceipt?.receiptUrl}`
+      : "";
+    const message = `----- 물품관리 웹 결제 알림 -----
+  ${testingText}
 주문요청 : ${dayjs(result.requestedAt).format(
-    "YYYY-MM-DD HH:mm:ss",
-  )}${approvedText}
+      "YYYY-MM-DD HH:mm:ss",
+    )}${approvedText}
 주문번호 : ${result.orderId}
 상품명칭 : ${result.orderName}
 
@@ -42,20 +46,15 @@ ${testingText}
 결제금액 : ${result.totalAmount.toLocaleString()}
 
 영수증 URL : ${result.receipt.url}${cashUrl}
-`;
+  `;
 
-  const { errorMessage } = await resultWrapper2(
-    sendCpmMessage({ recUser: "047", msg: message }),
-  );
+    await sendCpmMessage({ recUser: "047", msg: message });
 
-  if (errorMessage) {
-    console.table({
-      hookName: "payment-status-changed-hook",
-      errorMessage,
-    });
+    if (result.method) return NextResponse.json({ state: "success" });
+  } catch (error) {
+    console.error({ state: "error", error, jsonData });
+    return NextResponse.json({ error });
   }
-
-  if (result.method) return NextResponse.json({ message: "success" });
 }
 
 function methodToEasyText(status: string) {
