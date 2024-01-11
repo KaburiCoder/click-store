@@ -6,6 +6,10 @@ import { resultWrapper2 } from "@/lib/utils/callback.util";
 import { AsyncUtil } from "@/lib/utils/async.util";
 import { getPaymentByPaymentKey } from "@/db/services/payment.service";
 
+export async function GET(req: NextRequest) {
+  return NextResponse.json({ message: "success" });
+}
+
 export async function POST(req: NextRequest) {
   const data = await req.json();
   const result: TossApiResult = data.data;
