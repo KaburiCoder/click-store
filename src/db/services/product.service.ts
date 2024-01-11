@@ -4,7 +4,11 @@ import db from "../db";
 import { SaveProductsDto } from "../dto/product/save-products.dto";
 import { getJisa } from "@/lib/utils/user.util";
 import { saveProductLogs } from "./product-log.service";
-import { dbNow, subtract9HoursByObject } from "@/lib/utils/date.util";
+import {
+  dbNow,
+  subtract9Hours,
+  subtract9HoursByObject,
+} from "@/lib/utils/date.util";
 import { AdminSearchBarData } from "@/store/admin-search-bar.store";
 import {
   getCsByYkiho,
@@ -29,6 +33,9 @@ export async function saveProducts({
 
   const products = await db.$transaction(
     paymentItems.map((item) => {
+      const receiveYmd = dayjs(subtract9Hours(payment.requestedAt)).format(
+        "YYYYMMDD",
+      );
       return db.product.create({
         data: {
           jisa,
@@ -37,7 +44,7 @@ export async function saveProducts({
           ctTel: "",
           count: item.quantity!,
           receive: "000",
-          receiveYmd: dayjs(payment.requestedAt).format("YYYYMMDD"),
+          receiveYmd,
           sell: "0",
           check: "0",
           check2: "1",
