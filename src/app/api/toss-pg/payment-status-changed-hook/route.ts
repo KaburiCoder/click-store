@@ -5,6 +5,7 @@ import { sendCpmMessage } from "@/db/services/new-cpm-msg.service";
 import { resultWrapper2 } from "@/lib/utils/callback.util";
 import { AsyncUtil } from "@/lib/utils/async.util";
 import { getPaymentByPaymentKey } from "@/db/services/payment.service";
+import { APP_ENV } from "@/configs/config";
 
 export async function GET(req: NextRequest) {
   return NextResponse.json({ message: "success" });
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
   await AsyncUtil.delay(3000);
 
   const payment = await getPaymentByPaymentKey(result.paymentKey, { em: true });
-
+  const testingText = APP_ENV === 'dev' ? "◈◈◈ 테스트 환경입니다. ◈◈◈" : "";
   const approvedText = result.approvedAt
     ? `\n결제완료 : ${dayjs(result.approvedAt).format("YYYY-MM-DD HH:mm:ss")}`
     : "";
@@ -25,6 +26,7 @@ export async function POST(req: NextRequest) {
     ? `\n현금영수증 URL : ${result.cashReceipt?.receiptUrl}`
     : "";
   const message = `----- 물품관리 웹 결제 알림 -----
+${testingText}
 주문요청 : ${dayjs(result.requestedAt).format(
     "YYYY-MM-DD HH:mm:ss",
   )}${approvedText}
