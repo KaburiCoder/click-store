@@ -1,13 +1,12 @@
 "use client";
-import Modal from "@/components/(shared)/modal/modal";
+import Modal from "@/components/(shared)/modal";
 import { ModalProps } from "@/lib/props/modal.props";
 import React, { useEffect, useState } from "react";
 import CustomLi from "./custom-li/custom-li";
 import styles from "./product-modal.module.scss";
 import { Products } from "@/db/queries/main-page.query";
-import IntUpAndDown from "@/components/(shared)/int-up-and-down/int-up-and-down";
-import CheckBox from "@/components/(shared)/check-box/check-box";
-import MTitle from "@/components/(shared)/m-title/m-title";
+import IntUpAndDown from "@/components/(shared)/int-up-and-down";
+import MTitle from "@/components/(shared)/m-title";
 import { toast } from "react-toastify";
 import useCartStore from "@/store/cart.store";
 import { useRouter } from "next/navigation";
@@ -15,6 +14,7 @@ import { paths } from "@/paths";
 import * as cartService from "@/db/services/cart.service";
 import ServiceInfo from "./service-info/service-info";
 import Drawer from "@/components/(shared)/drawer/drawer";
+import CheckBoxL from "@/components/ui/custom/check-box-l";
 
 interface Props extends ModalProps {
   product: Products;
@@ -70,11 +70,11 @@ export default function ProductModal(props: Props) {
               text={(quantity * product.danga).toLocaleString()}
             />
             {canFit && (
-              <CheckBox
-                className={styles.fit_checkbox}
-                text="맞춤주문"
+              <CheckBoxL
+                className='min-h-[2rem] text-base'
+                label="맞춤주문"
                 checked={fitChecked}
-                onChange={handleFitChange}
+                onCheckedChange={handleFitChange}
               />
             )}
           </ul>

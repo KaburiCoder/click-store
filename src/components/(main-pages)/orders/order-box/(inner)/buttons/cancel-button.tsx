@@ -1,4 +1,4 @@
-import ScreenLoading from "@/components/(shared)/screen-loading/screen-loading";
+import ScreenLoading from "@/components/(shared)/screen-loading";
 import { Button } from "@/components/ui/button";
 import YnDialog from "@/components/ui/custom/yn-dialog";
 import cancelOrderAction from "@/db/client-actions/cancel-order.action";

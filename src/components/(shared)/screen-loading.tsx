@@ -1,18 +1,17 @@
 import React from "react";
-import Backdrop from "../backdrop/backdrop";
-import styles from "./screen-loading.module.scss";
+import Backdrop from "./backdrop";
 import Image from "next/image";
 
 export default function ScreenLoading() {
   return (
     <>
       <Backdrop
-        className={styles.loading_backdrop}
+        className="!bg-white !bg-opacity-5"
         notScrollHidden
         zIndex={9999}
       />
       <Image
-        className={styles.loading}
+        className="fixed left-1/2 top-1/2 z-[99999] -translate-x-1/2 -translate-y-1/2"
         width={100}
         height={100}
         src={"/gifs/loading.gif"}

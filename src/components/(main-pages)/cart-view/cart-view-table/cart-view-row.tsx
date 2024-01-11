@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./cart-view-row.module.scss";
 import { CartItem } from "@/db/models/cart-item";
 import useCartViewStore from "@/store/cart-view.store";
-import IntUpAndDown from "@/components/(shared)/int-up-and-down/int-up-and-down";
+import IntUpAndDown from "@/components/(shared)/int-up-and-down";
 import { defaultProductQuantity } from "@/lib/utils/product.util";
 import { useCartView } from "@/lib/hooks/use-cart-view";
 import { Badge } from "@/components/ui/badge";

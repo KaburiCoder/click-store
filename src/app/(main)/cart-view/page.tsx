@@ -4,7 +4,7 @@ import CartViewEmpty from "@/components/(main-pages)/cart-view/cart-view-empty/c
 import CartViewBody from "@/components/(main-pages)/cart-view/cart-view-table/cart-view-body";
 import CartViewTable from "@/components/(main-pages)/cart-view/cart-view-table/cart-view-table";
 import CartViewThead from "@/components/(main-pages)/cart-view/cart-view-table/cart-view-thead";
-import ScreenLoading from "@/components/(shared)/screen-loading/screen-loading";
+import ScreenLoading from "@/components/(shared)/screen-loading";
 import { useCartView } from "@/lib/hooks/use-cart-view";
 import React from "react";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import LbInput from "../../(shared)/lb-input/lb-input";
+import LbInput from "../../(shared)/lb-input";
 import { useFormState } from "react-dom";
 import { loginAction } from "@/db/actions/auth";
 import ErrorText from "@/components/(shared)/error-text";

@@ -1,6 +1,6 @@
 "use client";
 
-import Backdrop from "@/components/(shared)/backdrop/backdrop";
+import Backdrop from "@/components/(shared)/backdrop";
 import { ScriptProps } from "next/script";
 import { useMinMediaQuery } from "@/lib/hooks/use-min-media-query";
 import { cn } from "@/lib/utils/shadcn.util";

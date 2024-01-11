@@ -30,7 +30,8 @@ export default function CheckBoxL({
       <label
         htmlFor={label}
         className={cn(
-          "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+          "font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+          labelLocation === "bottom" ? "" : "mb-0.5",
           labelClassName,
         )}
       >

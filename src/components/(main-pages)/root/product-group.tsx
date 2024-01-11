@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import MTitle from "@/components/(shared)/m-title/m-title";
+import MTitle from "@/components/(shared)/m-title";
 import ProductList from "./product-list";
 import { BunryuObjectProps } from "@/lib/props/bunryu-object.props";
 

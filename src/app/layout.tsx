@@ -3,7 +3,7 @@ import "./global.css";
 import "@/css/index";
 import Providers from "@/providers/providers";
 import { natoSansKR } from "@/fonts/fonts";
-import ToastWrapper from "@/components/(shared)/toast-wrapper/toast-wrapper";
+import ToastWrapper from "@/components/(shared)/toast-wrapper";
 import { imgPaths } from "@/paths";
 import { APP_URL } from "@/configs/config";
 

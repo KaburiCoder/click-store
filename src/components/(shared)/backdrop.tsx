@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import styles from "./Backdrop.module.scss";
 import ReactDOM from "react-dom";
+import { cn } from "@/lib/utils/shadcn.util";
 
 interface Props {
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
@@ -30,7 +31,10 @@ const Backdrop = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <div
       ref={ref}
       style={{ zIndex: props.zIndex }}
-      className={`${styles.backdrop} ${props.className}`}
+      className={cn(
+        "animate-backdrop bg-black fixed left-0 top-0 z-[1001] h-screen w-screen",
+        props.className,
+      )}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
     >

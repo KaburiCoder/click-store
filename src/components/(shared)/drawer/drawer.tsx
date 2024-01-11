@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styles from "./drawer.module.scss";
-import classNames from "classnames";
+import styles from "./drawer.module.css";
 import ReactDOM from "react-dom";
-import Backdrop from "../backdrop/backdrop";
+import Backdrop from "../backdrop";
 import { ModalProps } from "@/lib/props/modal.props";
 import { useCSR } from "@/lib/hooks/use-CSR";
 import { cn } from "@/lib/utils/shadcn.util";

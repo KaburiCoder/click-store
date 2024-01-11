@@ -1,5 +1,5 @@
 "use client";
-import Modal from "@/components/(shared)/modal/modal";
+import Modal from "@/components/(shared)/modal";
 import React, { useState } from "react";
 import { IoReceipt } from "react-icons/io5";
 import SalesReceipt from "../sales-receipt";

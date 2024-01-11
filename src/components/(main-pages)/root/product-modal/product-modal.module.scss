@@ -27,10 +27,6 @@
   width: 80px;
 }
 
-.fit_checkbox {
-  min-height: 2rem;
-}
-
 .add-and-to-cart-button {
   @include custom-button($color: white,
     $backgroundColor: var(--color-green-600),

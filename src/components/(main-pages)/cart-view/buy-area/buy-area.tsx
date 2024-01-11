@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./buy-area.module.scss";
-import CheckBox from "@/components/(shared)/check-box/check-box";
 import useSvrCookie from "@/lib/hooks/use-svr-cookie";
 import { useCartView } from "@/lib/hooks/use-cart-view";
 import { useRouter } from "next/navigation";

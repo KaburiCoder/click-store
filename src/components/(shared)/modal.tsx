@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, useRef, useEffect, MouseEventHandler } from "react";
-import styles from "./modal.module.scss";
-import Backdrop from "../backdrop/backdrop";
+import Backdrop from "./backdrop";
 import { ModalProps } from "@/lib/props/modal.props";
 import { cn } from "@/lib/utils/shadcn.util";
 
@@ -49,7 +48,13 @@ export default function Modal({ open, setOpen, children, className }: Props) {
 
   return (
     <Backdrop ref={overlay} setPortal notScrollHidden onClick={onClick}>
-      <div ref={wrapper} className={cn("cst-card", styles.wrapper, className)}>
+      <div
+        ref={wrapper}
+        className={cn(
+          "cst-card absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-4",
+          "animate-modal-slide-down",
+        )}
+      >
         {children}
       </div>
     </Backdrop>

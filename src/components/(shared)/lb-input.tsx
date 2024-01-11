@@ -1,6 +1,4 @@
 import React from "react";
-import styles from "./lb-input.module.scss";
-import { ScriptProps } from "next/script";
 
 interface Props
   extends React.DetailedHTMLProps<
@@ -14,8 +12,8 @@ const LbInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   const { label, ...inputProps } = props;
 
   return (
-    <div className={styles.input_wrapper}>
-      <label htmlFor={label} className={styles.label}>
+    <div className="mb-2 flex flex-col">
+      <label htmlFor={label} className="mb-1 text-sm text-gray-600">
         {label}
       </label>
       <input

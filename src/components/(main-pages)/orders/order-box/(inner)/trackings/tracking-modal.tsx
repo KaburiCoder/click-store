@@ -1,4 +1,4 @@
-import Modal from "@/components/(shared)/modal/modal";
+import Modal from "@/components/(shared)/modal";
 import { Tracking } from "@/lib/classes/tracking";
 import { ModalProps } from "@/lib/props/modal.props";
 import React from "react";
