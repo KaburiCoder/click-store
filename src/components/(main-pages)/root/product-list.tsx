@@ -1,6 +1,5 @@
 "use client";
 import React, { Suspense } from "react";
-import styles from "./product-list.module.scss";
 import { BunryuObjectProps } from "@/lib/props/bunryu-object.props";
 import ProductItem from "./product-item";
 import { cn } from "@/lib/utils/shadcn.util";

@@ -1,19 +1,16 @@
 "use client";
 import React from "react";
-import styles from "./cart-view-row.module.scss";
 import { CartItem } from "@/db/models/cart-item";
-import useCartViewStore from "@/store/cart-view.store";
 import IntUpAndDown from "@/components/(shared)/int-up-and-down";
 import { defaultProductQuantity } from "@/lib/utils/product.util";
 import { useCartView } from "@/lib/hooks/use-cart-view";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils/shadcn.util";
+import ButtonL from "@/components/ui/custom/button-l";
 
 interface Props {
   cartItem: CartItem;
   checked: boolean;
-  // onCheckChange: (checked: boolean) => void;
-  // onCountChange: (id: number, value: number) => void;
-  // onCancel: (id: number) => void;
 }
 
 const CartViewRow: React.FC<Props> = (props) => {
@@ -38,9 +35,11 @@ const CartViewRow: React.FC<Props> = (props) => {
     updateQuantity(value);
   }
 
+  const groupStyles = "flex flex-1 items-center justify-between py-2.5";
+
   return (
-    <tr key={ci.id}>
-      <td className={styles.first_column}>
+    <tr className="border-b border-solid border-blue-400" key={ci.id}>
+      <td className="text-center">
         <input
           type="checkbox"
           checked={props.checked}
@@ -48,10 +47,14 @@ const CartViewRow: React.FC<Props> = (props) => {
         />
       </td>
       <td colSpan={2}>
-        <div className={styles.cart_item}>
-          <div className={styles.cart_item__head}>
-            <div className={styles.detail__head__product}>
-              <div className={styles.product_name}>{ci.pls?.smMyung}</div>
+        <div className="flex flex-col">
+          <div
+            className={cn(groupStyles, "border-b border-solid border-blue-200")}
+          >
+            <div className="flex flex-col">
+              <div className="text-xl font-bold text-black">
+                {ci.pls?.smMyung}
+              </div>
               <div className="flex gap-1 pt-1">
                 {ci.fit && <Badge variant={"fit"}>맞춤주문</Badge>}
                 {ci.pls?.danwi && (
@@ -60,11 +63,14 @@ const CartViewRow: React.FC<Props> = (props) => {
               </div>
             </div>
           </div>
-          <div className={styles.cart_item__body}>
-            <div className={styles.cart_item__body__left}>
-              <div className={styles.cart_item__body__price}>
-                {ci.pls?.danga?.toLocaleString()}원
-              </div>
+          <div className={groupStyles}>
+            <div
+              className={cn(
+                "flex flex-col items-start gap-2",
+                "xs:items-center xs:flex-row",
+              )}
+            >
+              <div className="pb-2">{ci.pls?.danga?.toLocaleString()}원</div>
               <IntUpAndDown
                 value={ci.quantity}
                 step={step}
@@ -74,17 +80,18 @@ const CartViewRow: React.FC<Props> = (props) => {
               />
             </div>
 
-            <button
-              className={styles.cancel_button}
-              disabled={loading}
+            <ButtonL
+              className="p-2"
+              variant="destructive"
+              isLoading={loading}
               onClick={handleCancel}
             >
               취소
-            </button>
+            </ButtonL>
           </div>
         </div>
       </td>
-      <td className={styles.last_column}>
+      <td className="text-center text-black">
         <div>{totalPrice.toLocaleString()}원</div>
       </td>
     </tr>

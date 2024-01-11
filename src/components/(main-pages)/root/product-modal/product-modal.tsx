@@ -2,8 +2,7 @@
 import Modal from "@/components/(shared)/modal";
 import { ModalProps } from "@/lib/props/modal.props";
 import React, { useEffect, useState } from "react";
-import CustomLi from "./custom-li/custom-li";
-import styles from "./product-modal.module.scss";
+import OrderLabeledItem from "./order-labeled-item";
 import { Products } from "@/db/queries/main-page.query";
 import IntUpAndDown from "@/components/(shared)/int-up-and-down";
 import MTitle from "@/components/(shared)/m-title";
@@ -12,9 +11,9 @@ import useCartStore from "@/store/cart.store";
 import { useRouter } from "next/navigation";
 import { paths } from "@/paths";
 import * as cartService from "@/db/services/cart.service";
-import ServiceInfo from "./service-info/service-info";
-import Drawer from "@/components/(shared)/drawer/drawer";
 import CheckBoxL from "@/components/ui/custom/check-box-l";
+import ButtonL from "@/components/ui/custom/button-l";
+import ServiceButton from "./service-button";
 
 interface Props extends ModalProps {
   product: Products;
@@ -22,7 +21,6 @@ interface Props extends ModalProps {
 }
 export default function ProductModal(props: Props) {
   const { product, canFit } = props;
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const {
     fitChecked,
     handleFitChange,
@@ -50,76 +48,67 @@ export default function ProductModal(props: Props) {
 
   return (
     <Modal open={open} setOpen={setOpen}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <MTitle title="주문하기" className={styles.title} />
-        <div className={styles.body}>
-          <ul>
-            <CustomLi title="주문명칭" text={product.smMyung} />
-            <CustomLi title="단위" text={product.danwi} />
-            <CustomLi title="금액" text={product.danga?.toLocaleString()} />
-            <CustomLi title="수량">
+      <form
+        className="flex min-h-[20rem] min-w-[18rem] flex-col items-center pb-2.5"
+        onSubmit={handleSubmit}
+      >
+        <MTitle title="주문하기" className="w-full" />
+        <div className="h-full w-full flex-1">
+          <div className="mx-8 my-4 flex flex-col gap-3">
+            <OrderLabeledItem title="주문명칭" text={product.smMyung} />
+            <OrderLabeledItem title="단위" text={product.danwi} />
+            <OrderLabeledItem
+              title="금액"
+              text={product.danga?.toLocaleString() + " 원"}
+            />
+            <OrderLabeledItem title="수량">
               <IntUpAndDown
                 value={quantity}
                 step={product.step}
                 min={minCount}
                 onChange={setQuantity}
               />
-            </CustomLi>
-            <CustomLi
+            </OrderLabeledItem>
+            <OrderLabeledItem
               title="총 금액"
-              text={(quantity * product.danga).toLocaleString()}
+              text={(quantity * product.danga).toLocaleString() + " 원"}
             />
             {canFit && (
               <CheckBoxL
-                className='min-h-[2rem] text-base'
+                className="min-h-[2rem] text-base"
                 label="맞춤주문"
                 checked={fitChecked}
                 onCheckedChange={handleFitChange}
               />
             )}
-          </ul>
+          </div>
         </div>
-        <div className={styles.footer}>
-          <button
-            className={styles["add-and-to-cart-button"]}
+        <div className="flex gap-1">
+          <ButtonL
+            className="w-20 py-6"
             type="button"
+            variant="green"
             onClick={handleAddAndToCart}
           >
             장바구니
             <br />
             바로가기
-          </button>
-          <button className={styles["to-cart-button"]} type="submit">
+          </ButtonL>
+          <ButtonL className="w-20 py-6" type="submit">
             장바구니
             <br />
             담기
-          </button>
-          <button
-            className={styles["cancel-button"]}
-            type="button"
+          </ButtonL>
+          <ButtonL
+            className="w-20 py-6"
+            variant="destructive"
             onClick={handleClose}
           >
             취소
-          </button>
+          </ButtonL>
         </div>
       </form>
-      <div
-        className={styles.service_info}
-        onClick={() => {
-          setDrawerOpen(true);
-        }}
-      >
-        서비스 안내
-      </div>
-      <Drawer
-        anchor="bottom"
-        overflow="auto"
-        zIndex={10000}
-        open={drawerOpen}
-        setOpen={setDrawerOpen}
-      >
-        <ServiceInfo />
-      </Drawer>
+      <ServiceButton />
     </Modal>
   );
 }

@@ -53,9 +53,6 @@ dependencies:
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
-  classnames:
-    specifier: ^2.3.2
-    version: 2.3.2
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
@@ -79,7 +76,7 @@ dependencies:
     version: 3.6.5
   next:
     specifier: 14.0.4
-    version: 14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+    version: 14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
   next-auth:
     specifier: ^5.0.0-beta.4
     version: 5.0.0-beta.4(next@14.0.4)(nodemailer@6.9.7)(react@18.2.0)
@@ -145,9 +142,6 @@ devDependencies:
   '@types/bcrypt':
     specifier: ^5.0.2
     version: 5.0.2
-  '@types/classnames':
-    specifier: ^2.3.1
-    version: 2.3.1
   '@types/node':
     specifier: ^20
     version: 20.10.4
@@ -181,9 +175,6 @@ devDependencies:
   prisma:
     specifier: ^5.7.1
     version: 5.7.1
-  sass:
-    specifier: ^1.69.5
-    version: 1.69.5
   tailwindcss:
     specifier: ^3.3.0
     version: 3.3.6
@@ -3143,13 +3134,6 @@ packages:
       '@types/node': 20.10.4
     dev: true
 
-  /@types/classnames@2.3.1:
-    resolution: {integrity: sha512-zeOWb0JGBoVmlQoznvqXbE0tEC/HONsnoUNH19Hc96NFsTAwTXbTqb8FMYkru1F/iqp7a18Ws3nWJvtA1sHD1A==}
-    deprecated: This is a stub types definition. classnames provides its own type definitions, so you do not need this installed.
-    dependencies:
-      classnames: 2.3.2
-    dev: true
-
   /@types/cookie@0.5.4:
     resolution: {integrity: sha512-7z/eR6O859gyWIAjuvBWFzNURmf2oPBmJlfVWkwehU5nzIyjwBsTh7WMmEEV4JFnHuQ3ex4oyTvfKzcyJVDBNA==}
     dev: false
@@ -3696,9 +3680,6 @@ packages:
     dependencies:
       clsx: 2.0.0
     dev: false
-
-  /classnames@2.3.2:
-    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
 
   /client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
@@ -5010,9 +4991,6 @@ packages:
     hasBin: true
     dev: false
 
-  /immutable@4.3.4:
-    resolution: {integrity: sha512-fsXeu4J4i6WNWSikpI88v/PcVflZz+6kMhUfIwc5SY+poQRPnaf5V7qds6SUyUN3cVxEzuCab7QIoLOQ+DQ1wA==}
-
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -5639,12 +5617,12 @@ packages:
         optional: true
     dependencies:
       '@auth/core': 0.18.4(nodemailer@6.9.7)
-      next: 14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+      next: 14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)
       nodemailer: 6.9.7
       react: 18.2.0
     dev: false
 
-  /next@14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
+  /next@14.0.4(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-qbwypnM7327SadwFtxXnQdGiKpkuhaRLE2uq62/nRul9cj9KhQ5LhHmlziTNqUidZotw/Q1I9OjirBROdUJNgA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -5667,7 +5645,6 @@ packages:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      sass: 1.69.5
       styled-jsx: 5.1.1(@babel/core@7.23.7)(react@18.2.0)
       watchpack: 2.4.0
     optionalDependencies:
@@ -6425,15 +6402,6 @@ packages:
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: false
-
-  /sass@1.69.5:
-    resolution: {integrity: sha512-qg2+UCJibLr2LCVOt3OlPhr/dqVHWOa9XtZf2OjbLs/T4VPSJ00udtgJxH3neXZm+QqX8B+3cU7RaLqp1iVfcQ==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-    dependencies:
-      chokidar: 3.5.3
-      immutable: 4.3.4
-      source-map-js: 1.0.2
 
   /scheduler@0.23.0:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}

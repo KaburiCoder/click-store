@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "./item-count-wrapper.module.scss";
-import classNames from "classnames";
+import { cn } from "@/lib/utils/shadcn.util";
 
 interface Props {
   count?: number;
@@ -20,19 +19,23 @@ export default function ItemCountWrapper({ children, count }: Props) {
     return () => clearTimeout(animationTimeout);
   }, [count]);
 
-  const animationStyles = classNames(
-    styles.count,
-    animation ? styles.animate : undefined
-  );
-
   if (!count) return children;
 
-  const countEl = <div className={animationStyles}>{count}</div>;
+  const countEl = (
+    <div
+      className={cn(
+        "absolute left-4 top-0.5 z-[1003] min-w-[1.5rem] rounded-full bg-red-500 bg-opacity-90 p-1 text-white",
+        animation ? "animate-count-pop" : "",
+      )}
+    >
+      {count}
+    </div>
+  );
 
   if (!children) return countEl;
 
   return (
-    <div className={styles.wrapper}>
+    <div className="relative">
       {countEl}
       {children}
     </div>

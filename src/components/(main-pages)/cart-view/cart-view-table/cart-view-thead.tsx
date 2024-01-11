@@ -1,14 +1,7 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import styles from "./cart-view-thead.module.scss";
+import React, { useEffect, useState } from "react";
 import useCartViewStore from "@/store/cart-view.store";
-import { Cart } from "@/db/models/cart";
-import { getCartWithProduct } from "@/db/services/cart.service";
-import { deleteCartItems } from "@/db/services/cart-item.service";
 
-interface Props {
-  cart: Cart | undefined;
-}
 export default function CartViewThead() {
   const { cart, checkedIds, setCheckAll } = useCartViewStore();
   const [allCheck, setAllCheck] = useState<boolean>(true);
@@ -22,22 +15,25 @@ export default function CartViewThead() {
     setCheckAll(event.target.checked);
   }
 
+  const thStyles =
+    "solid m-0 border-y border-solid border-blue-400 bg-blue-200 px-0 py-2.5 text-black";
+
   return (
-    <thead className={styles.head}>
+    <thead>
       <tr>
-        <th className={`${styles.first_column} ${styles.first_column_header}`}>
+        <th className={thStyles}>
           <label>
             <input
               type="checkbox"
               checked={allCheck}
               onChange={handleCheckAll}
             />
-            <span>전체</span>
+            <span className="absolute">전체</span>
           </label>
         </th>
-        <th>상품정보</th>
-        <th></th>
-        <th>상품금액</th>
+        <th className={thStyles}>상품정보</th>
+        <th className={thStyles}></th>
+        <th className={thStyles}>상품금액</th>
       </tr>
     </thead>
   );

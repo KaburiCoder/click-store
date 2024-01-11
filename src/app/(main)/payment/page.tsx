@@ -1,8 +1,6 @@
 "use client";
 import useTossWidget from "@/lib/hooks/use-toss-widget";
 import React from "react";
-import styles from "./page.module.scss";
-import classNames from "classnames";
 import { useCartView } from "@/lib/hooks/use-cart-view";
 import usePaymentStore from "@/store/payment.store";
 import WrongApproach from "@/components/(errors)/wrong-approach";

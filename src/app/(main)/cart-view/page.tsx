@@ -1,6 +1,6 @@
 "use client";
-import BuyArea from "@/components/(main-pages)/cart-view/buy-area/buy-area";
-import CartViewEmpty from "@/components/(main-pages)/cart-view/cart-view-empty/cart-view-empty";
+import BuyArea from "@/components/(main-pages)/cart-view/buy-area";
+import CartViewEmpty from "@/components/(main-pages)/cart-view/cart-view-empty";
 import CartViewBody from "@/components/(main-pages)/cart-view/cart-view-table/cart-view-body";
 import CartViewTable from "@/components/(main-pages)/cart-view/cart-view-table/cart-view-table";
 import CartViewThead from "@/components/(main-pages)/cart-view/cart-view-table/cart-view-thead";

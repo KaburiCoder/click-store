@@ -23,7 +23,6 @@
       "@/db*": ["./src/db/*"],
       "@/components/*": ["./src/components/*"],
       "@/css/*": ["./src/styles/css/*"],
-      "@/scss/*": ["./src/styles/scss/*"],
       "@/lib/*": ["./src/lib/*"]
     }
   },

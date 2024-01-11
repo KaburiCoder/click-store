@@ -4,7 +4,7 @@ import DdButton from "@/components/(main-pages)/root/header/dd-button";
 import { BsCart2 } from "react-icons/bs";
 import useCartStore from "@/store/cart.store";
 import { getItemsCount } from "@/db/services/cart.service";
-import ItemCountWrapper from "../../item-count-wrapper/item-count-wrapper";
+import ItemCountWrapper from "../../item-count-wrapper";
 import DdCart from "./dd-cart";
 import { SetOpenType } from "@/lib/types/set-open.type";
 

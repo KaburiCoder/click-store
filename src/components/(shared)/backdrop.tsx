@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import styles from "./Backdrop.module.scss";
 import ReactDOM from "react-dom";
 import { cn } from "@/lib/utils/shadcn.util";
 

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "./buy-area.module.scss";
 import useSvrCookie from "@/lib/hooks/use-svr-cookie";
 import { useCartView } from "@/lib/hooks/use-cart-view";
 import { useRouter } from "next/navigation";
@@ -48,15 +47,15 @@ export default function BuyArea() {
   }
 
   return (
-    <div className={styles.buy_container}>
-      <div className={styles.buy_wrapper}>
-        <div className={styles.buy_amount_wrapper}>
-          <div className={styles.buy_amount_title}>총 주문금액</div>
-          <div className={styles.buy_amount}>
+    <div className="flex-center fixed bottom-0 z-[1] h-cartView w-full flex-col bg-blue-600 p-4 text-white">
+      <div className="flex w-full max-w-[60rem] items-center justify-between">
+        <div className="text-left">
+          <div className="text-base">총 주문금액</div>
+          <div className="text-2xl font-bold">
             {cartItemsUtil?.totalPrice.toLocaleString()}원
           </div>
         </div>
-        <div className={styles.inner_right_wrapper}>
+        <div className="flex h-auto">
           {user?.useBNPL && (
             <CheckBoxL
               className="mr-2"
@@ -65,17 +64,12 @@ export default function BuyArea() {
               checked={checkBNPL}
               onCheckedChange={handleBNPLCheckedChange}
             />
-            // <CheckBox
-            //   className={styles.check_bnpl}
-            //   text="후불결제"
-            //   checked={checkBNPL}
-            //   onChange={handleBNPLChange}
-            // />
           )}
 
           <ButtonL
-            className="h-16"
+            className="h-16 font-bold"
             onClick={handleBuy}
+            variant={"white"}
             disabled={(selectedCartItems?.length ?? 0) === 0}
             isLoading={loading}
           >

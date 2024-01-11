@@ -4,7 +4,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { getCartWithProduct } from "@/db/services/cart.service";
 import { Cart } from "@/db/models/cart";
 import { CartItemsUtil } from "@/lib/utils/cart-items.util";
-import Item from "./item/item";
+import Item from "./item";
 import { useRouter } from "next/navigation";
 import { paths } from "@/paths";
 import ButtonL from "@/components/ui/custom/button-l";
@@ -60,7 +60,7 @@ export default function DdCart({ onLinkClick }: Props) {
 
 function TotalQuantity({ totalQuantity }: { totalQuantity: number }) {
   return (
-    <div className="text-xl">
+    <div className="text-base">
       총 주문 수량 : <span>{totalQuantity}</span>
     </div>
   );
@@ -68,7 +68,7 @@ function TotalQuantity({ totalQuantity }: { totalQuantity: number }) {
 
 function TotalPrice({ totalPrice }: { totalPrice: number }) {
   return (
-    <div className="text-2xl font-bold">{`₩${totalPrice.toLocaleString()}`}</div>
+    <div className="text-2xl font-bold">{`${totalPrice.toLocaleString()} 원`}</div>
   );
 }
 

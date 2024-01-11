@@ -110,6 +110,10 @@
   .animate-backdrop {
     animation: backdropAnimation 0.3s ease-in forwards;
   }
+
+  .animate-count-pop {
+    animation: countPopAnimation 0.1s ease-in-out forwards;
+  }
 }
 
 @keyframes slideDownAnimation {
@@ -142,5 +146,19 @@
 
   to {
     background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes countPopAnimation {
+  0% {
+    transform: translatY(-50%);
+  }
+
+  50% {
+    transform: translateY(50%);
+  }
+
+  100% {
+    transform: translateY(0%);
   }
 }

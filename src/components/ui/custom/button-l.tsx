@@ -45,10 +45,13 @@ export default function ButtonL({
       disabled={disabled || showLoading}
       {...props}
     >
-      <div>
-        {iconComponent}
-        {loadingComponent}
-      </div>
+      {(iconComponent || loadingComponent) && (
+        <div>
+          {iconComponent}
+          {loadingComponent}
+        </div>
+      )}
+
       <div>{children}</div>
     </Button>
   );

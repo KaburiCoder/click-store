@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./cart-view-table.module.scss";
 
 interface Props {
   children: React.ReactNode;
@@ -7,9 +6,9 @@ interface Props {
 
 export default function CartViewTable({ children }: Props) {
   return (
-    <div className={styles.container}>
-      <table>
-        <caption className={styles.caption}>장바구니 목록</caption>
+    <div className="flex justify-center">
+      <table className="m-5 w-full max-w-[60rem] border-collapse">
+        <caption className="pb-5 text-2xl text-black">장바구니 목록</caption>
         <colgroup>
           <col width={50} />
           <col span={2} width="*" />

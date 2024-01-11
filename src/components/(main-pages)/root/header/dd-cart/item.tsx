@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./item.module.scss";
 import { CartItem } from "@/db/models/cart-item";
 import { Badge } from "@/components/ui/badge";
 
@@ -12,7 +11,7 @@ export default function Item({ cartItem }: Props) {
   const formatedPrice = (pls?.danga ?? 0) * cartItem.quantity;
 
   return (
-    <li className={styles.item}>
+    <li className="w-11/12 text-black">
       <div className="flex items-center justify-between pb-2">
         <div className="text-lg">{pls?.smMyung}</div>
         <div className="flex flex-col flex-wrap gap-1 text-right">
@@ -24,12 +23,12 @@ export default function Item({ cartItem }: Props) {
           {pls?.danwi && <Badge className="h-6">{pls?.danwi}</Badge>}
         </div>
       </div>
-      <div className={styles.detail}>
-        <div className={styles.detail__left}>
+      <div className="flex items-center justify-between">
+        <div className="text-gray-500">
           <div>수량 : {cartItem.quantity}</div>
         </div>
-        <div className={styles.detail__right}>
-          ₩{formatedPrice.toLocaleString()}
+        <div className="text-xl font-bold">
+          {formatedPrice.toLocaleString() + " 원"}
         </div>
       </div>
     </li>

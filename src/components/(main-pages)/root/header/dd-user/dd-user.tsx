@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { IoSettingsOutline } from "react-icons/io5";
 import { paths } from "@/paths";
-import LinkButton from "./link-button/link-button";
+import LinkButton from "./link-button";
 import { MdManageAccounts } from "react-icons/md";
 import { BiBasket } from "react-icons/bi";
 import { logoutAction } from "@/db/actions/auth";
