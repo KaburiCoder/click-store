@@ -3,27 +3,38 @@ import { TossApiResult } from "@/db/interfaces/toss-api-result";
 import dayjs from "dayjs";
 import { sendCpmMessage } from "@/db/services/new-cpm-msg.service";
 import { resultWrapper2 } from "@/lib/utils/callback.util";
+import { AsyncUtil } from "@/lib/utils/async.util";
+import { getPaymentByPaymentKey } from "@/db/services/payment.service";
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
   const result: TossApiResult = data.data;
 
-  const approvedText =
-    result.approvedAt &&
-    `\n결제완료 : ${dayjs(result.approvedAt).format("YYYY-MM-DD HH:mm:ss")}`;
-  const cashUrl =
-    result.cashReceipt &&
-    `\n현금영수증 URL : ${result.cashReceipt?.receiptUrl}`;
-  const message = `
------ TossPayments 상태변경 알림 -----
-주문번호 : ${result.orderId}
-상품명칭 : ${result.orderName}
+  await AsyncUtil.delay(3000);
+
+  const payment = await getPaymentByPaymentKey(result.paymentKey, { em: true });
+
+  const approvedText = result.approvedAt
+    ? `\n결제완료 : ${dayjs(result.approvedAt).format("YYYY-MM-DD HH:mm:ss")}`
+    : "";
+  const cashUrl = result.cashReceipt
+    ? `\n현금영수증 URL : ${result.cashReceipt?.receiptUrl}`
+    : "";
+  const message = `----- 물품관리 웹 결제 알림 -----
 주문요청 : ${dayjs(result.requestedAt).format(
     "YYYY-MM-DD HH:mm:ss",
   )}${approvedText}
-결제수단 : ${result.method}
+주문번호 : ${result.orderId}
+상품명칭 : ${result.orderName}
+
+요양기호 : ${payment.ykiho}
+거래처명 : ${payment.customerName}
+담당자명 : ${payment.cs?.em?.name}
+
 결제상태 : ${methodToEasyText(result.status)}
+결제수단 : ${result.method}
 결제금액 : ${result.totalAmount.toLocaleString()}
+
 영수증 URL : ${result.receipt.url}${cashUrl}
 `;
 

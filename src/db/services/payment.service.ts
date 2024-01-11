@@ -189,15 +189,24 @@ export async function getPaymentsWithItems({
 
 export async function getPaymentByPaymentKey(
   paymentKey: string,
+  include?: { cs?: boolean; em?: boolean },
 ): Promise<Payment> {
-  const payment = await db.payment.findFirst({
+  const payment = (await db.payment.findFirst({
     where: {
       paymentKey,
     },
-  });
+  })) as Payment;
+
+  if (include && (include.cs || include.em)) {
+    payment.cs = await getCsByYkiho(payment.ykiho);
+    if (payment.cs && include.em) {
+      payment.cs.em = await getEm(payment.cs.emCode!);
+    }
+  }
 
   return payment as Payment;
 }
+
 export async function cancelPaymentByOrderId(orderId: string) {
   const result = await db.payment.findFirst({
     select: { id: true },
