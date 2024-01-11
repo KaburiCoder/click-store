@@ -88,6 +88,11 @@ export type PaymentRefund = $Result.DefaultSelection<Prisma.$PaymentRefundPayloa
  * 
  */
 export type Em = $Result.DefaultSelection<Prisma.$EmPayload>
+/**
+ * Model NewCpmMsg
+ * 
+ */
+export type NewCpmMsg = $Result.DefaultSelection<Prisma.$NewCpmMsgPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -360,6 +365,16 @@ export class PrismaClient<
     * ```
     */
   get em(): Prisma.EmDelegate<ExtArgs>;
+
+  /**
+   * `prisma.newCpmMsg`: Exposes CRUD operations for the **NewCpmMsg** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NewCpmMsgs
+    * const newCpmMsgs = await prisma.newCpmMsg.findMany()
+    * ```
+    */
+  get newCpmMsg(): Prisma.NewCpmMsgDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -844,7 +859,8 @@ export namespace Prisma {
     PaymentItem: 'PaymentItem',
     PaymentVirtual: 'PaymentVirtual',
     PaymentRefund: 'PaymentRefund',
-    Em: 'Em'
+    Em: 'Em',
+    NewCpmMsg: 'NewCpmMsg'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -861,7 +877,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'account' | 'productList' | 'productListSub' | 'product' | 'productLog' | 'productListWebBunryu' | 'productListImage' | 'cs' | 'cart' | 'cartItem' | 'payment' | 'paymentItem' | 'paymentVirtual' | 'paymentRefund' | 'em'
+      modelProps: 'account' | 'productList' | 'productListSub' | 'product' | 'productLog' | 'productListWebBunryu' | 'productListImage' | 'cs' | 'cart' | 'cartItem' | 'payment' | 'paymentItem' | 'paymentVirtual' | 'paymentRefund' | 'em' | 'newCpmMsg'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1852,6 +1868,72 @@ export namespace Prisma {
           count: {
             args: Prisma.EmCountArgs<ExtArgs>,
             result: $Utils.Optional<EmCountAggregateOutputType> | number
+          }
+        }
+      }
+      NewCpmMsg: {
+        payload: Prisma.$NewCpmMsgPayload<ExtArgs>
+        fields: Prisma.NewCpmMsgFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NewCpmMsgFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NewCpmMsgFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload>
+          }
+          findFirst: {
+            args: Prisma.NewCpmMsgFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NewCpmMsgFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload>
+          }
+          findMany: {
+            args: Prisma.NewCpmMsgFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload>[]
+          }
+          create: {
+            args: Prisma.NewCpmMsgCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload>
+          }
+          createMany: {
+            args: Prisma.NewCpmMsgCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.NewCpmMsgDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload>
+          }
+          update: {
+            args: Prisma.NewCpmMsgUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload>
+          }
+          deleteMany: {
+            args: Prisma.NewCpmMsgDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NewCpmMsgUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.NewCpmMsgUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$NewCpmMsgPayload>
+          }
+          aggregate: {
+            args: Prisma.NewCpmMsgAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateNewCpmMsg>
+          }
+          groupBy: {
+            args: Prisma.NewCpmMsgGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<NewCpmMsgGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NewCpmMsgCountArgs<ExtArgs>,
+            result: $Utils.Optional<NewCpmMsgCountAggregateOutputType> | number
           }
         }
       }
@@ -18160,6 +18242,998 @@ export namespace Prisma {
 
 
   /**
+   * Model NewCpmMsg
+   */
+
+  export type AggregateNewCpmMsg = {
+    _count: NewCpmMsgCountAggregateOutputType | null
+    _avg: NewCpmMsgAvgAggregateOutputType | null
+    _sum: NewCpmMsgSumAggregateOutputType | null
+    _min: NewCpmMsgMinAggregateOutputType | null
+    _max: NewCpmMsgMaxAggregateOutputType | null
+  }
+
+  export type NewCpmMsgAvgAggregateOutputType = {
+    auto: number | null
+  }
+
+  export type NewCpmMsgSumAggregateOutputType = {
+    auto: number | null
+  }
+
+  export type NewCpmMsgMinAggregateOutputType = {
+    auto: number | null
+    chk: string | null
+    recUser: string | null
+    recDate: string | null
+    msg: string | null
+    bmsg: Buffer | null
+    senUser: string | null
+    senDate: string | null
+    show: string | null
+    dc: boolean | null
+    dcUser: string | null
+    dcDate: string | null
+    etc1: string | null
+  }
+
+  export type NewCpmMsgMaxAggregateOutputType = {
+    auto: number | null
+    chk: string | null
+    recUser: string | null
+    recDate: string | null
+    msg: string | null
+    bmsg: Buffer | null
+    senUser: string | null
+    senDate: string | null
+    show: string | null
+    dc: boolean | null
+    dcUser: string | null
+    dcDate: string | null
+    etc1: string | null
+  }
+
+  export type NewCpmMsgCountAggregateOutputType = {
+    auto: number
+    chk: number
+    recUser: number
+    recDate: number
+    msg: number
+    bmsg: number
+    senUser: number
+    senDate: number
+    show: number
+    dc: number
+    dcUser: number
+    dcDate: number
+    etc1: number
+    _all: number
+  }
+
+
+  export type NewCpmMsgAvgAggregateInputType = {
+    auto?: true
+  }
+
+  export type NewCpmMsgSumAggregateInputType = {
+    auto?: true
+  }
+
+  export type NewCpmMsgMinAggregateInputType = {
+    auto?: true
+    chk?: true
+    recUser?: true
+    recDate?: true
+    msg?: true
+    bmsg?: true
+    senUser?: true
+    senDate?: true
+    show?: true
+    dc?: true
+    dcUser?: true
+    dcDate?: true
+    etc1?: true
+  }
+
+  export type NewCpmMsgMaxAggregateInputType = {
+    auto?: true
+    chk?: true
+    recUser?: true
+    recDate?: true
+    msg?: true
+    bmsg?: true
+    senUser?: true
+    senDate?: true
+    show?: true
+    dc?: true
+    dcUser?: true
+    dcDate?: true
+    etc1?: true
+  }
+
+  export type NewCpmMsgCountAggregateInputType = {
+    auto?: true
+    chk?: true
+    recUser?: true
+    recDate?: true
+    msg?: true
+    bmsg?: true
+    senUser?: true
+    senDate?: true
+    show?: true
+    dc?: true
+    dcUser?: true
+    dcDate?: true
+    etc1?: true
+    _all?: true
+  }
+
+  export type NewCpmMsgAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewCpmMsg to aggregate.
+     */
+    where?: NewCpmMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewCpmMsgs to fetch.
+     */
+    orderBy?: NewCpmMsgOrderByWithRelationInput | NewCpmMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NewCpmMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewCpmMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewCpmMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NewCpmMsgs
+    **/
+    _count?: true | NewCpmMsgCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NewCpmMsgAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NewCpmMsgSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NewCpmMsgMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NewCpmMsgMaxAggregateInputType
+  }
+
+  export type GetNewCpmMsgAggregateType<T extends NewCpmMsgAggregateArgs> = {
+        [P in keyof T & keyof AggregateNewCpmMsg]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNewCpmMsg[P]>
+      : GetScalarType<T[P], AggregateNewCpmMsg[P]>
+  }
+
+
+
+
+  export type NewCpmMsgGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewCpmMsgWhereInput
+    orderBy?: NewCpmMsgOrderByWithAggregationInput | NewCpmMsgOrderByWithAggregationInput[]
+    by: NewCpmMsgScalarFieldEnum[] | NewCpmMsgScalarFieldEnum
+    having?: NewCpmMsgScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NewCpmMsgCountAggregateInputType | true
+    _avg?: NewCpmMsgAvgAggregateInputType
+    _sum?: NewCpmMsgSumAggregateInputType
+    _min?: NewCpmMsgMinAggregateInputType
+    _max?: NewCpmMsgMaxAggregateInputType
+  }
+
+  export type NewCpmMsgGroupByOutputType = {
+    auto: number
+    chk: string
+    recUser: string | null
+    recDate: string | null
+    msg: string | null
+    bmsg: Buffer | null
+    senUser: string | null
+    senDate: string | null
+    show: string | null
+    dc: boolean | null
+    dcUser: string | null
+    dcDate: string | null
+    etc1: string | null
+    _count: NewCpmMsgCountAggregateOutputType | null
+    _avg: NewCpmMsgAvgAggregateOutputType | null
+    _sum: NewCpmMsgSumAggregateOutputType | null
+    _min: NewCpmMsgMinAggregateOutputType | null
+    _max: NewCpmMsgMaxAggregateOutputType | null
+  }
+
+  type GetNewCpmMsgGroupByPayload<T extends NewCpmMsgGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NewCpmMsgGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NewCpmMsgGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NewCpmMsgGroupByOutputType[P]>
+            : GetScalarType<T[P], NewCpmMsgGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NewCpmMsgSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    auto?: boolean
+    chk?: boolean
+    recUser?: boolean
+    recDate?: boolean
+    msg?: boolean
+    bmsg?: boolean
+    senUser?: boolean
+    senDate?: boolean
+    show?: boolean
+    dc?: boolean
+    dcUser?: boolean
+    dcDate?: boolean
+    etc1?: boolean
+  }, ExtArgs["result"]["newCpmMsg"]>
+
+  export type NewCpmMsgSelectScalar = {
+    auto?: boolean
+    chk?: boolean
+    recUser?: boolean
+    recDate?: boolean
+    msg?: boolean
+    bmsg?: boolean
+    senUser?: boolean
+    senDate?: boolean
+    show?: boolean
+    dc?: boolean
+    dcUser?: boolean
+    dcDate?: boolean
+    etc1?: boolean
+  }
+
+
+  export type $NewCpmMsgPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NewCpmMsg"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      auto: number
+      chk: string
+      recUser: string | null
+      recDate: string | null
+      msg: string | null
+      bmsg: Buffer | null
+      senUser: string | null
+      senDate: string | null
+      show: string | null
+      dc: boolean | null
+      dcUser: string | null
+      dcDate: string | null
+      etc1: string | null
+    }, ExtArgs["result"]["newCpmMsg"]>
+    composites: {}
+  }
+
+
+  type NewCpmMsgGetPayload<S extends boolean | null | undefined | NewCpmMsgDefaultArgs> = $Result.GetResult<Prisma.$NewCpmMsgPayload, S>
+
+  type NewCpmMsgCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<NewCpmMsgFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: NewCpmMsgCountAggregateInputType | true
+    }
+
+  export interface NewCpmMsgDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NewCpmMsg'], meta: { name: 'NewCpmMsg' } }
+    /**
+     * Find zero or one NewCpmMsg that matches the filter.
+     * @param {NewCpmMsgFindUniqueArgs} args - Arguments to find a NewCpmMsg
+     * @example
+     * // Get one NewCpmMsg
+     * const newCpmMsg = await prisma.newCpmMsg.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends NewCpmMsgFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, NewCpmMsgFindUniqueArgs<ExtArgs>>
+    ): Prisma__NewCpmMsgClient<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one NewCpmMsg that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {NewCpmMsgFindUniqueOrThrowArgs} args - Arguments to find a NewCpmMsg
+     * @example
+     * // Get one NewCpmMsg
+     * const newCpmMsg = await prisma.newCpmMsg.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends NewCpmMsgFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, NewCpmMsgFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__NewCpmMsgClient<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first NewCpmMsg that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewCpmMsgFindFirstArgs} args - Arguments to find a NewCpmMsg
+     * @example
+     * // Get one NewCpmMsg
+     * const newCpmMsg = await prisma.newCpmMsg.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends NewCpmMsgFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, NewCpmMsgFindFirstArgs<ExtArgs>>
+    ): Prisma__NewCpmMsgClient<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first NewCpmMsg that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewCpmMsgFindFirstOrThrowArgs} args - Arguments to find a NewCpmMsg
+     * @example
+     * // Get one NewCpmMsg
+     * const newCpmMsg = await prisma.newCpmMsg.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends NewCpmMsgFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, NewCpmMsgFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__NewCpmMsgClient<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more NewCpmMsgs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewCpmMsgFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NewCpmMsgs
+     * const newCpmMsgs = await prisma.newCpmMsg.findMany()
+     * 
+     * // Get first 10 NewCpmMsgs
+     * const newCpmMsgs = await prisma.newCpmMsg.findMany({ take: 10 })
+     * 
+     * // Only select the `auto`
+     * const newCpmMsgWithAutoOnly = await prisma.newCpmMsg.findMany({ select: { auto: true } })
+     * 
+    **/
+    findMany<T extends NewCpmMsgFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, NewCpmMsgFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a NewCpmMsg.
+     * @param {NewCpmMsgCreateArgs} args - Arguments to create a NewCpmMsg.
+     * @example
+     * // Create one NewCpmMsg
+     * const NewCpmMsg = await prisma.newCpmMsg.create({
+     *   data: {
+     *     // ... data to create a NewCpmMsg
+     *   }
+     * })
+     * 
+    **/
+    create<T extends NewCpmMsgCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, NewCpmMsgCreateArgs<ExtArgs>>
+    ): Prisma__NewCpmMsgClient<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many NewCpmMsgs.
+     *     @param {NewCpmMsgCreateManyArgs} args - Arguments to create many NewCpmMsgs.
+     *     @example
+     *     // Create many NewCpmMsgs
+     *     const newCpmMsg = await prisma.newCpmMsg.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends NewCpmMsgCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, NewCpmMsgCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a NewCpmMsg.
+     * @param {NewCpmMsgDeleteArgs} args - Arguments to delete one NewCpmMsg.
+     * @example
+     * // Delete one NewCpmMsg
+     * const NewCpmMsg = await prisma.newCpmMsg.delete({
+     *   where: {
+     *     // ... filter to delete one NewCpmMsg
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends NewCpmMsgDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, NewCpmMsgDeleteArgs<ExtArgs>>
+    ): Prisma__NewCpmMsgClient<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one NewCpmMsg.
+     * @param {NewCpmMsgUpdateArgs} args - Arguments to update one NewCpmMsg.
+     * @example
+     * // Update one NewCpmMsg
+     * const newCpmMsg = await prisma.newCpmMsg.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends NewCpmMsgUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, NewCpmMsgUpdateArgs<ExtArgs>>
+    ): Prisma__NewCpmMsgClient<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more NewCpmMsgs.
+     * @param {NewCpmMsgDeleteManyArgs} args - Arguments to filter NewCpmMsgs to delete.
+     * @example
+     * // Delete a few NewCpmMsgs
+     * const { count } = await prisma.newCpmMsg.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends NewCpmMsgDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, NewCpmMsgDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewCpmMsgs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewCpmMsgUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NewCpmMsgs
+     * const newCpmMsg = await prisma.newCpmMsg.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends NewCpmMsgUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, NewCpmMsgUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one NewCpmMsg.
+     * @param {NewCpmMsgUpsertArgs} args - Arguments to update or create a NewCpmMsg.
+     * @example
+     * // Update or create a NewCpmMsg
+     * const newCpmMsg = await prisma.newCpmMsg.upsert({
+     *   create: {
+     *     // ... data to create a NewCpmMsg
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NewCpmMsg we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends NewCpmMsgUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, NewCpmMsgUpsertArgs<ExtArgs>>
+    ): Prisma__NewCpmMsgClient<$Result.GetResult<Prisma.$NewCpmMsgPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of NewCpmMsgs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewCpmMsgCountArgs} args - Arguments to filter NewCpmMsgs to count.
+     * @example
+     * // Count the number of NewCpmMsgs
+     * const count = await prisma.newCpmMsg.count({
+     *   where: {
+     *     // ... the filter for the NewCpmMsgs we want to count
+     *   }
+     * })
+    **/
+    count<T extends NewCpmMsgCountArgs>(
+      args?: Subset<T, NewCpmMsgCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NewCpmMsgCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NewCpmMsg.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewCpmMsgAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NewCpmMsgAggregateArgs>(args: Subset<T, NewCpmMsgAggregateArgs>): Prisma.PrismaPromise<GetNewCpmMsgAggregateType<T>>
+
+    /**
+     * Group by NewCpmMsg.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewCpmMsgGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NewCpmMsgGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NewCpmMsgGroupByArgs['orderBy'] }
+        : { orderBy?: NewCpmMsgGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NewCpmMsgGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNewCpmMsgGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NewCpmMsg model
+   */
+  readonly fields: NewCpmMsgFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NewCpmMsg.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NewCpmMsgClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the NewCpmMsg model
+   */ 
+  interface NewCpmMsgFieldRefs {
+    readonly auto: FieldRef<"NewCpmMsg", 'Int'>
+    readonly chk: FieldRef<"NewCpmMsg", 'String'>
+    readonly recUser: FieldRef<"NewCpmMsg", 'String'>
+    readonly recDate: FieldRef<"NewCpmMsg", 'String'>
+    readonly msg: FieldRef<"NewCpmMsg", 'String'>
+    readonly bmsg: FieldRef<"NewCpmMsg", 'Bytes'>
+    readonly senUser: FieldRef<"NewCpmMsg", 'String'>
+    readonly senDate: FieldRef<"NewCpmMsg", 'String'>
+    readonly show: FieldRef<"NewCpmMsg", 'String'>
+    readonly dc: FieldRef<"NewCpmMsg", 'Boolean'>
+    readonly dcUser: FieldRef<"NewCpmMsg", 'String'>
+    readonly dcDate: FieldRef<"NewCpmMsg", 'String'>
+    readonly etc1: FieldRef<"NewCpmMsg", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * NewCpmMsg findUnique
+   */
+  export type NewCpmMsgFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which NewCpmMsg to fetch.
+     */
+    where: NewCpmMsgWhereUniqueInput
+  }
+
+
+  /**
+   * NewCpmMsg findUniqueOrThrow
+   */
+  export type NewCpmMsgFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which NewCpmMsg to fetch.
+     */
+    where: NewCpmMsgWhereUniqueInput
+  }
+
+
+  /**
+   * NewCpmMsg findFirst
+   */
+  export type NewCpmMsgFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which NewCpmMsg to fetch.
+     */
+    where?: NewCpmMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewCpmMsgs to fetch.
+     */
+    orderBy?: NewCpmMsgOrderByWithRelationInput | NewCpmMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewCpmMsgs.
+     */
+    cursor?: NewCpmMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewCpmMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewCpmMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewCpmMsgs.
+     */
+    distinct?: NewCpmMsgScalarFieldEnum | NewCpmMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * NewCpmMsg findFirstOrThrow
+   */
+  export type NewCpmMsgFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which NewCpmMsg to fetch.
+     */
+    where?: NewCpmMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewCpmMsgs to fetch.
+     */
+    orderBy?: NewCpmMsgOrderByWithRelationInput | NewCpmMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewCpmMsgs.
+     */
+    cursor?: NewCpmMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewCpmMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewCpmMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewCpmMsgs.
+     */
+    distinct?: NewCpmMsgScalarFieldEnum | NewCpmMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * NewCpmMsg findMany
+   */
+  export type NewCpmMsgFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which NewCpmMsgs to fetch.
+     */
+    where?: NewCpmMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewCpmMsgs to fetch.
+     */
+    orderBy?: NewCpmMsgOrderByWithRelationInput | NewCpmMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NewCpmMsgs.
+     */
+    cursor?: NewCpmMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewCpmMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewCpmMsgs.
+     */
+    skip?: number
+    distinct?: NewCpmMsgScalarFieldEnum | NewCpmMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * NewCpmMsg create
+   */
+  export type NewCpmMsgCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * The data needed to create a NewCpmMsg.
+     */
+    data: XOR<NewCpmMsgCreateInput, NewCpmMsgUncheckedCreateInput>
+  }
+
+
+  /**
+   * NewCpmMsg createMany
+   */
+  export type NewCpmMsgCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NewCpmMsgs.
+     */
+    data: NewCpmMsgCreateManyInput | NewCpmMsgCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * NewCpmMsg update
+   */
+  export type NewCpmMsgUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * The data needed to update a NewCpmMsg.
+     */
+    data: XOR<NewCpmMsgUpdateInput, NewCpmMsgUncheckedUpdateInput>
+    /**
+     * Choose, which NewCpmMsg to update.
+     */
+    where: NewCpmMsgWhereUniqueInput
+  }
+
+
+  /**
+   * NewCpmMsg updateMany
+   */
+  export type NewCpmMsgUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NewCpmMsgs.
+     */
+    data: XOR<NewCpmMsgUpdateManyMutationInput, NewCpmMsgUncheckedUpdateManyInput>
+    /**
+     * Filter which NewCpmMsgs to update
+     */
+    where?: NewCpmMsgWhereInput
+  }
+
+
+  /**
+   * NewCpmMsg upsert
+   */
+  export type NewCpmMsgUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * The filter to search for the NewCpmMsg to update in case it exists.
+     */
+    where: NewCpmMsgWhereUniqueInput
+    /**
+     * In case the NewCpmMsg found by the `where` argument doesn't exist, create a new NewCpmMsg with this data.
+     */
+    create: XOR<NewCpmMsgCreateInput, NewCpmMsgUncheckedCreateInput>
+    /**
+     * In case the NewCpmMsg was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NewCpmMsgUpdateInput, NewCpmMsgUncheckedUpdateInput>
+  }
+
+
+  /**
+   * NewCpmMsg delete
+   */
+  export type NewCpmMsgDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+    /**
+     * Filter which NewCpmMsg to delete.
+     */
+    where: NewCpmMsgWhereUniqueInput
+  }
+
+
+  /**
+   * NewCpmMsg deleteMany
+   */
+  export type NewCpmMsgDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewCpmMsgs to delete
+     */
+    where?: NewCpmMsgWhereInput
+  }
+
+
+  /**
+   * NewCpmMsg without action
+   */
+  export type NewCpmMsgDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewCpmMsg
+     */
+    select?: NewCpmMsgSelect<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -18534,6 +19608,25 @@ export namespace Prisma {
   };
 
   export type EmScalarFieldEnum = (typeof EmScalarFieldEnum)[keyof typeof EmScalarFieldEnum]
+
+
+  export const NewCpmMsgScalarFieldEnum: {
+    auto: 'auto',
+    chk: 'chk',
+    recUser: 'recUser',
+    recDate: 'recDate',
+    msg: 'msg',
+    bmsg: 'bmsg',
+    senUser: 'senUser',
+    senDate: 'senDate',
+    show: 'show',
+    dc: 'dc',
+    dcUser: 'dcUser',
+    dcDate: 'dcDate',
+    etc1: 'etc1'
+  };
+
+  export type NewCpmMsgScalarFieldEnum = (typeof NewCpmMsgScalarFieldEnum)[keyof typeof NewCpmMsgScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -20418,6 +21511,100 @@ export namespace Prisma {
     jisa?: StringNullableWithAggregatesFilter<"Em"> | string | null
     buCode?: StringNullableWithAggregatesFilter<"Em"> | string | null
     endYmd?: StringNullableWithAggregatesFilter<"Em"> | string | null
+  }
+
+  export type NewCpmMsgWhereInput = {
+    AND?: NewCpmMsgWhereInput | NewCpmMsgWhereInput[]
+    OR?: NewCpmMsgWhereInput[]
+    NOT?: NewCpmMsgWhereInput | NewCpmMsgWhereInput[]
+    auto?: IntFilter<"NewCpmMsg"> | number
+    chk?: StringFilter<"NewCpmMsg"> | string
+    recUser?: StringNullableFilter<"NewCpmMsg"> | string | null
+    recDate?: StringNullableFilter<"NewCpmMsg"> | string | null
+    msg?: StringNullableFilter<"NewCpmMsg"> | string | null
+    bmsg?: BytesNullableFilter<"NewCpmMsg"> | Buffer | null
+    senUser?: StringNullableFilter<"NewCpmMsg"> | string | null
+    senDate?: StringNullableFilter<"NewCpmMsg"> | string | null
+    show?: StringNullableFilter<"NewCpmMsg"> | string | null
+    dc?: BoolNullableFilter<"NewCpmMsg"> | boolean | null
+    dcUser?: StringNullableFilter<"NewCpmMsg"> | string | null
+    dcDate?: StringNullableFilter<"NewCpmMsg"> | string | null
+    etc1?: StringNullableFilter<"NewCpmMsg"> | string | null
+  }
+
+  export type NewCpmMsgOrderByWithRelationInput = {
+    auto?: SortOrder
+    chk?: SortOrder
+    recUser?: SortOrderInput | SortOrder
+    recDate?: SortOrderInput | SortOrder
+    msg?: SortOrderInput | SortOrder
+    bmsg?: SortOrderInput | SortOrder
+    senUser?: SortOrderInput | SortOrder
+    senDate?: SortOrderInput | SortOrder
+    show?: SortOrderInput | SortOrder
+    dc?: SortOrderInput | SortOrder
+    dcUser?: SortOrderInput | SortOrder
+    dcDate?: SortOrderInput | SortOrder
+    etc1?: SortOrderInput | SortOrder
+  }
+
+  export type NewCpmMsgWhereUniqueInput = Prisma.AtLeast<{
+    auto?: number
+    AND?: NewCpmMsgWhereInput | NewCpmMsgWhereInput[]
+    OR?: NewCpmMsgWhereInput[]
+    NOT?: NewCpmMsgWhereInput | NewCpmMsgWhereInput[]
+    chk?: StringFilter<"NewCpmMsg"> | string
+    recUser?: StringNullableFilter<"NewCpmMsg"> | string | null
+    recDate?: StringNullableFilter<"NewCpmMsg"> | string | null
+    msg?: StringNullableFilter<"NewCpmMsg"> | string | null
+    bmsg?: BytesNullableFilter<"NewCpmMsg"> | Buffer | null
+    senUser?: StringNullableFilter<"NewCpmMsg"> | string | null
+    senDate?: StringNullableFilter<"NewCpmMsg"> | string | null
+    show?: StringNullableFilter<"NewCpmMsg"> | string | null
+    dc?: BoolNullableFilter<"NewCpmMsg"> | boolean | null
+    dcUser?: StringNullableFilter<"NewCpmMsg"> | string | null
+    dcDate?: StringNullableFilter<"NewCpmMsg"> | string | null
+    etc1?: StringNullableFilter<"NewCpmMsg"> | string | null
+  }, "auto">
+
+  export type NewCpmMsgOrderByWithAggregationInput = {
+    auto?: SortOrder
+    chk?: SortOrder
+    recUser?: SortOrderInput | SortOrder
+    recDate?: SortOrderInput | SortOrder
+    msg?: SortOrderInput | SortOrder
+    bmsg?: SortOrderInput | SortOrder
+    senUser?: SortOrderInput | SortOrder
+    senDate?: SortOrderInput | SortOrder
+    show?: SortOrderInput | SortOrder
+    dc?: SortOrderInput | SortOrder
+    dcUser?: SortOrderInput | SortOrder
+    dcDate?: SortOrderInput | SortOrder
+    etc1?: SortOrderInput | SortOrder
+    _count?: NewCpmMsgCountOrderByAggregateInput
+    _avg?: NewCpmMsgAvgOrderByAggregateInput
+    _max?: NewCpmMsgMaxOrderByAggregateInput
+    _min?: NewCpmMsgMinOrderByAggregateInput
+    _sum?: NewCpmMsgSumOrderByAggregateInput
+  }
+
+  export type NewCpmMsgScalarWhereWithAggregatesInput = {
+    AND?: NewCpmMsgScalarWhereWithAggregatesInput | NewCpmMsgScalarWhereWithAggregatesInput[]
+    OR?: NewCpmMsgScalarWhereWithAggregatesInput[]
+    NOT?: NewCpmMsgScalarWhereWithAggregatesInput | NewCpmMsgScalarWhereWithAggregatesInput[]
+    auto?: IntWithAggregatesFilter<"NewCpmMsg"> | number
+    chk?: StringWithAggregatesFilter<"NewCpmMsg"> | string
+    recUser?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+    recDate?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+    msg?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+    bmsg?: BytesNullableWithAggregatesFilter<"NewCpmMsg"> | Buffer | null
+    senUser?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+    senDate?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+    show?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+    dc?: BoolNullableWithAggregatesFilter<"NewCpmMsg"> | boolean | null
+    dcUser?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+    dcDate?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+    etc1?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
   }
 
   export type AccountCreateInput = {
@@ -22631,6 +23818,115 @@ export namespace Prisma {
     endYmd?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type NewCpmMsgCreateInput = {
+    chk: string
+    recUser?: string | null
+    recDate?: string | null
+    msg?: string | null
+    bmsg?: Buffer | null
+    senUser?: string | null
+    senDate?: string | null
+    show?: string | null
+    dc?: boolean | null
+    dcUser?: string | null
+    dcDate?: string | null
+    etc1?: string | null
+  }
+
+  export type NewCpmMsgUncheckedCreateInput = {
+    auto?: number
+    chk: string
+    recUser?: string | null
+    recDate?: string | null
+    msg?: string | null
+    bmsg?: Buffer | null
+    senUser?: string | null
+    senDate?: string | null
+    show?: string | null
+    dc?: boolean | null
+    dcUser?: string | null
+    dcDate?: string | null
+    etc1?: string | null
+  }
+
+  export type NewCpmMsgUpdateInput = {
+    chk?: StringFieldUpdateOperationsInput | string
+    recUser?: NullableStringFieldUpdateOperationsInput | string | null
+    recDate?: NullableStringFieldUpdateOperationsInput | string | null
+    msg?: NullableStringFieldUpdateOperationsInput | string | null
+    bmsg?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    senUser?: NullableStringFieldUpdateOperationsInput | string | null
+    senDate?: NullableStringFieldUpdateOperationsInput | string | null
+    show?: NullableStringFieldUpdateOperationsInput | string | null
+    dc?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    dcUser?: NullableStringFieldUpdateOperationsInput | string | null
+    dcDate?: NullableStringFieldUpdateOperationsInput | string | null
+    etc1?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NewCpmMsgUncheckedUpdateInput = {
+    auto?: IntFieldUpdateOperationsInput | number
+    chk?: StringFieldUpdateOperationsInput | string
+    recUser?: NullableStringFieldUpdateOperationsInput | string | null
+    recDate?: NullableStringFieldUpdateOperationsInput | string | null
+    msg?: NullableStringFieldUpdateOperationsInput | string | null
+    bmsg?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    senUser?: NullableStringFieldUpdateOperationsInput | string | null
+    senDate?: NullableStringFieldUpdateOperationsInput | string | null
+    show?: NullableStringFieldUpdateOperationsInput | string | null
+    dc?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    dcUser?: NullableStringFieldUpdateOperationsInput | string | null
+    dcDate?: NullableStringFieldUpdateOperationsInput | string | null
+    etc1?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NewCpmMsgCreateManyInput = {
+    auto?: number
+    chk: string
+    recUser?: string | null
+    recDate?: string | null
+    msg?: string | null
+    bmsg?: Buffer | null
+    senUser?: string | null
+    senDate?: string | null
+    show?: string | null
+    dc?: boolean | null
+    dcUser?: string | null
+    dcDate?: string | null
+    etc1?: string | null
+  }
+
+  export type NewCpmMsgUpdateManyMutationInput = {
+    chk?: StringFieldUpdateOperationsInput | string
+    recUser?: NullableStringFieldUpdateOperationsInput | string | null
+    recDate?: NullableStringFieldUpdateOperationsInput | string | null
+    msg?: NullableStringFieldUpdateOperationsInput | string | null
+    bmsg?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    senUser?: NullableStringFieldUpdateOperationsInput | string | null
+    senDate?: NullableStringFieldUpdateOperationsInput | string | null
+    show?: NullableStringFieldUpdateOperationsInput | string | null
+    dc?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    dcUser?: NullableStringFieldUpdateOperationsInput | string | null
+    dcDate?: NullableStringFieldUpdateOperationsInput | string | null
+    etc1?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type NewCpmMsgUncheckedUpdateManyInput = {
+    auto?: IntFieldUpdateOperationsInput | number
+    chk?: StringFieldUpdateOperationsInput | string
+    recUser?: NullableStringFieldUpdateOperationsInput | string | null
+    recDate?: NullableStringFieldUpdateOperationsInput | string | null
+    msg?: NullableStringFieldUpdateOperationsInput | string | null
+    bmsg?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    senUser?: NullableStringFieldUpdateOperationsInput | string | null
+    senDate?: NullableStringFieldUpdateOperationsInput | string | null
+    show?: NullableStringFieldUpdateOperationsInput | string | null
+    dc?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    dcUser?: NullableStringFieldUpdateOperationsInput | string | null
+    dcDate?: NullableStringFieldUpdateOperationsInput | string | null
+    etc1?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -24000,6 +25296,62 @@ export namespace Prisma {
     endYmd?: SortOrder
   }
 
+  export type NewCpmMsgCountOrderByAggregateInput = {
+    auto?: SortOrder
+    chk?: SortOrder
+    recUser?: SortOrder
+    recDate?: SortOrder
+    msg?: SortOrder
+    bmsg?: SortOrder
+    senUser?: SortOrder
+    senDate?: SortOrder
+    show?: SortOrder
+    dc?: SortOrder
+    dcUser?: SortOrder
+    dcDate?: SortOrder
+    etc1?: SortOrder
+  }
+
+  export type NewCpmMsgAvgOrderByAggregateInput = {
+    auto?: SortOrder
+  }
+
+  export type NewCpmMsgMaxOrderByAggregateInput = {
+    auto?: SortOrder
+    chk?: SortOrder
+    recUser?: SortOrder
+    recDate?: SortOrder
+    msg?: SortOrder
+    bmsg?: SortOrder
+    senUser?: SortOrder
+    senDate?: SortOrder
+    show?: SortOrder
+    dc?: SortOrder
+    dcUser?: SortOrder
+    dcDate?: SortOrder
+    etc1?: SortOrder
+  }
+
+  export type NewCpmMsgMinOrderByAggregateInput = {
+    auto?: SortOrder
+    chk?: SortOrder
+    recUser?: SortOrder
+    recDate?: SortOrder
+    msg?: SortOrder
+    bmsg?: SortOrder
+    senUser?: SortOrder
+    senDate?: SortOrder
+    show?: SortOrder
+    dc?: SortOrder
+    dcUser?: SortOrder
+    dcDate?: SortOrder
+    etc1?: SortOrder
+  }
+
+  export type NewCpmMsgSumOrderByAggregateInput = {
+    auto?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -25146,6 +26498,10 @@ export namespace Prisma {
      * @deprecated Use EmDefaultArgs instead
      */
     export type EmArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = EmDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use NewCpmMsgDefaultArgs instead
+     */
+    export type NewCpmMsgArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = NewCpmMsgDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

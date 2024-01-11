@@ -5,7 +5,15 @@ export interface TossApiResult {
   orderId: string;
   orderName: string;
   taxExemptionAmount: number;
-  status: string;
+  status:
+  | "READY"
+  | "IN_PROGRESS"
+  | "WAITING_FOR_DEPOSIT"
+  | "DONE"
+  | "CANCELED"
+  | "PARTIAL_CANCELED"
+  | "ABORTED"
+  | "EXPIRED";
   requestedAt: string;
   approvedAt: string;
   useEscrow: boolean;
@@ -33,7 +41,15 @@ export interface TossApiResult {
   suppliedAmount: number;
   vat: number;
   taxFreeAmount: number;
-  method: string;
+  method:
+  | "카드"
+  | "가상계좌"
+  | "간편결제"
+  | "휴대폰"
+  | "계좌이체"
+  | "문화상품권"
+  | "도서문화상품권"
+  | "게임문화상품권";
   version: string;
 
   code?: string;

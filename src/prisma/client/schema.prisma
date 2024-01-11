@@ -367,3 +367,19 @@ model Em {
   buCode String? @map(name: "em_bucode")
   endYmd String? @map(name: "em_endymd")
 }
+
+model NewCpmMsg {
+  auto    Int      @id @default(autoincrement()) @map(name: "cm_auto")
+  chk     String   @map(name: "cm_chk")
+  recUser String?  @map(name: "cm_recuser")
+  recDate String?  @map(name: "cm_recdate")
+  msg     String?  @map(name: "cm_msg")
+  bmsg    Bytes?   @map(name: "cm_bmsg")
+  senUser String?  @map(name: "cm_senuser")
+  senDate String?  @map(name: "cm_sendate")
+  show    String?  @map(name: "cm_show")
+  dc      Boolean? @map(name: "cm_dc")
+  dcUser  String?  @map(name: "cm_dcuser")
+  dcDate  String?  @map(name: "cm_dcdate")
+  etc1    String?  @map(name: "cm_etc1")
+}

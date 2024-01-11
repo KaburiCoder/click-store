@@ -425,6 +425,22 @@ exports.Prisma.EmScalarFieldEnum = {
   endYmd: 'endYmd'
 };
 
+exports.Prisma.NewCpmMsgScalarFieldEnum = {
+  auto: 'auto',
+  chk: 'chk',
+  recUser: 'recUser',
+  recDate: 'recDate',
+  msg: 'msg',
+  bmsg: 'bmsg',
+  senUser: 'senUser',
+  senDate: 'senDate',
+  show: 'show',
+  dc: 'dc',
+  dcUser: 'dcUser',
+  dcDate: 'dcDate',
+  etc1: 'etc1'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -451,7 +467,8 @@ exports.Prisma.ModelName = {
   PaymentItem: 'PaymentItem',
   PaymentVirtual: 'PaymentVirtual',
   PaymentRefund: 'PaymentRefund',
-  Em: 'Em'
+  Em: 'Em',
+  NewCpmMsg: 'NewCpmMsg'
 };
 
 /**
