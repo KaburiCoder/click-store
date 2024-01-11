@@ -37,9 +37,9 @@ export async function POST(req: NextRequest) {
 주문번호 : ${result.orderId}
 상품명칭 : ${result.orderName}
 
-요양기호 : ${payment.ykiho}
-거래처명 : ${payment.customerName}
-담당자명 : ${payment.cs?.em?.name}
+요양기호 : ${payment?.ykiho}
+거래처명 : ${payment?.customerName}
+담당자명 : ${payment?.cs?.em?.name}
 
 결제상태 : ${methodToEasyText(result.status)}
 결제수단 : ${result.method}
