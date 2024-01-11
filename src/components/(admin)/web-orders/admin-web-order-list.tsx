@@ -59,6 +59,7 @@ const useWebOrdersInfiniteQuery = () => {
         return data.pages?.flatMap((pg) => pg.payments);
       },
       gcTime: 10,
+      refetchOnWindowFocus: true,
       enabled: !!searchData,
     });
 

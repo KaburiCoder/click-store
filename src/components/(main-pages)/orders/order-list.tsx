@@ -52,6 +52,7 @@ const useOrdersInfiniteQuery = () => {
       select: (data) => {
         return data.pages?.flatMap((pg) => pg.payments);
       },
+      refetchOnWindowFocus: true,
     });
 
   const { observerComponent } = useIntersectionObserver({
