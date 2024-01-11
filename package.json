@@ -8,9 +8,8 @@
     "build": "next build",
     "start": "next start -p 3003",
     "generate": "prisma generate",
-    "deploy:prod": "next build && pm2 startOrRestart ecosystem.config.js --env prod",
-    "deploy:local": "next build && pm2 startOrRestart ecosystem.config.js --env local",
-    "deploy:dev": "next build && pm2 startOrRestart ecosystem.config.js --env dev",
+    "deploy:prod": "next build && pm2 startOrRestart ecosystem.prod.config.js --env prod",
+    "deploy:dev": "next build && pm2 startOrRestart ecosystem.dev.config.js --env dev",
     "lint": "next lint"
   },
   "dependencies": {
