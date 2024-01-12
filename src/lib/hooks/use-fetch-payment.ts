@@ -41,7 +41,7 @@ export const useFetchPayment = () => {
     try {
       const result = await fetcher;
       if (result?.errors) {
-        setError(result.errors.join(", "));
+        throw new Error(result.errors.join(", "));
       }
 
       await deleteCartItems(cartItemIds);

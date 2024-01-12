@@ -1,9 +1,6 @@
 "use server";
 import { z } from "zod";
 import { savePayment } from "../services/payment.service";
-import { redirect } from "next/navigation";
-import { paths } from "@/paths";
-import { revalidatePath } from "next/cache";
 import { deleteCartItems } from "../services/cart-item.service";
 
 const paymentSchema = z.object({
