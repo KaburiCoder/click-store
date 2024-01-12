@@ -7,6 +7,8 @@ import { bankData } from "@/lib/datas/bank-data";
 import db from "@/db/db";
 import { cn } from "@/lib/utils/shadcn.util";
 import { Separator } from "@/components/ui/separator";
+import ErrorCard from "@/components/error-card";
+import PaymentError from "@/components/(main-pages)/payment/payment-error";
 
 interface Props {
   params: { orderId: string };
@@ -15,7 +17,7 @@ export default async function PaymentSuccessPage({ params }: Props) {
   const payment = await getPaymentWithVirtual(params.orderId);
 
   if (!payment) {
-    throw new Error("데이터가 존재하지 않습니다.");
+    return <PaymentError error="결제 데이터가 존재하지 않습니다." />;
   }
 
   const ymd = dayjs(payment.requestedAt).format("YYYY-MM-DD");
