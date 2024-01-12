@@ -46,3 +46,11 @@ export function formatYmdToShort(ymd: string) {
     return "";
   }
 }
+
+export function formatDateToStr(
+  date: Date | string,
+  util?: { min?: boolean; sec?: boolean },
+) {
+  const formatString = util?.min ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD HH:mm:ss";
+  return dayjs(date).format(formatString);
+}
