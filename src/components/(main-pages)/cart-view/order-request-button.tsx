@@ -25,9 +25,11 @@ export default function OrderRequestButton({
         onSelect={onSelect}
         orderReqMessages={orderReqMessages}
       />
-      <ButtonL icon={List} variant="outline" onClick={handleClick}>
-        요청 목록
-      </ButtonL>
+      {orderReqMessages?.length > 0 && (
+        <ButtonL icon={List} variant="outline" onClick={handleClick}>
+          요청 목록
+        </ButtonL>
+      )}
     </>
   );
 }
