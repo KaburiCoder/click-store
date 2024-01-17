@@ -34,9 +34,9 @@ export default function OrderRequestModel({
     <Modal
       open={open}
       setOpen={setOpen}
-      className="flex max-h-[80%] w-[80%] max-w-[60rem] flex-col bg-slate-50"
+      className="flex max-h-[80%] max-w-[60rem] flex-col bg-slate-50"
     >
-      <div className="flex min-w-[18rem] flex-col overflow-hidden">
+      <div className="flex min-w-[18rem] flex-col items-stretch overflow-hidden">
         <X
           className="absolute right-4 h-8 w-8 rounded p-1 hover:bg-slate-200"
           onClick={() => setOpen(false)}
