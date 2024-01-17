@@ -8,7 +8,7 @@ export default function ProductGroup({ bunryuObject }: BunryuObjectProps) {
   const { name = "", code } = bunryuObject || {};
 
   return (
-    <li id={code} className="m-2.5 overflow-hidden rounded shadow">
+    <li id={code} className="my-1 overflow-hidden rounded shadow md:m-2.5">
       <MTitle title={name} />
       <ProductList bunryuObject={bunryuObject} />
     </li>
