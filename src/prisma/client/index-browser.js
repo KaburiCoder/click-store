@@ -121,6 +121,13 @@ exports.Prisma.AccountScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.OrderReqMsgScalarFieldEnum = {
+  id: 'id',
+  accountId: 'accountId',
+  message: 'message',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.ProductListScalarFieldEnum = {
   jisa: 'jisa',
   smCode: 'smCode',
@@ -454,6 +461,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Account: 'Account',
+  OrderReqMsg: 'OrderReqMsg',
   ProductList: 'ProductList',
   ProductListSub: 'ProductListSub',
   Product: 'Product',

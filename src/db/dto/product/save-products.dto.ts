@@ -5,4 +5,5 @@ export interface SaveProductsDto {
   payment: Partial<Payment>;
   paymentItems: Partial<PaymentItem>[];
   webBNPL: boolean;
+  bigo2?: string;
 }

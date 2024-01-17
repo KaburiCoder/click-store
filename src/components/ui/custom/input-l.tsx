@@ -4,7 +4,7 @@ import { Label } from "../label";
 import { cn } from "@/lib/utils/shadcn.util";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   errorMessage?: string;
 }
 
@@ -13,9 +13,11 @@ const InputL = React.forwardRef<HTMLInputElement, Props>(
     const errorStyles = cn(errorMessage && "text-rose-500");
     return (
       <div className={cn("grid w-full items-center gap-1.5", className)}>
-        <Label htmlFor={id} className={cn("pl-1", errorStyles)}>
-          {label}
-        </Label>
+        {label && (
+          <Label htmlFor={id} className={cn("pl-1", errorStyles)}>
+            {label}
+          </Label>
+        )}
         <div>
           <Input
             ref={ref}

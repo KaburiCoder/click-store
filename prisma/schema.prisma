@@ -24,7 +24,17 @@ model Account {
   createdAt  DateTime  @default(now()) @map(name: "created_at")
   updatedAt  DateTime  @default(now()) @updatedAt @map(name: "updated_at")
 
-  // Define any other relationships, indexes, or configurations here if needed.
+  orderReqMsg OrderReqMsg[]
+}
+
+model OrderReqMsg {
+  id        Int      @id @default(autoincrement())
+  accountId Int
+  message   String
+  updatedAt DateTime
+  account   Account  @relation(fields: [accountId], references: [id])
+
+  @@unique([accountId, message])
 }
 
 model ProductList {

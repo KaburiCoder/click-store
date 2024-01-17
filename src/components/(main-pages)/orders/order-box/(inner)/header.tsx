@@ -40,14 +40,20 @@ export default function OrderHeader({ payment }: PaymentProps) {
     return (
       <div className="flex flex-col">
         {headerComponent}
-        <div>
-          <div className="bg-rose-400 p-2 text-center font-semibold text-white">
-            테스트 환경에서 주문되었습니다.
-          </div>
-        </div>
+        <TestBox />
       </div>
     );
   }
 
   return headerComponent;
+}
+
+function TestBox() {
+  return (
+    <div>
+      <div className="bg-rose-400 p-2 text-center font-semibold text-white">
+        테스트 환경에서 주문되었습니다.
+      </div>
+    </div>
+  );
 }

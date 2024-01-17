@@ -9,10 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getOrderId } from "../utils/toss-pg.util";
 import { CartItemsUtil } from "../utils/cart-items.util";
 import { toast } from "react-toastify";
-import { paymentBNPLAction } from "@/db/client-actions/payment-bnpl.action";
 import { PaymentItem } from "@/db/models/payment-item";
-import { useRouter } from "next/navigation";
-import { paths } from "@/paths";
 import { useFetchPayment } from "./use-fetch-payment";
 
 interface Props {
@@ -26,6 +23,7 @@ const useCartView = ({ onFetch, isPayment, id }: Props) => {
     loading,
     cart,
     checkedIds,
+    orderRequestMessage,
     setCart,
     setCheck,
     setLoading,
@@ -34,6 +32,7 @@ const useCartView = ({ onFetch, isPayment, id }: Props) => {
     setCheckAll,
     selectedCartItems,
     setSelectedCartItems,
+    clear,
   } = useCartViewStore();
   const { toggleItemsCountChanged } = useCartStore();
   const { error: fetchBNPLPaymentError, fetchBNPLPayment } = useFetchPayment();
@@ -121,6 +120,7 @@ const useCartView = ({ onFetch, isPayment, id }: Props) => {
       approvedAt: null,
       paymentItems: getPaymentItems(),
       cartItemIds: selectedCartItems.map((ci) => ci.id!),
+      orderRequestMessage,
     }).catch((err) => {
       toast.error(err.message);
       setLoading(false);
@@ -177,6 +177,7 @@ const useCartView = ({ onFetch, isPayment, id }: Props) => {
     cartItemsUtil,
     fetchPayment,
     getPaymentItems,
+    clear,
   };
 };
 

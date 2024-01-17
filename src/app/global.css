@@ -90,15 +90,11 @@
   }
 }
 
-@layer components {
-  .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
 @layer utilities {
+  .ime-kor {
+    ime-mode: active;
+  }
+
   .animate-slide-down {
     animation: slideDownAnimation 0.5s ease-in forwards;
   }

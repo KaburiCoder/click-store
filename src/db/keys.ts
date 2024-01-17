@@ -1,8 +1,10 @@
 export class QKey {
+  static get fetchLatestOrderReqMsg() {
+    return "fetchLatestOrderReqMsg";
+  }
   static get fetchCustomerName() {
     return "fetchCustomerName";
   }
-
   static get fetchPaymentsOrders() {
     return "fetchPaymentsOrders";
   }

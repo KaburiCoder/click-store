@@ -14,6 +14,7 @@ interface FetchPaymentArgs {
   paymentKey: string;
   paymentItems: PaymentItem[];
   cartItemIds: number[];
+  orderRequestMessage?: string;
 }
 
 interface FetchBNPLPaymentArgs extends FetchPaymentArgs {
@@ -53,12 +54,14 @@ export const useFetchPayment = () => {
   }
 
   async function fetchPayment(args: FetchPaymentArgs) {
-    fetcher = paymentAction({ ...args });
+    const { orderRequestMessage, ...data } = args;
+    fetcher = paymentAction({ data, orderRequestMessage });
     await fetching({ orderId: args.orderId, cartItemIds: args.cartItemIds });
   }
 
   async function fetchBNPLPayment(args: FetchBNPLPaymentArgs) {
-    fetcher = paymentBNPLAction({ ...args });
+    const { orderRequestMessage, ...data } = args;
+    fetcher = paymentBNPLAction({ data, orderRequestMessage });
     await fetching({ orderId: args.orderId, cartItemIds: args.cartItemIds });
   }
 

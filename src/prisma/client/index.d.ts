@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
 /**
+ * Model OrderReqMsg
+ * 
+ */
+export type OrderReqMsg = $Result.DefaultSelection<Prisma.$OrderReqMsgPayload>
+/**
  * Model ProductList
  * 
  */
@@ -225,6 +230,16 @@ export class PrismaClient<
     * ```
     */
   get account(): Prisma.AccountDelegate<ExtArgs>;
+
+  /**
+   * `prisma.orderReqMsg`: Exposes CRUD operations for the **OrderReqMsg** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OrderReqMsgs
+    * const orderReqMsgs = await prisma.orderReqMsg.findMany()
+    * ```
+    */
+  get orderReqMsg(): Prisma.OrderReqMsgDelegate<ExtArgs>;
 
   /**
    * `prisma.productList`: Exposes CRUD operations for the **ProductList** model.
@@ -846,6 +861,7 @@ export namespace Prisma {
 
   export const ModelName: {
     Account: 'Account',
+    OrderReqMsg: 'OrderReqMsg',
     ProductList: 'ProductList',
     ProductListSub: 'ProductListSub',
     Product: 'Product',
@@ -877,7 +893,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'account' | 'productList' | 'productListSub' | 'product' | 'productLog' | 'productListWebBunryu' | 'productListImage' | 'cs' | 'cart' | 'cartItem' | 'payment' | 'paymentItem' | 'paymentVirtual' | 'paymentRefund' | 'em' | 'newCpmMsg'
+      modelProps: 'account' | 'orderReqMsg' | 'productList' | 'productListSub' | 'product' | 'productLog' | 'productListWebBunryu' | 'productListImage' | 'cs' | 'cart' | 'cartItem' | 'payment' | 'paymentItem' | 'paymentVirtual' | 'paymentRefund' | 'em' | 'newCpmMsg'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -944,6 +960,72 @@ export namespace Prisma {
           count: {
             args: Prisma.AccountCountArgs<ExtArgs>,
             result: $Utils.Optional<AccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      OrderReqMsg: {
+        payload: Prisma.$OrderReqMsgPayload<ExtArgs>
+        fields: Prisma.OrderReqMsgFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OrderReqMsgFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OrderReqMsgFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload>
+          }
+          findFirst: {
+            args: Prisma.OrderReqMsgFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OrderReqMsgFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload>
+          }
+          findMany: {
+            args: Prisma.OrderReqMsgFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload>[]
+          }
+          create: {
+            args: Prisma.OrderReqMsgCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload>
+          }
+          createMany: {
+            args: Prisma.OrderReqMsgCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.OrderReqMsgDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload>
+          }
+          update: {
+            args: Prisma.OrderReqMsgUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload>
+          }
+          deleteMany: {
+            args: Prisma.OrderReqMsgDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OrderReqMsgUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.OrderReqMsgUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$OrderReqMsgPayload>
+          }
+          aggregate: {
+            args: Prisma.OrderReqMsgAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateOrderReqMsg>
+          }
+          groupBy: {
+            args: Prisma.OrderReqMsgGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<OrderReqMsgGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OrderReqMsgCountArgs<ExtArgs>,
+            result: $Utils.Optional<OrderReqMsgCountAggregateOutputType> | number
           }
         }
       }
@@ -2082,6 +2164,40 @@ export namespace Prisma {
 
 
   /**
+   * Count Type AccountCountOutputType
+   */
+
+  export type AccountCountOutputType = {
+    orderReqMsg: number
+  }
+
+  export type AccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orderReqMsg?: boolean | AccountCountOutputTypeCountOrderReqMsgArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountCountOutputType
+     */
+    select?: AccountCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * AccountCountOutputType without action
+   */
+  export type AccountCountOutputTypeCountOrderReqMsgArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderReqMsgWhereInput
+  }
+
+
+
+  /**
    * Count Type CartCountOutputType
    */
 
@@ -2399,6 +2515,8 @@ export namespace Prisma {
     admin?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    orderReqMsg?: boolean | Account$orderReqMsgArgs<ExtArgs>
+    _count?: boolean | AccountCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
   export type AccountSelectScalar = {
@@ -2415,10 +2533,17 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
+  export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orderReqMsg?: boolean | Account$orderReqMsgArgs<ExtArgs>
+    _count?: boolean | AccountCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
 
   export type $AccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Account"
-    objects: {}
+    objects: {
+      orderReqMsg: Prisma.$OrderReqMsgPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: string
@@ -2796,6 +2921,7 @@ export namespace Prisma {
   export interface Prisma__AccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    orderReqMsg<T extends Account$orderReqMsgArgs<ExtArgs> = {}>(args?: Subset<T, Account$orderReqMsgArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2850,6 +2976,10 @@ export namespace Prisma {
      */
     select?: AccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
      * Filter, which Account to fetch.
      */
     where: AccountWhereUniqueInput
@@ -2865,6 +2995,10 @@ export namespace Prisma {
      */
     select?: AccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
      * Filter, which Account to fetch.
      */
     where: AccountWhereUniqueInput
@@ -2879,6 +3013,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Account
      */
     select?: AccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
     /**
      * Filter, which Account to fetch.
      */
@@ -2925,6 +3063,10 @@ export namespace Prisma {
      */
     select?: AccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
      * Filter, which Account to fetch.
      */
     where?: AccountWhereInput
@@ -2970,6 +3112,10 @@ export namespace Prisma {
      */
     select?: AccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
      * Filter, which Accounts to fetch.
      */
     where?: AccountWhereInput
@@ -3010,6 +3156,10 @@ export namespace Prisma {
      */
     select?: AccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
      * The data needed to create a Account.
      */
     data: XOR<AccountCreateInput, AccountUncheckedCreateInput>
@@ -3036,6 +3186,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Account
      */
     select?: AccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
     /**
      * The data needed to update a Account.
      */
@@ -3071,6 +3225,10 @@ export namespace Prisma {
      */
     select?: AccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
      * The filter to search for the Account to update in case it exists.
      */
     where: AccountWhereUniqueInput
@@ -3094,6 +3252,10 @@ export namespace Prisma {
      */
     select?: AccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
+    /**
      * Filter which Account to delete.
      */
     where: AccountWhereUniqueInput
@@ -3112,6 +3274,27 @@ export namespace Prisma {
 
 
   /**
+   * Account.orderReqMsg
+   */
+  export type Account$orderReqMsgArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    where?: OrderReqMsgWhereInput
+    orderBy?: OrderReqMsgOrderByWithRelationInput | OrderReqMsgOrderByWithRelationInput[]
+    cursor?: OrderReqMsgWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderReqMsgScalarFieldEnum | OrderReqMsgScalarFieldEnum[]
+  }
+
+
+  /**
    * Account without action
    */
   export type AccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3119,6 +3302,955 @@ export namespace Prisma {
      * Select specific fields to fetch from the Account
      */
     select?: AccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model OrderReqMsg
+   */
+
+  export type AggregateOrderReqMsg = {
+    _count: OrderReqMsgCountAggregateOutputType | null
+    _avg: OrderReqMsgAvgAggregateOutputType | null
+    _sum: OrderReqMsgSumAggregateOutputType | null
+    _min: OrderReqMsgMinAggregateOutputType | null
+    _max: OrderReqMsgMaxAggregateOutputType | null
+  }
+
+  export type OrderReqMsgAvgAggregateOutputType = {
+    id: number | null
+    accountId: number | null
+  }
+
+  export type OrderReqMsgSumAggregateOutputType = {
+    id: number | null
+    accountId: number | null
+  }
+
+  export type OrderReqMsgMinAggregateOutputType = {
+    id: number | null
+    accountId: number | null
+    message: string | null
+    updatedAt: Date | null
+  }
+
+  export type OrderReqMsgMaxAggregateOutputType = {
+    id: number | null
+    accountId: number | null
+    message: string | null
+    updatedAt: Date | null
+  }
+
+  export type OrderReqMsgCountAggregateOutputType = {
+    id: number
+    accountId: number
+    message: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type OrderReqMsgAvgAggregateInputType = {
+    id?: true
+    accountId?: true
+  }
+
+  export type OrderReqMsgSumAggregateInputType = {
+    id?: true
+    accountId?: true
+  }
+
+  export type OrderReqMsgMinAggregateInputType = {
+    id?: true
+    accountId?: true
+    message?: true
+    updatedAt?: true
+  }
+
+  export type OrderReqMsgMaxAggregateInputType = {
+    id?: true
+    accountId?: true
+    message?: true
+    updatedAt?: true
+  }
+
+  export type OrderReqMsgCountAggregateInputType = {
+    id?: true
+    accountId?: true
+    message?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type OrderReqMsgAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrderReqMsg to aggregate.
+     */
+    where?: OrderReqMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderReqMsgs to fetch.
+     */
+    orderBy?: OrderReqMsgOrderByWithRelationInput | OrderReqMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OrderReqMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderReqMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderReqMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OrderReqMsgs
+    **/
+    _count?: true | OrderReqMsgCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OrderReqMsgAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OrderReqMsgSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrderReqMsgMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrderReqMsgMaxAggregateInputType
+  }
+
+  export type GetOrderReqMsgAggregateType<T extends OrderReqMsgAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrderReqMsg]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrderReqMsg[P]>
+      : GetScalarType<T[P], AggregateOrderReqMsg[P]>
+  }
+
+
+
+
+  export type OrderReqMsgGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderReqMsgWhereInput
+    orderBy?: OrderReqMsgOrderByWithAggregationInput | OrderReqMsgOrderByWithAggregationInput[]
+    by: OrderReqMsgScalarFieldEnum[] | OrderReqMsgScalarFieldEnum
+    having?: OrderReqMsgScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrderReqMsgCountAggregateInputType | true
+    _avg?: OrderReqMsgAvgAggregateInputType
+    _sum?: OrderReqMsgSumAggregateInputType
+    _min?: OrderReqMsgMinAggregateInputType
+    _max?: OrderReqMsgMaxAggregateInputType
+  }
+
+  export type OrderReqMsgGroupByOutputType = {
+    id: number
+    accountId: number
+    message: string
+    updatedAt: Date
+    _count: OrderReqMsgCountAggregateOutputType | null
+    _avg: OrderReqMsgAvgAggregateOutputType | null
+    _sum: OrderReqMsgSumAggregateOutputType | null
+    _min: OrderReqMsgMinAggregateOutputType | null
+    _max: OrderReqMsgMaxAggregateOutputType | null
+  }
+
+  type GetOrderReqMsgGroupByPayload<T extends OrderReqMsgGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrderReqMsgGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrderReqMsgGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrderReqMsgGroupByOutputType[P]>
+            : GetScalarType<T[P], OrderReqMsgGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OrderReqMsgSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    accountId?: boolean
+    message?: boolean
+    updatedAt?: boolean
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["orderReqMsg"]>
+
+  export type OrderReqMsgSelectScalar = {
+    id?: boolean
+    accountId?: boolean
+    message?: boolean
+    updatedAt?: boolean
+  }
+
+  export type OrderReqMsgInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    account?: boolean | AccountDefaultArgs<ExtArgs>
+  }
+
+
+  export type $OrderReqMsgPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OrderReqMsg"
+    objects: {
+      account: Prisma.$AccountPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      accountId: number
+      message: string
+      updatedAt: Date
+    }, ExtArgs["result"]["orderReqMsg"]>
+    composites: {}
+  }
+
+
+  type OrderReqMsgGetPayload<S extends boolean | null | undefined | OrderReqMsgDefaultArgs> = $Result.GetResult<Prisma.$OrderReqMsgPayload, S>
+
+  type OrderReqMsgCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<OrderReqMsgFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: OrderReqMsgCountAggregateInputType | true
+    }
+
+  export interface OrderReqMsgDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OrderReqMsg'], meta: { name: 'OrderReqMsg' } }
+    /**
+     * Find zero or one OrderReqMsg that matches the filter.
+     * @param {OrderReqMsgFindUniqueArgs} args - Arguments to find a OrderReqMsg
+     * @example
+     * // Get one OrderReqMsg
+     * const orderReqMsg = await prisma.orderReqMsg.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends OrderReqMsgFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderReqMsgFindUniqueArgs<ExtArgs>>
+    ): Prisma__OrderReqMsgClient<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one OrderReqMsg that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {OrderReqMsgFindUniqueOrThrowArgs} args - Arguments to find a OrderReqMsg
+     * @example
+     * // Get one OrderReqMsg
+     * const orderReqMsg = await prisma.orderReqMsg.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends OrderReqMsgFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderReqMsgFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__OrderReqMsgClient<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first OrderReqMsg that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderReqMsgFindFirstArgs} args - Arguments to find a OrderReqMsg
+     * @example
+     * // Get one OrderReqMsg
+     * const orderReqMsg = await prisma.orderReqMsg.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends OrderReqMsgFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderReqMsgFindFirstArgs<ExtArgs>>
+    ): Prisma__OrderReqMsgClient<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first OrderReqMsg that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderReqMsgFindFirstOrThrowArgs} args - Arguments to find a OrderReqMsg
+     * @example
+     * // Get one OrderReqMsg
+     * const orderReqMsg = await prisma.orderReqMsg.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends OrderReqMsgFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderReqMsgFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__OrderReqMsgClient<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more OrderReqMsgs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderReqMsgFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OrderReqMsgs
+     * const orderReqMsgs = await prisma.orderReqMsg.findMany()
+     * 
+     * // Get first 10 OrderReqMsgs
+     * const orderReqMsgs = await prisma.orderReqMsg.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const orderReqMsgWithIdOnly = await prisma.orderReqMsg.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends OrderReqMsgFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderReqMsgFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a OrderReqMsg.
+     * @param {OrderReqMsgCreateArgs} args - Arguments to create a OrderReqMsg.
+     * @example
+     * // Create one OrderReqMsg
+     * const OrderReqMsg = await prisma.orderReqMsg.create({
+     *   data: {
+     *     // ... data to create a OrderReqMsg
+     *   }
+     * })
+     * 
+    **/
+    create<T extends OrderReqMsgCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderReqMsgCreateArgs<ExtArgs>>
+    ): Prisma__OrderReqMsgClient<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many OrderReqMsgs.
+     *     @param {OrderReqMsgCreateManyArgs} args - Arguments to create many OrderReqMsgs.
+     *     @example
+     *     // Create many OrderReqMsgs
+     *     const orderReqMsg = await prisma.orderReqMsg.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends OrderReqMsgCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderReqMsgCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a OrderReqMsg.
+     * @param {OrderReqMsgDeleteArgs} args - Arguments to delete one OrderReqMsg.
+     * @example
+     * // Delete one OrderReqMsg
+     * const OrderReqMsg = await prisma.orderReqMsg.delete({
+     *   where: {
+     *     // ... filter to delete one OrderReqMsg
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends OrderReqMsgDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderReqMsgDeleteArgs<ExtArgs>>
+    ): Prisma__OrderReqMsgClient<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one OrderReqMsg.
+     * @param {OrderReqMsgUpdateArgs} args - Arguments to update one OrderReqMsg.
+     * @example
+     * // Update one OrderReqMsg
+     * const orderReqMsg = await prisma.orderReqMsg.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends OrderReqMsgUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderReqMsgUpdateArgs<ExtArgs>>
+    ): Prisma__OrderReqMsgClient<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more OrderReqMsgs.
+     * @param {OrderReqMsgDeleteManyArgs} args - Arguments to filter OrderReqMsgs to delete.
+     * @example
+     * // Delete a few OrderReqMsgs
+     * const { count } = await prisma.orderReqMsg.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends OrderReqMsgDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderReqMsgDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OrderReqMsgs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderReqMsgUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OrderReqMsgs
+     * const orderReqMsg = await prisma.orderReqMsg.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends OrderReqMsgUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderReqMsgUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one OrderReqMsg.
+     * @param {OrderReqMsgUpsertArgs} args - Arguments to update or create a OrderReqMsg.
+     * @example
+     * // Update or create a OrderReqMsg
+     * const orderReqMsg = await prisma.orderReqMsg.upsert({
+     *   create: {
+     *     // ... data to create a OrderReqMsg
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OrderReqMsg we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends OrderReqMsgUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderReqMsgUpsertArgs<ExtArgs>>
+    ): Prisma__OrderReqMsgClient<$Result.GetResult<Prisma.$OrderReqMsgPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of OrderReqMsgs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderReqMsgCountArgs} args - Arguments to filter OrderReqMsgs to count.
+     * @example
+     * // Count the number of OrderReqMsgs
+     * const count = await prisma.orderReqMsg.count({
+     *   where: {
+     *     // ... the filter for the OrderReqMsgs we want to count
+     *   }
+     * })
+    **/
+    count<T extends OrderReqMsgCountArgs>(
+      args?: Subset<T, OrderReqMsgCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrderReqMsgCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OrderReqMsg.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderReqMsgAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrderReqMsgAggregateArgs>(args: Subset<T, OrderReqMsgAggregateArgs>): Prisma.PrismaPromise<GetOrderReqMsgAggregateType<T>>
+
+    /**
+     * Group by OrderReqMsg.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderReqMsgGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OrderReqMsgGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OrderReqMsgGroupByArgs['orderBy'] }
+        : { orderBy?: OrderReqMsgGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OrderReqMsgGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrderReqMsgGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OrderReqMsg model
+   */
+  readonly fields: OrderReqMsgFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OrderReqMsg.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OrderReqMsgClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    account<T extends AccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AccountDefaultArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the OrderReqMsg model
+   */ 
+  interface OrderReqMsgFieldRefs {
+    readonly id: FieldRef<"OrderReqMsg", 'Int'>
+    readonly accountId: FieldRef<"OrderReqMsg", 'Int'>
+    readonly message: FieldRef<"OrderReqMsg", 'String'>
+    readonly updatedAt: FieldRef<"OrderReqMsg", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * OrderReqMsg findUnique
+   */
+  export type OrderReqMsgFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderReqMsg to fetch.
+     */
+    where: OrderReqMsgWhereUniqueInput
+  }
+
+
+  /**
+   * OrderReqMsg findUniqueOrThrow
+   */
+  export type OrderReqMsgFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderReqMsg to fetch.
+     */
+    where: OrderReqMsgWhereUniqueInput
+  }
+
+
+  /**
+   * OrderReqMsg findFirst
+   */
+  export type OrderReqMsgFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderReqMsg to fetch.
+     */
+    where?: OrderReqMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderReqMsgs to fetch.
+     */
+    orderBy?: OrderReqMsgOrderByWithRelationInput | OrderReqMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrderReqMsgs.
+     */
+    cursor?: OrderReqMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderReqMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderReqMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderReqMsgs.
+     */
+    distinct?: OrderReqMsgScalarFieldEnum | OrderReqMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * OrderReqMsg findFirstOrThrow
+   */
+  export type OrderReqMsgFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderReqMsg to fetch.
+     */
+    where?: OrderReqMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderReqMsgs to fetch.
+     */
+    orderBy?: OrderReqMsgOrderByWithRelationInput | OrderReqMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrderReqMsgs.
+     */
+    cursor?: OrderReqMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderReqMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderReqMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderReqMsgs.
+     */
+    distinct?: OrderReqMsgScalarFieldEnum | OrderReqMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * OrderReqMsg findMany
+   */
+  export type OrderReqMsgFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderReqMsgs to fetch.
+     */
+    where?: OrderReqMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderReqMsgs to fetch.
+     */
+    orderBy?: OrderReqMsgOrderByWithRelationInput | OrderReqMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OrderReqMsgs.
+     */
+    cursor?: OrderReqMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderReqMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderReqMsgs.
+     */
+    skip?: number
+    distinct?: OrderReqMsgScalarFieldEnum | OrderReqMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * OrderReqMsg create
+   */
+  export type OrderReqMsgCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * The data needed to create a OrderReqMsg.
+     */
+    data: XOR<OrderReqMsgCreateInput, OrderReqMsgUncheckedCreateInput>
+  }
+
+
+  /**
+   * OrderReqMsg createMany
+   */
+  export type OrderReqMsgCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OrderReqMsgs.
+     */
+    data: OrderReqMsgCreateManyInput | OrderReqMsgCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * OrderReqMsg update
+   */
+  export type OrderReqMsgUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * The data needed to update a OrderReqMsg.
+     */
+    data: XOR<OrderReqMsgUpdateInput, OrderReqMsgUncheckedUpdateInput>
+    /**
+     * Choose, which OrderReqMsg to update.
+     */
+    where: OrderReqMsgWhereUniqueInput
+  }
+
+
+  /**
+   * OrderReqMsg updateMany
+   */
+  export type OrderReqMsgUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OrderReqMsgs.
+     */
+    data: XOR<OrderReqMsgUpdateManyMutationInput, OrderReqMsgUncheckedUpdateManyInput>
+    /**
+     * Filter which OrderReqMsgs to update
+     */
+    where?: OrderReqMsgWhereInput
+  }
+
+
+  /**
+   * OrderReqMsg upsert
+   */
+  export type OrderReqMsgUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * The filter to search for the OrderReqMsg to update in case it exists.
+     */
+    where: OrderReqMsgWhereUniqueInput
+    /**
+     * In case the OrderReqMsg found by the `where` argument doesn't exist, create a new OrderReqMsg with this data.
+     */
+    create: XOR<OrderReqMsgCreateInput, OrderReqMsgUncheckedCreateInput>
+    /**
+     * In case the OrderReqMsg was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OrderReqMsgUpdateInput, OrderReqMsgUncheckedUpdateInput>
+  }
+
+
+  /**
+   * OrderReqMsg delete
+   */
+  export type OrderReqMsgDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
+    /**
+     * Filter which OrderReqMsg to delete.
+     */
+    where: OrderReqMsgWhereUniqueInput
+  }
+
+
+  /**
+   * OrderReqMsg deleteMany
+   */
+  export type OrderReqMsgDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrderReqMsgs to delete
+     */
+    where?: OrderReqMsgWhereInput
+  }
+
+
+  /**
+   * OrderReqMsg without action
+   */
+  export type OrderReqMsgDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderReqMsg
+     */
+    select?: OrderReqMsgSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderReqMsgInclude<ExtArgs> | null
   }
 
 
@@ -19264,6 +20396,16 @@ export namespace Prisma {
   export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
 
 
+  export const OrderReqMsgScalarFieldEnum: {
+    id: 'id',
+    accountId: 'accountId',
+    message: 'message',
+    updatedAt: 'updatedAt'
+  };
+
+  export type OrderReqMsgScalarFieldEnum = (typeof OrderReqMsgScalarFieldEnum)[keyof typeof OrderReqMsgScalarFieldEnum]
+
+
   export const ProductListScalarFieldEnum: {
     jisa: 'jisa',
     smCode: 'smCode',
@@ -19710,6 +20852,7 @@ export namespace Prisma {
     admin?: BoolNullableFilter<"Account"> | boolean | null
     createdAt?: DateTimeFilter<"Account"> | Date | string
     updatedAt?: DateTimeFilter<"Account"> | Date | string
+    orderReqMsg?: OrderReqMsgListRelationFilter
   }
 
   export type AccountOrderByWithRelationInput = {
@@ -19724,6 +20867,7 @@ export namespace Prisma {
     admin?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    orderReqMsg?: OrderReqMsgOrderByRelationAggregateInput
   }
 
   export type AccountWhereUniqueInput = Prisma.AtLeast<{
@@ -19741,6 +20885,7 @@ export namespace Prisma {
     admin?: BoolNullableFilter<"Account"> | boolean | null
     createdAt?: DateTimeFilter<"Account"> | Date | string
     updatedAt?: DateTimeFilter<"Account"> | Date | string
+    orderReqMsg?: OrderReqMsgListRelationFilter
   }, "id" | "userId">
 
   export type AccountOrderByWithAggregationInput = {
@@ -19777,6 +20922,59 @@ export namespace Prisma {
     admin?: BoolNullableWithAggregatesFilter<"Account"> | boolean | null
     createdAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+  }
+
+  export type OrderReqMsgWhereInput = {
+    AND?: OrderReqMsgWhereInput | OrderReqMsgWhereInput[]
+    OR?: OrderReqMsgWhereInput[]
+    NOT?: OrderReqMsgWhereInput | OrderReqMsgWhereInput[]
+    id?: IntFilter<"OrderReqMsg"> | number
+    accountId?: IntFilter<"OrderReqMsg"> | number
+    message?: StringFilter<"OrderReqMsg"> | string
+    updatedAt?: DateTimeFilter<"OrderReqMsg"> | Date | string
+    account?: XOR<AccountRelationFilter, AccountWhereInput>
+  }
+
+  export type OrderReqMsgOrderByWithRelationInput = {
+    id?: SortOrder
+    accountId?: SortOrder
+    message?: SortOrder
+    updatedAt?: SortOrder
+    account?: AccountOrderByWithRelationInput
+  }
+
+  export type OrderReqMsgWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    accountId_message?: OrderReqMsgAccountIdMessageCompoundUniqueInput
+    AND?: OrderReqMsgWhereInput | OrderReqMsgWhereInput[]
+    OR?: OrderReqMsgWhereInput[]
+    NOT?: OrderReqMsgWhereInput | OrderReqMsgWhereInput[]
+    accountId?: IntFilter<"OrderReqMsg"> | number
+    message?: StringFilter<"OrderReqMsg"> | string
+    updatedAt?: DateTimeFilter<"OrderReqMsg"> | Date | string
+    account?: XOR<AccountRelationFilter, AccountWhereInput>
+  }, "id" | "accountId_message">
+
+  export type OrderReqMsgOrderByWithAggregationInput = {
+    id?: SortOrder
+    accountId?: SortOrder
+    message?: SortOrder
+    updatedAt?: SortOrder
+    _count?: OrderReqMsgCountOrderByAggregateInput
+    _avg?: OrderReqMsgAvgOrderByAggregateInput
+    _max?: OrderReqMsgMaxOrderByAggregateInput
+    _min?: OrderReqMsgMinOrderByAggregateInput
+    _sum?: OrderReqMsgSumOrderByAggregateInput
+  }
+
+  export type OrderReqMsgScalarWhereWithAggregatesInput = {
+    AND?: OrderReqMsgScalarWhereWithAggregatesInput | OrderReqMsgScalarWhereWithAggregatesInput[]
+    OR?: OrderReqMsgScalarWhereWithAggregatesInput[]
+    NOT?: OrderReqMsgScalarWhereWithAggregatesInput | OrderReqMsgScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"OrderReqMsg"> | number
+    accountId?: IntWithAggregatesFilter<"OrderReqMsg"> | number
+    message?: StringWithAggregatesFilter<"OrderReqMsg"> | string
+    updatedAt?: DateTimeWithAggregatesFilter<"OrderReqMsg"> | Date | string
   }
 
   export type ProductListWhereInput = {
@@ -21618,6 +22816,7 @@ export namespace Prisma {
     admin?: boolean | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    orderReqMsg?: OrderReqMsgCreateNestedManyWithoutAccountInput
   }
 
   export type AccountUncheckedCreateInput = {
@@ -21632,6 +22831,7 @@ export namespace Prisma {
     admin?: boolean | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    orderReqMsg?: OrderReqMsgUncheckedCreateNestedManyWithoutAccountInput
   }
 
   export type AccountUpdateInput = {
@@ -21645,6 +22845,7 @@ export namespace Prisma {
     admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderReqMsg?: OrderReqMsgUpdateManyWithoutAccountNestedInput
   }
 
   export type AccountUncheckedUpdateInput = {
@@ -21659,6 +22860,7 @@ export namespace Prisma {
     admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderReqMsg?: OrderReqMsgUncheckedUpdateManyWithoutAccountNestedInput
   }
 
   export type AccountCreateManyInput = {
@@ -21699,6 +22901,51 @@ export namespace Prisma {
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderReqMsgCreateInput = {
+    message: string
+    updatedAt: Date | string
+    account: AccountCreateNestedOneWithoutOrderReqMsgInput
+  }
+
+  export type OrderReqMsgUncheckedCreateInput = {
+    id?: number
+    accountId: number
+    message: string
+    updatedAt: Date | string
+  }
+
+  export type OrderReqMsgUpdateInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    account?: AccountUpdateOneRequiredWithoutOrderReqMsgNestedInput
+  }
+
+  export type OrderReqMsgUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    accountId?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderReqMsgCreateManyInput = {
+    id?: number
+    accountId: number
+    message: string
+    updatedAt: Date | string
+  }
+
+  export type OrderReqMsgUpdateManyMutationInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderReqMsgUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    accountId?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -23993,9 +25240,19 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type OrderReqMsgListRelationFilter = {
+    every?: OrderReqMsgWhereInput
+    some?: OrderReqMsgWhereInput
+    none?: OrderReqMsgWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type OrderReqMsgOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type AccountCountOrderByAggregateInput = {
@@ -24132,6 +25389,47 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type AccountRelationFilter = {
+    is?: AccountWhereInput
+    isNot?: AccountWhereInput
+  }
+
+  export type OrderReqMsgAccountIdMessageCompoundUniqueInput = {
+    accountId: number
+    message: string
+  }
+
+  export type OrderReqMsgCountOrderByAggregateInput = {
+    id?: SortOrder
+    accountId?: SortOrder
+    message?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrderReqMsgAvgOrderByAggregateInput = {
+    id?: SortOrder
+    accountId?: SortOrder
+  }
+
+  export type OrderReqMsgMaxOrderByAggregateInput = {
+    id?: SortOrder
+    accountId?: SortOrder
+    message?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrderReqMsgMinOrderByAggregateInput = {
+    id?: SortOrder
+    accountId?: SortOrder
+    message?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OrderReqMsgSumOrderByAggregateInput = {
+    id?: SortOrder
+    accountId?: SortOrder
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -25352,6 +26650,20 @@ export namespace Prisma {
     auto?: SortOrder
   }
 
+  export type OrderReqMsgCreateNestedManyWithoutAccountInput = {
+    create?: XOR<OrderReqMsgCreateWithoutAccountInput, OrderReqMsgUncheckedCreateWithoutAccountInput> | OrderReqMsgCreateWithoutAccountInput[] | OrderReqMsgUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: OrderReqMsgCreateOrConnectWithoutAccountInput | OrderReqMsgCreateOrConnectWithoutAccountInput[]
+    createMany?: OrderReqMsgCreateManyAccountInputEnvelope
+    connect?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+  }
+
+  export type OrderReqMsgUncheckedCreateNestedManyWithoutAccountInput = {
+    create?: XOR<OrderReqMsgCreateWithoutAccountInput, OrderReqMsgUncheckedCreateWithoutAccountInput> | OrderReqMsgCreateWithoutAccountInput[] | OrderReqMsgUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: OrderReqMsgCreateOrConnectWithoutAccountInput | OrderReqMsgCreateOrConnectWithoutAccountInput[]
+    createMany?: OrderReqMsgCreateManyAccountInputEnvelope
+    connect?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -25372,12 +26684,54 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type OrderReqMsgUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<OrderReqMsgCreateWithoutAccountInput, OrderReqMsgUncheckedCreateWithoutAccountInput> | OrderReqMsgCreateWithoutAccountInput[] | OrderReqMsgUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: OrderReqMsgCreateOrConnectWithoutAccountInput | OrderReqMsgCreateOrConnectWithoutAccountInput[]
+    upsert?: OrderReqMsgUpsertWithWhereUniqueWithoutAccountInput | OrderReqMsgUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: OrderReqMsgCreateManyAccountInputEnvelope
+    set?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+    disconnect?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+    delete?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+    connect?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+    update?: OrderReqMsgUpdateWithWhereUniqueWithoutAccountInput | OrderReqMsgUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: OrderReqMsgUpdateManyWithWhereWithoutAccountInput | OrderReqMsgUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: OrderReqMsgScalarWhereInput | OrderReqMsgScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type OrderReqMsgUncheckedUpdateManyWithoutAccountNestedInput = {
+    create?: XOR<OrderReqMsgCreateWithoutAccountInput, OrderReqMsgUncheckedCreateWithoutAccountInput> | OrderReqMsgCreateWithoutAccountInput[] | OrderReqMsgUncheckedCreateWithoutAccountInput[]
+    connectOrCreate?: OrderReqMsgCreateOrConnectWithoutAccountInput | OrderReqMsgCreateOrConnectWithoutAccountInput[]
+    upsert?: OrderReqMsgUpsertWithWhereUniqueWithoutAccountInput | OrderReqMsgUpsertWithWhereUniqueWithoutAccountInput[]
+    createMany?: OrderReqMsgCreateManyAccountInputEnvelope
+    set?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+    disconnect?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+    delete?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+    connect?: OrderReqMsgWhereUniqueInput | OrderReqMsgWhereUniqueInput[]
+    update?: OrderReqMsgUpdateWithWhereUniqueWithoutAccountInput | OrderReqMsgUpdateWithWhereUniqueWithoutAccountInput[]
+    updateMany?: OrderReqMsgUpdateManyWithWhereWithoutAccountInput | OrderReqMsgUpdateManyWithWhereWithoutAccountInput[]
+    deleteMany?: OrderReqMsgScalarWhereInput | OrderReqMsgScalarWhereInput[]
+  }
+
+  export type AccountCreateNestedOneWithoutOrderReqMsgInput = {
+    create?: XOR<AccountCreateWithoutOrderReqMsgInput, AccountUncheckedCreateWithoutOrderReqMsgInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutOrderReqMsgInput
+    connect?: AccountWhereUniqueInput
+  }
+
+  export type AccountUpdateOneRequiredWithoutOrderReqMsgNestedInput = {
+    create?: XOR<AccountCreateWithoutOrderReqMsgInput, AccountUncheckedCreateWithoutOrderReqMsgInput>
+    connectOrCreate?: AccountCreateOrConnectWithoutOrderReqMsgInput
+    upsert?: AccountUpsertWithoutOrderReqMsgInput
+    connect?: AccountWhereUniqueInput
+    update?: XOR<XOR<AccountUpdateToOneWithWhereWithoutOrderReqMsgInput, AccountUpdateWithoutOrderReqMsgInput>, AccountUncheckedUpdateWithoutOrderReqMsgInput>
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -25853,6 +27207,123 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBytesNullableFilter<$PrismaModel>
     _max?: NestedBytesNullableFilter<$PrismaModel>
+  }
+
+  export type OrderReqMsgCreateWithoutAccountInput = {
+    message: string
+    updatedAt: Date | string
+  }
+
+  export type OrderReqMsgUncheckedCreateWithoutAccountInput = {
+    id?: number
+    message: string
+    updatedAt: Date | string
+  }
+
+  export type OrderReqMsgCreateOrConnectWithoutAccountInput = {
+    where: OrderReqMsgWhereUniqueInput
+    create: XOR<OrderReqMsgCreateWithoutAccountInput, OrderReqMsgUncheckedCreateWithoutAccountInput>
+  }
+
+  export type OrderReqMsgCreateManyAccountInputEnvelope = {
+    data: OrderReqMsgCreateManyAccountInput | OrderReqMsgCreateManyAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OrderReqMsgUpsertWithWhereUniqueWithoutAccountInput = {
+    where: OrderReqMsgWhereUniqueInput
+    update: XOR<OrderReqMsgUpdateWithoutAccountInput, OrderReqMsgUncheckedUpdateWithoutAccountInput>
+    create: XOR<OrderReqMsgCreateWithoutAccountInput, OrderReqMsgUncheckedCreateWithoutAccountInput>
+  }
+
+  export type OrderReqMsgUpdateWithWhereUniqueWithoutAccountInput = {
+    where: OrderReqMsgWhereUniqueInput
+    data: XOR<OrderReqMsgUpdateWithoutAccountInput, OrderReqMsgUncheckedUpdateWithoutAccountInput>
+  }
+
+  export type OrderReqMsgUpdateManyWithWhereWithoutAccountInput = {
+    where: OrderReqMsgScalarWhereInput
+    data: XOR<OrderReqMsgUpdateManyMutationInput, OrderReqMsgUncheckedUpdateManyWithoutAccountInput>
+  }
+
+  export type OrderReqMsgScalarWhereInput = {
+    AND?: OrderReqMsgScalarWhereInput | OrderReqMsgScalarWhereInput[]
+    OR?: OrderReqMsgScalarWhereInput[]
+    NOT?: OrderReqMsgScalarWhereInput | OrderReqMsgScalarWhereInput[]
+    id?: IntFilter<"OrderReqMsg"> | number
+    accountId?: IntFilter<"OrderReqMsg"> | number
+    message?: StringFilter<"OrderReqMsg"> | string
+    updatedAt?: DateTimeFilter<"OrderReqMsg"> | Date | string
+  }
+
+  export type AccountCreateWithoutOrderReqMsgInput = {
+    userId: string
+    password: string
+    email: string
+    ykiho?: string | null
+    saupkiho?: string | null
+    token?: string | null
+    expiryDate?: Date | string | null
+    admin?: boolean | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountUncheckedCreateWithoutOrderReqMsgInput = {
+    id?: number
+    userId: string
+    password: string
+    email: string
+    ykiho?: string | null
+    saupkiho?: string | null
+    token?: string | null
+    expiryDate?: Date | string | null
+    admin?: boolean | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccountCreateOrConnectWithoutOrderReqMsgInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutOrderReqMsgInput, AccountUncheckedCreateWithoutOrderReqMsgInput>
+  }
+
+  export type AccountUpsertWithoutOrderReqMsgInput = {
+    update: XOR<AccountUpdateWithoutOrderReqMsgInput, AccountUncheckedUpdateWithoutOrderReqMsgInput>
+    create: XOR<AccountCreateWithoutOrderReqMsgInput, AccountUncheckedCreateWithoutOrderReqMsgInput>
+    where?: AccountWhereInput
+  }
+
+  export type AccountUpdateToOneWithWhereWithoutOrderReqMsgInput = {
+    where?: AccountWhereInput
+    data: XOR<AccountUpdateWithoutOrderReqMsgInput, AccountUncheckedUpdateWithoutOrderReqMsgInput>
+  }
+
+  export type AccountUpdateWithoutOrderReqMsgInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    ykiho?: NullableStringFieldUpdateOperationsInput | string | null
+    saupkiho?: NullableStringFieldUpdateOperationsInput | string | null
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccountUncheckedUpdateWithoutOrderReqMsgInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    ykiho?: NullableStringFieldUpdateOperationsInput | string | null
+    saupkiho?: NullableStringFieldUpdateOperationsInput | string | null
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CartItemCreateWithoutCartInput = {
@@ -26355,6 +27826,29 @@ export namespace Prisma {
     virtual?: PaymentVirtualUncheckedUpdateOneWithoutPaymentNestedInput
   }
 
+  export type OrderReqMsgCreateManyAccountInput = {
+    id?: number
+    message: string
+    updatedAt: Date | string
+  }
+
+  export type OrderReqMsgUpdateWithoutAccountInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderReqMsgUncheckedUpdateWithoutAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderReqMsgUncheckedUpdateManyWithoutAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CartItemCreateManyCartInput = {
     id?: number
     code: string
@@ -26431,6 +27925,10 @@ export namespace Prisma {
    * Aliases for legacy arg types
    */
     /**
+     * @deprecated Use AccountCountOutputTypeDefaultArgs instead
+     */
+    export type AccountCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AccountCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use CartCountOutputTypeDefaultArgs instead
      */
     export type CartCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CartCountOutputTypeDefaultArgs<ExtArgs>
@@ -26442,6 +27940,10 @@ export namespace Prisma {
      * @deprecated Use AccountDefaultArgs instead
      */
     export type AccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AccountDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use OrderReqMsgDefaultArgs instead
+     */
+    export type OrderReqMsgArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = OrderReqMsgDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ProductListDefaultArgs instead
      */

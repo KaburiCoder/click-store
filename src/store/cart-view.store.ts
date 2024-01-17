@@ -3,12 +3,13 @@ import { CartItem } from "@/db/models/cart-item";
 import { create } from "zustand";
 
 type State = {
-  cart?: Cart;
-  selectedCartItems?: CartItem[];
   loading: boolean;
   checkedIds: number[];
   checkBNPL: boolean;
   initialized: boolean;
+  cart?: Cart;
+  selectedCartItems?: CartItem[];
+  orderRequestMessage?: string;
 };
 
 type Action = {
@@ -19,6 +20,7 @@ type Action = {
   setCheckAll: (checked: boolean) => void;
   setCheckBNPL: (checked: boolean) => void;
   setInitialized: () => void;
+  setOrderRequestMessage: (orderRequestMessage: string) => void;
   clear: () => void;
 };
 
@@ -28,6 +30,7 @@ const initialState: State = {
   checkedIds: [],
   checkBNPL: false,
   initialized: false,
+  orderRequestMessage: undefined,
 };
 
 const useCartViewStore = create<State & Action>((set) => ({
@@ -60,6 +63,7 @@ const useCartViewStore = create<State & Action>((set) => ({
   setCheckBNPL: (checked) => set({ checkBNPL: checked }),
   setSelectedCartItems: (cartItems) => set({ selectedCartItems: cartItems }),
   setInitialized: () => set({ initialized: true }),
+  setOrderRequestMessage: (orderRequestMessage) => set({ orderRequestMessage }),
   clear: () => set(initialState),
 }));
 

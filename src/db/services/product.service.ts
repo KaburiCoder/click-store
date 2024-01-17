@@ -28,6 +28,7 @@ export async function saveProducts({
   payment,
   paymentItems,
   webBNPL,
+  bigo2,
 }: SaveProductsDto) {
   const jisa = await getJisa();
 
@@ -52,6 +53,7 @@ export async function saveProducts({
           webPaymentItemId: item.id!,
           webBNPL,
           bigo: "",
+          bigo2,
           orderCheck: "",
           rgb: "",
           seller: "",

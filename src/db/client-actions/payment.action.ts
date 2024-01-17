@@ -14,9 +14,17 @@ const schema = z.object({
 
 type PaymentActionType = z.infer<typeof schema>;
 
-export async function paymentAction(args: PaymentActionType) {
-  const { amount, quantity, orderId, paymentKey, paymentItems } = args;
-  const result = schema.safeParse(args);
+interface PaymentActionArgs {
+  data: PaymentActionType;
+  orderRequestMessage?: string;
+}
+
+export async function paymentAction({
+  data,
+  orderRequestMessage,
+}: PaymentActionArgs) {
+  const { amount, quantity, orderId, paymentKey, paymentItems } = data;
+  const result = schema.safeParse(data);
 
   if (!result.success) {
     return {
@@ -24,34 +32,37 @@ export async function paymentAction(args: PaymentActionType) {
     };
   }
 
-  const data = await confirmTossPayment({
+  const confirmData = await confirmTossPayment({
     amount,
     orderId,
     paymentKey,
   });
 
-  if (data.message) {
+  if (confirmData.message) {
     return {
-      errors: [data.message],
+      errors: [confirmData.message],
     };
   }
 
   const sendType =
-    data.status === "WAITING_FOR_DEPOSIT" ? "결제대기" : "주문확인";
+    confirmData.status === "WAITING_FOR_DEPOSIT" ? "결제대기" : "주문확인";
 
   try {
     await savePayment({
-      method: data.method!,
-      amount,
-      orderId,
-      paymentKey,
-      cancel: false,
-      quantity,
-      sendType,
-      paymentItems,
-      requestedAt: data.requestedAt,
-      approvedAt: data.approvedAt,
-      virtual: data.virtualAccount ?? undefined,
+      payment: {
+        method: confirmData.method!,
+        amount,
+        orderId,
+        paymentKey,
+        cancel: false,
+        quantity,
+        sendType,
+        paymentItems,
+        requestedAt: confirmData.requestedAt,
+        approvedAt: confirmData.approvedAt,
+        virtual: confirmData.virtualAccount ?? undefined,
+      },
+      orderRequestMessage,
     });
   } catch (err: any) {
     return {

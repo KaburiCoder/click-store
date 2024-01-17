@@ -29,7 +29,14 @@ const paymentItemSchema = z.object({
 type PaymentType = z.infer<typeof paymentSchema>;
 type PaymentItemType = z.infer<typeof paymentItemSchema>;
 
-export async function paymentBNPLAction(data: PaymentType) {
+interface PaymentBNPLActionArgs {
+  data: PaymentType;
+  orderRequestMessage?: string;
+}
+export async function paymentBNPLAction({
+  data,
+  orderRequestMessage,
+}: PaymentBNPLActionArgs) {
   const result = paymentSchema.safeParse(data);
 
   if (!result.success) {
@@ -38,6 +45,9 @@ export async function paymentBNPLAction(data: PaymentType) {
     };
   }
 
-  await savePayment(Object.assign(data));
+  await savePayment({
+    payment: Object.assign(data),
+    orderRequestMessage,
+  });
   await deleteCartItems(data.cartItemIds);
 }

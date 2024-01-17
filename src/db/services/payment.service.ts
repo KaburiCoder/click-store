@@ -21,10 +21,18 @@ import { GetCustomerNameDto } from "../dto/payment/get-customer-name.dto";
 import { getEm } from "./em.service";
 import { AdminInfinitySearchDto } from "../dto/payment/admin-infinity-search.dto";
 import { Prisma } from "@/prisma/client";
+import { saveOrderReqMsg } from "./order-req-msg.service";
 
 const DISP_ITEM_COUNT = 6;
 
-export async function savePayment(payment: Partial<Payment>) {
+interface SavePaymentArgs {
+  payment: Partial<Payment>;
+  orderRequestMessage?: string;
+}
+export async function savePayment({
+  payment,
+  orderRequestMessage,
+}: SavePaymentArgs) {
   const user = await getUser();
 
   if (!user?.ykiho) {
@@ -77,7 +85,15 @@ export async function savePayment(payment: Partial<Payment>) {
     payment: savedPayment,
     paymentItems: savedPaymentItems,
     webBNPL: true,
+    bigo2: orderRequestMessage,
   });
+
+  // 배송요청메세지 있는 경우 테이블에 메세지 리스트 저장
+  if (orderRequestMessage?.trim()) {
+    await saveOrderReqMsg({
+      message: orderRequestMessage?.trim(),
+    });
+  }
 }
 
 export async function getPaymentWithVirtual(orderId: string) {

@@ -10,6 +10,7 @@ import ReorderButton from "./buttons/reorder-button";
 import { usePathname } from "next/navigation";
 import { paths } from "@/paths";
 import LabelText from "@/components/(admin)/header/sales-receipt/components/label-text";
+import RequestMessage from "./request-message";
 
 export default function OrderFooter({ payment }: PaymentProps) {
   const pathname = usePathname();
@@ -42,7 +43,7 @@ export default function OrderFooter({ payment }: PaymentProps) {
         label="총 비용"
         text={payment.amount.toLocaleString()}
       />
-
+      <RequestMessage payment={payment} />
       {payment.virtual &&
         payment.sendType === "결제대기" &&
         !payment.cancel && (

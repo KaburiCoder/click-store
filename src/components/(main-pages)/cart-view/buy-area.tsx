@@ -7,8 +7,12 @@ import { paths } from "@/paths";
 import ButtonL from "@/components/ui/custom/button-l";
 import CheckBoxL from "@/components/ui/custom/check-box-l";
 import { CheckedState } from "@radix-ui/react-checkbox";
+import { cn } from "@/lib/utils/shadcn.util";
 
-export default function BuyArea() {
+interface Props {
+  innerClassName?: string;
+}
+export default function BuyArea({ innerClassName }: Props) {
   const { push } = useRouter();
   const { user } = useSvrCookie();
   const {
@@ -48,7 +52,12 @@ export default function BuyArea() {
 
   return (
     <div className="flex-center fixed bottom-0 z-[1] h-cartView w-full flex-col bg-blue-600 p-4 text-white">
-      <div className="flex w-full max-w-[60rem] items-center justify-between">
+      <div
+        className={cn(
+          "flex w-full items-center justify-between",
+          innerClassName,
+        )}
+      >
         <div className="text-left">
           <div className="text-base">총 주문금액</div>
           <div className="text-2xl font-bold">
