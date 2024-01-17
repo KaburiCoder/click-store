@@ -15,9 +15,7 @@ export default function CartViewPage() {
   const cartItemsExists = cart?.cartItems && cart.cartItems?.length > 0;
   const maxWidth = "max-w-[60rem]";
 
-  useEffect(() => {
-    return () => clear();
-  }, [clear]);
+  useEffect(clear, [clear]);
 
   return (
     <>

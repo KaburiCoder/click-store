@@ -1,4 +1,3 @@
-import { CartItem } from "@/db/models/cart-item";
 import { PaymentItem } from "@/db/models/payment-item";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
@@ -14,6 +13,7 @@ const initialState: PaymentState = {
   orderName: "",
   paymentItems: [],
   cartItemIds: [],
+  orderRequestMessage: undefined,
 };
 
 const usePaymentStore = create(
@@ -36,5 +36,6 @@ export type PaymentState = {
   orderName: string;
   paymentItems: PaymentItem[];
   cartItemIds: number[];
+  orderRequestMessage?: string;
 };
 export default usePaymentStore;

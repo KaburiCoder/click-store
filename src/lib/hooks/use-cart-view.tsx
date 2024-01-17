@@ -168,6 +168,7 @@ const useCartView = ({ onFetch, isPayment, id }: Props) => {
     loading,
     selectedCartItems,
     hasNotPaymentData,
+    orderRequestMessage,
     fetch,
     deleteCartItem,
     updateQuantity,

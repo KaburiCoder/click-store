@@ -24,7 +24,7 @@ export default function OrderFooter({ payment }: PaymentProps) {
     !payment.cancel && ["결제대기", "주문확인"].includes(sendType);
 
   return (
-    <Card className="px-5 py-2.5 shadow">
+    <div className="px-5 py-2.5 border-t border-solid border-slate-100">
       {isAdmin && (
         <>
           <LabelText
@@ -67,6 +67,6 @@ export default function OrderFooter({ payment }: PaymentProps) {
 
         {!isAdmin && <ReorderButton paymentItems={payment.paymentItems!} />}
       </div>
-    </Card>
+    </div>
   );
 }

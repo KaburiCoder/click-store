@@ -34,7 +34,7 @@ export default function OrderRequestModel({
     <Modal
       open={open}
       setOpen={setOpen}
-      className="flex max-h-[80%] w-[80%] flex-col bg-slate-50"
+      className="flex max-h-[80%] w-[80%] max-w-[60rem] flex-col bg-slate-50"
     >
       <div className="flex min-w-[18rem] flex-col overflow-hidden">
         <X

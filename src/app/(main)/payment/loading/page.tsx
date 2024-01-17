@@ -10,7 +10,8 @@ let isActionCalled = false;
 
 export default function PaymentLoadingPage() {
   const params = useSearchParams();
-  const { quantity, paymentItems, cartItemIds, clear } = usePaymentStore();
+  const { quantity, paymentItems, cartItemIds, orderRequestMessage, clear } =
+    usePaymentStore();
   const { error, fetchPayment } = useFetchPayment();
   useEffect(() => {
     return clear;
@@ -42,8 +43,16 @@ export default function PaymentLoadingPage() {
       paymentKey: paymentKey!,
       paymentItems,
       cartItemIds,
+      orderRequestMessage,
     });
-  }, [params, paymentItems, quantity, cartItemIds, fetchPayment]);
+  }, [
+    params,
+    paymentItems,
+    quantity,
+    cartItemIds,
+    orderRequestMessage,
+    fetchPayment,
+  ]);
 
   return <>{error ? <PaymentError error={error} /> : <PaymentLoading />}</>;
 }

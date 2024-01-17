@@ -8,7 +8,12 @@ import { APP_ENV } from "@/configs/config";
 import ButtonL from "@/components/ui/custom/button-l";
 
 export default function PaymentPage(props: any) {
-  const { hasNotPaymentData, cartItemsUtil, getPaymentItems } = useCartView({
+  const {
+    orderRequestMessage,
+    hasNotPaymentData,
+    cartItemsUtil,
+    getPaymentItems,
+  } = useCartView({
     isPayment: true,
   });
   const { setPaymentState, clear } = usePaymentStore();
@@ -29,6 +34,7 @@ export default function PaymentPage(props: any) {
           quantity: cartItemsUtil!.totalQuantity,
           paymentItems: getPaymentItems(),
           cartItemIds: cartItemsUtil!.cartItemIds,
+          orderRequestMessage,
         });
       },
       onFail: clear,
