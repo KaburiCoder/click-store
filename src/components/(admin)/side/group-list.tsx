@@ -6,6 +6,7 @@ import { paths } from "@/paths";
 import React from "react";
 import { MdContentPasteSearch } from "react-icons/md";
 import { AiTwotoneShopping } from "react-icons/ai";
+import { MdPayment } from "react-icons/md";
 
 const groups: ISideGroup[] = [
   {
@@ -20,6 +21,16 @@ const groups: ISideGroup[] = [
         Icon: MdContentPasteSearch,
         path: paths.adminWebOrders(),
         name: "웹 주문내역",
+      },
+    ],
+  },
+  {
+    groupName: "결제 설정",
+    links: [
+      {
+        Icon: MdPayment,
+        path: paths.adminSettingsPayment(),
+        name: "PG결제 메세지",
       },
     ],
   },

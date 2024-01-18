@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./global.css";
 import "@/css/index";
+import "react-quill/dist/quill.snow.css";
 import Providers from "@/providers/providers";
 import { natoSansKR } from "@/fonts/fonts";
 import ToastWrapper from "@/components/(shared)/toast-wrapper";

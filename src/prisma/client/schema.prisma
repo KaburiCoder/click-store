@@ -393,3 +393,8 @@ model NewCpmMsg {
   dcDate  String?  @map(name: "cm_dcdate")
   etc1    String?  @map(name: "cm_etc1")
 }
+
+model PgMsg {
+  id  Int    @id @default(autoincrement())
+  msg Bytes?
+}

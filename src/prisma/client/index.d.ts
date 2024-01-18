@@ -98,6 +98,11 @@ export type Em = $Result.DefaultSelection<Prisma.$EmPayload>
  * 
  */
 export type NewCpmMsg = $Result.DefaultSelection<Prisma.$NewCpmMsgPayload>
+/**
+ * Model PgMsg
+ * 
+ */
+export type PgMsg = $Result.DefaultSelection<Prisma.$PgMsgPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -390,6 +395,16 @@ export class PrismaClient<
     * ```
     */
   get newCpmMsg(): Prisma.NewCpmMsgDelegate<ExtArgs>;
+
+  /**
+   * `prisma.pgMsg`: Exposes CRUD operations for the **PgMsg** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PgMsgs
+    * const pgMsgs = await prisma.pgMsg.findMany()
+    * ```
+    */
+  get pgMsg(): Prisma.PgMsgDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -876,7 +891,8 @@ export namespace Prisma {
     PaymentVirtual: 'PaymentVirtual',
     PaymentRefund: 'PaymentRefund',
     Em: 'Em',
-    NewCpmMsg: 'NewCpmMsg'
+    NewCpmMsg: 'NewCpmMsg',
+    PgMsg: 'PgMsg'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -893,7 +909,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'account' | 'orderReqMsg' | 'productList' | 'productListSub' | 'product' | 'productLog' | 'productListWebBunryu' | 'productListImage' | 'cs' | 'cart' | 'cartItem' | 'payment' | 'paymentItem' | 'paymentVirtual' | 'paymentRefund' | 'em' | 'newCpmMsg'
+      modelProps: 'account' | 'orderReqMsg' | 'productList' | 'productListSub' | 'product' | 'productLog' | 'productListWebBunryu' | 'productListImage' | 'cs' | 'cart' | 'cartItem' | 'payment' | 'paymentItem' | 'paymentVirtual' | 'paymentRefund' | 'em' | 'newCpmMsg' | 'pgMsg'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -2016,6 +2032,72 @@ export namespace Prisma {
           count: {
             args: Prisma.NewCpmMsgCountArgs<ExtArgs>,
             result: $Utils.Optional<NewCpmMsgCountAggregateOutputType> | number
+          }
+        }
+      }
+      PgMsg: {
+        payload: Prisma.$PgMsgPayload<ExtArgs>
+        fields: Prisma.PgMsgFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PgMsgFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PgMsgFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload>
+          }
+          findFirst: {
+            args: Prisma.PgMsgFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PgMsgFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload>
+          }
+          findMany: {
+            args: Prisma.PgMsgFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload>[]
+          }
+          create: {
+            args: Prisma.PgMsgCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload>
+          }
+          createMany: {
+            args: Prisma.PgMsgCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PgMsgDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload>
+          }
+          update: {
+            args: Prisma.PgMsgUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload>
+          }
+          deleteMany: {
+            args: Prisma.PgMsgDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PgMsgUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PgMsgUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PgMsgPayload>
+          }
+          aggregate: {
+            args: Prisma.PgMsgAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePgMsg>
+          }
+          groupBy: {
+            args: Prisma.PgMsgGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PgMsgGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PgMsgCountArgs<ExtArgs>,
+            result: $Utils.Optional<PgMsgCountAggregateOutputType> | number
           }
         }
       }
@@ -20366,6 +20448,877 @@ export namespace Prisma {
 
 
   /**
+   * Model PgMsg
+   */
+
+  export type AggregatePgMsg = {
+    _count: PgMsgCountAggregateOutputType | null
+    _avg: PgMsgAvgAggregateOutputType | null
+    _sum: PgMsgSumAggregateOutputType | null
+    _min: PgMsgMinAggregateOutputType | null
+    _max: PgMsgMaxAggregateOutputType | null
+  }
+
+  export type PgMsgAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PgMsgSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type PgMsgMinAggregateOutputType = {
+    id: number | null
+    msg: Buffer | null
+  }
+
+  export type PgMsgMaxAggregateOutputType = {
+    id: number | null
+    msg: Buffer | null
+  }
+
+  export type PgMsgCountAggregateOutputType = {
+    id: number
+    msg: number
+    _all: number
+  }
+
+
+  export type PgMsgAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type PgMsgSumAggregateInputType = {
+    id?: true
+  }
+
+  export type PgMsgMinAggregateInputType = {
+    id?: true
+    msg?: true
+  }
+
+  export type PgMsgMaxAggregateInputType = {
+    id?: true
+    msg?: true
+  }
+
+  export type PgMsgCountAggregateInputType = {
+    id?: true
+    msg?: true
+    _all?: true
+  }
+
+  export type PgMsgAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PgMsg to aggregate.
+     */
+    where?: PgMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PgMsgs to fetch.
+     */
+    orderBy?: PgMsgOrderByWithRelationInput | PgMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PgMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PgMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PgMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PgMsgs
+    **/
+    _count?: true | PgMsgCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PgMsgAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PgMsgSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PgMsgMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PgMsgMaxAggregateInputType
+  }
+
+  export type GetPgMsgAggregateType<T extends PgMsgAggregateArgs> = {
+        [P in keyof T & keyof AggregatePgMsg]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePgMsg[P]>
+      : GetScalarType<T[P], AggregatePgMsg[P]>
+  }
+
+
+
+
+  export type PgMsgGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PgMsgWhereInput
+    orderBy?: PgMsgOrderByWithAggregationInput | PgMsgOrderByWithAggregationInput[]
+    by: PgMsgScalarFieldEnum[] | PgMsgScalarFieldEnum
+    having?: PgMsgScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PgMsgCountAggregateInputType | true
+    _avg?: PgMsgAvgAggregateInputType
+    _sum?: PgMsgSumAggregateInputType
+    _min?: PgMsgMinAggregateInputType
+    _max?: PgMsgMaxAggregateInputType
+  }
+
+  export type PgMsgGroupByOutputType = {
+    id: number
+    msg: Buffer | null
+    _count: PgMsgCountAggregateOutputType | null
+    _avg: PgMsgAvgAggregateOutputType | null
+    _sum: PgMsgSumAggregateOutputType | null
+    _min: PgMsgMinAggregateOutputType | null
+    _max: PgMsgMaxAggregateOutputType | null
+  }
+
+  type GetPgMsgGroupByPayload<T extends PgMsgGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PgMsgGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PgMsgGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PgMsgGroupByOutputType[P]>
+            : GetScalarType<T[P], PgMsgGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PgMsgSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    msg?: boolean
+  }, ExtArgs["result"]["pgMsg"]>
+
+  export type PgMsgSelectScalar = {
+    id?: boolean
+    msg?: boolean
+  }
+
+
+  export type $PgMsgPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PgMsg"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      msg: Buffer | null
+    }, ExtArgs["result"]["pgMsg"]>
+    composites: {}
+  }
+
+
+  type PgMsgGetPayload<S extends boolean | null | undefined | PgMsgDefaultArgs> = $Result.GetResult<Prisma.$PgMsgPayload, S>
+
+  type PgMsgCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PgMsgFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: PgMsgCountAggregateInputType | true
+    }
+
+  export interface PgMsgDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PgMsg'], meta: { name: 'PgMsg' } }
+    /**
+     * Find zero or one PgMsg that matches the filter.
+     * @param {PgMsgFindUniqueArgs} args - Arguments to find a PgMsg
+     * @example
+     * // Get one PgMsg
+     * const pgMsg = await prisma.pgMsg.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PgMsgFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PgMsgFindUniqueArgs<ExtArgs>>
+    ): Prisma__PgMsgClient<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PgMsg that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PgMsgFindUniqueOrThrowArgs} args - Arguments to find a PgMsg
+     * @example
+     * // Get one PgMsg
+     * const pgMsg = await prisma.pgMsg.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PgMsgFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PgMsgFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PgMsgClient<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PgMsg that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PgMsgFindFirstArgs} args - Arguments to find a PgMsg
+     * @example
+     * // Get one PgMsg
+     * const pgMsg = await prisma.pgMsg.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PgMsgFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PgMsgFindFirstArgs<ExtArgs>>
+    ): Prisma__PgMsgClient<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PgMsg that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PgMsgFindFirstOrThrowArgs} args - Arguments to find a PgMsg
+     * @example
+     * // Get one PgMsg
+     * const pgMsg = await prisma.pgMsg.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PgMsgFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PgMsgFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PgMsgClient<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PgMsgs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PgMsgFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PgMsgs
+     * const pgMsgs = await prisma.pgMsg.findMany()
+     * 
+     * // Get first 10 PgMsgs
+     * const pgMsgs = await prisma.pgMsg.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pgMsgWithIdOnly = await prisma.pgMsg.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PgMsgFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PgMsgFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PgMsg.
+     * @param {PgMsgCreateArgs} args - Arguments to create a PgMsg.
+     * @example
+     * // Create one PgMsg
+     * const PgMsg = await prisma.pgMsg.create({
+     *   data: {
+     *     // ... data to create a PgMsg
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PgMsgCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PgMsgCreateArgs<ExtArgs>>
+    ): Prisma__PgMsgClient<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PgMsgs.
+     *     @param {PgMsgCreateManyArgs} args - Arguments to create many PgMsgs.
+     *     @example
+     *     // Create many PgMsgs
+     *     const pgMsg = await prisma.pgMsg.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PgMsgCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PgMsgCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PgMsg.
+     * @param {PgMsgDeleteArgs} args - Arguments to delete one PgMsg.
+     * @example
+     * // Delete one PgMsg
+     * const PgMsg = await prisma.pgMsg.delete({
+     *   where: {
+     *     // ... filter to delete one PgMsg
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PgMsgDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PgMsgDeleteArgs<ExtArgs>>
+    ): Prisma__PgMsgClient<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PgMsg.
+     * @param {PgMsgUpdateArgs} args - Arguments to update one PgMsg.
+     * @example
+     * // Update one PgMsg
+     * const pgMsg = await prisma.pgMsg.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PgMsgUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PgMsgUpdateArgs<ExtArgs>>
+    ): Prisma__PgMsgClient<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PgMsgs.
+     * @param {PgMsgDeleteManyArgs} args - Arguments to filter PgMsgs to delete.
+     * @example
+     * // Delete a few PgMsgs
+     * const { count } = await prisma.pgMsg.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PgMsgDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PgMsgDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PgMsgs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PgMsgUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PgMsgs
+     * const pgMsg = await prisma.pgMsg.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PgMsgUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PgMsgUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PgMsg.
+     * @param {PgMsgUpsertArgs} args - Arguments to update or create a PgMsg.
+     * @example
+     * // Update or create a PgMsg
+     * const pgMsg = await prisma.pgMsg.upsert({
+     *   create: {
+     *     // ... data to create a PgMsg
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PgMsg we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PgMsgUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PgMsgUpsertArgs<ExtArgs>>
+    ): Prisma__PgMsgClient<$Result.GetResult<Prisma.$PgMsgPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PgMsgs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PgMsgCountArgs} args - Arguments to filter PgMsgs to count.
+     * @example
+     * // Count the number of PgMsgs
+     * const count = await prisma.pgMsg.count({
+     *   where: {
+     *     // ... the filter for the PgMsgs we want to count
+     *   }
+     * })
+    **/
+    count<T extends PgMsgCountArgs>(
+      args?: Subset<T, PgMsgCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PgMsgCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PgMsg.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PgMsgAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PgMsgAggregateArgs>(args: Subset<T, PgMsgAggregateArgs>): Prisma.PrismaPromise<GetPgMsgAggregateType<T>>
+
+    /**
+     * Group by PgMsg.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PgMsgGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PgMsgGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PgMsgGroupByArgs['orderBy'] }
+        : { orderBy?: PgMsgGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PgMsgGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPgMsgGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PgMsg model
+   */
+  readonly fields: PgMsgFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PgMsg.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PgMsgClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PgMsg model
+   */ 
+  interface PgMsgFieldRefs {
+    readonly id: FieldRef<"PgMsg", 'Int'>
+    readonly msg: FieldRef<"PgMsg", 'Bytes'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PgMsg findUnique
+   */
+  export type PgMsgFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which PgMsg to fetch.
+     */
+    where: PgMsgWhereUniqueInput
+  }
+
+
+  /**
+   * PgMsg findUniqueOrThrow
+   */
+  export type PgMsgFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which PgMsg to fetch.
+     */
+    where: PgMsgWhereUniqueInput
+  }
+
+
+  /**
+   * PgMsg findFirst
+   */
+  export type PgMsgFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which PgMsg to fetch.
+     */
+    where?: PgMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PgMsgs to fetch.
+     */
+    orderBy?: PgMsgOrderByWithRelationInput | PgMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PgMsgs.
+     */
+    cursor?: PgMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PgMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PgMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PgMsgs.
+     */
+    distinct?: PgMsgScalarFieldEnum | PgMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * PgMsg findFirstOrThrow
+   */
+  export type PgMsgFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which PgMsg to fetch.
+     */
+    where?: PgMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PgMsgs to fetch.
+     */
+    orderBy?: PgMsgOrderByWithRelationInput | PgMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PgMsgs.
+     */
+    cursor?: PgMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PgMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PgMsgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PgMsgs.
+     */
+    distinct?: PgMsgScalarFieldEnum | PgMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * PgMsg findMany
+   */
+  export type PgMsgFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * Filter, which PgMsgs to fetch.
+     */
+    where?: PgMsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PgMsgs to fetch.
+     */
+    orderBy?: PgMsgOrderByWithRelationInput | PgMsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PgMsgs.
+     */
+    cursor?: PgMsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PgMsgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PgMsgs.
+     */
+    skip?: number
+    distinct?: PgMsgScalarFieldEnum | PgMsgScalarFieldEnum[]
+  }
+
+
+  /**
+   * PgMsg create
+   */
+  export type PgMsgCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * The data needed to create a PgMsg.
+     */
+    data?: XOR<PgMsgCreateInput, PgMsgUncheckedCreateInput>
+  }
+
+
+  /**
+   * PgMsg createMany
+   */
+  export type PgMsgCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PgMsgs.
+     */
+    data: PgMsgCreateManyInput | PgMsgCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PgMsg update
+   */
+  export type PgMsgUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * The data needed to update a PgMsg.
+     */
+    data: XOR<PgMsgUpdateInput, PgMsgUncheckedUpdateInput>
+    /**
+     * Choose, which PgMsg to update.
+     */
+    where: PgMsgWhereUniqueInput
+  }
+
+
+  /**
+   * PgMsg updateMany
+   */
+  export type PgMsgUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PgMsgs.
+     */
+    data: XOR<PgMsgUpdateManyMutationInput, PgMsgUncheckedUpdateManyInput>
+    /**
+     * Filter which PgMsgs to update
+     */
+    where?: PgMsgWhereInput
+  }
+
+
+  /**
+   * PgMsg upsert
+   */
+  export type PgMsgUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * The filter to search for the PgMsg to update in case it exists.
+     */
+    where: PgMsgWhereUniqueInput
+    /**
+     * In case the PgMsg found by the `where` argument doesn't exist, create a new PgMsg with this data.
+     */
+    create: XOR<PgMsgCreateInput, PgMsgUncheckedCreateInput>
+    /**
+     * In case the PgMsg was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PgMsgUpdateInput, PgMsgUncheckedUpdateInput>
+  }
+
+
+  /**
+   * PgMsg delete
+   */
+  export type PgMsgDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+    /**
+     * Filter which PgMsg to delete.
+     */
+    where: PgMsgWhereUniqueInput
+  }
+
+
+  /**
+   * PgMsg deleteMany
+   */
+  export type PgMsgDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PgMsgs to delete
+     */
+    where?: PgMsgWhereInput
+  }
+
+
+  /**
+   * PgMsg without action
+   */
+  export type PgMsgDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PgMsg
+     */
+    select?: PgMsgSelect<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -20769,6 +21722,14 @@ export namespace Prisma {
   };
 
   export type NewCpmMsgScalarFieldEnum = (typeof NewCpmMsgScalarFieldEnum)[keyof typeof NewCpmMsgScalarFieldEnum]
+
+
+  export const PgMsgScalarFieldEnum: {
+    id: 'id',
+    msg: 'msg'
+  };
+
+  export type PgMsgScalarFieldEnum = (typeof PgMsgScalarFieldEnum)[keyof typeof PgMsgScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -22803,6 +23764,45 @@ export namespace Prisma {
     dcUser?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
     dcDate?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
     etc1?: StringNullableWithAggregatesFilter<"NewCpmMsg"> | string | null
+  }
+
+  export type PgMsgWhereInput = {
+    AND?: PgMsgWhereInput | PgMsgWhereInput[]
+    OR?: PgMsgWhereInput[]
+    NOT?: PgMsgWhereInput | PgMsgWhereInput[]
+    id?: IntFilter<"PgMsg"> | number
+    msg?: BytesNullableFilter<"PgMsg"> | Buffer | null
+  }
+
+  export type PgMsgOrderByWithRelationInput = {
+    id?: SortOrder
+    msg?: SortOrderInput | SortOrder
+  }
+
+  export type PgMsgWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PgMsgWhereInput | PgMsgWhereInput[]
+    OR?: PgMsgWhereInput[]
+    NOT?: PgMsgWhereInput | PgMsgWhereInput[]
+    msg?: BytesNullableFilter<"PgMsg"> | Buffer | null
+  }, "id">
+
+  export type PgMsgOrderByWithAggregationInput = {
+    id?: SortOrder
+    msg?: SortOrderInput | SortOrder
+    _count?: PgMsgCountOrderByAggregateInput
+    _avg?: PgMsgAvgOrderByAggregateInput
+    _max?: PgMsgMaxOrderByAggregateInput
+    _min?: PgMsgMinOrderByAggregateInput
+    _sum?: PgMsgSumOrderByAggregateInput
+  }
+
+  export type PgMsgScalarWhereWithAggregatesInput = {
+    AND?: PgMsgScalarWhereWithAggregatesInput | PgMsgScalarWhereWithAggregatesInput[]
+    OR?: PgMsgScalarWhereWithAggregatesInput[]
+    NOT?: PgMsgScalarWhereWithAggregatesInput | PgMsgScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PgMsg"> | number
+    msg?: BytesNullableWithAggregatesFilter<"PgMsg"> | Buffer | null
   }
 
   export type AccountCreateInput = {
@@ -25174,6 +26174,38 @@ export namespace Prisma {
     etc1?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type PgMsgCreateInput = {
+    msg?: Buffer | null
+  }
+
+  export type PgMsgUncheckedCreateInput = {
+    id?: number
+    msg?: Buffer | null
+  }
+
+  export type PgMsgUpdateInput = {
+    msg?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+  }
+
+  export type PgMsgUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    msg?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+  }
+
+  export type PgMsgCreateManyInput = {
+    id?: number
+    msg?: Buffer | null
+  }
+
+  export type PgMsgUpdateManyMutationInput = {
+    msg?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+  }
+
+  export type PgMsgUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    msg?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -26650,6 +27682,29 @@ export namespace Prisma {
     auto?: SortOrder
   }
 
+  export type PgMsgCountOrderByAggregateInput = {
+    id?: SortOrder
+    msg?: SortOrder
+  }
+
+  export type PgMsgAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type PgMsgMaxOrderByAggregateInput = {
+    id?: SortOrder
+    msg?: SortOrder
+  }
+
+  export type PgMsgMinOrderByAggregateInput = {
+    id?: SortOrder
+    msg?: SortOrder
+  }
+
+  export type PgMsgSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type OrderReqMsgCreateNestedManyWithoutAccountInput = {
     create?: XOR<OrderReqMsgCreateWithoutAccountInput, OrderReqMsgUncheckedCreateWithoutAccountInput> | OrderReqMsgCreateWithoutAccountInput[] | OrderReqMsgUncheckedCreateWithoutAccountInput[]
     connectOrCreate?: OrderReqMsgCreateOrConnectWithoutAccountInput | OrderReqMsgCreateOrConnectWithoutAccountInput[]
@@ -28004,6 +29059,10 @@ export namespace Prisma {
      * @deprecated Use NewCpmMsgDefaultArgs instead
      */
     export type NewCpmMsgArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = NewCpmMsgDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PgMsgDefaultArgs instead
+     */
+    export type PgMsgArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PgMsgDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

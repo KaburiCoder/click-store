@@ -4,10 +4,10 @@ import { QKey } from "@/db/keys";
 import { cn } from "@/lib/utils/shadcn.util";
 import useCartViewStore from "@/store/cart-view.store";
 import { useQuery } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import OrderRequestButton from "./order-request-button";
 import { fetchOrderReqMsgs } from "@/db/client-queries/fetch-latest-order-req-msg";
+import CenterLoader2 from "@/components/center-loader2";
 
 interface Props {
   className?: string;
@@ -38,7 +38,7 @@ export default function OrderRequest({ className }: Props) {
       )}
     >
       {isPending ? (
-        <Loader2 className="m-2 h-6 w-6 animate-spin" />
+        <CenterLoader2 />
       ) : (
         <>
           <div className="flex w-full items-center justify-between pb-1 text-base font-bold text-slate-500">

@@ -14,18 +14,20 @@ export default function AdminHeader() {
   );
 }
 
-function Title() {
-  const pathname = usePathname();
-  let title: string = "";
-
+function getTitle(pathname: string) {
   switch (pathname) {
     case paths.adminOrders():
-      title = "물품 주문 내역";
-      break;
+      return "물품 주문 내역";
     case paths.adminWebOrders():
-      title = "웹 주문 내역";
-      break;
+      return "웹 주문 내역";
+    case paths.adminSettingsPayment():
+      return "PG결제 메세지 설정";
   }
+}
+
+function Title() {
+  const pathname = usePathname();
+  const title = getTitle(pathname);
 
   return (
     <div className="relative flex h-full w-full items-center justify-between px-2">

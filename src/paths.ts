@@ -67,6 +67,10 @@ export const paths = {
     return "/admin/web-orders";
   },
 
+  adminSettingsPayment() {
+    return "/admin/settings/payment";
+  },
+
   receiptOrders(appEnv: string, orderId: string) {
     return `/receipt/${appEnv}/orders/${orderId}`;
   },

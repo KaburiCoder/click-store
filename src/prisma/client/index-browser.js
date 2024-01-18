@@ -448,6 +448,11 @@ exports.Prisma.NewCpmMsgScalarFieldEnum = {
   etc1: 'etc1'
 };
 
+exports.Prisma.PgMsgScalarFieldEnum = {
+  id: 'id',
+  msg: 'msg'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -476,7 +481,8 @@ exports.Prisma.ModelName = {
   PaymentVirtual: 'PaymentVirtual',
   PaymentRefund: 'PaymentRefund',
   Em: 'Em',
-  NewCpmMsg: 'NewCpmMsg'
+  NewCpmMsg: 'NewCpmMsg',
+  PgMsg: 'PgMsg'
 };
 
 /**

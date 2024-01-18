@@ -1,4 +1,8 @@
 export class QKey {
+  static get fetchPgMessage() {
+    return "fetchPgMessage";
+  }
+
   static get fetchLatestOrderReqMsg() {
     return "fetchLatestOrderReqMsg";
   }
