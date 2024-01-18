@@ -67,10 +67,12 @@ const CartViewRow: React.FC<Props> = (props) => {
             <div
               className={cn(
                 "flex flex-col items-start gap-2",
-                "xs:items-center xs:flex-row",
+                "xs:flex-row xs:items-center",
               )}
             >
-              <div className="pb-2">{ci.pls?.danga?.toLocaleString()}원</div>
+              <div className="mr-1 min-w-[5rem] pb-2 text-right">
+                {ci.pls?.danga?.toLocaleString()}원
+              </div>
               <IntUpAndDown
                 value={ci.quantity}
                 step={step}

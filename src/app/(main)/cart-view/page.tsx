@@ -28,7 +28,7 @@ export default function CartViewPage() {
             <CartViewBody />
           </CartViewTable>
           <OrderRequest className={maxWidth} />
-          <BuyArea innerClassName={maxWidth} />
+          <BuyArea className={maxWidth} />
         </CartViewMain>
       )}
     </>
