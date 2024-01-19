@@ -6,6 +6,7 @@ import usePaymentStore from "@/store/payment.store";
 import WrongApproach from "@/components/(errors)/wrong-approach";
 import { APP_ENV } from "@/configs/config";
 import ButtonL from "@/components/ui/custom/button-l";
+import { Card } from "@/components/ui/card";
 
 export default function PaymentPage(props: any) {
   const {
@@ -42,12 +43,12 @@ export default function PaymentPage(props: any) {
   }
 
   return (
-    <main className="mx-auto max-w-6xl">
-      <div className="cst-card m-2">
+    <div className="max-w-6x mx-auto">
+      <Card className="m-2">
         <div id="payment-widget" />
         <div id="agreement" />
-      </div>
-      <div className="cst-card flex-center mx-2 flex-col px-2 py-4">
+      </Card>
+      <Card className="flex-center mx-2 flex-col px-2 py-4">
         <div className="mb-2 text-black">
           결제금액{" : "}
           <span className="text-xl font-bold text-blue-900">
@@ -63,7 +64,7 @@ export default function PaymentPage(props: any) {
             테스트 환경입니다. 실제 결제가 되지 않습니다.
           </div>
         )}
-      </div>
-    </main>
+      </Card>
+    </div>
   );
 }
