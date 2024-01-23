@@ -11,6 +11,7 @@ import { getLatestPlsList } from "@/db/services/product-list-sub.service";
 import { getProductListImage } from "@/db/services/product-list-image.service";
 import { imgPaths } from "@/paths";
 import { getUser } from "@/lib/utils/user.util";
+import { getCsByUserId } from "../services/cs.service";
 
 // 테스트 계정이 아닌 경우 테스트 상품은 보이지 않게
 function checkTestingVisible(ykiho: string, pdName: string) {
@@ -19,16 +20,23 @@ function checkTestingVisible(ykiho: string, pdName: string) {
 
   return !isTestYKiho && isTestName;
 }
+
 export const getBunryuObjectList = async () => {
   const webBunryuList = await findWebBunryuList();
   const plList = await getWebProductList();
   const plsList = await getLatestPlsList();
   const user = await getUser();
   const bunryuObjects: BunryuObject[] = [...webBunryuList];
+  const { card } = await getCsByUserId(user?.userId!, { card: true });
+  const useCard = card === "Y"; // 카드 체크기 사용여부
 
   for (const bunryuObj of bunryuObjects) {
     const { code: bunryu } = bunryuObj;
-    const foundPlList = plList.filter((p) => p.bunryu === bunryu);
+    const foundPlList = plList.filter((pl) => {
+      const isBuryuEqual = pl.bunryu === bunryu;
+      if (pl.card) return isBuryuEqual && useCard; // 제품이 카드인지 확인 후 카드 체크기 사용 시에만 보여준다.
+      return isBuryuEqual;
+    });
 
     const products = foundPlList.reduce((acc: Products[], cur) => {
       const pls = plsList.find((p) => p.smCode === cur.smCode);

@@ -138,7 +138,8 @@ exports.Prisma.ProductListScalarFieldEnum = {
   web: 'web',
   bunryu: 'bunryu',
   step: 'step',
-  fit: 'fit'
+  fit: 'fit',
+  card: 'card'
 };
 
 exports.Prisma.ProductListSubScalarFieldEnum = {

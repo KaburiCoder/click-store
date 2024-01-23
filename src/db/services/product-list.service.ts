@@ -7,7 +7,7 @@ export async function getWebProductList() {
   const jisa = await getJisa();
 
   return await db.productList.findMany({
-    select: { smCode: true, bunryu: true, step: true, fit: true },
+    select: { smCode: true, bunryu: true, step: true, fit: true, card: true },
     where: { jisa, web: true },
     orderBy: { smCode: "asc" },
   });

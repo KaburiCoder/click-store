@@ -4368,6 +4368,7 @@ export namespace Prisma {
     bunryu: string | null
     step: number | null
     fit: boolean | null
+    card: boolean | null
   }
 
   export type ProductListMaxAggregateOutputType = {
@@ -4381,6 +4382,7 @@ export namespace Prisma {
     bunryu: string | null
     step: number | null
     fit: boolean | null
+    card: boolean | null
   }
 
   export type ProductListCountAggregateOutputType = {
@@ -4394,6 +4396,7 @@ export namespace Prisma {
     bunryu: number
     step: number
     fit: number
+    card: number
     _all: number
   }
 
@@ -4417,6 +4420,7 @@ export namespace Prisma {
     bunryu?: true
     step?: true
     fit?: true
+    card?: true
   }
 
   export type ProductListMaxAggregateInputType = {
@@ -4430,6 +4434,7 @@ export namespace Prisma {
     bunryu?: true
     step?: true
     fit?: true
+    card?: true
   }
 
   export type ProductListCountAggregateInputType = {
@@ -4443,6 +4448,7 @@ export namespace Prisma {
     bunryu?: true
     step?: true
     fit?: true
+    card?: true
     _all?: true
   }
 
@@ -4543,6 +4549,7 @@ export namespace Prisma {
     bunryu: string
     step: number
     fit: boolean
+    card: boolean
     _count: ProductListCountAggregateOutputType | null
     _avg: ProductListAvgAggregateOutputType | null
     _sum: ProductListSumAggregateOutputType | null
@@ -4575,6 +4582,7 @@ export namespace Prisma {
     bunryu?: boolean
     step?: boolean
     fit?: boolean
+    card?: boolean
   }, ExtArgs["result"]["productList"]>
 
   export type ProductListSelectScalar = {
@@ -4588,6 +4596,7 @@ export namespace Prisma {
     bunryu?: boolean
     step?: boolean
     fit?: boolean
+    card?: boolean
   }
 
 
@@ -4605,6 +4614,7 @@ export namespace Prisma {
       bunryu: string
       step: number
       fit: boolean
+      card: boolean
     }, ExtArgs["result"]["productList"]>
     composites: {}
   }
@@ -5009,6 +5019,7 @@ export namespace Prisma {
     readonly bunryu: FieldRef<"ProductList", 'String'>
     readonly step: FieldRef<"ProductList", 'Int'>
     readonly fit: FieldRef<"ProductList", 'Boolean'>
+    readonly card: FieldRef<"ProductList", 'Boolean'>
   }
     
 
@@ -21369,7 +21380,8 @@ export namespace Prisma {
     web: 'web',
     bunryu: 'bunryu',
     step: 'step',
-    fit: 'fit'
+    fit: 'fit',
+    card: 'card'
   };
 
   export type ProductListScalarFieldEnum = (typeof ProductListScalarFieldEnum)[keyof typeof ProductListScalarFieldEnum]
@@ -21952,6 +21964,7 @@ export namespace Prisma {
     bunryu?: StringFilter<"ProductList"> | string
     step?: IntFilter<"ProductList"> | number
     fit?: BoolFilter<"ProductList"> | boolean
+    card?: BoolFilter<"ProductList"> | boolean
   }
 
   export type ProductListOrderByWithRelationInput = {
@@ -21965,6 +21978,7 @@ export namespace Prisma {
     bunryu?: SortOrder
     step?: SortOrder
     fit?: SortOrder
+    card?: SortOrder
   }
 
   export type ProductListWhereUniqueInput = Prisma.AtLeast<{
@@ -21981,6 +21995,7 @@ export namespace Prisma {
     bunryu?: StringFilter<"ProductList"> | string
     step?: IntFilter<"ProductList"> | number
     fit?: BoolFilter<"ProductList"> | boolean
+    card?: BoolFilter<"ProductList"> | boolean
   }, "jisa" | "smCode">
 
   export type ProductListOrderByWithAggregationInput = {
@@ -21994,6 +22009,7 @@ export namespace Prisma {
     bunryu?: SortOrder
     step?: SortOrder
     fit?: SortOrder
+    card?: SortOrder
     _count?: ProductListCountOrderByAggregateInput
     _avg?: ProductListAvgOrderByAggregateInput
     _max?: ProductListMaxOrderByAggregateInput
@@ -22015,6 +22031,7 @@ export namespace Prisma {
     bunryu?: StringWithAggregatesFilter<"ProductList"> | string
     step?: IntWithAggregatesFilter<"ProductList"> | number
     fit?: BoolWithAggregatesFilter<"ProductList"> | boolean
+    card?: BoolWithAggregatesFilter<"ProductList"> | boolean
   }
 
   export type ProductListSubWhereInput = {
@@ -23960,6 +23977,7 @@ export namespace Prisma {
     bunryu: string
     step: number
     fit: boolean
+    card: boolean
   }
 
   export type ProductListUncheckedCreateInput = {
@@ -23973,6 +23991,7 @@ export namespace Prisma {
     bunryu: string
     step: number
     fit: boolean
+    card: boolean
   }
 
   export type ProductListUpdateInput = {
@@ -23986,6 +24005,7 @@ export namespace Prisma {
     bunryu?: StringFieldUpdateOperationsInput | string
     step?: IntFieldUpdateOperationsInput | number
     fit?: BoolFieldUpdateOperationsInput | boolean
+    card?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductListUncheckedUpdateInput = {
@@ -23999,6 +24019,7 @@ export namespace Prisma {
     bunryu?: StringFieldUpdateOperationsInput | string
     step?: IntFieldUpdateOperationsInput | number
     fit?: BoolFieldUpdateOperationsInput | boolean
+    card?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductListCreateManyInput = {
@@ -24012,6 +24033,7 @@ export namespace Prisma {
     bunryu: string
     step: number
     fit: boolean
+    card: boolean
   }
 
   export type ProductListUpdateManyMutationInput = {
@@ -24025,6 +24047,7 @@ export namespace Prisma {
     bunryu?: StringFieldUpdateOperationsInput | string
     step?: IntFieldUpdateOperationsInput | number
     fit?: BoolFieldUpdateOperationsInput | boolean
+    card?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductListUncheckedUpdateManyInput = {
@@ -24038,6 +24061,7 @@ export namespace Prisma {
     bunryu?: StringFieldUpdateOperationsInput | string
     step?: IntFieldUpdateOperationsInput | number
     fit?: BoolFieldUpdateOperationsInput | boolean
+    card?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductListSubCreateInput = {
@@ -26480,6 +26504,7 @@ export namespace Prisma {
     bunryu?: SortOrder
     step?: SortOrder
     fit?: SortOrder
+    card?: SortOrder
   }
 
   export type ProductListAvgOrderByAggregateInput = {
@@ -26497,6 +26522,7 @@ export namespace Prisma {
     bunryu?: SortOrder
     step?: SortOrder
     fit?: SortOrder
+    card?: SortOrder
   }
 
   export type ProductListMinOrderByAggregateInput = {
@@ -26510,6 +26536,7 @@ export namespace Prisma {
     bunryu?: SortOrder
     step?: SortOrder
     fit?: SortOrder
+    card?: SortOrder
   }
 
   export type ProductListSumOrderByAggregateInput = {

@@ -48,6 +48,7 @@ model ProductList {
   bunryu   String   @map("pl_bunryu")
   step     Int      @map("pl_step")
   fit      Boolean  @map("pl_fit")
+  card     Boolean  @map("pl_card")
   // ProductListSub 모델과의 조인 관계 설정
   // productListSub ProductListSub @relation(fields: [jisa, smCode], references: [jisa, smCode])
 }
