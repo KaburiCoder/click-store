@@ -6,12 +6,12 @@ import { ChildrenProps } from "@/lib/props/children.props";
 export default function MainLayout({ children }: ChildrenProps) {
   return (
     <>
-      <div className="relative flex h-full flex-col">
+      <div className="flex h-full flex-col">
         <MainHeader />
-        <main className="flex-1 pt-[calc(var(--header-height)+var(--main-nav-height))] overflow-auto">
+        <main className="flex-1 overflow-auto pt-[calc(var(--header-height)+var(--main-nav-height))]">
           {children}
+          <MainFooter />
         </main>
-        <MainFooter />
       </div>
     </>
   );

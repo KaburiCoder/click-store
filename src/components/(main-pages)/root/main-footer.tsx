@@ -1,12 +1,8 @@
 "use client";
 import React from "react";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils/shadcn.util";
 
 export default function MainFooter() {
-  const pathname = usePathname();
-  const isCartViewPage = pathname === "/cart-view";
-
   return (
     <footer className={cn("relative bottom-0 w-full text-left text-black")}>
       <div className="mx-auto border-t-[1px] border-solid border-blue-200 p-5">
