@@ -285,6 +285,7 @@ model Cs {
   medi_pc        String? @map("cs_medi_pc")
   medi_autoju    String? @map("cs_medi_autojupsu")
   medi_grname    String? @map("cs_medi_grname")
+  webExMsg       Boolean @map("cs_web_exmsg")
 }
 
 model Cart {

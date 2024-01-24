@@ -2,7 +2,7 @@
 import db from "@/db/db";
 import { Cs } from "../models/cs";
 import { Prisma } from "@/prisma/client";
-import { getJisa } from "@/lib/utils/user.util";
+import { getJisa, getUser } from "@/lib/utils/user.util";
 import dayjs from "dayjs";
 import { getAdminYKihos } from "./account.service";
 
@@ -83,4 +83,15 @@ export async function getYkihosByMyung(myung?: string) {
       },
     },
   });
+}
+
+export async function excludePgMessage() {
+  try {
+    const user = await getUser();
+    const { webExMsg } = await getCsByUserId(user!.userId, { webExMsg: true });
+
+    return webExMsg;
+  } catch {
+    return false;
+  }
 }

@@ -10488,6 +10488,7 @@ export namespace Prisma {
     medi_pc: string | null
     medi_autoju: string | null
     medi_grname: string | null
+    webExMsg: boolean | null
   }
 
   export type CsMaxAggregateOutputType = {
@@ -10621,6 +10622,7 @@ export namespace Prisma {
     medi_pc: string | null
     medi_autoju: string | null
     medi_grname: string | null
+    webExMsg: boolean | null
   }
 
   export type CsCountAggregateOutputType = {
@@ -10754,6 +10756,7 @@ export namespace Prisma {
     medi_pc: number
     medi_autoju: number
     medi_grname: number
+    webExMsg: number
     _all: number
   }
 
@@ -10901,6 +10904,7 @@ export namespace Prisma {
     medi_pc?: true
     medi_autoju?: true
     medi_grname?: true
+    webExMsg?: true
   }
 
   export type CsMaxAggregateInputType = {
@@ -11034,6 +11038,7 @@ export namespace Prisma {
     medi_pc?: true
     medi_autoju?: true
     medi_grname?: true
+    webExMsg?: true
   }
 
   export type CsCountAggregateInputType = {
@@ -11167,6 +11172,7 @@ export namespace Prisma {
     medi_pc?: true
     medi_autoju?: true
     medi_grname?: true
+    webExMsg?: true
     _all?: true
   }
 
@@ -11387,6 +11393,7 @@ export namespace Prisma {
     medi_pc: string | null
     medi_autoju: string | null
     medi_grname: string | null
+    webExMsg: boolean
     _count: CsCountAggregateOutputType | null
     _avg: CsAvgAggregateOutputType | null
     _sum: CsSumAggregateOutputType | null
@@ -11539,6 +11546,7 @@ export namespace Prisma {
     medi_pc?: boolean
     medi_autoju?: boolean
     medi_grname?: boolean
+    webExMsg?: boolean
   }, ExtArgs["result"]["cs"]>
 
   export type CsSelectScalar = {
@@ -11672,6 +11680,7 @@ export namespace Prisma {
     medi_pc?: boolean
     medi_autoju?: boolean
     medi_grname?: boolean
+    webExMsg?: boolean
   }
 
 
@@ -11809,6 +11818,7 @@ export namespace Prisma {
       medi_pc: string | null
       medi_autoju: string | null
       medi_grname: string | null
+      webExMsg: boolean
     }, ExtArgs["result"]["cs"]>
     composites: {}
   }
@@ -12333,6 +12343,7 @@ export namespace Prisma {
     readonly medi_pc: FieldRef<"Cs", 'String'>
     readonly medi_autoju: FieldRef<"Cs", 'String'>
     readonly medi_grname: FieldRef<"Cs", 'String'>
+    readonly webExMsg: FieldRef<"Cs", 'Boolean'>
   }
     
 
@@ -21622,7 +21633,8 @@ export namespace Prisma {
     medi_use: 'medi_use',
     medi_pc: 'medi_pc',
     medi_autoju: 'medi_autoju',
-    medi_grname: 'medi_grname'
+    medi_grname: 'medi_grname',
+    webExMsg: 'webExMsg'
   };
 
   export type CsScalarFieldEnum = (typeof CsScalarFieldEnum)[keyof typeof CsScalarFieldEnum]
@@ -22684,6 +22696,7 @@ export namespace Prisma {
     medi_pc?: StringNullableFilter<"Cs"> | string | null
     medi_autoju?: StringNullableFilter<"Cs"> | string | null
     medi_grname?: StringNullableFilter<"Cs"> | string | null
+    webExMsg?: BoolFilter<"Cs"> | boolean
   }
 
   export type CsOrderByWithRelationInput = {
@@ -22817,6 +22830,7 @@ export namespace Prisma {
     medi_pc?: SortOrderInput | SortOrder
     medi_autoju?: SortOrderInput | SortOrder
     medi_grname?: SortOrderInput | SortOrder
+    webExMsg?: SortOrder
   }
 
   export type CsWhereUniqueInput = Prisma.AtLeast<{
@@ -22953,6 +22967,7 @@ export namespace Prisma {
     medi_pc?: StringNullableFilter<"Cs"> | string | null
     medi_autoju?: StringNullableFilter<"Cs"> | string | null
     medi_grname?: StringNullableFilter<"Cs"> | string | null
+    webExMsg?: BoolFilter<"Cs"> | boolean
   }, "gubun" | "code">
 
   export type CsOrderByWithAggregationInput = {
@@ -23086,6 +23101,7 @@ export namespace Prisma {
     medi_pc?: SortOrderInput | SortOrder
     medi_autoju?: SortOrderInput | SortOrder
     medi_grname?: SortOrderInput | SortOrder
+    webExMsg?: SortOrder
     _count?: CsCountOrderByAggregateInput
     _avg?: CsAvgOrderByAggregateInput
     _max?: CsMaxOrderByAggregateInput
@@ -23227,6 +23243,7 @@ export namespace Prisma {
     medi_pc?: StringNullableWithAggregatesFilter<"Cs"> | string | null
     medi_autoju?: StringNullableWithAggregatesFilter<"Cs"> | string | null
     medi_grname?: StringNullableWithAggregatesFilter<"Cs"> | string | null
+    webExMsg?: BoolWithAggregatesFilter<"Cs"> | boolean
   }
 
   export type CartWhereInput = {
@@ -24819,6 +24836,7 @@ export namespace Prisma {
     medi_pc?: string | null
     medi_autoju?: string | null
     medi_grname?: string | null
+    webExMsg: boolean
   }
 
   export type CsUncheckedCreateInput = {
@@ -24952,6 +24970,7 @@ export namespace Prisma {
     medi_pc?: string | null
     medi_autoju?: string | null
     medi_grname?: string | null
+    webExMsg: boolean
   }
 
   export type CsUpdateInput = {
@@ -25085,6 +25104,7 @@ export namespace Prisma {
     medi_pc?: NullableStringFieldUpdateOperationsInput | string | null
     medi_autoju?: NullableStringFieldUpdateOperationsInput | string | null
     medi_grname?: NullableStringFieldUpdateOperationsInput | string | null
+    webExMsg?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CsUncheckedUpdateInput = {
@@ -25218,6 +25238,7 @@ export namespace Prisma {
     medi_pc?: NullableStringFieldUpdateOperationsInput | string | null
     medi_autoju?: NullableStringFieldUpdateOperationsInput | string | null
     medi_grname?: NullableStringFieldUpdateOperationsInput | string | null
+    webExMsg?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CsCreateManyInput = {
@@ -25351,6 +25372,7 @@ export namespace Prisma {
     medi_pc?: string | null
     medi_autoju?: string | null
     medi_grname?: string | null
+    webExMsg: boolean
   }
 
   export type CsUpdateManyMutationInput = {
@@ -25484,6 +25506,7 @@ export namespace Prisma {
     medi_pc?: NullableStringFieldUpdateOperationsInput | string | null
     medi_autoju?: NullableStringFieldUpdateOperationsInput | string | null
     medi_grname?: NullableStringFieldUpdateOperationsInput | string | null
+    webExMsg?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CsUncheckedUpdateManyInput = {
@@ -25617,6 +25640,7 @@ export namespace Prisma {
     medi_pc?: NullableStringFieldUpdateOperationsInput | string | null
     medi_autoju?: NullableStringFieldUpdateOperationsInput | string | null
     medi_grname?: NullableStringFieldUpdateOperationsInput | string | null
+    webExMsg?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CartCreateInput = {
@@ -27059,6 +27083,7 @@ export namespace Prisma {
     medi_pc?: SortOrder
     medi_autoju?: SortOrder
     medi_grname?: SortOrder
+    webExMsg?: SortOrder
   }
 
   export type CsAvgOrderByAggregateInput = {
@@ -27198,6 +27223,7 @@ export namespace Prisma {
     medi_pc?: SortOrder
     medi_autoju?: SortOrder
     medi_grname?: SortOrder
+    webExMsg?: SortOrder
   }
 
   export type CsMinOrderByAggregateInput = {
@@ -27331,6 +27357,7 @@ export namespace Prisma {
     medi_pc?: SortOrder
     medi_autoju?: SortOrder
     medi_grname?: SortOrder
+    webExMsg?: SortOrder
   }
 
   export type CsSumOrderByAggregateInput = {

@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import PaymentMessageModal from "./payment-message-modal";
 import { usePgMessageQuery } from "@/lib/hooks/use-pg-message-query";
+import { excludePgMessage } from "@/db/services/cs.service";
 
 export default function PaymentBuyButton() {
   const { checkBNPL, selectedCartItems, loading, cartItemsUtil, fetchPayment } =
     useCartView({
       isPayment: true,
     });
+  const [pending, setPending] = useState(false);
   const { push } = useRouter();
   const { pgMessage } = usePgMessageQuery();
   const [open, setOpen] = useState(false);
@@ -31,19 +33,24 @@ export default function PaymentBuyButton() {
     }
   }
 
+  async function handleClick() {
+    setPending(true);
+    const excludeMsg = await excludePgMessage();
+    if (excludeMsg || isBnpl || !pgMessage) {
+      handleBuy();
+    } else {
+      setOpen(true);
+    }
+    setPending(false);
+  }
+
   return (
     <>
       <ButtonL
         className="h-16 w-full min-w-[10rem] font-bold"
-        onClick={() => {
-          if (isBnpl || !pgMessage) {
-            handleBuy();
-          } else {
-            setOpen(true);
-          }
-        }}
+        onClick={handleClick}
         disabled={(selectedCartItems?.length ?? 0) === 0}
-        isLoading={loading}
+        isLoading={loading || pending}
       >
         구매하기
       </ButtonL>

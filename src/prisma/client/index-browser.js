@@ -362,7 +362,8 @@ exports.Prisma.CsScalarFieldEnum = {
   medi_use: 'medi_use',
   medi_pc: 'medi_pc',
   medi_autoju: 'medi_autoju',
-  medi_grname: 'medi_grname'
+  medi_grname: 'medi_grname',
+  webExMsg: 'webExMsg'
 };
 
 exports.Prisma.CartScalarFieldEnum = {
