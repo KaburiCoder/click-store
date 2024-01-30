@@ -5,12 +5,12 @@ import { getPaymentByPaymentKey } from "../payment.service";
 import { formatDateToStr } from "@/lib/utils/date.util";
 import { APP_ENV } from "@/configs/config";
 import { cardData } from "@/lib/datas/card-data";
+import { Payment } from "@/db/models/payment";
 
-export async function tossResultToText(result: TossApiResult) {
-  const payment = await getPaymentByPaymentKey(result.paymentKey, {
-    em: true,
-  });
-
+export async function tossResultToText(
+  payment: Payment,
+  result: TossApiResult,
+) {
   const lines: string[] = [];
   lines.push(`----- 물품관리 웹 결제 알림 -----`);
   if (APP_ENV === "dev") lines.push("◈◈◈ 테스트 환경입니다. ◈◈◈");

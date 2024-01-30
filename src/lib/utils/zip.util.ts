@@ -2,7 +2,8 @@ import { promisify } from "util";
 import * as zlib from "zlib";
 
 export default class ZipUtil {
-  static async decompress(buffer: Buffer) {
+  static async decompress(buffer: Buffer | null | undefined) {
+    if (!buffer) return;
     const gunzipAsync = promisify(zlib.gunzip);
     return await gunzipAsync(buffer);
   }
@@ -15,6 +16,6 @@ export default class ZipUtil {
 
   static async decompressToString(compressedBuffer: Buffer) {
     const buffer = await ZipUtil.decompress(compressedBuffer);
-    return buffer.toString("utf-8");
+    return buffer!.toString("utf-8");
   }
 }

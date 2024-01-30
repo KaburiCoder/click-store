@@ -12,6 +12,7 @@ import { getProductListImage } from "@/db/services/product-list-image.service";
 import { imgPaths } from "@/paths";
 import { getUser } from "@/lib/utils/user.util";
 import { getCsByUserId } from "../services/cs.service";
+import { ImageUtil } from "@/lib/utils/image.util";
 
 // 테스트 계정이 아닌 경우 테스트 상품은 보이지 않게
 function checkTestingVisible(ykiho: string, pdName: string) {
@@ -61,12 +62,8 @@ export const getBunryuObjectList = async () => {
 
 export const getProductImage = cache(async ({ smCode }: { smCode: string }) => {
   const result = await getProductListImage({ smCode });
-  if (!result?.image) {
-    return imgPaths.noImage;
-  }
   const decompressBytes = await ZipUtil.decompress(result?.image);
-  const imgBase64 = decompressBytes.toString("base64");
-  return `data:image/png;base64,${imgBase64}`;
+  return ImageUtil.bufferToSrc(decompressBytes);
 });
 
 export async function getProducts() {
