@@ -20,13 +20,34 @@ export async function getCsByUserId(
   userId: string,
   select?: Prisma.CsSelect,
 ): Promise<Cs> {
+  let formatedSaupnum = userId;
+  if (userId.length === 10) {
+    formatedSaupnum = `${userId.slice(0, 3)}-${userId.slice(
+      3,
+      5,
+    )}-${userId.slice(5)}`;
+  }
+  const todayYmd = dayjs().format("YYYYMMDD");
+
   const cs = await db.cs.findFirst({
     select,
     where: {
-      OR: [{ code: userId }, { saupnum: userId }],
+      OR: [
+        { code: userId },
+        { OR: [{ saupnum: userId }, { saupnum: formatedSaupnum }] },
+      ],
+      AND: {
+        OR: [{ jungji: { gte: todayYmd } }, { jungji: "" }, { jungji: null }],
+      },
     },
   });
 
+  // const cs = await db.$queryRaw<Cs>`
+  //   SELECT *
+  //   FROM cs
+  //   WHERE (code = ${userId} OR REPLACE(saupnum, '-', '') = ${userId})
+  //   AND jungji >= DATE_FORMAT(NOW(), '%Y%m%d')
+  // `;
   return cs as Cs;
 }
 
