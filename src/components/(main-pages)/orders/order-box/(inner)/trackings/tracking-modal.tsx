@@ -13,7 +13,7 @@ export default function TrackingModal(props: Props) {
   const { component } = useDeliveryTracking(props);
 
   return (
-    <Modal open={open} setOpen={setOpen}>
+    <Modal className="max-w-[30rem]" open={open} setOpen={setOpen}>
       {component}
     </Modal>
   );
