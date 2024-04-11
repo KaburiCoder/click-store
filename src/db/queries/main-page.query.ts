@@ -13,11 +13,12 @@ import { imgPaths } from "@/paths";
 import { getUser } from "@/lib/utils/user.util";
 import { getCsByUserId } from "../services/cs.service";
 import { ImageUtil } from "@/lib/utils/image.util";
+import { testCodes } from "@/lib/datas/test-codes";
 
 // 테스트 계정이 아닌 경우 테스트 상품은 보이지 않게
 function checkTestingVisible(ykiho: string, pdName: string) {
   const isTestName = pdName.indexOf("*테스트*") > -1;
-  const isTestYKiho = ["10170068", "99999999"].includes(ykiho);
+  const isTestYKiho = testCodes.includes(ykiho);
 
   return !isTestYKiho && isTestName;
 }

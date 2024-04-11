@@ -20,7 +20,19 @@ import ErrorText from "../(shared)/error-text";
 import { useAdminSearchBarStore } from "@/store/admin-search-bar.store";
 import CheckBoxL from "../ui/custom/check-box-l";
 
-export default function SearchBar() {
+interface Props {
+  showManager?: boolean;
+  showSearchString?: boolean;
+  showTest?: boolean;
+  rItems?: React.ReactNode;
+}
+
+export default function SearchBar({
+  showManager = true,
+  showSearchString = true,
+  showTest = true,
+  rItems,
+}: Props) {
   const [dateRange, setDateRange] = useState<DateRange>();
   const [manager, setManager] = useState<string>();
   const [searchString, setSearchString] = useState<string>();
@@ -60,33 +72,42 @@ export default function SearchBar() {
       <form className="flex flex-col gap-1 p-1" onSubmit={handleSubmit}>
         <div className="flex flex-wrap gap-1">
           <DateRangePicker onDateChange={setDateRange} />
-          <Select onValueChange={setManager}>
-            <SelectTrigger className="w-auto">
-              <SelectValue placeholder="담당자" id="manager" />
-            </SelectTrigger>
-            <SelectContent onChange={(e) => { }}>
-              <SelectGroup>
-                <SelectLabel>-- 담당자 선택 --</SelectLabel>
-                <SelectItem value="전체">전체</SelectItem>
-                {data?.map((data) => (
-                  <SelectItem key={data.code} value={data.code}>
-                    {data.name}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <Input
-            placeholder="거래처명 or 주문번호"
-            className="max-w-[12rem]"
-            onChange={(e) => setSearchString(e.target.value.trim())}
-          />
+          {showManager && (
+            <Select onValueChange={setManager}>
+              <SelectTrigger className="w-auto">
+                <SelectValue placeholder="담당자" id="manager" />
+              </SelectTrigger>
+              <SelectContent onChange={(e) => {}}>
+                <SelectGroup>
+                  <SelectLabel>-- 담당자 선택 --</SelectLabel>
+                  <SelectItem value="전체">전체</SelectItem>
+                  {data?.map((data) => (
+                    <SelectItem key={data.code} value={data.code}>
+                      {data.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          )}
+
+          {showSearchString && (
+            <Input
+              placeholder="거래처명 or 주문번호"
+              className="max-w-[12rem]"
+              onChange={(e) => setSearchString(e.target.value.trim())}
+            />
+          )}
+
           <ButtonL>조회</ButtonL>
-          <CheckBoxL
-            label="TEST"
-            labelLocation="bottom"
-            onCheckedChange={(e) => setIsAdmin(e as boolean)}
-          />
+          {rItems}
+          {showTest && (
+            <CheckBoxL
+              label="TEST"
+              labelLocation="bottom"
+              onCheckedChange={(e) => setIsAdmin(e as boolean)}
+            />
+          )}
         </div>
         <ErrorText errorMessage={errorMessage} className="w-fit" />
       </form>

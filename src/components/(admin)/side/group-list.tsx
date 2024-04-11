@@ -22,6 +22,11 @@ const groups: ISideGroup[] = [
         path: paths.adminWebOrders(),
         name: "웹 주문내역",
       },
+      {
+        Icon: MdContentPasteSearch,
+        path: paths.adminWebOrdersTable(),
+        name: "웹 주문내역(Table)",
+      },
     ],
   },
   {

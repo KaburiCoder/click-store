@@ -20,6 +20,8 @@ function getTitle(pathname: string) {
       return "물품 주문 내역";
     case paths.adminWebOrders():
       return "웹 주문 내역";
+    case paths.adminWebOrdersTable():
+      return "웹 주문 내역(Table)";
     case paths.adminSettingsPayment():
       return "PG결제 메세지 설정";
   }

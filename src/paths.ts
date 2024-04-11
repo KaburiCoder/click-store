@@ -67,6 +67,10 @@ export const paths = {
     return "/admin/web-orders";
   },
 
+  adminWebOrdersTable() {
+    return "/admin/web-orders-table";
+  },
+
   adminSettingsPayment() {
     return "/admin/settings/payment";
   },

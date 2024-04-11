@@ -23,7 +23,8 @@
       "@/db*": ["./src/db/*"],
       "@/components/*": ["./src/components/*"],
       "@/css/*": ["./src/styles/css/*"],
-      "@/lib/*": ["./src/lib/*"]
+      "@/lib/*": ["./src/lib/*"],
+      "@/public/*": ["./public/*"]
     }
   },
   "include": [

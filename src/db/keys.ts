@@ -2,7 +2,9 @@ export class QKey {
   static get fetchPgMessage() {
     return "fetchPgMessage";
   }
-
+  static get fetchAdminPaymentsWithItems() {
+    return "fetchAdminPaymentsWithItems";
+  }
   static get fetchLatestOrderReqMsg() {
     return "fetchLatestOrderReqMsg";
   }

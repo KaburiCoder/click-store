@@ -1,0 +1,42 @@
+$headerBorderColor: #60a5fa;
+$borderColor: #bfdbfe;
+$hoverBackground: #bad8fd;
+
+.table {
+  // border: 1px solid lightgray;
+  tbody {
+    border-bottom: 1px solid lightgray;
+
+    tr:hover {
+      background-color: $hoverBackground;
+    }
+    td {
+      padding: 0.5rem;
+      border-bottom: 1px solid $borderColor;
+      border-right: 1px solid $borderColor;
+
+      &:last-child {
+        border-right: 0px;
+      }
+    }
+  }
+
+  th {
+    background-color: $borderColor;
+    border-top: 1px solid $headerBorderColor;
+    border-bottom: 1px solid $headerBorderColor;
+    border-right: 1px solid $headerBorderColor;
+    padding: 0.5rem;
+  }
+
+  th:last-child {
+    border-right: 0px;
+  }
+  tfoot {
+    color: gray;
+  }
+
+  tfoot th {
+    font-weight: normal;
+  }
+}

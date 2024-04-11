@@ -477,7 +477,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "F:\\_web\\click-store\\src\\prisma\\client",
+      "value": "C:\\Web\\click-store\\click-store\\src\\prisma\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -504,7 +504,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

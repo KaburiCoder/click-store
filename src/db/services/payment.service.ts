@@ -22,6 +22,9 @@ import { getEm } from "./em.service";
 import { AdminInfinitySearchDto } from "../dto/payment/admin-infinity-search.dto";
 import { Prisma } from "@/prisma/client";
 import { saveOrderReqMsg } from "./order-req-msg.service";
+import { GetAdminPaymentsForTableDto } from "../dto/payment/get-admin-payments-for-table.dto";
+import { PaymentsResult } from "../interfaces/payments-result";
+import { testCodes } from "@/lib/datas/test-codes";
 
 const DISP_ITEM_COUNT = 6;
 
@@ -173,6 +176,59 @@ export async function getAdminPaymentsWithItems({
   return {
     page: page,
     isLast: payments.length < DISP_ITEM_COUNT,
+    payments: newPayments,
+  };
+}
+
+export async function getAdminPaymentsForTable({
+  dateFrom,
+  dateTo,
+}: GetAdminPaymentsForTableDto): Promise<PaymentsResult> {
+  const sDate = add9Hours(dayjs(dateFrom).format("YYYY-MM-DD 00:00:00"));
+  const eDate = add9Hours(dayjs(dateTo).format("YYYY-MM-DD 23:59:59"));
+
+  console.log("sDate", sDate);
+  console.log("eDate", eDate);
+
+  const payments = await db.payment.findMany({
+    where: {
+      OR: [
+        {
+          method: "후불결제",
+          AND: [
+            { requestedAt: { gte: sDate } },
+            { requestedAt: { lte: eDate } },
+          ],
+        },
+        {
+          method: { not: "후불결제" },
+          AND: [{ approvedAt: { gte: sDate } }, { approvedAt: { lte: eDate } }],
+        },
+      ],
+      sendType: { not: "결제대기" },
+      ykiho: { notIn: testCodes },
+      amount: { not: 0 },
+      cancel: false,
+    },
+    include: { paymentItems: true, virtual: true },
+  });
+
+  payments
+    .filter((payment) => !payment.test)
+    .forEach((payment) => {
+      if (!payment.approvedAt) {
+        payment.approvedAt = payment.requestedAt;
+      }
+    });
+
+  const newPayments = payments.sort(
+    (a, b) => b.approvedAt!.getTime() - a.approvedAt!.getTime(),
+  ) as Payment[];
+
+  await addOtherTableInfoToPayments(newPayments, true);
+  subtract9HoursByObject(newPayments);
+
+  return {
     payments: newPayments,
   };
 }
