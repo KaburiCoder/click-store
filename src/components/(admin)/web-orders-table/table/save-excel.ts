@@ -1,6 +1,7 @@
 import { Table } from "@tanstack/react-table";
 import { Workbook, Column } from "exceljs";
 import dayjs from "dayjs";
+import { ExcelWorkbook } from "@/lib/classes/excel-workbook";
 
 interface IHeader {
   index: number;
@@ -8,7 +9,7 @@ interface IHeader {
   excelWidth: number;
 }
 export async function saveExcel<T>(table: Table<T>, fileName: string) {
-  const wb = new Workbook();
+  const wb = new ExcelWorkbook();
   const ws = wb.addWorksheet("웹결제");
   const ws2 = wb.addWorksheet("후불결제");
 
@@ -71,19 +72,5 @@ export async function saveExcel<T>(table: Table<T>, fileName: string) {
     }
   });
 
-  const promise: Promise<void>[] = [];
-  Promise.all(promise).then(() => {
-    wb.xlsx.writeBuffer().then((b) => {
-      let a = new Blob([b]);
-      let url = URL.createObjectURL(a);
-
-      let elem = document.createElement("a");
-      elem.href = url;
-      elem.download = `${fileName}.xlsx`;
-      elem.click();
-
-      URL.revokeObjectURL(url);
-      elem.remove();
-    });
-  });
+  wb.save(fileName);
 }

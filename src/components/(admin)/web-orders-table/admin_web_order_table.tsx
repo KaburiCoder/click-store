@@ -8,7 +8,7 @@ import { AdminWOTable, AdminWOTableRef } from "./table/admin-wo-table";
 import { useAdminSearchBarStore } from "@/store/admin-search-bar.store";
 import SearchBar from "../search-bar";
 import ButtonL from "@/components/ui/custom/button-l";
-import { saveExcel } from "./save-excel";
+import { saveExcel } from "./table/save-excel";
 import { LottieLoading } from "@/components/custom/lottie-loading";
 import dayjs from "dayjs";
 
