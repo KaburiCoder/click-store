@@ -8,7 +8,7 @@ export default function MainLayout({ children }: ChildrenProps) {
     <>
       <div className="flex h-full flex-col">
         <MainHeader />
-        <main className="flex-1 pt-[calc(var(--header-height)+var(--main-nav-height))]">
+        <main className="flex-1 pt-[calc(var(--header-height)+var(--main-nav-height))] overflow-y-auto">
           {children}
           <MainFooter />
         </main>
