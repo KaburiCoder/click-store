@@ -6,7 +6,7 @@ import {
 
 import { getUser } from "../utils/user.util";
 import { getOrderId } from "../utils/toss-pg.util";
-import { TOSS_CLIENT_KEY } from "@/configs/config";
+import { useEnv } from "./use-env";
 
 interface Props {
   orderName: string;
@@ -21,6 +21,7 @@ interface Callback {
 const selector = "#payment-widget";
 
 const useTossWidget = ({ totalPrice, orderName }: Props) => {
+  const env = useEnv();
   const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
   const paymentMethodsWidgetRef = useRef<ReturnType<
     PaymentWidgetInstance["renderPaymentMethods"]
@@ -53,6 +54,7 @@ const useTossWidget = ({ totalPrice, orderName }: Props) => {
   useEffect(() => {
     async function setPaymentWidgets() {
       const user = await getUser();
+      if (!env) return;
       if (!user) {
         throw new Error("권한 없음");
       }
@@ -61,7 +63,7 @@ const useTossWidget = ({ totalPrice, orderName }: Props) => {
       // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
       const customerKey = user.userId;
       const paymentWidget = await loadPaymentWidget(
-        TOSS_CLIENT_KEY,
+        env.TOSS_CLIENT_KEY,
         customerKey,
       ); // 회원 결제
       // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS); // 비회원 결제
@@ -84,7 +86,7 @@ const useTossWidget = ({ totalPrice, orderName }: Props) => {
     }
 
     if (totalPrice > 0) setPaymentWidgets();
-  }, [totalPrice, fetchCheckout]);
+  }, [env, totalPrice, fetchCheckout]);
 
   return {
     fetchCheckout,

@@ -1,13 +1,15 @@
+"use client";
 import WrongApproach from "@/components/(errors)/wrong-approach";
 import { Card } from "@/components/ui/card";
 import ButtonL from "@/components/ui/custom/button-l";
-import { APP_ENV } from "@/configs/config";
 import { useCartView } from "@/lib/hooks/use-cart-view";
+import { useEnv } from "@/lib/hooks/use-env";
 import useTossWidget from "@/lib/hooks/use-toss-widget";
 import usePaymentStore from "@/store/payment.store";
 import React, { useEffect } from "react";
 
 const PaymentBody = () => {
+  const env = useEnv();
   const {
     orderRequestMessage,
     hasNotPaymentData,
@@ -41,11 +43,6 @@ const PaymentBody = () => {
     });
   }
 
-  useEffect(() => {
-    console.error(
-      `process.env.NEXT_PUBLIC_APP_ENV: ${process.env.NEXT_PUBLIC_APP_ENV}`,
-    );
-  }, []);
   return (
     <div className="max-w-6x mx-auto">
       <Card className="m-2">
@@ -63,7 +60,7 @@ const PaymentBody = () => {
         <ButtonL className="w-full text-base" onClick={checkoutHandler}>
           결제하기
         </ButtonL>
-        {APP_ENV !== "prod" && (
+        {env?.APP_ENV !== "prod" && (
           <div className="mt-2 w-full rounded bg-rose-200 p-3 text-center text-red-600">
             테스트 환경입니다. 실제 결제가 되지 않습니다.
           </div>

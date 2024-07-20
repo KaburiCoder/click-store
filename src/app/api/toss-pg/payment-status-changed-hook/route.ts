@@ -3,8 +3,8 @@ import { TossApiResult } from "@/db/interfaces/toss-api-result";
 import { sendCpmMessage } from "@/db/services/new-cpm-msg.service";
 import { AsyncUtil } from "@/lib/utils/async.util";
 import { tossResultToText } from "@/db/services/toss-payments/toss-result-to-text";
-import { APP_ENV } from "@/configs/config";
 import { getPaymentByPaymentKey } from "@/db/services/payment.service";
+import { APP_ENV } from "@/configs/config";
 
 export async function GET(req: NextRequest) {
   return NextResponse.json({ message: "success" });
