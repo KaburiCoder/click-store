@@ -87,19 +87,19 @@ export default async function PaymentSuccessPage({ params }: Props) {
   );
 }
 
-export async function generateStaticParams() {
-  const result = await db.payment.findMany({
-    select: {
-      orderId: true,
-    },
-  });
+// export async function generateStaticParams() {
+//   const result = await db.payment.findMany({
+//     select: {
+//       orderId: true,
+//     },
+//   });
 
-  return result.map((r) => {
-    return {
-      orderId: r.orderId,
-    };
-  });
-}
+//   return result.map((r) => {
+//     return {
+//       orderId: r.orderId,
+//     };
+//   });
+// }
 
 const LabelText = ({
   label,
