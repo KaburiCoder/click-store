@@ -10,6 +10,12 @@ export interface EnvData {
   NEST_URL: string;
   TOSS_SECRET_KEY: string;
   TOSS_CLIENT_KEY: string;
+
+  SMTP_SERVICE: string;
+  SMTP_HOST: string;
+  SMTP_PORT: number;
+  SMTP_AUTH_USER: string;
+  SMTP_AUTH_PASS: string;
 }
 
 export const APP_ENV: "prod" | "dev" = process.env.NEXT_PUBLIC_APP_ENV! as

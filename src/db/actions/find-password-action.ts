@@ -6,6 +6,7 @@ import {
 import { z } from "zod";
 import { resultWrapper2 } from "@/lib/utils/callback.util";
 import { NodeMailerUtil } from "@/lib/utils/nodemailer/nodemailer.util";
+import { getEnv } from "@/configs/env-config";
 
 interface FindPasswordResult {
   sendedEmail?: string;
@@ -40,7 +41,8 @@ export async function findPasswordAction(
     return { errorMessage };
   }
 
-  const nodemailer = new NodeMailerUtil();
+  const env = await getEnv();
+  const nodemailer = new NodeMailerUtil(env);
   const nodemailerResult = await resultWrapper2(
     nodemailer.sendChangePasswordEmail({
       email: account.email,

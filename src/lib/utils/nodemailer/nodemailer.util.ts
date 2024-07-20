@@ -1,6 +1,7 @@
 import mailer from "nodemailer";
 import * as util from "util";
 import { promises } from "fs";
+import { EnvData } from "@/configs/config";
 const inLineCss = require("nodemailer-juice");
 
 interface ChangePasswordArgs {
@@ -10,14 +11,15 @@ interface ChangePasswordArgs {
 }
 
 export class NodeMailerUtil {
+  constructor(private env: EnvData) { }
   private getSmtpData() {
     return {
-      service: process.env.SMTP_SERVICE!,
-      host: process.env.SMTP_HOST!,
-      port: +process.env.SMTP_PORT!,
+      service: this.env.SMTP_SERVICE!,
+      host: this.env.SMTP_HOST!,
+      port: +this.env.SMTP_PORT!,
       auth: {
-        user: process.env.SMTP_AUTH_USER!,
-        pass: process.env.SMTP_AUTH_PASS!,
+        user: this.env.SMTP_AUTH_USER!,
+        pass: this.env.SMTP_AUTH_PASS!,
       },
     };
   }
@@ -48,7 +50,7 @@ export class NodeMailerUtil {
   private async getMailOptions(args: ChangePasswordArgs) {
     const html = await this.getHtml(args);
     const mailOptions = {
-      from: process.env.SMTP_AUTH_USER, // 네이버 아이디
+      from: this.env.SMTP_AUTH_USER, // 네이버 아이디
       to: args.email, // 수신자 아이디
       subject: "클릭스토어 비밀번호 변경",
       html,
