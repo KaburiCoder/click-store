@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   if (process.env.NEXT_ENV === "ingress") noStore();
-
+  console.error("APP_ENV", process.env.APP_ENV);
   return (
     <html lang="en">
       <body className={natoSansKR.className}>
