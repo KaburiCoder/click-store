@@ -478,7 +478,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Web\\click-store\\click-store\\src\\prisma\\client",
+      "value": "C:\\Web\\click-store\\src\\prisma\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -495,8 +495,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "5.7.1",
@@ -505,7 +504,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
