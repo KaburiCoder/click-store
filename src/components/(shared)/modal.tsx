@@ -51,7 +51,7 @@ export default function Modal({ open, setOpen, children, className }: Props) {
       <div
         ref={wrapper}
         className={cn(
-          "cst-card absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-4",
+          "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-white p-4",
           "animate-modal-slide-down",
           className,
         )}

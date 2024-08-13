@@ -13,7 +13,6 @@ export default function ReceiptError({ errorMessage, setOpen }: Props) {
         {setOpen && (
           <IoCloseOutline
             className="h-8 w-8 rounded text-gray-600 hover:bg-gray-200 hover:text-gray-800"
-            Icon={IoCloseOutline}
             onClick={() => setOpen?.(false)}
           />
         )}
