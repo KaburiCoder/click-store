@@ -1,4 +1,4 @@
-FROM node:20-alpine  
+FROM node:20-alpine3.20
 
 WORKDIR /app
 
@@ -8,7 +8,8 @@ RUN corepack enable pnpm && pnpm i --frozen-lockfile
 
 COPY . .
 
-RUN apk add --no-cache openssl1.1-compat
+# 최신 OpenSSL 라이브러리 설치
+RUN apk update && apk add --no-cache openssl openssl-dev
 
 RUN npx prisma generate 
 EXPOSE 3000
