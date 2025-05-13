@@ -30,7 +30,7 @@ export const getBunryuObjectList = async () => {
   const user = await getUser();
   const bunryuObjects: BunryuObject[] = [...webBunryuList];
   const { card } = await getCsByUserId(user?.userId!, { card: true });
-  const useCard = card === "Y"; // 카드 체크기 사용여부
+  const useCard = (card ?? "0") >= "1"; // 카드 체크기 사용여부
 
   for (const bunryuObj of bunryuObjects) {
     const { code: bunryu } = bunryuObj;
