@@ -13,7 +13,7 @@ RUN apk update && apk add --no-cache openssl openssl-dev
 
 RUN npx prisma generate 
 EXPOSE 3000
-ENV PORT 3000
+ENV PORT=3000
 RUN npm run build
 CMD [ "npm", "run", "start:prod" ]
 
